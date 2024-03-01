@@ -1,5 +1,0 @@
-[0.049s] Invoking command in '/home/mechax/zyb/radar_station/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station/build/mindvision_camera -- -j16 -l16
-[0.074s] [35m[1mConsolidate compiler generated dependencies of target mindvision_camera[0m
-[0.074s] [35m[1mConsolidate compiler generated dependencies of target mindvision_camera_node[0m
-[0.088s] [ 50%] Built target mindvision_camera
-[0.090s] [100%] Built target mindvision_camera_node

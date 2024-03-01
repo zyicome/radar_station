@@ -1,1 +1,0 @@
-[0mCMake Error: The current CMakeCache.txt directory /home/mechax/zyb/radar_station/build/get_depth/CMakeCache.txt is different than the directory /home/mechax/AAAmy_ws/1.18/radar_station/build/get_depth where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m

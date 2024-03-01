@@ -1,8 +1,0 @@
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::init()[m[K’:
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/radarstation.cpp:44:17:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass Ui::radarStation[m[K’ has no member named ‘[01m[KpnpWidget[m[K’; did you mean ‘[01m[KmapWidget[m[K’?
-   44 |     connect(ui->[01;31m[KpnpWidget[m[K,SIGNAL(pnpFinished()),this,SLOT(publishPnpResult()));
-      |                 [01;31m[K^~~~~~~~~[m[K
-      |                 [32m[KmapWidget[m[K
-gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:132: CMakeFiles/Qt5_displayer.dir/src/radarstation.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

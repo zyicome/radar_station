@@ -1,7 +1,0 @@
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/qtnode.cpp:[m[K In member function ‘[01m[Kvoid qtNode::depthImageCallback(sensor_msgs::msg::Image)[m[K’:
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/qtnode.cpp:49:47:[m[K [01;31m[Kerror: [m[Kconversion from ‘[01m[Kvoid[m[K’ to non-scalar type ‘[01m[Kcv::Mat[m[K’ requested
-   49 |             Mat depth_bgrimage = [01;31m[KapplyColorMap(depth_image_8u, depth_bgrimage, cv::COLORMAP_JET)[m[K;
-      |                                  [01;31m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
-gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:118: CMakeFiles/Qt5_displayer.dir/src/qtnode.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

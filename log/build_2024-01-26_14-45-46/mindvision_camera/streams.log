@@ -1,7 +1,0 @@
-[0.056s] Invoking command in '/home/mechax/zyb/radar_station/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station/build/mindvision_camera -- -j16 -l16
-[0.094s] [ 25%] [32mBuilding CXX object CMakeFiles/mindvision_camera.dir/src/mv_camera_node.cpp.o[0m
-[0.100s] [ 50%] [32mBuilding CXX object CMakeFiles/mindvision_camera_node.dir/rclcpp_components/node_main_mindvision_camera_node.cpp.o[0m
-[2.923s] [ 75%] [32m[1mLinking CXX executable mindvision_camera_node[0m
-[3.013s] [ 75%] Built target mindvision_camera_node
-[3.204s] [100%] [32m[1mLinking CXX shared library libmindvision_camera.so[0m
-[3.298s] [100%] Built target mindvision_camera

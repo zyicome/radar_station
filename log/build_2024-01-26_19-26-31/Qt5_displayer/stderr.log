@@ -1,6 +1,0 @@
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/qtnode.cpp:4:5:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kqnode[m[K’
-    4 |     [01;31m[Kqnode[m[K(std::make_shared<rclcpp::Node>("qt_node"))
-      |     [01;31m[K^~~~~[m[K
-gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:118: CMakeFiles/Qt5_displayer.dir/src/qtnode.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

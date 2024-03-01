@@ -1,8 +1,0 @@
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/qtnode.cpp:[m[K In member function ‘[01m[Kvirtual void qtNode::run()[m[K’:
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/qtnode.cpp:84:18:[m[K [01;31m[Kerror: [m[K‘[01m[Knode[m[K’ was not declared in this scope; did you mean ‘[01m[Kqnode[m[K’?
-   84 |     rclcpp::spin([01;31m[Knode[m[K);
-      |                  [01;31m[K^~~~[m[K
-      |                  [32m[Kqnode[m[K
-gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:118: CMakeFiles/Qt5_displayer.dir/src/qtnode.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

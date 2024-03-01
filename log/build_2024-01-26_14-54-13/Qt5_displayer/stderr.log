@@ -1,9 +1,0 @@
-WARNING: Package name "Qt5_displayer" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/smallmap.cpp:1:10:[m[K [01;31m[Kfatal error: [m[KsmallMap.h: No such file or directory
-    1 | #include [01;31m[K"smallMap.h"[m[K
-      |          [01;31m[K^~~~~~~~~~~~[m[K
-compilation terminated.
-gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:146: CMakeFiles/Qt5_displayer.dir/src/smallmap.cpp.o] Error 1
-gmake[2]: *** Waiting for unfinished jobs....
-gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

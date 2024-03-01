@@ -1,8 +1,0 @@
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/qtnode.cpp:[m[K In constructor ‘[01m[KqtNode::qtNode()[m[K’:
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/qtnode.cpp:5:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpup_result[m[K’ was not declared in this scope; did you mean ‘[01m[Kpnp_result[m[K’?
-    5 |     [01;31m[Kpup_result[m[K.data.resize(12);
-      |     [01;31m[K^~~~~~~~~~[m[K
-      |     [32m[Kpnp_result[m[K
-gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:118: CMakeFiles/Qt5_displayer.dir/src/qtnode.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

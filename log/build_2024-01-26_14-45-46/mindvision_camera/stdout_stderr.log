@@ -1,6 +1,0 @@
-[ 25%] [32mBuilding CXX object CMakeFiles/mindvision_camera.dir/src/mv_camera_node.cpp.o[0m
-[ 50%] [32mBuilding CXX object CMakeFiles/mindvision_camera_node.dir/rclcpp_components/node_main_mindvision_camera_node.cpp.o[0m
-[ 75%] [32m[1mLinking CXX executable mindvision_camera_node[0m
-[ 75%] Built target mindvision_camera_node
-[100%] [32m[1mLinking CXX shared library libmindvision_camera.so[0m
-[100%] Built target mindvision_camera

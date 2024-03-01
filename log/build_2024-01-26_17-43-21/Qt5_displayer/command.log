@@ -1,4 +1,0 @@
-Invoking command in '/home/mechax/zyb/radar_station/build/Qt5_displayer': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station/build/Qt5_displayer -- -j16 -l16
-Invoked command in '/home/mechax/zyb/radar_station/build/Qt5_displayer' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station/build/Qt5_displayer -- -j16 -l16
-Invoking command in '/home/mechax/zyb/radar_station/build/Qt5_displayer': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station/build/Qt5_displayer
-Invoked command in '/home/mechax/zyb/radar_station/build/Qt5_displayer' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station/build/Qt5_displayer

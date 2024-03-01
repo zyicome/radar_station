@@ -1,7 +1,0 @@
-[01m[K/home/mechax/zyb/radar_station/src/Qt5_displayer/src/main.cpp:2:10:[m[K [01;31m[Kfatal error: [m[KMainWindow.h: No such file or directory
-    2 | #include [01;31m[K"MainWindow.h"[m[K
-      |          [01;31m[K^~~~~~~~~~~~~~[m[K
-compilation terminated.
-gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:90: CMakeFiles/Qt5_displayer.dir/src/main.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2
