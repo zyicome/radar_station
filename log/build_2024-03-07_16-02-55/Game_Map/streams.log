@@ -1,0 +1,113 @@
+[0.142s] Invoking command in '/home/qianli/zyb/radar_station/build/Game_Map': AMENT_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/opt/ros/humble LD_LIBRARY_PATH=/home/qianli/zyb/radar_station/install/my_msgss/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/qianli/zyb/radar_station/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/qianli/zyb/radar_station/src/Game_Map -DCMAKE_INSTALL_PREFIX=/home/qianli/zyb/radar_station/install/Game_Map
+[0.194s] -- The C compiler identification is GNU 11.4.0
+[0.233s] -- The CXX compiler identification is GNU 11.4.0
+[0.240s] -- Detecting C compiler ABI info
+[0.284s] -- Detecting C compiler ABI info - done
+[0.294s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.294s] -- Detecting C compile features
+[0.295s] -- Detecting C compile features - done
+[0.298s] -- Detecting CXX compiler ABI info
+[0.359s] -- Detecting CXX compiler ABI info - done
+[0.365s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.365s] -- Detecting CXX compile features
+[0.365s] -- Detecting CXX compile features - done
+[0.366s] -- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.492s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.565s] -- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)
+[0.614s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.620s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.629s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.645s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.668s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.750s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.752s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.848s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.872s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.903s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.909s] -- Looking for pthread.h
+[0.955s] -- Looking for pthread.h - found
+[0.955s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.007s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.008s] -- Found Threads: TRUE  
+[1.118s] -- Found sensor_msgs: 4.2.3 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.213s] -- Found OpenCV: /usr (found version "4.5.4") 
+[1.213s] -- Found my_msgss: 0.0.0 (/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/cmake)
+[1.225s] -- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.263s] WARNING: Package name "Game_Map" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[1.282s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.282s] -- Configured cppcheck include dirs: /home/qianli/zyb/radar_station/src/Game_Map/include_directories;/home/qianli/zyb/radar_station/src/Game_Map/(;/home/qianli/zyb/radar_station/src/Game_Map/include;/home/qianli/zyb/radar_station/src/Game_Map/)
+[1.282s] -- Configured cppcheck exclude dirs and/or files: 
+[1.282s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.282s] -- Added test 'lint_cmake' to check CMake code style
+[1.283s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[1.283s] -- Added test 'uncrustify' to check C / C++ code style
+[1.283s] -- Configured uncrustify additional arguments: 
+[1.284s] -- Added test 'xmllint' to check XML markup files
+[1.284s] -- Configuring done
+[1.295s] -- Generating done
+[1.296s] -- Build files have been written to: /home/qianli/zyb/radar_station/build/Game_Map
+[1.303s] Invoked command in '/home/qianli/zyb/radar_station/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/opt/ros/humble LD_LIBRARY_PATH=/home/qianli/zyb/radar_station/install/my_msgss/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/qianli/zyb/radar_station/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/qianli/zyb/radar_station/src/Game_Map -DCMAKE_INSTALL_PREFIX=/home/qianli/zyb/radar_station/install/Game_Map
+[1.305s] Invoking command in '/home/qianli/zyb/radar_station/build/Game_Map': AMENT_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/opt/ros/humble LD_LIBRARY_PATH=/home/qianli/zyb/radar_station/install/my_msgss/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/qianli/zyb/radar_station/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Game_Map -- -j16 -l16
+[1.348s] [ 50%] [32mBuilding CXX object CMakeFiles/Game_Map.dir/src/game_map.cpp.o[0m
+[4.695s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:[m[K In function ‘[01m[Kvoid onMouse(int, int, int, int, void*)[m[K’:
+[4.695s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:310:43:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kflags[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[4.696s]   310 | void onMouse(int event, int x, int y, [01;35m[Kint flags[m[K, void *userdata)
+[4.696s]       |                                       [01;35m[K~~~~^~~~~[m[K
+[4.696s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kbool Game_Map::is_enemy_car(uint8_t)[m[K’:
+[4.696s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:352:17:[m[K [01;35m[Kwarning: [m[Kcomparison is always true due to limited range of data type [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wtype-limits-Wtype-limits]8;;[m[K]
+[4.696s]   352 |         if (([01;35m[Kid >= 0[m[K && id <= 8))
+[4.696s]       |              [01;35m[K~~~^~~~[m[K
+[4.696s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::warn_on_map(const Points&, cv::Mat&)[m[K’:
+[4.696s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:459:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::vector<cv::Point_<int> > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[4.696s]   459 |     for (int i = 0; [01;35m[Ki < our_warn_regions.size()[m[K; i++) {
+[4.696s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.697s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:475:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Point_<std::allocator<void> >, std::allocator<my_msgss::msg::Point_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[4.697s]   475 |     for (int i = 0; [01;35m[Ki < relative_coordinates.data.size()[m[K; i++) {
+[4.697s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.697s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:485:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::vector<cv::Point_<int> > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[4.697s]   485 |     for (int i = 0; [01;35m[Ki < enemy_warn_regions.size()[m[K; i++) {
+[4.697s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.702s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::draw_warn_region(cv::Mat&, const std::vector<std::vector<cv::Point_<int> > >&, const std::vector<std::vector<cv::Point_<int> > >&)[m[K’:
+[4.703s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:596:31:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kregion[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[4.703s]   596 |     for (const vector<Point> &[01;35m[Kregion[m[K: our_regions) {
+[4.703s]       |                               [01;35m[K^~~~~~[m[K
+[4.703s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:599:31:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kregion[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[4.703s]   599 |     for (const vector<Point> &[01;35m[Kregion[m[K: enemy_regions) {
+[4.703s]       |                               [01;35m[K^~~~~~[m[K
+[4.703s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::far_distPointCallback(const Distpoints&)[m[K’:
+[4.703s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:612:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Distpoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Distpoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[4.703s]   612 |     for (int i = 0; [01;35m[Ki < input.data.size()[m[K; i++) {
+[4.703s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[4.710s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::close_distPointCallback(const Distpoints&)[m[K’:
+[4.710s] [01m[K/home/qianli/zyb/radar_station/src/Game_Map/src/game_map.cpp:706:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Distpoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Distpoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[4.710s]   706 |     for (int i = 0; [01;35m[Ki < input.data.size()[m[K; i++) {
+[4.710s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[14.275s] [100%] [32m[1mLinking CXX executable Game_Map[0m
+[15.276s] [100%] Built target Game_Map
+[15.286s] Invoked command in '/home/qianli/zyb/radar_station/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/opt/ros/humble LD_LIBRARY_PATH=/home/qianli/zyb/radar_station/install/my_msgss/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/qianli/zyb/radar_station/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Game_Map -- -j16 -l16
+[15.306s] Invoking command in '/home/qianli/zyb/radar_station/build/Game_Map': AMENT_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/opt/ros/humble LD_LIBRARY_PATH=/home/qianli/zyb/radar_station/install/my_msgss/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/qianli/zyb/radar_station/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Game_Map
+[15.311s] -- Install configuration: ""
+[15.311s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/lib/Game_Map/Game_Map
+[15.315s] -- Set runtime path of "/home/qianli/zyb/radar_station/install/Game_Map/lib/Game_Map/Game_Map" to ""
+[15.316s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/launch
+[15.316s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/launch/game_map_launch.py
+[15.317s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/config
+[15.317s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/config/ros2_displayer.yaml
+[15.317s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/config/radar.yaml
+[15.317s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/config/displayer_qt5.yaml
+[15.317s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/ament_index/resource_index/package_run_dependencies/Game_Map
+[15.317s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/ament_index/resource_index/parent_prefix_path/Game_Map
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/environment/ament_prefix_path.sh
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/environment/ament_prefix_path.dsv
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/environment/path.sh
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/environment/path.dsv
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/local_setup.bash
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/local_setup.sh
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/local_setup.zsh
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/local_setup.dsv
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.dsv
+[15.318s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/ament_index/resource_index/packages/Game_Map
+[15.319s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/cmake/Game_MapConfig.cmake
+[15.319s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/cmake/Game_MapConfig-version.cmake
+[15.319s] -- Installing: /home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.xml
+[15.320s] Invoked command in '/home/qianli/zyb/radar_station/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/opt/ros/humble LD_LIBRARY_PATH=/home/qianli/zyb/radar_station/install/my_msgss/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/qianli/zyb/radar_station/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Game_Map

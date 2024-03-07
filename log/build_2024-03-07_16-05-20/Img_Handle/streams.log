@@ -1,0 +1,35 @@
+[0.138s] Invoking command in '/home/qianli/zyb/radar_station/build/Img_Handle': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Img_Handle -- -j16 -l16
+[0.172s] [ 12%] [32mBuilding CXX object CMakeFiles/Img_Sub.dir/src/img_sub.cpp.o[0m
+[0.180s] [ 50%] Built target main
+[0.181s] [ 75%] Built target Img_Pub
+[2.365s] [01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/img_sub.cpp:[m[K In member function ‘[01m[Kvoid Img_Sub::draw_img(cv::Mat&, my_msgss::msg::Yolopoints&)[m[K’:
+[2.366s] [01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/img_sub.cpp:287:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Yolopoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Yolopoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[2.366s]   287 |     for(int i =0 ;[01;35m[Ki<robot_boxes.data.size()[m[K;i++)
+[2.366s]       |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.098s] [ 87%] [32m[1mLinking CXX executable Img_Sub[0m
+[7.612s] [100%] Built target Img_Sub
+[7.620s] Invoked command in '/home/qianli/zyb/radar_station/build/Img_Handle' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Img_Handle -- -j16 -l16
+[7.638s] Invoking command in '/home/qianli/zyb/radar_station/build/Img_Handle': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Img_Handle
+[7.644s] -- Install configuration: ""
+[7.645s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/lib/Img_Handle/Img_Pub
+[7.645s] -- Installing: /home/qianli/zyb/radar_station/install/Img_Handle/lib/Img_Handle/Img_Sub
+[7.650s] -- Set runtime path of "/home/qianli/zyb/radar_station/install/Img_Handle/lib/Img_Handle/Img_Sub" to ""
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/lib/Img_Handle/main
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/launch
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/launch/img_handle_launch.py
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/ament_index/resource_index/package_run_dependencies/Img_Handle
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/ament_index/resource_index/parent_prefix_path/Img_Handle
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/environment/ament_prefix_path.sh
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/environment/ament_prefix_path.dsv
+[7.650s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/environment/path.sh
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/environment/path.dsv
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/local_setup.bash
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/local_setup.sh
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/local_setup.zsh
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/local_setup.dsv
+[7.651s] -- Installing: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.dsv
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/ament_index/resource_index/packages/Img_Handle
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/cmake/Img_HandleConfig.cmake
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/cmake/Img_HandleConfig-version.cmake
+[7.651s] -- Up-to-date: /home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.xml
+[7.653s] Invoked command in '/home/qianli/zyb/radar_station/build/Img_Handle' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Img_Handle

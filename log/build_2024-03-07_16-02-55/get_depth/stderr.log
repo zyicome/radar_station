@@ -1,0 +1,19 @@
+[0m** WARNING ** io features related to pcap will be disabled[0m
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:[m[K In member function ‘[01m[Kvoid GetDepth::frame_point_match(const Distpoints&, my_msgss::msg::Distpoints&)[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:204:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Distpoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Distpoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  204 |     for (int k = 0; [01;35m[Kk < this_frame.data.size()[m[K; k++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:[m[K In member function ‘[01m[Kvoid GetDepth::far_yoloCallback(const Yolopoints&)[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:229:36:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<cv::Mat>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  229 |         if ([01;35m[Kfar_depth_queue.size() == length_of_cloud_queue[m[K) {
+      |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:235:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Yolopoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Yolopoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  235 |         for (int j = 0; [01;35m[Kj < (input).data.size()[m[K; j++) {
+      |                         [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:[m[K In member function ‘[01m[Kvoid GetDepth::close_yoloCallback(const Yolopoints&)[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:293:38:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<cv::Mat>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  293 |         if ([01;35m[Kclose_depth_queue.size() == length_of_cloud_queue[m[K) {
+      |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/get_depth/src/get_depth_node.cpp:298:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Yolopoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Yolopoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  298 |         for (int j = 0; [01;35m[Kj < (input).data.size()[m[K; j++) {
+      |                         [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~[m[K

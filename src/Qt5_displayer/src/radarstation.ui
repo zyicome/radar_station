@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>radarStation</class>
+ <widget class="QMainWindow" name="radarStation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>1400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>radarStation</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <widget class="QRadioButton" name="pnpMode">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>20</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PnP模式</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="mapMode">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>20</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>小地图模式</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="allWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1600</width>
+      <height>1400</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="mapWidget">
+     <widget class="QLabel" name="closeImg">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>1150</x>
+        <y>80</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>C:/Users/zyb/Pictures/Saved Pictures/mylearnlow1.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="smallMap" name="map">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>1041</width>
+        <height>611</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>:/map/C:/Users/zyb/Desktop/Robotmaster/pitures/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="mapMessage">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>750</y>
+        <width>1041</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="lineWrapMode">
+       <enum>QPlainTextEdit::WidgetWidth</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="overwriteMode">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="closeDepth">
+      <property name="geometry">
+       <rect>
+        <x>1150</x>
+        <y>400</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>:/map/C:/Users/zyb/Desktop/Robotmaster/pitures/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="farImg">
+      <property name="geometry">
+       <rect>
+        <x>1150</x>
+        <y>720</y>
+        <width>391</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>:/map/C:/Users/zyb/Desktop/Robotmaster/pitures/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="farDepth">
+      <property name="geometry">
+       <rect>
+        <x>1150</x>
+        <y>1020</y>
+        <width>391</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <zorder>closeDepth</zorder>
+     <zorder>mapMessage</zorder>
+     <zorder>map</zorder>
+     <zorder>closeImg</zorder>
+     <zorder>farImg</zorder>
+     <zorder>farDepth</zorder>
+    </widget>
+    <widget class="pnpWidget" name="solvePnpWidget"/>
+   </widget>
+   <zorder>allWidget</zorder>
+   <zorder>pnpMode</zorder>
+   <zorder>mapMode</zorder>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>smallMap</class>
+   <extends>QLabel</extends>
+   <header location="global">smallmap.h</header>
+  </customwidget>
+  <customwidget>
+   <class>pnpWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">pnpwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="radarImage.qrc"/>
+ </resources>
+ <connections/>
+</ui>

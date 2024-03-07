@@ -1,0 +1,659 @@
+[0.542s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.542s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fef025c56f0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fef029e0eb0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fef029e0eb0>>)
+[0.573s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.573s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.573s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.573s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.573s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.573s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.573s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/qianli/zyb/radar_station'
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.573s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.580s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.580s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.580s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.580s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.580s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extensions ['ignore', 'ignore_ament_install']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'ignore'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'ignore_ament_install'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extensions ['colcon_pkg']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'colcon_pkg'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extensions ['colcon_meta']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'colcon_meta'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extensions ['ros']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'ros'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extensions ['cmake', 'python']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'cmake'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'python'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extensions ['python_setup_py']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera) by extension 'python_setup_py'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extensions ['ignore', 'ignore_ament_install']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'ignore'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'ignore_ament_install'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extensions ['colcon_pkg']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'colcon_pkg'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extensions ['colcon_meta']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'colcon_meta'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extensions ['ros']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'ros'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extensions ['cmake', 'python']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'cmake'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'python'
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extensions ['python_setup_py']
+[0.581s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/Data) by extension 'python_setup_py'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extensions ['ignore', 'ignore_ament_install']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'ignore'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'ignore_ament_install'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extensions ['colcon_pkg']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'colcon_pkg'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extensions ['colcon_meta']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'colcon_meta'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extensions ['ros']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'ros'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extensions ['cmake', 'python']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'cmake'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'python'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extensions ['python_setup_py']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(Camera/log) by extension 'python_setup_py'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.582s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['ignore', 'ignore_ament_install']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'ignore'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'ignore_ament_install'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['colcon_pkg']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'colcon_pkg'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['colcon_meta']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'colcon_meta'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['ros']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'ros'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['cmake', 'python']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'cmake'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'python'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['python_setup_py']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'python_setup_py'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['ignore', 'ignore_ament_install']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'ignore'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'ignore_ament_install'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['colcon_pkg']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'colcon_pkg'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['colcon_meta']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'colcon_meta'
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['ros']
+[0.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'ros'
+[0.586s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Game_Map' with type 'ros.ament_cmake' and name 'Game_Map'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['ignore', 'ignore_ament_install']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'ignore'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'ignore_ament_install'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['colcon_pkg']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'colcon_pkg'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['colcon_meta']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'colcon_meta'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['ros']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'ros'
+[0.587s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Img_Handle' with type 'ros.ament_cmake' and name 'Img_Handle'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['ignore', 'ignore_ament_install']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'ignore'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'ignore_ament_install'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['colcon_pkg']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'colcon_pkg'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['colcon_meta']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'colcon_meta'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['ros']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'ros'
+[0.588s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Qt5_displayer' with type 'ros.ament_cmake' and name 'Qt5_displayer'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['ignore', 'ignore_ament_install']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'ignore'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'ignore_ament_install'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['colcon_pkg']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'colcon_pkg'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['colcon_meta']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'colcon_meta'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['ros']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'ros'
+[0.588s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Yolo_Handle' with type 'ros.ament_cmake' and name 'Yolo_Handle'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['ignore', 'ignore_ament_install']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'ignore'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'ignore_ament_install'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['colcon_pkg']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'colcon_pkg'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['colcon_meta']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'colcon_meta'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['ros']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'ros'
+[0.589s] DEBUG:colcon.colcon_core.package_identification:Package 'src/get_depth' with type 'ros.ament_cmake' and name 'get_depth'
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['ignore', 'ignore_ament_install']
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'ignore'
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'ignore_ament_install'
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['colcon_pkg']
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'colcon_pkg'
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['colcon_meta']
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'colcon_meta'
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['ros']
+[0.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'ros'
+[0.590s] DEBUG:colcon.colcon_core.package_identification:Package 'src/map_test' with type 'ros.ament_cmake' and name 'map_test'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['ignore', 'ignore_ament_install']
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'ignore'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'ignore_ament_install'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['colcon_pkg']
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'colcon_pkg'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['colcon_meta']
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'colcon_meta'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['ros']
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'ros'
+[0.590s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_msgss' with type 'ros.ament_cmake' and name 'my_msgss'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['ignore', 'ignore_ament_install']
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'ignore'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'ignore_ament_install'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['colcon_pkg']
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'colcon_pkg'
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['colcon_meta']
+[0.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'colcon_meta'
+[0.591s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['ros']
+[0.591s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'ros'
+[0.591s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ros2_mindvision_mutiple_camera' with type 'ros.ament_cmake' and name 'mindvision_camera'
+[0.591s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.591s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.591s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.591s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.591s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.645s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.645s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.661s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 8 installed packages in /home/qianli/zyb/radar_station/install
+[0.669s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 289 installed packages in /opt/ros/humble
+[0.669s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_args' from command line to 'None'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_target' from command line to 'None'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_clean_cache' from command line to 'False'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_clean_first' from command line to 'False'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_force_configure' from command line to 'False'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'ament_cmake_args' from command line to 'None'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'catkin_cmake_args' from command line to 'None'
+[0.721s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.721s] DEBUG:colcon.colcon_core.verb:Building package 'Yolo_Handle' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/Yolo_Handle', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/Yolo_Handle', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/Yolo_Handle', 'symlink_install': False, 'test_result_base': None}
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_args' from command line to 'None'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_target' from command line to 'None'
+[0.729s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.729s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_clean_cache' from command line to 'False'
+[0.729s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_clean_first' from command line to 'False'
+[0.729s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_force_configure' from command line to 'False'
+[0.729s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'ament_cmake_args' from command line to 'None'
+[0.729s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'catkin_cmake_args' from command line to 'None'
+[0.729s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.729s] DEBUG:colcon.colcon_core.verb:Building package 'mindvision_camera' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/mindvision_camera', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/mindvision_camera', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/ros2_mindvision_mutiple_camera', 'symlink_install': False, 'test_result_base': None}
+[0.735s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_args' from command line to 'None'
+[0.735s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_target' from command line to 'None'
+[0.735s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.736s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_clean_cache' from command line to 'False'
+[0.736s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_clean_first' from command line to 'False'
+[0.736s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_force_configure' from command line to 'False'
+[0.736s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'ament_cmake_args' from command line to 'None'
+[0.736s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'catkin_cmake_args' from command line to 'None'
+[0.736s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.736s] DEBUG:colcon.colcon_core.verb:Building package 'my_msgss' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/my_msgss', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/my_msgss', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/my_msgss', 'symlink_install': False, 'test_result_base': None}
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_args' from command line to 'None'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_target' from command line to 'None'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_clean_cache' from command line to 'False'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_clean_first' from command line to 'False'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_force_configure' from command line to 'False'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'ament_cmake_args' from command line to 'None'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'catkin_cmake_args' from command line to 'None'
+[0.743s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.743s] DEBUG:colcon.colcon_core.verb:Building package 'Game_Map' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/Game_Map', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/Game_Map', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/Game_Map', 'symlink_install': False, 'test_result_base': None}
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_args' from command line to 'None'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_target' from command line to 'None'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_clean_cache' from command line to 'False'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_clean_first' from command line to 'False'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_force_configure' from command line to 'False'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'ament_cmake_args' from command line to 'None'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'catkin_cmake_args' from command line to 'None'
+[0.750s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.751s] DEBUG:colcon.colcon_core.verb:Building package 'Img_Handle' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/Img_Handle', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/Img_Handle', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/Img_Handle', 'symlink_install': False, 'test_result_base': None}
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_args' from command line to 'None'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_target' from command line to 'None'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_clean_cache' from command line to 'False'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_clean_first' from command line to 'False'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_force_configure' from command line to 'False'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'ament_cmake_args' from command line to 'None'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'catkin_cmake_args' from command line to 'None'
+[0.757s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.757s] DEBUG:colcon.colcon_core.verb:Building package 'Qt5_displayer' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/Qt5_displayer', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/Qt5_displayer', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/Qt5_displayer', 'symlink_install': False, 'test_result_base': None}
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_args' from command line to 'None'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_target' from command line to 'None'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_clean_cache' from command line to 'False'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_clean_first' from command line to 'False'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_force_configure' from command line to 'False'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'ament_cmake_args' from command line to 'None'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'catkin_cmake_args' from command line to 'None'
+[0.764s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.764s] DEBUG:colcon.colcon_core.verb:Building package 'get_depth' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/get_depth', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/get_depth', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/get_depth', 'symlink_install': False, 'test_result_base': None}
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_args' from command line to 'None'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_target' from command line to 'None'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_clean_cache' from command line to 'False'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_clean_first' from command line to 'False'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_force_configure' from command line to 'False'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'ament_cmake_args' from command line to 'None'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'catkin_cmake_args' from command line to 'None'
+[0.771s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.771s] DEBUG:colcon.colcon_core.verb:Building package 'map_test' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/qianli/zyb/radar_station/build/map_test', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/qianli/zyb/radar_station/install/map_test', 'merge_install': False, 'path': '/home/qianli/zyb/radar_station/src/map_test', 'symlink_install': False, 'test_result_base': None}
+[0.777s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.785s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.785s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/my_msgss' with build type 'ament_cmake'
+[0.785s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/my_msgss'
+[0.796s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.796s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.796s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.819s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/Yolo_Handle' with build type 'ament_cmake'
+[0.819s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/Yolo_Handle'
+[0.829s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.829s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.853s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/ros2_mindvision_mutiple_camera' with build type 'ament_cmake'
+[0.853s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/ros2_mindvision_mutiple_camera'
+[0.872s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.872s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.899s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/my_msgss': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/my_msgss -- -j16 -l16
+[0.901s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Yolo_Handle': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Yolo_Handle -- -j16 -l16
+[0.908s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/mindvision_camera -- -j16 -l16
+[0.926s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Yolo_Handle' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Yolo_Handle -- -j16 -l16
+[0.946s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Yolo_Handle': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Yolo_Handle
+[0.948s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/mindvision_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/mindvision_camera -- -j16 -l16
+[0.955s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Yolo_Handle)
+[0.955s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Yolo_Handle' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Yolo_Handle
+[0.970s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle' for CMake module files
+[0.970s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle' for CMake config files
+[0.971s] Level 1:colcon.colcon_core.shell:create_environment_hook('Yolo_Handle', 'cmake_prefix_path')
+[0.979s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.ps1'
+[0.980s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.dsv'
+[0.980s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.sh'
+[0.980s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/bin'
+[0.980s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/lib/pkgconfig/Yolo_Handle.pc'
+[0.981s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/lib/python3.10/site-packages'
+[0.981s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/bin'
+[0.999s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.ps1'
+[1.000s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.dsv'
+[1.000s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.sh'
+[1.000s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.bash'
+[1.001s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.zsh'
+[1.001s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Yolo_Handle/share/colcon-core/packages/Yolo_Handle)
+[1.004s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/mindvision_camera
+[1.013s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mindvision_camera)
+[1.015s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/mindvision_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/mindvision_camera
+[1.025s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera' for CMake module files
+[1.025s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera' for CMake config files
+[1.026s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'cmake_prefix_path')
+[1.033s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.ps1'
+[1.033s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.dsv'
+[1.033s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.sh'
+[1.034s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/lib'
+[1.034s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'ld_library_path_lib')
+[1.041s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.ps1'
+[1.041s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.dsv'
+[1.042s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.sh'
+[1.042s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/bin'
+[1.042s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/lib/pkgconfig/mindvision_camera.pc'
+[1.042s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/lib/python3.10/site-packages'
+[1.042s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/bin'
+[1.050s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.ps1'
+[1.050s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.dsv'
+[1.050s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.sh'
+[1.051s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.bash'
+[1.051s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.zsh'
+[1.051s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/mindvision_camera/share/colcon-core/packages/mindvision_camera)
+[1.059s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Yolo_Handle)
+[1.066s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle' for CMake module files
+[1.067s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle' for CMake config files
+[1.067s] Level 1:colcon.colcon_core.shell:create_environment_hook('Yolo_Handle', 'cmake_prefix_path')
+[1.074s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.ps1'
+[1.074s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.dsv'
+[1.074s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.sh'
+[1.074s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/bin'
+[1.074s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/lib/pkgconfig/Yolo_Handle.pc'
+[1.075s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/lib/python3.10/site-packages'
+[1.075s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Yolo_Handle/bin'
+[1.082s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.ps1'
+[1.082s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.dsv'
+[1.082s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.sh'
+[1.083s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.bash'
+[1.083s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Yolo_Handle/share/Yolo_Handle/package.zsh'
+[1.083s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Yolo_Handle/share/colcon-core/packages/Yolo_Handle)
+[1.093s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mindvision_camera)
+[1.100s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera' for CMake module files
+[1.101s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera' for CMake config files
+[1.101s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'cmake_prefix_path')
+[1.108s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.ps1'
+[1.109s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.dsv'
+[1.109s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.sh'
+[1.109s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/lib'
+[1.109s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'ld_library_path_lib')
+[1.117s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.ps1'
+[1.117s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.dsv'
+[1.117s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.sh'
+[1.117s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/bin'
+[1.117s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/lib/pkgconfig/mindvision_camera.pc'
+[1.118s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/lib/python3.10/site-packages'
+[1.118s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/mindvision_camera/bin'
+[1.125s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.ps1'
+[1.126s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.dsv'
+[1.126s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.sh'
+[1.126s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.bash'
+[1.127s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/mindvision_camera/share/mindvision_camera/package.zsh'
+[1.127s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/mindvision_camera/share/colcon-core/packages/mindvision_camera)
+[1.129s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/my_msgss' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/my_msgss -- -j16 -l16
+[1.209s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/my_msgss': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/my_msgss
+[1.251s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_msgss)
+[1.256s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/my_msgss' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/my_msgss
+[1.268s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss' for CMake module files
+[1.268s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss' for CMake config files
+[1.268s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'cmake_prefix_path')
+[1.278s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.ps1'
+[1.278s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.dsv'
+[1.278s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.sh'
+[1.279s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/lib'
+[1.279s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'ld_library_path_lib')
+[1.286s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.ps1'
+[1.286s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.dsv'
+[1.287s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.sh'
+[1.287s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/bin'
+[1.287s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/lib/pkgconfig/my_msgss.pc'
+[1.287s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/lib/python3.10/site-packages'
+[1.287s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/bin'
+[1.295s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.ps1'
+[1.296s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.dsv'
+[1.296s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.sh'
+[1.296s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.bash'
+[1.296s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.zsh'
+[1.297s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/my_msgss/share/colcon-core/packages/my_msgss)
+[1.375s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_msgss)
+[1.382s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss' for CMake module files
+[1.382s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss' for CMake config files
+[1.382s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'cmake_prefix_path')
+[1.390s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.ps1'
+[1.390s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.dsv'
+[1.390s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.sh'
+[1.391s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/lib'
+[1.391s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'ld_library_path_lib')
+[1.398s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.ps1'
+[1.398s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.dsv'
+[1.398s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.sh'
+[1.399s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/bin'
+[1.399s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/lib/pkgconfig/my_msgss.pc'
+[1.399s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/lib/python3.10/site-packages'
+[1.399s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/my_msgss/bin'
+[1.406s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.ps1'
+[1.406s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.dsv'
+[1.406s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.sh'
+[1.407s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.bash'
+[1.407s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/my_msgss/share/my_msgss/package.zsh'
+[1.407s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/my_msgss/share/colcon-core/packages/my_msgss)
+[1.407s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/Game_Map' with build type 'ament_cmake'
+[1.407s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/Game_Map'
+[1.415s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.415s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.440s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/Img_Handle' with build type 'ament_cmake'
+[1.441s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/Img_Handle'
+[1.449s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.449s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.474s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/Qt5_displayer' with build type 'ament_cmake'
+[1.474s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/Qt5_displayer'
+[1.483s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.483s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.509s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/get_depth' with build type 'ament_cmake'
+[1.509s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/get_depth'
+[1.517s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.517s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.541s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/qianli/zyb/radar_station/src/map_test' with build type 'ament_cmake'
+[1.542s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/qianli/zyb/radar_station/src/map_test'
+[1.550s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.550s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.578s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Game_Map': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Game_Map -- -j16 -l16
+[1.580s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Img_Handle': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Img_Handle -- -j16 -l16
+[1.583s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Qt5_displayer': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Qt5_displayer -- -j16 -l16
+[1.587s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/get_depth': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/get_depth -- -j16 -l16
+[1.593s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/map_test': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/map_test -- -j16 -l16
+[1.625s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Game_Map' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Game_Map -- -j16 -l16
+[1.638s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/get_depth' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/get_depth -- -j16 -l16
+[1.641s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Game_Map': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Game_Map
+[1.643s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/map_test' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/map_test -- -j16 -l16
+[1.646s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Game_Map)
+[1.649s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Game_Map' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Game_Map
+[1.666s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map' for CMake module files
+[1.667s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map' for CMake config files
+[1.667s] Level 1:colcon.colcon_core.shell:create_environment_hook('Game_Map', 'cmake_prefix_path')
+[1.677s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.ps1'
+[1.678s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.dsv'
+[1.678s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.sh'
+[1.678s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/lib'
+[1.678s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/bin'
+[1.678s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/lib/pkgconfig/Game_Map.pc'
+[1.678s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/lib/python3.10/site-packages'
+[1.679s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/bin'
+[1.686s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.ps1'
+[1.686s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.dsv'
+[1.686s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.sh'
+[1.687s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.bash'
+[1.687s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.zsh'
+[1.687s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Game_Map/share/colcon-core/packages/Game_Map)
+[1.690s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/get_depth': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/get_depth
+[1.691s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/map_test': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/map_test
+[1.692s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Qt5_displayer' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Qt5_displayer -- -j16 -l16
+[1.696s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(get_depth)
+[1.702s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/get_depth' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/get_depth
+[1.718s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth' for CMake module files
+[1.719s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth' for CMake config files
+[1.719s] Level 1:colcon.colcon_core.shell:create_environment_hook('get_depth', 'cmake_prefix_path')
+[1.726s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/hook/cmake_prefix_path.ps1'
+[1.727s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/hook/cmake_prefix_path.dsv'
+[1.727s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/hook/cmake_prefix_path.sh'
+[1.727s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/lib'
+[1.727s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/bin'
+[1.727s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/lib/pkgconfig/get_depth.pc'
+[1.727s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/lib/python3.10/site-packages'
+[1.728s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/bin'
+[1.735s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.ps1'
+[1.735s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.dsv'
+[1.735s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.sh'
+[1.736s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.bash'
+[1.736s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.zsh'
+[1.736s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/get_depth/share/colcon-core/packages/get_depth)
+[1.737s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(map_test)
+[1.738s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/map_test' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/map_test
+[1.745s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test' for CMake module files
+[1.745s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test' for CMake config files
+[1.745s] Level 1:colcon.colcon_core.shell:create_environment_hook('map_test', 'cmake_prefix_path')
+[1.753s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/map_test/share/map_test/hook/cmake_prefix_path.ps1'
+[1.753s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/map_test/share/map_test/hook/cmake_prefix_path.dsv'
+[1.753s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/map_test/share/map_test/hook/cmake_prefix_path.sh'
+[1.754s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/lib'
+[1.754s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/bin'
+[1.754s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/lib/pkgconfig/map_test.pc'
+[1.754s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/lib/python3.10/site-packages'
+[1.754s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/bin'
+[1.761s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.ps1'
+[1.762s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.dsv'
+[1.762s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.sh'
+[1.762s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.bash'
+[1.762s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.zsh'
+[1.762s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/map_test/share/colcon-core/packages/map_test)
+[1.771s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Game_Map)
+[1.779s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map' for CMake module files
+[1.779s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map' for CMake config files
+[1.779s] Level 1:colcon.colcon_core.shell:create_environment_hook('Game_Map', 'cmake_prefix_path')
+[1.786s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.ps1'
+[1.787s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.dsv'
+[1.787s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.sh'
+[1.787s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/lib'
+[1.787s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/bin'
+[1.787s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/lib/pkgconfig/Game_Map.pc'
+[1.787s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/lib/python3.10/site-packages'
+[1.788s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Game_Map/bin'
+[1.795s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.ps1'
+[1.796s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.dsv'
+[1.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.sh'
+[1.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.bash'
+[1.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Game_Map/share/Game_Map/package.zsh'
+[1.796s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Game_Map/share/colcon-core/packages/Game_Map)
+[1.799s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Qt5_displayer': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Qt5_displayer
+[1.817s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(get_depth)
+[1.825s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth' for CMake module files
+[1.825s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth' for CMake config files
+[1.825s] Level 1:colcon.colcon_core.shell:create_environment_hook('get_depth', 'cmake_prefix_path')
+[1.832s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/hook/cmake_prefix_path.ps1'
+[1.833s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/hook/cmake_prefix_path.dsv'
+[1.833s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/hook/cmake_prefix_path.sh'
+[1.833s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/lib'
+[1.833s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/bin'
+[1.833s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/lib/pkgconfig/get_depth.pc'
+[1.834s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/lib/python3.10/site-packages'
+[1.834s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/get_depth/bin'
+[1.841s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.ps1'
+[1.842s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.dsv'
+[1.842s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.sh'
+[1.842s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.bash'
+[1.843s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/get_depth/share/get_depth/package.zsh'
+[1.843s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/get_depth/share/colcon-core/packages/get_depth)
+[1.852s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(map_test)
+[1.859s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test' for CMake module files
+[1.859s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test' for CMake config files
+[1.859s] Level 1:colcon.colcon_core.shell:create_environment_hook('map_test', 'cmake_prefix_path')
+[1.867s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/map_test/share/map_test/hook/cmake_prefix_path.ps1'
+[1.867s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/map_test/share/map_test/hook/cmake_prefix_path.dsv'
+[1.867s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/map_test/share/map_test/hook/cmake_prefix_path.sh'
+[1.868s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/lib'
+[1.868s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/bin'
+[1.868s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/lib/pkgconfig/map_test.pc'
+[1.868s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/lib/python3.10/site-packages'
+[1.868s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/map_test/bin'
+[1.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.ps1'
+[1.876s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.dsv'
+[1.876s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.sh'
+[1.876s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.bash'
+[1.877s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/map_test/share/map_test/package.zsh'
+[1.877s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/map_test/share/colcon-core/packages/map_test)
+[1.877s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Qt5_displayer)
+[1.879s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Qt5_displayer' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Qt5_displayer
+[1.886s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer' for CMake module files
+[1.886s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer' for CMake config files
+[1.886s] Level 1:colcon.colcon_core.shell:create_environment_hook('Qt5_displayer', 'cmake_prefix_path')
+[1.894s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.ps1'
+[1.894s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.dsv'
+[1.894s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.sh'
+[1.894s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/lib'
+[1.895s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/bin'
+[1.895s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/lib/pkgconfig/Qt5_displayer.pc'
+[1.895s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/lib/python3.10/site-packages'
+[1.895s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/bin'
+[1.903s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.ps1'
+[1.903s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.dsv'
+[1.903s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.sh'
+[1.904s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.bash'
+[1.904s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.zsh'
+[1.904s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Qt5_displayer/share/colcon-core/packages/Qt5_displayer)
+[1.931s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Qt5_displayer)
+[1.939s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer' for CMake module files
+[1.939s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer' for CMake config files
+[1.939s] Level 1:colcon.colcon_core.shell:create_environment_hook('Qt5_displayer', 'cmake_prefix_path')
+[1.946s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.ps1'
+[1.947s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.dsv'
+[1.947s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.sh'
+[1.947s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/lib'
+[1.947s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/bin'
+[1.947s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/lib/pkgconfig/Qt5_displayer.pc'
+[1.947s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/lib/python3.10/site-packages'
+[1.947s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Qt5_displayer/bin'
+[1.955s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.ps1'
+[1.955s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.dsv'
+[1.956s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.sh'
+[1.956s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.bash'
+[1.956s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Qt5_displayer/share/Qt5_displayer/package.zsh'
+[1.956s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Qt5_displayer/share/colcon-core/packages/Qt5_displayer)
+[8.940s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Img_Handle' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --build /home/qianli/zyb/radar_station/build/Img_Handle -- -j16 -l16
+[8.982s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/qianli/zyb/radar_station/build/Img_Handle': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Img_Handle
+[8.998s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Img_Handle)
+[8.998s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/qianli/zyb/radar_station/build/Img_Handle' returned '0': CMAKE_PREFIX_PATH=/home/qianli/zyb/radar_station/install/my_msgss:/home/qianli/zyb/radar_station/install/map_test:/home/qianli/zyb/radar_station/install/get_depth:/home/qianli/zyb/radar_station/install/Qt5_displayer:/home/qianli/zyb/radar_station/install/Img_Handle:/home/qianli/zyb/radar_station/install/Game_Map:/home/qianli/zyb/radar_station/install/mindvision_camera:/home/qianli/zyb/radar_station/install/Yolo_Handle:/opt/ros/humble /usr/bin/cmake --install /home/qianli/zyb/radar_station/build/Img_Handle
+[9.014s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle' for CMake module files
+[9.014s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle' for CMake config files
+[9.015s] Level 1:colcon.colcon_core.shell:create_environment_hook('Img_Handle', 'cmake_prefix_path')
+[9.024s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.ps1'
+[9.024s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.dsv'
+[9.024s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.sh'
+[9.024s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/lib'
+[9.025s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/bin'
+[9.025s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/lib/pkgconfig/Img_Handle.pc'
+[9.025s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/lib/python3.10/site-packages'
+[9.025s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/bin'
+[9.032s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.ps1'
+[9.033s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.dsv'
+[9.033s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.sh'
+[9.033s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.bash'
+[9.033s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.zsh'
+[9.033s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Img_Handle/share/colcon-core/packages/Img_Handle)
+[9.062s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Img_Handle)
+[9.070s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle' for CMake module files
+[9.071s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle' for CMake config files
+[9.071s] Level 1:colcon.colcon_core.shell:create_environment_hook('Img_Handle', 'cmake_prefix_path')
+[9.078s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.ps1'
+[9.078s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.dsv'
+[9.079s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.sh'
+[9.079s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/lib'
+[9.079s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/bin'
+[9.079s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/lib/pkgconfig/Img_Handle.pc'
+[9.079s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/lib/python3.10/site-packages'
+[9.079s] Level 1:colcon.colcon_core.environment:checking '/home/qianli/zyb/radar_station/install/Img_Handle/bin'
+[9.086s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.ps1'
+[9.087s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.dsv'
+[9.087s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.sh'
+[9.087s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.bash'
+[9.087s] INFO:colcon.colcon_core.shell:Creating package script '/home/qianli/zyb/radar_station/install/Img_Handle/share/Img_Handle/package.zsh'
+[9.088s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/qianli/zyb/radar_station/install/Img_Handle/share/colcon-core/packages/Img_Handle)
+[9.088s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[9.088s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[9.088s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[9.088s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[9.109s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[9.110s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[9.110s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[9.121s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[9.128s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/qianli/zyb/radar_station/install/local_setup.ps1'
+[9.129s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/qianli/zyb/radar_station/install/_local_setup_util_ps1.py'
+[9.130s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/qianli/zyb/radar_station/install/setup.ps1'
+[9.139s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/qianli/zyb/radar_station/install/local_setup.sh'
+[9.140s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/qianli/zyb/radar_station/install/_local_setup_util_sh.py'
+[9.140s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/qianli/zyb/radar_station/install/setup.sh'
+[9.148s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/qianli/zyb/radar_station/install/local_setup.bash'
+[9.149s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/qianli/zyb/radar_station/install/setup.bash'
+[9.157s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/qianli/zyb/radar_station/install/local_setup.zsh'
+[9.157s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/qianli/zyb/radar_station/install/setup.zsh'

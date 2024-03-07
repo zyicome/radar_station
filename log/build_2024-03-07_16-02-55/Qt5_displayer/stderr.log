@@ -1,0 +1,30 @@
+WARNING: Package name "Qt5_displayer" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/smallmap.cpp:[m[K In member function ‘[01m[Kvirtual void smallMap::wheelEvent(QWheelEvent*)[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/smallmap.cpp:157:32:[m[K [01;35m[Kwarning: [m[K‘[01m[KQPoint QWheelEvent::pos() const[m[K’ is deprecated: Use position() [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wdeprecated-declarations-Wdeprecated-declarations]8;;[m[K]
+  157 |     changeScaleValue([01;35m[Kevent->pos()[m[K,event->delta());
+      |                      [01;35m[K~~~~~~~~~~^~[m[K
+In file included from [01m[K/usr/include/x86_64-linux-gnu/qt5/QtGui/QMouseEvent:1[m[K,
+                 from [01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/smallmap.cpp:3[m[K:
+[01m[K/usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h:225:19:[m[K [01;36m[Knote: [m[Kdeclared here
+  225 |     inline QPoint [01;36m[Kpos[m[K() const { return p.toPoint(); }
+      |                   [01;36m[K^~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/smallmap.cpp:157:47:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint QWheelEvent::delta() const[m[K’ is deprecated: Use angleDelta() [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wdeprecated-declarations-Wdeprecated-declarations]8;;[m[K]
+  157 |     changeScaleValue(event->pos(),[01;35m[Kevent->delta()[m[K);
+      |                                   [01;35m[K~~~~~~~~~~~~^~[m[K
+In file included from [01m[K/usr/include/x86_64-linux-gnu/qt5/QtGui/QMouseEvent:1[m[K,
+                 from [01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/smallmap.cpp:3[m[K:
+[01m[K/usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h:219:16:[m[K [01;36m[Knote: [m[Kdeclared here
+  219 |     inline int [01;36m[Kdelta[m[K() const  { return qt4D; }
+      |                [01;36m[K^~~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/pnpwidget.cpp:[m[K In member function ‘[01m[Kvoid pnpWidget::beginPnp()[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/pnpwidget.cpp:360:28:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around assignment used as truth value [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wparentheses-Wparentheses]8;;[m[K]
+  360 |         else if([01;35m[Kpnp_img_id = 2[m[K)
+      |                 [01;35m[K~~~~~~~~~~~^~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::farPointsUpdate()[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/radarstation.cpp:209:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Point_<std::allocator<void> >, std::allocator<my_msgss::msg::Point_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  209 |     for(int i = 0;[01;35m[Ki<far_qpoints.data.size()[m[K;i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::closePointsUpdate()[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/Qt5_displayer/src/radarstation.cpp:233:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Point_<std::allocator<void> >, std::allocator<my_msgss::msg::Point_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  233 |     for(int i = 0;[01;35m[Ki<close_qpoints.data.size()[m[K;i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K

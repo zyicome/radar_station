@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from my_msgss/msg/Distpoint.msg
+// generated code does not contain a copyright notice
+
+
+module my_msgss {
+  module msg {
+    struct Distpoint {
+      uint8 id;
+
+      float x;
+
+      float y;
+
+      float dist;
+
+      float lastdist;
+
+      string color;
+    };
+  };
+};

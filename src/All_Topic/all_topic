@@ -1,0 +1,20 @@
+//Get_Camera_Img
+"exp_time" //曝光时间
+"/mv_param/is_record" // 0:不录像 1:录像
+"/mv_param/is_large" // 0:不放大 1:放大
+
+//从Get_Camera_Img相机接受的图片发送到图像处理Img_Handle
+"img/send"
+
+//Yolov8
+"/sensor_far/image_raw" //接收远距离相机的图片 
+"/sensor_close/image_raw" //接收近距离相机的图片
+"far_rectangles" //远距离相机检测到的目标 yolo_points
+"close_rectangles" //近距离相机检测到的目标 yolo_points
+"yolo_far" //远距离相机检测到的图片 Image
+"yolo_close" //近距离相机检测到的图片 Image
+
+colcon build --cmake-args -DCMAKE_EXPORT_CONPILE_COMMANDS=ON
+//vscode配置
+settings.json
+"C_Cpp.intelliSenseEngine": "disabled"

@@ -1,0 +1,15 @@
+WARNING: Package name "Img_Handle" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/main.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/main.cpp:31:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+   31 |     for (int i = 0; [01;35m[Ki < imageNames.size()[m[K; ++i)
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/main.cpp:12:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargc[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   12 | int main([01;35m[Kint argc[m[K, char **argv)
+      |          [01;35m[K~~~~^~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/main.cpp:12:27:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargv[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   12 | int main(int argc, [01;35m[Kchar **argv[m[K)
+      |                    [01;35m[K~~~~~~~^~~~[m[K
+[01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/img_sub.cpp:[m[K In member function ‘[01m[Kvoid Img_Sub::draw_img(cv::Mat&, my_msgss::msg::Yolopoints&)[m[K’:
+[01m[K/home/qianli/zyb/radar_station/src/Img_Handle/src/img_sub.cpp:278:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Yolopoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Yolopoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  278 |     for(int i =0 ;[01;35m[Ki<robot_boxes.data.size()[m[K;i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
