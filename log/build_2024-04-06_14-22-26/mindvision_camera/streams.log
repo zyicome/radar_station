@@ -1,0 +1,36 @@
+[0.045s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera -- -j16 -l16
+[0.084s] [ 50%] Built target mindvision_camera
+[0.087s] [100%] Built target mindvision_camera_node
+[0.101s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera -- -j16 -l16
+[0.136s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera
+[0.142s] -- Install configuration: ""
+[0.142s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib/mindvision_camera/mindvision_camera_node
+[0.143s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/environment/library_path.sh
+[0.143s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/environment/library_path.dsv
+[0.143s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib/libmindvision_camera.so
+[0.143s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/launch
+[0.143s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/launch/mv_camera.py
+[0.144s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/config
+[0.144s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/config/leftcamera_info.yaml
+[0.145s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/config/rightcamera_params.yaml
+[0.145s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/config/rightcamera_info.yaml
+[0.145s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/config/leftcamera_params.yaml
+[0.145s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/ament_index/resource_index/package_run_dependencies/mindvision_camera
+[0.146s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/ament_index/resource_index/parent_prefix_path/mindvision_camera
+[0.146s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/environment/ament_prefix_path.sh
+[0.146s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/environment/ament_prefix_path.dsv
+[0.147s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/environment/path.sh
+[0.147s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/environment/path.dsv
+[0.147s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/local_setup.bash
+[0.147s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/local_setup.sh
+[0.148s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/local_setup.zsh
+[0.148s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/local_setup.dsv
+[0.148s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.dsv
+[0.148s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/ament_index/resource_index/packages/mindvision_camera
+[0.148s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/ament_index/resource_index/rclcpp_components/mindvision_camera
+[0.149s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/cmake/ament_cmake_export_dependencies-extras.cmake
+[0.149s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/cmake/ament_cmake_export_libraries-extras.cmake
+[0.149s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/cmake/mindvision_cameraConfig.cmake
+[0.149s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/cmake/mindvision_cameraConfig-version.cmake
+[0.149s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.xml
+[0.150s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera

@@ -1,0 +1,33 @@
+[ 12%] [34m[1mAutomatic MOC and UIC for target Qt5_displayer[0m
+[ 12%] Built target Qt5_displayer_autogen
+[35m[1mConsolidate compiler generated dependencies of target Qt5_displayer[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/radarstation.cpp.o[0m
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::farImageUpdate()[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:150:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass Ui::radarStation[m[K’ has no member named ‘[01m[KsolveMapWidget[m[K’; did you mean ‘[01m[KsolvePnpWidget[m[K’?
+  150 |         ui->[01;31m[KsolveMapWidget[m[K->farimage = QPixmap::fromImage(qtnode.far_qimage);
+      |             [01;31m[K^~~~~~~~~~~~~~[m[K
+      |             [32m[KsolvePnpWidget[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:151:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass Ui::radarStation[m[K’ has no member named ‘[01m[KsolveMapWidget[m[K’; did you mean ‘[01m[KsolvePnpWidget[m[K’?
+  151 |         ui->[01;31m[KsolveMapWidget[m[K->ui->farImg->update();
+      |             [01;31m[K^~~~~~~~~~~~~~[m[K
+      |             [32m[KsolvePnpWidget[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::closeImageUpdate()[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:169:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass Ui::radarStation[m[K’ has no member named ‘[01m[KsolveMapWidget[m[K’; did you mean ‘[01m[KsolvePnpWidget[m[K’?
+  169 |         ui->[01;31m[KsolveMapWidget[m[K->closeimage = QPixmap::fromImage(qtnode.close_qimage);
+      |             [01;31m[K^~~~~~~~~~~~~~[m[K
+      |             [32m[KsolvePnpWidget[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:170:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass Ui::radarStation[m[K’ has no member named ‘[01m[KsolveMapWidget[m[K’; did you mean ‘[01m[KsolvePnpWidget[m[K’?
+  170 |         ui->[01;31m[KsolveMapWidget[m[K->ui->closeImg->update();
+      |             [01;31m[K^~~~~~~~~~~~~~[m[K
+      |             [32m[KsolvePnpWidget[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::farPointsUpdate()[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:233:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  233 |     for(int i = 1; [01;35m[Ki < ui->map->far_robots.size()[m[K;i++)
+      |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::closePointsUpdate()[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:264:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  264 |     for(int i = 1; [01;35m[Ki < ui->map->close_robots.size()[m[K;i++)
+      |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:132: CMakeFiles/Qt5_displayer.dir/src/radarstation.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

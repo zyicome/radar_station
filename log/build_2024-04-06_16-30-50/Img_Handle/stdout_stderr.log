@@ -1,0 +1,86 @@
+[ 22%] [32mBuilding CXX object CMakeFiles/Img_Sub.dir/src/img_sub.cpp.o[0m
+[ 33%] Built target Img_Pub
+[ 66%] Built target main
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle/src/img_sub.cpp:[m[K In member function ‘[01m[Kvoid Img_Sub::draw_img(cv::Mat&, my_msgss::msg::Yolopoints&)[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle/src/img_sub.cpp:223:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Yolopoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Yolopoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  223 |     for(int i =0 ;[01;35m[Ki < robot_boxes.data.size()[m[K ; i++)
+      |                   [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle/src/img_sub.cpp:[m[K In member function ‘[01m[Kvoid Img_Sub::allrobots_adjust(std::vector<Robot>&, my_msgss::msg::Yolopoints&)[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle/src/img_sub.cpp:540:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  540 |     for(int i = 1;[01;35m[Ki<robots.size()[m[K;i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~[m[K
+[ 77%] [32m[1mLinking CXX executable Img_Sub[0m
+/usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.408
+/usr/bin/ld: warning: libopencv_imgproc.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.408
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.408
+[100%] Built target Img_Sub
+-- Install configuration: ""
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/Img_Handle/Img_Pub
+-- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/Img_Handle/Img_Sub
+-- Set runtime path of "/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/Img_Handle/Img_Sub" to ""
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/Img_Handle/main
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/launch
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/launch/img_handle_launch.py
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/new_armor
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/new_armor/mlp.onnx
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/new_armor/label.txt
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/labels_correlogram.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/train_batch2.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/train_batch0.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/events.out.tfevents.1702546832.LAPTOP-62RB8H0R.113476.0
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/args.yaml
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/train_batch1.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/class
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/class/class.txt
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/labels.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/results.csv
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/weights
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/robot/weights/best.onnx
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/labels_correlogram.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/val_batch1_pred.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/val_batch2_pred.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/train_batch27521.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/P_curve.png
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/val_batch0_pred.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/confusion_matrix_normalized.png
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/results.png
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/train_batch2.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/val_batch1_labels.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/R_curve.png
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/train_batch0.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/args.yaml
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/train_batch1.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/F1_curve.png
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/PR_curve.png
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/class
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/class/class.txt
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/events.out.tfevents.1702358543.LAPTOP-62RB8H0R.96524.0
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/val_batch2_labels.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/confusion_matrix.png
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/train_batch27520.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/labels.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/results.csv
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/weights
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/weights/best.pt
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/weights/best.onnx
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/weights/last.pt
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/val_batch0_labels.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/Yolov8_weight/armor/train_batch27522.jpg
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/ament_index/resource_index/package_run_dependencies/Img_Handle
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/ament_index/resource_index/parent_prefix_path/Img_Handle
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/environment/ament_prefix_path.sh
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/environment/path.sh
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/environment/path.dsv
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/local_setup.bash
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/local_setup.sh
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/local_setup.zsh
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/local_setup.dsv
+-- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.dsv
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/ament_index/resource_index/packages/Img_Handle
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/cmake/Img_HandleConfig.cmake
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/cmake/Img_HandleConfig-version.cmake
+-- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.xml

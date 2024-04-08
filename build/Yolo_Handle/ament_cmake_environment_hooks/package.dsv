@@ -1,0 +1,4 @@
+source;share/Yolo_Handle/local_setup.bash
+source;share/Yolo_Handle/local_setup.dsv
+source;share/Yolo_Handle/local_setup.sh
+source;share/Yolo_Handle/local_setup.zsh

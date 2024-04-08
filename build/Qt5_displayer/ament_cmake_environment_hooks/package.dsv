@@ -1,0 +1,4 @@
+source;share/Qt5_displayer/local_setup.bash
+source;share/Qt5_displayer/local_setup.dsv
+source;share/Qt5_displayer/local_setup.sh
+source;share/Qt5_displayer/local_setup.zsh

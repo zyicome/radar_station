@@ -1,0 +1,76 @@
+[0.093s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer -- -j16 -l16
+[0.112s] -- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.212s] -- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)
+[0.227s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.229s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.232s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.239s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.247s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.286s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.287s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.372s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.463s] -- Found sensor_msgs: 4.2.3 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.533s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[0.535s] -- Found my_msgss: 0.0.0 (/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/cmake)
+[0.548s] -- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.578s] WARNING: Package name "Qt5_displayer" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[0.587s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.587s] -- Configured cppcheck include dirs: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/include
+[0.587s] -- Configured cppcheck exclude dirs and/or files: 
+[0.587s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.587s] -- Added test 'lint_cmake' to check CMake code style
+[0.588s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.588s] -- Added test 'uncrustify' to check C / C++ code style
+[0.588s] -- Configured uncrustify additional arguments: 
+[0.588s] -- Added test 'xmllint' to check XML markup files
+[0.589s] -- Configuring done
+[0.611s] -- Generating done
+[0.612s] -- Build files have been written to: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer
+[0.640s] [ 12%] [34m[1mAutomatic MOC and UIC for target Qt5_displayer[0m
+[0.657s] [ 12%] Built target Qt5_displayer_autogen
+[0.665s] [35m[1mConsolidate compiler generated dependencies of target Qt5_displayer[0m
+[0.684s] [ 25%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/pnpwidget.cpp.o[0m
+[0.684s] [ 37%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/radarstation.cpp.o[0m
+[1.957s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/pnpwidget.cpp:[m[K In member function ‘[01m[Kvoid pnpWidget::beginPnp()[m[K’:
+[1.958s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/pnpwidget.cpp:366:28:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around assignment used as truth value [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wparentheses-Wparentheses]8;;[m[K]
+[1.958s]   366 |         else if([01;35m[Kpnp_img_id = 2[m[K)
+[1.958s]       |                 [01;35m[K~~~~~~~~~~~^~~[m[K
+[3.240s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::farPointsUpdate()[m[K’:
+[3.240s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:213:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[3.240s]   213 |     for(int i = 1; [01;35m[Ki < ui->map->far_robots.size()[m[K;i++)
+[3.240s]       |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[3.241s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::closePointsUpdate()[m[K’:
+[3.241s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:244:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[3.241s]   244 |     for(int i = 1; [01;35m[Ki < ui->map->close_robots.size()[m[K;i++)
+[3.241s]       |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.073s] [ 50%] [32m[1mLinking CXX executable Qt5_displayer[0m
+[4.610s] /usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.408
+[4.611s] /usr/bin/ld: warning: libopencv_imgproc.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.408
+[4.611s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.408
+[5.039s] [100%] Built target Qt5_displayer
+[5.047s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer -- -j16 -l16
+[5.068s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer
+[5.072s] -- Install configuration: ""
+[5.072s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib/Qt5_displayer/Qt5_displayer
+[5.075s] -- Set runtime path of "/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib/Qt5_displayer/Qt5_displayer" to ""
+[5.075s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/launch
+[5.075s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/launch/qt5_display_launch.py
+[5.075s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/map
+[5.075s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/map/redmap.png
+[5.076s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/map/bluemap.png
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/ament_index/resource_index/package_run_dependencies/Qt5_displayer
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/ament_index/resource_index/parent_prefix_path/Qt5_displayer
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/environment/ament_prefix_path.sh
+[5.077s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/environment/ament_prefix_path.dsv
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/environment/path.sh
+[5.077s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/environment/path.dsv
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/local_setup.bash
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/local_setup.sh
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/local_setup.zsh
+[5.077s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/local_setup.dsv
+[5.077s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.dsv
+[5.077s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/ament_index/resource_index/packages/Qt5_displayer
+[5.078s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/cmake/Qt5_displayerConfig.cmake
+[5.078s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/cmake/Qt5_displayerConfig-version.cmake
+[5.078s] -- Up-to-date: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.xml
+[5.079s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer

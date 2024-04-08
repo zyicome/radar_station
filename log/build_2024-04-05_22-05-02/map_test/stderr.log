@@ -1,0 +1,20 @@
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:[m[K In member function ‘[01m[Kvoid MapTest::draw_point_on_map(cv::Mat&, std::vector<map_point>&)[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:162:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<map_point>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  162 |     for(int i = 0;[01;35m[Ki<map_points.size()[m[K;i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:[m[K In member function ‘[01m[Kvoid MapTest::far_callback(my_msgss::msg::Distpoints)[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:198:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  198 |     for(int i =1;[01;35m[Ki<far_robots.size()[m[K;i++)
+      |                  [01;35m[K~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:[m[K In member function ‘[01m[Kvoid MapTest::close_callback(my_msgss::msg::Distpoints)[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:242:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  242 |     for(int i =1;[01;35m[Ki<close_robots.size()[m[K;i++)
+      |                  [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:[m[K In member function ‘[01m[Kvoid MapTest::get_robots(std::vector<Robot>&, const Distpoints&)[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:300:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Distpoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Distpoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  300 |     for(int i = 0;[01;35m[Ki < input.data.size()[m[K;i++)
+      |                   [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:[m[K In member function ‘[01m[Kvoid MapTest::allrobots_adjust(std::vector<Robot>&)[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test/src/map_test.cpp:313:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  313 |     for(int i = 0;[01;35m[Ki<robots.size()[m[K;i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~[m[K

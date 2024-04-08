@@ -1,0 +1,7 @@
+[ 12%] [34m[1mAutomatic MOC and UIC for target Qt5_displayer[0m
+[ 12%] Built target Qt5_displayer_autogen
+[35m[1mConsolidate compiler generated dependencies of target Qt5_displayer[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/Qt5_displayer_autogen/mocs_compilation.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/main.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/radarstation.cpp.o[0m
+[ 62%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/pnpwidget.cpp.o[0m

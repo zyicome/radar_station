@@ -1,0 +1,689 @@
+[0.434s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.434s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x72fc35866d70>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x72fc35ccbac0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x72fc35ccbac0>>)
+[0.456s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.456s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.456s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.456s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.456s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.456s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.456s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['ignore', 'ignore_ament_install']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'ignore'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'ignore_ament_install'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['colcon_pkg']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'colcon_pkg'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['colcon_meta']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'colcon_meta'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['ros']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'ros'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['cmake', 'python']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'cmake'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'python'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extensions ['python_setup_py']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/All_Topic) by extension 'python_setup_py'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['ignore', 'ignore_ament_install']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'ignore'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'ignore_ament_install'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['colcon_pkg']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'colcon_pkg'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['colcon_meta']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'colcon_meta'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extensions ['ros']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/Game_Map) by extension 'ros'
+[0.467s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Game_Map' with type 'ros.ament_cmake' and name 'Game_Map'
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['ignore', 'ignore_ament_install']
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'ignore'
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'ignore_ament_install'
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['colcon_pkg']
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'colcon_pkg'
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['colcon_meta']
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'colcon_meta'
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extensions ['ros']
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/Img_Handle) by extension 'ros'
+[0.467s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Img_Handle' with type 'ros.ament_cmake' and name 'Img_Handle'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['ignore', 'ignore_ament_install']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'ignore'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'ignore_ament_install'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['colcon_pkg']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'colcon_pkg'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['colcon_meta']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'colcon_meta'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extensions ['ros']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Qt5_displayer) by extension 'ros'
+[0.468s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Qt5_displayer' with type 'ros.ament_cmake' and name 'Qt5_displayer'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['ignore', 'ignore_ament_install']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'ignore'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'ignore_ament_install'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['colcon_pkg']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'colcon_pkg'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['colcon_meta']
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'colcon_meta'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extensions ['ros']
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/Yolo_Handle) by extension 'ros'
+[0.469s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Yolo_Handle' with type 'ros.ament_cmake' and name 'Yolo_Handle'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['ignore', 'ignore_ament_install']
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'ignore'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'ignore_ament_install'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['colcon_pkg']
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'colcon_pkg'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['colcon_meta']
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'colcon_meta'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extensions ['ros']
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/get_depth) by extension 'ros'
+[0.470s] DEBUG:colcon.colcon_core.package_identification:Package 'src/get_depth' with type 'ros.ament_cmake' and name 'get_depth'
+[0.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['ignore', 'ignore_ament_install']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'ignore'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'ignore_ament_install'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['colcon_pkg']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'colcon_pkg'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['colcon_meta']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'colcon_meta'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extensions ['ros']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/map_test) by extension 'ros'
+[0.471s] DEBUG:colcon.colcon_core.package_identification:Package 'src/map_test' with type 'ros.ament_cmake' and name 'map_test'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['ignore', 'ignore_ament_install']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'ignore'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'ignore_ament_install'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['colcon_pkg']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'colcon_pkg'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['colcon_meta']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'colcon_meta'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extensions ['ros']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_msgss) by extension 'ros'
+[0.472s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_msgss' with type 'ros.ament_cmake' and name 'my_msgss'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extensions ['ignore', 'ignore_ament_install']
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extension 'ignore'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extension 'ignore_ament_install'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extensions ['colcon_pkg']
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extension 'colcon_pkg'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extensions ['colcon_meta']
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extension 'colcon_meta'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extensions ['ros']
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2-hik-mutiple-camera) by extension 'ros'
+[0.473s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ros2-hik-mutiple-camera' with type 'ros.ament_cmake' and name 'hik_camera'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['ignore', 'ignore_ament_install']
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'ignore'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'ignore_ament_install'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['colcon_pkg']
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'colcon_pkg'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['colcon_meta']
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'colcon_meta'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extensions ['ros']
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_mindvision_mutiple_camera) by extension 'ros'
+[0.474s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ros2_mindvision_mutiple_camera' with type 'ros.ament_cmake' and name 'mindvision_camera'
+[0.474s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.474s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.474s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.474s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.474s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.519s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.519s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.532s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/mechax/ws_livox/install
+[0.539s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 345 installed packages in /opt/ros/humble
+[0.540s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_args' from command line to 'None'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_target' from command line to 'None'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_clean_cache' from command line to 'False'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_clean_first' from command line to 'False'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'cmake_force_configure' from command line to 'False'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'ament_cmake_args' from command line to 'None'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'catkin_cmake_args' from command line to 'None'
+[0.587s] Level 5:colcon.colcon_core.verb:set package 'Yolo_Handle' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.587s] DEBUG:colcon.colcon_core.verb:Building package 'Yolo_Handle' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Yolo_Handle', 'symlink_install': False, 'test_result_base': None}
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'cmake_args' from command line to 'None'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'cmake_target' from command line to 'None'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'cmake_clean_cache' from command line to 'False'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'cmake_clean_first' from command line to 'False'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'cmake_force_configure' from command line to 'False'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'ament_cmake_args' from command line to 'None'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'catkin_cmake_args' from command line to 'None'
+[0.593s] Level 5:colcon.colcon_core.verb:set package 'hik_camera' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.593s] DEBUG:colcon.colcon_core.verb:Building package 'hik_camera' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/ros2-hik-mutiple-camera', 'symlink_install': False, 'test_result_base': None}
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_args' from command line to 'None'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_target' from command line to 'None'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_clean_cache' from command line to 'False'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_clean_first' from command line to 'False'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'cmake_force_configure' from command line to 'False'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'ament_cmake_args' from command line to 'None'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'catkin_cmake_args' from command line to 'None'
+[0.599s] Level 5:colcon.colcon_core.verb:set package 'mindvision_camera' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.599s] DEBUG:colcon.colcon_core.verb:Building package 'mindvision_camera' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/ros2_mindvision_mutiple_camera', 'symlink_install': False, 'test_result_base': None}
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_args' from command line to 'None'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_target' from command line to 'None'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_clean_cache' from command line to 'False'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_clean_first' from command line to 'False'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'cmake_force_configure' from command line to 'False'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'ament_cmake_args' from command line to 'None'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'catkin_cmake_args' from command line to 'None'
+[0.605s] Level 5:colcon.colcon_core.verb:set package 'my_msgss' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.605s] DEBUG:colcon.colcon_core.verb:Building package 'my_msgss' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/my_msgss', 'symlink_install': False, 'test_result_base': None}
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_args' from command line to 'None'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_target' from command line to 'None'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_clean_cache' from command line to 'False'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_clean_first' from command line to 'False'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'cmake_force_configure' from command line to 'False'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'ament_cmake_args' from command line to 'None'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'catkin_cmake_args' from command line to 'None'
+[0.611s] Level 5:colcon.colcon_core.verb:set package 'Game_Map' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.611s] DEBUG:colcon.colcon_core.verb:Building package 'Game_Map' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map', 'symlink_install': False, 'test_result_base': None}
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_args' from command line to 'None'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_target' from command line to 'None'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_clean_cache' from command line to 'False'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_clean_first' from command line to 'False'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'cmake_force_configure' from command line to 'False'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'ament_cmake_args' from command line to 'None'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'catkin_cmake_args' from command line to 'None'
+[0.618s] Level 5:colcon.colcon_core.verb:set package 'Img_Handle' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.618s] DEBUG:colcon.colcon_core.verb:Building package 'Img_Handle' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle', 'symlink_install': False, 'test_result_base': None}
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_args' from command line to 'None'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_target' from command line to 'None'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_clean_cache' from command line to 'False'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_clean_first' from command line to 'False'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'cmake_force_configure' from command line to 'False'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'ament_cmake_args' from command line to 'None'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'catkin_cmake_args' from command line to 'None'
+[0.624s] Level 5:colcon.colcon_core.verb:set package 'Qt5_displayer' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.624s] DEBUG:colcon.colcon_core.verb:Building package 'Qt5_displayer' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer', 'symlink_install': False, 'test_result_base': None}
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_args' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_target' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_clean_cache' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_clean_first' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'cmake_force_configure' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'ament_cmake_args' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'catkin_cmake_args' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'get_depth' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.630s] DEBUG:colcon.colcon_core.verb:Building package 'get_depth' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/get_depth', 'symlink_install': False, 'test_result_base': None}
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_args' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_target' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_clean_cache' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_clean_first' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'cmake_force_configure' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'ament_cmake_args' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'catkin_cmake_args' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'map_test' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.636s] DEBUG:colcon.colcon_core.verb:Building package 'map_test' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test', 'merge_install': False, 'path': '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test', 'symlink_install': False, 'test_result_base': None}
+[0.642s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.648s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.649s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/my_msgss' with build type 'ament_cmake'
+[0.649s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/my_msgss'
+[0.657s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.657s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.657s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.679s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Yolo_Handle' with build type 'ament_cmake'
+[0.679s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Yolo_Handle'
+[0.685s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.685s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.709s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/ros2-hik-mutiple-camera' with build type 'ament_cmake'
+[0.710s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/ros2-hik-mutiple-camera'
+[0.724s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.724s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.746s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/ros2_mindvision_mutiple_camera' with build type 'ament_cmake'
+[0.746s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/ros2_mindvision_mutiple_camera'
+[0.753s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.753s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.779s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss -- -j16 -l16
+[0.781s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle -- -j16 -l16
+[0.783s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera -- -j16 -l16
+[0.786s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera -- -j16 -l16
+[0.805s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle -- -j16 -l16
+[0.829s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle
+[0.834s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera -- -j16 -l16
+[0.839s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Yolo_Handle)
+[0.839s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Yolo_Handle
+[0.847s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle' for CMake module files
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle' for CMake config files
+[0.848s] Level 1:colcon.colcon_core.shell:create_environment_hook('Yolo_Handle', 'cmake_prefix_path')
+[0.855s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.ps1'
+[0.856s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.dsv'
+[0.856s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.sh'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/bin'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/lib/pkgconfig/Yolo_Handle.pc'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/lib/python3.10/site-packages'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/bin'
+[0.864s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.ps1'
+[0.865s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.dsv'
+[0.865s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.sh'
+[0.866s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.bash'
+[0.866s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.zsh'
+[0.866s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/colcon-core/packages/Yolo_Handle)
+[0.869s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera
+[0.870s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera -- -j16 -l16
+[0.878s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(hik_camera)
+[0.881s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/hik_camera
+[0.890s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera' for CMake module files
+[0.891s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera' for CMake config files
+[0.892s] Level 1:colcon.colcon_core.shell:create_environment_hook('hik_camera', 'cmake_prefix_path')
+[0.900s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/cmake_prefix_path.ps1'
+[0.901s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/cmake_prefix_path.dsv'
+[0.901s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/cmake_prefix_path.sh'
+[0.902s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/lib'
+[0.902s] Level 1:colcon.colcon_core.shell:create_environment_hook('hik_camera', 'ld_library_path_lib')
+[0.910s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/ld_library_path_lib.ps1'
+[0.911s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/ld_library_path_lib.dsv'
+[0.911s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/ld_library_path_lib.sh'
+[0.911s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/bin'
+[0.911s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/lib/pkgconfig/hik_camera.pc'
+[0.911s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/lib/python3.10/site-packages'
+[0.911s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/bin'
+[0.918s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.ps1'
+[0.918s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.dsv'
+[0.918s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.sh'
+[0.919s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.bash'
+[0.919s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.zsh'
+[0.919s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/colcon-core/packages/hik_camera)
+[0.927s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Yolo_Handle)
+[0.934s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle' for CMake module files
+[0.934s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle' for CMake config files
+[0.934s] Level 1:colcon.colcon_core.shell:create_environment_hook('Yolo_Handle', 'cmake_prefix_path')
+[0.941s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.ps1'
+[0.941s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.dsv'
+[0.941s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/hook/cmake_prefix_path.sh'
+[0.942s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/bin'
+[0.942s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/lib/pkgconfig/Yolo_Handle.pc'
+[0.942s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/lib/python3.10/site-packages'
+[0.942s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/bin'
+[0.948s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.ps1'
+[0.948s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.dsv'
+[0.949s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.sh'
+[0.949s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.bash'
+[0.949s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/Yolo_Handle/package.zsh'
+[0.949s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Yolo_Handle/share/colcon-core/packages/Yolo_Handle)
+[0.952s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera
+[0.960s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(hik_camera)
+[0.967s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera' for CMake module files
+[0.967s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera' for CMake config files
+[0.967s] Level 1:colcon.colcon_core.shell:create_environment_hook('hik_camera', 'cmake_prefix_path')
+[0.979s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/cmake_prefix_path.ps1'
+[0.979s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/cmake_prefix_path.dsv'
+[0.980s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/cmake_prefix_path.sh'
+[0.980s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/lib'
+[0.980s] Level 1:colcon.colcon_core.shell:create_environment_hook('hik_camera', 'ld_library_path_lib')
+[0.993s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/ld_library_path_lib.ps1'
+[0.994s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/ld_library_path_lib.dsv'
+[0.994s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/hook/ld_library_path_lib.sh'
+[0.995s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/bin'
+[0.995s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/lib/pkgconfig/hik_camera.pc'
+[0.995s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/lib/python3.10/site-packages'
+[0.995s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/bin'
+[1.003s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.ps1'
+[1.003s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.dsv'
+[1.003s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.sh'
+[1.004s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.bash'
+[1.004s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/hik_camera/package.zsh'
+[1.004s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/hik_camera/share/colcon-core/packages/hik_camera)
+[1.005s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mindvision_camera)
+[1.005s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/mindvision_camera
+[1.012s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera' for CMake module files
+[1.013s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera' for CMake config files
+[1.013s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'cmake_prefix_path')
+[1.020s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.ps1'
+[1.020s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.dsv'
+[1.020s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.sh'
+[1.021s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib'
+[1.021s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'ld_library_path_lib')
+[1.027s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.ps1'
+[1.028s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.dsv'
+[1.028s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.sh'
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/bin'
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib/pkgconfig/mindvision_camera.pc'
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib/python3.10/site-packages'
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/bin'
+[1.035s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.ps1'
+[1.035s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.dsv'
+[1.035s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.sh'
+[1.035s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.bash'
+[1.036s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.zsh'
+[1.036s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/colcon-core/packages/mindvision_camera)
+[1.038s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss -- -j16 -l16
+[1.068s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mindvision_camera)
+[1.075s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera' for CMake module files
+[1.075s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera' for CMake config files
+[1.075s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'cmake_prefix_path')
+[1.082s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.ps1'
+[1.082s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.dsv'
+[1.082s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/cmake_prefix_path.sh'
+[1.082s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib'
+[1.082s] Level 1:colcon.colcon_core.shell:create_environment_hook('mindvision_camera', 'ld_library_path_lib')
+[1.089s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.ps1'
+[1.089s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.dsv'
+[1.089s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/hook/ld_library_path_lib.sh'
+[1.089s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/bin'
+[1.089s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib/pkgconfig/mindvision_camera.pc'
+[1.090s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/lib/python3.10/site-packages'
+[1.090s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/bin'
+[1.097s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.ps1'
+[1.097s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.dsv'
+[1.097s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.sh'
+[1.097s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.bash'
+[1.098s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/mindvision_camera/package.zsh'
+[1.098s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/mindvision_camera/share/colcon-core/packages/mindvision_camera)
+[1.119s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss
+[1.153s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_msgss)
+[1.156s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/my_msgss
+[1.162s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss' for CMake module files
+[1.163s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss' for CMake config files
+[1.163s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'cmake_prefix_path')
+[1.170s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.ps1'
+[1.170s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.dsv'
+[1.170s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.sh'
+[1.171s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib'
+[1.171s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'ld_library_path_lib')
+[1.178s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.ps1'
+[1.178s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.dsv'
+[1.178s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.sh'
+[1.179s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/bin'
+[1.179s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib/pkgconfig/my_msgss.pc'
+[1.179s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib/python3.10/site-packages'
+[1.179s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/bin'
+[1.185s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.ps1'
+[1.185s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.dsv'
+[1.185s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.sh'
+[1.186s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.bash'
+[1.186s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.zsh'
+[1.186s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/colcon-core/packages/my_msgss)
+[1.271s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_msgss)
+[1.277s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss' for CMake module files
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss' for CMake config files
+[1.278s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'cmake_prefix_path')
+[1.284s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.ps1'
+[1.285s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.dsv'
+[1.285s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/cmake_prefix_path.sh'
+[1.285s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib'
+[1.285s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_msgss', 'ld_library_path_lib')
+[1.292s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.ps1'
+[1.292s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.dsv'
+[1.292s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/hook/ld_library_path_lib.sh'
+[1.293s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/bin'
+[1.293s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib/pkgconfig/my_msgss.pc'
+[1.293s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib/python3.10/site-packages'
+[1.293s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/bin'
+[1.300s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.ps1'
+[1.300s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.dsv'
+[1.300s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.sh'
+[1.301s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.bash'
+[1.301s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/package.zsh'
+[1.301s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/colcon-core/packages/my_msgss)
+[1.301s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map' with build type 'ament_cmake'
+[1.301s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map'
+[1.310s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.310s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.341s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle' with build type 'ament_cmake'
+[1.341s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle'
+[1.356s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.356s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.380s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer' with build type 'ament_cmake'
+[1.380s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer'
+[1.388s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.388s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.410s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/get_depth' with build type 'ament_cmake'
+[1.410s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/get_depth'
+[1.417s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.417s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.439s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test' with build type 'ament_cmake'
+[1.440s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/map_test'
+[1.450s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.450s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.476s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map -- -j16 -l16
+[1.478s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle -- -j16 -l16
+[1.480s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer -- -j16 -l16
+[1.484s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth -- -j16 -l16
+[1.488s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test -- -j16 -l16
+[1.523s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map -- -j16 -l16
+[1.539s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth -- -j16 -l16
+[1.541s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test -- -j16 -l16
+[1.543s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map
+[1.549s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Game_Map)
+[1.552s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map
+[1.562s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map' for CMake module files
+[1.562s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map' for CMake config files
+[1.563s] Level 1:colcon.colcon_core.shell:create_environment_hook('Game_Map', 'cmake_prefix_path')
+[1.569s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.ps1'
+[1.570s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.dsv'
+[1.570s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.sh'
+[1.571s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib'
+[1.571s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/bin'
+[1.571s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib/pkgconfig/Game_Map.pc'
+[1.571s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib/python3.10/site-packages'
+[1.571s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/bin'
+[1.578s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.ps1'
+[1.578s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.dsv'
+[1.578s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.sh'
+[1.579s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.bash'
+[1.579s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.zsh'
+[1.579s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/colcon-core/packages/Game_Map)
+[1.581s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth
+[1.582s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test
+[1.584s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer -- -j16 -l16
+[1.591s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(get_depth)
+[1.593s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/get_depth
+[1.607s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth' for CMake module files
+[1.607s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth' for CMake config files
+[1.607s] Level 1:colcon.colcon_core.shell:create_environment_hook('get_depth', 'cmake_prefix_path')
+[1.614s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/hook/cmake_prefix_path.ps1'
+[1.615s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/hook/cmake_prefix_path.dsv'
+[1.615s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/hook/cmake_prefix_path.sh'
+[1.615s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/lib'
+[1.615s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/bin'
+[1.615s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/lib/pkgconfig/get_depth.pc'
+[1.615s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/lib/python3.10/site-packages'
+[1.615s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/bin'
+[1.622s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.ps1'
+[1.622s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.dsv'
+[1.623s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.sh'
+[1.623s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.bash'
+[1.623s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.zsh'
+[1.623s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/colcon-core/packages/get_depth)
+[1.631s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Game_Map)
+[1.638s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map' for CMake module files
+[1.639s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map' for CMake config files
+[1.639s] Level 1:colcon.colcon_core.shell:create_environment_hook('Game_Map', 'cmake_prefix_path')
+[1.645s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.ps1'
+[1.645s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.dsv'
+[1.645s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/hook/cmake_prefix_path.sh'
+[1.645s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib'
+[1.645s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/bin'
+[1.645s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib/pkgconfig/Game_Map.pc'
+[1.646s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib/python3.10/site-packages'
+[1.646s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/bin'
+[1.653s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.ps1'
+[1.653s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.dsv'
+[1.653s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.sh'
+[1.654s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.bash'
+[1.654s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.zsh'
+[1.654s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/colcon-core/packages/Game_Map)
+[1.655s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(map_test)
+[1.657s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer
+[1.657s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/map_test
+[1.669s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test' for CMake module files
+[1.669s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test' for CMake config files
+[1.669s] Level 1:colcon.colcon_core.shell:create_environment_hook('map_test', 'cmake_prefix_path')
+[1.676s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/hook/cmake_prefix_path.ps1'
+[1.677s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/hook/cmake_prefix_path.dsv'
+[1.677s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/hook/cmake_prefix_path.sh'
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/lib'
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/bin'
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/lib/pkgconfig/map_test.pc'
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/lib/python3.10/site-packages'
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/bin'
+[1.683s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.ps1'
+[1.684s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.dsv'
+[1.684s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.sh'
+[1.684s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.bash'
+[1.684s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.zsh'
+[1.684s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/colcon-core/packages/map_test)
+[1.694s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(get_depth)
+[1.701s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth' for CMake module files
+[1.702s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth' for CMake config files
+[1.702s] Level 1:colcon.colcon_core.shell:create_environment_hook('get_depth', 'cmake_prefix_path')
+[1.708s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/hook/cmake_prefix_path.ps1'
+[1.708s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/hook/cmake_prefix_path.dsv'
+[1.709s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/hook/cmake_prefix_path.sh'
+[1.709s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/lib'
+[1.709s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/bin'
+[1.709s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/lib/pkgconfig/get_depth.pc'
+[1.709s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/lib/python3.10/site-packages'
+[1.709s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/bin'
+[1.715s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.ps1'
+[1.716s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.dsv'
+[1.716s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.sh'
+[1.716s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.bash'
+[1.716s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/get_depth/package.zsh'
+[1.716s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/get_depth/share/colcon-core/packages/get_depth)
+[1.717s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Qt5_displayer)
+[1.718s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer
+[1.724s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer' for CMake module files
+[1.724s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer' for CMake config files
+[1.725s] Level 1:colcon.colcon_core.shell:create_environment_hook('Qt5_displayer', 'cmake_prefix_path')
+[1.731s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.ps1'
+[1.731s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.dsv'
+[1.732s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.sh'
+[1.732s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib'
+[1.732s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/bin'
+[1.732s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib/pkgconfig/Qt5_displayer.pc'
+[1.732s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib/python3.10/site-packages'
+[1.732s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/bin'
+[1.739s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.ps1'
+[1.740s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.dsv'
+[1.740s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.sh'
+[1.741s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.bash'
+[1.741s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.zsh'
+[1.741s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/colcon-core/packages/Qt5_displayer)
+[1.749s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(map_test)
+[1.756s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test' for CMake module files
+[1.756s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test' for CMake config files
+[1.757s] Level 1:colcon.colcon_core.shell:create_environment_hook('map_test', 'cmake_prefix_path')
+[1.764s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/hook/cmake_prefix_path.ps1'
+[1.764s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/hook/cmake_prefix_path.dsv'
+[1.764s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/hook/cmake_prefix_path.sh'
+[1.765s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/lib'
+[1.765s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/bin'
+[1.765s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/lib/pkgconfig/map_test.pc'
+[1.765s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/lib/python3.10/site-packages'
+[1.765s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/bin'
+[1.772s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.ps1'
+[1.772s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.dsv'
+[1.773s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.sh'
+[1.773s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.bash'
+[1.773s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/map_test/package.zsh'
+[1.773s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/map_test/share/colcon-core/packages/map_test)
+[1.782s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Qt5_displayer)
+[1.795s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer' for CMake module files
+[1.795s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer' for CMake config files
+[1.796s] Level 1:colcon.colcon_core.shell:create_environment_hook('Qt5_displayer', 'cmake_prefix_path')
+[1.802s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.ps1'
+[1.802s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.dsv'
+[1.802s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/hook/cmake_prefix_path.sh'
+[1.803s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib'
+[1.803s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/bin'
+[1.803s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib/pkgconfig/Qt5_displayer.pc'
+[1.803s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/lib/python3.10/site-packages'
+[1.803s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/bin'
+[1.810s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.ps1'
+[1.810s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.dsv'
+[1.811s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.sh'
+[1.811s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.bash'
+[1.811s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/Qt5_displayer/package.zsh'
+[1.811s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Qt5_displayer/share/colcon-core/packages/Qt5_displayer)
+[8.037s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle -- -j16 -l16
+[8.059s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle
+[8.070s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Img_Handle)
+[8.072s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Img_Handle
+[8.078s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle' for CMake module files
+[8.078s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle' for CMake config files
+[8.078s] Level 1:colcon.colcon_core.shell:create_environment_hook('Img_Handle', 'cmake_prefix_path')
+[8.087s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.ps1'
+[8.087s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.dsv'
+[8.087s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.sh'
+[8.087s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib'
+[8.087s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/bin'
+[8.087s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/pkgconfig/Img_Handle.pc'
+[8.088s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/python3.10/site-packages'
+[8.088s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/bin'
+[8.095s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.ps1'
+[8.095s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.dsv'
+[8.095s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.sh'
+[8.095s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.bash'
+[8.096s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.zsh'
+[8.096s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/colcon-core/packages/Img_Handle)
+[8.126s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(Img_Handle)
+[8.132s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle' for CMake module files
+[8.132s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle' for CMake config files
+[8.132s] Level 1:colcon.colcon_core.shell:create_environment_hook('Img_Handle', 'cmake_prefix_path')
+[8.139s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.ps1'
+[8.139s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.dsv'
+[8.139s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/hook/cmake_prefix_path.sh'
+[8.139s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib'
+[8.139s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/bin'
+[8.139s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/pkgconfig/Img_Handle.pc'
+[8.139s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/lib/python3.10/site-packages'
+[8.140s] Level 1:colcon.colcon_core.environment:checking '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/bin'
+[8.146s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.ps1'
+[8.146s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.dsv'
+[8.146s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.sh'
+[8.146s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.bash'
+[8.146s] INFO:colcon.colcon_core.shell:Creating package script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/package.zsh'
+[8.147s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/colcon-core/packages/Img_Handle)
+[8.147s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[8.147s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[8.147s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[8.147s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[8.157s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[8.157s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[8.157s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[8.168s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[8.179s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/local_setup.ps1'
+[8.180s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/_local_setup_util_ps1.py'
+[8.181s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/setup.ps1'
+[8.187s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/local_setup.sh'
+[8.188s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/_local_setup_util_sh.py'
+[8.188s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/setup.sh'
+[8.195s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/local_setup.bash'
+[8.195s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/setup.bash'
+[8.201s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/local_setup.zsh'
+[8.202s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/setup.zsh'

@@ -1,0 +1,16 @@
+WARNING: Package name "Qt5_displayer" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/pnpwidget.cpp:[m[K In member function ‘[01m[Kvoid pnpWidget::beginPnp()[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/pnpwidget.cpp:366:28:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around assignment used as truth value [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wparentheses-Wparentheses]8;;[m[K]
+  366 |         else if([01;35m[Kpnp_img_id = 2[m[K)
+      |                 [01;35m[K~~~~~~~~~~~^~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::farPointsUpdate()[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:213:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  213 |     for(int i = 1; [01;35m[Ki < ui->map->far_robots.size()[m[K;i++)
+      |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::closePointsUpdate()[m[K’:
+[01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:244:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+  244 |     for(int i = 1; [01;35m[Ki < ui->map->close_robots.size()[m[K;i++)
+      |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.408
+/usr/bin/ld: warning: libopencv_imgproc.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.408
+/usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.408

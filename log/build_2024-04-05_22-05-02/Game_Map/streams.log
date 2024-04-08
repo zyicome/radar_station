@@ -1,0 +1,113 @@
+[0.181s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map -DCMAKE_INSTALL_PREFIX=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map
+[0.216s] -- The C compiler identification is GNU 11.4.0
+[0.253s] -- The CXX compiler identification is GNU 11.4.0
+[0.258s] -- Detecting C compiler ABI info
+[0.316s] -- Detecting C compiler ABI info - done
+[0.323s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.323s] -- Detecting C compile features
+[0.324s] -- Detecting C compile features - done
+[0.327s] -- Detecting CXX compiler ABI info
+[0.420s] -- Detecting CXX compiler ABI info - done
+[0.429s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.429s] -- Detecting CXX compile features
+[0.429s] -- Detecting CXX compile features - done
+[0.432s] -- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.536s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.592s] -- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)
+[0.632s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.633s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.639s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.648s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.658s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.699s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.700s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.755s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.772s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.801s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.807s] -- Looking for pthread.h
+[0.848s] -- Looking for pthread.h - found
+[0.848s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.904s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.906s] -- Found Threads: TRUE  
+[1.006s] -- Found sensor_msgs: 4.2.3 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.083s] -- Found OpenCV: /usr/local (found version "4.8.0") 
+[1.083s] -- Found my_msgss: 0.0.0 (/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/share/my_msgss/cmake)
+[1.094s] -- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.125s] WARNING: Package name "Game_Map" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[1.141s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.141s] -- Configured cppcheck include dirs: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/include_directories;/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/(;/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/include;/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/)
+[1.141s] -- Configured cppcheck exclude dirs and/or files: 
+[1.141s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.142s] -- Added test 'lint_cmake' to check CMake code style
+[1.142s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[1.142s] -- Added test 'uncrustify' to check C / C++ code style
+[1.143s] -- Configured uncrustify additional arguments: 
+[1.143s] -- Added test 'xmllint' to check XML markup files
+[1.143s] -- Configuring done
+[1.150s] -- Generating done
+[1.150s] -- Build files have been written to: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map
+[1.158s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map -DCMAKE_INSTALL_PREFIX=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map
+[1.160s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map -- -j16 -l16
+[1.211s] [ 50%] [32mBuilding CXX object CMakeFiles/Game_Map.dir/src/game_map.cpp.o[0m
+[6.614s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:[m[K In function ‘[01m[Kvoid onMouse(int, int, int, int, void*)[m[K’:
+[6.615s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:310:43:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kflags[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[6.615s]   310 | void onMouse(int event, int x, int y, [01;35m[Kint flags[m[K, void *userdata)
+[6.615s]       |                                       [01;35m[K~~~~^~~~~[m[K
+[6.615s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kbool Game_Map::is_enemy_car(uint8_t)[m[K’:
+[6.615s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:352:17:[m[K [01;35m[Kwarning: [m[Kcomparison is always true due to limited range of data type [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wtype-limits-Wtype-limits]8;;[m[K]
+[6.615s]   352 |         if (([01;35m[Kid >= 0[m[K && id <= 8))
+[6.615s]       |              [01;35m[K~~~^~~~[m[K
+[6.616s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::warn_on_map(const Points&, cv::Mat&)[m[K’:
+[6.616s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:459:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::vector<cv::Point_<int> > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[6.617s]   459 |     for (int i = 0; [01;35m[Ki < our_warn_regions.size()[m[K; i++) {
+[6.617s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[6.618s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:475:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Point_<std::allocator<void> >, std::allocator<my_msgss::msg::Point_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[6.618s]   475 |     for (int i = 0; [01;35m[Ki < relative_coordinates.data.size()[m[K; i++) {
+[6.618s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[6.618s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:485:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::vector<cv::Point_<int> > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[6.618s]   485 |     for (int i = 0; [01;35m[Ki < enemy_warn_regions.size()[m[K; i++) {
+[6.618s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[6.627s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::draw_warn_region(cv::Mat&, const std::vector<std::vector<cv::Point_<int> > >&, const std::vector<std::vector<cv::Point_<int> > >&)[m[K’:
+[6.627s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:596:31:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kregion[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[6.627s]   596 |     for (const vector<Point> &[01;35m[Kregion[m[K: our_regions) {
+[6.628s]       |                               [01;35m[K^~~~~~[m[K
+[6.628s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:599:31:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kregion[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[6.628s]   599 |     for (const vector<Point> &[01;35m[Kregion[m[K: enemy_regions) {
+[6.628s]       |                               [01;35m[K^~~~~~[m[K
+[6.628s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::far_distPointCallback(const Distpoints&)[m[K’:
+[6.628s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:612:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Distpoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Distpoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[6.628s]   612 |     for (int i = 0; [01;35m[Ki < input.data.size()[m[K; i++) {
+[6.628s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[6.640s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:[m[K In member function ‘[01m[Kvoid Game_Map::close_distPointCallback(const Distpoints&)[m[K’:
+[6.640s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Game_Map/src/game_map.cpp:706:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<my_msgss::msg::Distpoint_<std::allocator<void> >, std::allocator<my_msgss::msg::Distpoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[6.640s]   706 |     for (int i = 0; [01;35m[Ki < input.data.size()[m[K; i++) {
+[6.640s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[17.489s] [100%] [32m[1mLinking CXX executable Game_Map[0m
+[18.028s] [100%] Built target Game_Map
+[18.036s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map -- -j16 -l16
+[18.052s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map
+[18.056s] -- Install configuration: ""
+[18.056s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib/Game_Map/Game_Map
+[18.060s] -- Set runtime path of "/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/lib/Game_Map/Game_Map" to ""
+[18.060s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/launch
+[18.060s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/launch/game_map_launch.py
+[18.060s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/config
+[18.060s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/config/radar.yaml
+[18.060s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/config/displayer_qt5.yaml
+[18.060s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/config/ros2_displayer.yaml
+[18.060s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/ament_index/resource_index/package_run_dependencies/Game_Map
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/ament_index/resource_index/parent_prefix_path/Game_Map
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/environment/ament_prefix_path.sh
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/environment/ament_prefix_path.dsv
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/environment/path.sh
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/environment/path.dsv
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/local_setup.bash
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/local_setup.sh
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/local_setup.zsh
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/local_setup.dsv
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.dsv
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/ament_index/resource_index/packages/Game_Map
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/cmake/Game_MapConfig.cmake
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/cmake/Game_MapConfig-version.cmake
+[18.061s] -- Installing: /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Game_Map/share/Game_Map/package.xml
+[18.062s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map' returned '0': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Game_Map

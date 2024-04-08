@@ -1,0 +1,34 @@
+[0.098s] Invoking command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer -- -j16 -l16
+[0.136s] [ 12%] [34m[1mAutomatic MOC and UIC for target Qt5_displayer[0m
+[0.429s] [ 12%] Built target Qt5_displayer_autogen
+[0.442s] [35m[1mConsolidate compiler generated dependencies of target Qt5_displayer[0m
+[0.463s] [ 37%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/Qt5_displayer_autogen/mocs_compilation.cpp.o[0m
+[0.463s] [ 37%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/main.cpp.o[0m
+[0.463s] [ 50%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/radarstation.cpp.o[0m
+[0.465s] [ 62%] [32mBuilding CXX object CMakeFiles/Qt5_displayer.dir/src/pnpwidget.cpp.o[0m
+[2.020s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/pnpwidget.cpp:[m[K In member function ‘[01m[Kvoid pnpWidget::beginPnp()[m[K’:
+[2.020s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/pnpwidget.cpp:366:28:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around assignment used as truth value [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wparentheses-Wparentheses]8;;[m[K]
+[2.020s]   366 |         else if([01;35m[Kpnp_img_id = 2[m[K)
+[2.021s]       |                 [01;35m[K~~~~~~~~~~~^~~[m[K
+[3.613s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::init()[m[K’:
+[3.613s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:44:17:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass Ui::radarStation[m[K’ has no member named ‘[01m[KpnpMode_2[m[K’; did you mean ‘[01m[KpnpMode[m[K’?
+[3.613s]    44 |     connect(ui->[01;31m[KpnpMode_2[m[K,SIGNAL(clicked()),this,SLOT(changeToPnpWidget_2()));
+[3.613s]       |                 [01;31m[K^~~~~~~~~[m[K
+[3.613s]       |                 [32m[KpnpMode[m[K
+[3.613s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:45:17:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass Ui::radarStation[m[K’ has no member named ‘[01m[KmapMode_2[m[K’; did you mean ‘[01m[KmapMode[m[K’?
+[3.614s]    45 |     connect(ui->[01;31m[KmapMode_2[m[K,SIGNAL(clicked()),this,SLOT(changeToMapWidget_2()));
+[3.614s]       |                 [01;31m[K^~~~~~~~~[m[K
+[3.614s]       |                 [32m[KmapMode[m[K
+[3.617s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::farPointsUpdate()[m[K’:
+[3.617s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:228:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[3.617s]   228 |     for(int i = 1; [01;35m[Ki < ui->map->far_robots.size()[m[K;i++)
+[3.617s]       |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[3.618s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:[m[K In member function ‘[01m[Kvoid radarStation::closePointsUpdate()[m[K’:
+[3.618s] [01m[K/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Qt5_displayer/src/radarstation.cpp:259:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Robot>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wsign-compare-Wsign-compare]8;;[m[K]
+[3.618s]   259 |     for(int i = 1; [01;35m[Ki < ui->map->close_robots.size()[m[K;i++)
+[3.618s]       |                    [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.292s] gmake[2]: *** [CMakeFiles/Qt5_displayer.dir/build.make:132: CMakeFiles/Qt5_displayer.dir/src/radarstation.cpp.o] Error 1
+[4.292s] gmake[2]: *** Waiting for unfinished jobs....
+[4.397s] gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/Qt5_displayer.dir/all] Error 2
+[4.397s] gmake: *** [Makefile:146: all] Error 2
+[4.398s] Invoked command in '/home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer' returned '2': AMENT_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss:/home/mechax/ws_livox/install/livox_ros2_driver:/home/mechax/ws_livox/install/livox_sdk_vendor:/home/mechax/ws_livox/install/livox_interfaces:/opt/ros/humble LD_LIBRARY_PATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:/home/mechax/ws_livox/install/livox_ros2_driver/lib:/home/mechax/ws_livox/install/livox_interfaces/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32 PYTHONPATH=/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/my_msgss/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/mechax/zyb/radar_station_all/radar_station_fixed_class/build/Qt5_displayer -- -j16 -l16
