@@ -13,11 +13,13 @@ find_package(sensor_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(my_msgss REQUIRED)
+find_package(Eigen3 REQUIRED)
 include_directories(include ${my_msgss_INCLUDE_DIRS})
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories("/usr/include/eigen3")
 
 # Img_Pub的生成
 add_executable(Img_Pub src/img_pub.cpp)
@@ -28,8 +30,8 @@ target_link_directories(Img_Pub PUBLIC
 target_link_libraries(Img_Pub ${OpenCV_LIBS})
 
 # Img_Sub的生成
-add_executable(Img_Sub src/img_sub.cpp src/inference.cpp src/number_classifier.cpp)
-ament_target_dependencies(Img_Sub rclcpp sensor_msgs cv_bridge my_msgss)
+add_executable(Img_Sub src/img_sub.cpp src/inference.cpp src/number_classifier.cpp src/extended_kalman_filter.cpp)
+ament_target_dependencies(Img_Sub rclcpp sensor_msgs cv_bridge my_msgss Eigen3)
 target_link_directories(Img_Sub PUBLIC
       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
       $<INSTALL_INTERFACE:include>)

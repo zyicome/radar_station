@@ -13,6 +13,8 @@
 
 #include <ament_index_cpp/get_package_share_directory.hpp>
 
+#include "extended_kalman_filter.hpp"
+
 using namespace std;
 using namespace cv;
 
@@ -24,6 +26,8 @@ struct Robot
     bool is_continue;
     string tracking;
     cv::Rect box;
+
+    ExtendedKalmanFilter ekf;
 };
 
 class Img_Sub : public::rclcpp::Node
@@ -63,10 +67,12 @@ public:
 
     bool box_match(const cv::Rect &box, const cv::Rect &new_box);
 
+    bool distance_match(const cv::Rect &box, const cv::Rect &new_box)
+
     void robots_adjust(const Detection &armor_output, vector<Robot> &robots);
 
     void allrobots_adjust(vector<Robot> &robots,my_msgss::msg::Yolopoints &robot_boxes);
-    //new pa
+    //new place
     vector<Robot> far_robots;
     vector<Robot> close_robots;
 
@@ -76,6 +82,14 @@ public:
     float min_accept_confidence;
     float min_iou;
     //
+    //---------------------------------
+    //---------------------------------
+    //kalman
+    double dt_;
+    double s2qxyz_, s2qyaw_, s2qr_;
+    double r_xyz_factor, r_yaw;
+
+    void kalman_init();
     //---------------------------------
 
     my_msgss::msg::Yolopoints far_robot_boxes;

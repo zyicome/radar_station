@@ -236,6 +236,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+src/extended_kalman_filter.o: src/extended_kalman_filter.cpp.o
+.PHONY : src/extended_kalman_filter.o
+
+# target to build an object file
+src/extended_kalman_filter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Img_Sub.dir/build.make CMakeFiles/Img_Sub.dir/src/extended_kalman_filter.cpp.o
+.PHONY : src/extended_kalman_filter.cpp.o
+
+src/extended_kalman_filter.i: src/extended_kalman_filter.cpp.i
+.PHONY : src/extended_kalman_filter.i
+
+# target to preprocess a source file
+src/extended_kalman_filter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Img_Sub.dir/build.make CMakeFiles/Img_Sub.dir/src/extended_kalman_filter.cpp.i
+.PHONY : src/extended_kalman_filter.cpp.i
+
+src/extended_kalman_filter.s: src/extended_kalman_filter.cpp.s
+.PHONY : src/extended_kalman_filter.s
+
+# target to generate assembly for a file
+src/extended_kalman_filter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Img_Sub.dir/build.make CMakeFiles/Img_Sub.dir/src/extended_kalman_filter.cpp.s
+.PHONY : src/extended_kalman_filter.cpp.s
+
 src/img_pub.o: src/img_pub.cpp.o
 .PHONY : src/img_pub.o
 
@@ -377,6 +401,9 @@ help:
 	@echo "... Img_Pub"
 	@echo "... Img_Sub"
 	@echo "... main"
+	@echo "... src/extended_kalman_filter.o"
+	@echo "... src/extended_kalman_filter.i"
+	@echo "... src/extended_kalman_filter.s"
 	@echo "... src/img_pub.o"
 	@echo "... src/img_pub.i"
 	@echo "... src/img_pub.s"

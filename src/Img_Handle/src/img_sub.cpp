@@ -23,6 +23,107 @@ Img_Sub::~Img_Sub()
 
 }
 
+//---------------------------------------------------------------
+void Img_Sub::kalman_init()
+{
+    // EKF
+  // xa = x_armor, xc = x_robot_center
+  // state: xc, v_xc, yc, v_yc, za, v_za, yaw, v_yaw, r
+  // measurement: xa, ya, witch, height
+  // f - Process function
+  auto f = [this](const Eigen::VectorXd & x) {
+    Eigen::VectorXd x_new = x;
+    x_new(0) += x(1) * dt_;
+    x_new(2) += x(3) * dt_;
+    x_new(4) += x(5) * dt_;
+    x_new(6) += x(7) * dt_;
+    return x_new;
+  };
+  // J_f - Jacobian of process function
+  auto j_f = [this](const Eigen::VectorXd &) {
+    Eigen::MatrixXd f(9, 9);
+    // clang-format off
+    f <<  1,   dt_, 0,   0,   0,   0,   0,   0,   0,
+          0,   1,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   1,   dt_, 0,   0,   0,   0,   0, 
+          0,   0,   0,   1,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   1,   dt_, 0,   0,   0,
+          0,   0,   0,   0,   0,   1,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   1,   dt_, 0,
+          0,   0,   0,   0,   0,   0,   0,   1,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   1;
+    // clang-format on
+    return f;
+  };
+  // h - Observation function
+  auto h = [](const Eigen::VectorXd & x) {
+    Eigen::VectorXd z(4);
+    double xc = x(0), yc = x(2), width = x(6), height = x(8);
+    z(0) = xc;  // xa
+    z(1) = yc;  // ya
+    z(2) = width;               // weight
+    z(3) = height;               // height
+    return z;
+  };
+  // J_h - Jacobian of observation function
+  auto j_h = [](const Eigen::VectorXd & x) {
+    Eigen::MatrixXd h(4, 9);
+    double yaw = x(6), r = x(8);
+    // clang-format off
+    //    xc   v_xc yc   v_yc width v_width height v_height r
+    h <<  1,   0,   0,   0,   0,   0,   0,          0,   0,
+          0,   0,   1,   0,   0,   0,   0,          0,   0,
+          0,   0,   0,   0,   1,   0,   0,          0,   0,
+          0,   0,   0,   0,   0,   0,   1,          0,   0;
+    // clang-format on
+    return h;
+  };
+  // update_Q - process noise covariance matrix
+  s2qxyz_ = declare_parameter("ekf.sigma2_q_xyz", 20.0);
+  s2qyaw_ = declare_parameter("ekf.sigma2_q_yaw", 100.0);
+  s2qr_ = declare_parameter("ekf.sigma2_q_r", 800.0);
+  auto u_q = [this]() {
+    Eigen::MatrixXd q(9, 9);
+    double t = dt_, x = s2qxyz_, y = s2qyaw_, r = s2qr_;
+    double q_x_x = pow(t, 4) / 4 * x, q_x_vx = pow(t, 3) / 2 * x, q_vx_vx = pow(t, 2) * x;
+    double q_y_y = pow(t, 4) / 4 * y, q_y_vy = pow(t, 3) / 2 * x, q_vy_vy = pow(t, 2) * y;
+    double q_r = pow(t, 4) / 4 * r;
+    // clang-format off
+    //    xc      v_xc    yc      v_yc    za      v_za    yaw     v_yaw   r
+    q <<  q_x_x,  q_x_vx, 0,      0,      0,      0,      0,      0,      0,
+          q_x_vx, q_vx_vx,0,      0,      0,      0,      0,      0,      0,
+          0,      0,      q_x_x,  q_x_vx, 0,      0,      0,      0,      0,
+          0,      0,      q_x_vx, q_vx_vx,0,      0,      0,      0,      0,
+          0,      0,      0,      0,      q_x_x,  q_x_vx, 0,      0,      0,
+          0,      0,      0,      0,      q_x_vx, q_vx_vx,0,      0,      0,
+          0,      0,      0,      0,      0,      0,      q_y_y,  q_y_vy, 0,
+          0,      0,      0,      0,      0,      0,      q_y_vy, q_vy_vy,0,
+          0,      0,      0,      0,      0,      0,      0,      0,      q_r;
+    // clang-format on
+    return q;
+  };
+  // update_R - measurement noise covariance matrix
+  r_xyz_factor = declare_parameter("ekf.r_xyz_factor", 0.05);
+  r_yaw = declare_parameter("ekf.r_yaw", 0.02);
+  auto u_r = [this](const Eigen::VectorXd & z) {
+    Eigen::DiagonalMatrix<double, 4> r;
+    double x = r_xyz_factor;
+    r.diagonal() << abs(x * z[0]), abs(x * z[1]), abs(x * z[2]), r_yaw;
+    return r;
+  };
+  // P - error estimate covariance matrix
+  Eigen::DiagonalMatrix<double, 9> p0;
+  p0.setIdentity();
+
+  for(int i = 1;i<19;i++)
+  {
+    far_robots[i].ekf = ExtendedKalmanFilter{f, h, j_f, j_h, u_q, u_r, p0};
+    close_robots[i].ekf = ExtendedKalmanFilter{f, h, j_f, j_h, u_q, u_r, p0};
+  }
+}
+
+//---------------------------------------------------------------
+
 void Img_Sub::img_far_callback(sensor_msgs::msg::CompressedImage msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
@@ -295,6 +396,7 @@ void Img_Sub::robots_init()
     max_lost_times = -50;
     max_tracking_lost_times = -25;
     min_iou = 0.3;
+    max_accept_distance = 0.5;
 }
 
 // iou匹配法，判断前后两次识别的机器人是否为同一机器人
@@ -405,6 +507,24 @@ bool Img_Sub::box_match(const cv::Rect &box, const cv::Rect &new_box)
     }
 }
 
+bool Img_Sub::distance_match(const cv::Rect &box, const cv::Rect &new_box)
+{
+    bool is_matched = false;
+    float distance = 0.0;
+
+    distance = sqrt(pow(((box.x + box.width / 2) - (new_box.x + new_box.width/2)),2) + pow(((box.y + box.height / 2)  - (new_box.y + new_box.height / 2)),2));
+
+    if(distance < max_accept_distance)
+    {
+        is_matched = true;
+    }
+    else
+    {
+        is_matched = false;
+    }
+    return is_matched;
+}
+
 // 机器人状态更新，有被神经网络识别到时触发
 void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots)
 {
@@ -455,6 +575,7 @@ void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots
     }
 
     //对应到相应机器人并判断状态
+
     if(robots[armor_number].tracking == "not")
     {
         robots[armor_number].id = armor_number;
