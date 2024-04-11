@@ -1,5 +1,4 @@
-build/
-install/
-log/
-.cache/
-.git/
+/build
+/install
+/log
+/.cache
