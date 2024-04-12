@@ -1,4 +1,4 @@
-/build
-/install
-/log
-/.cache
+build/
+install/
+log/
+.cache/

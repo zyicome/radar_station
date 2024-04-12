@@ -80,7 +80,7 @@ void Img_Sub::kalman_init()
   };
   // update_Q - process noise covariance matrix
   s2qxyz_ = declare_parameter("ekf.sigma2_q_xyz", 20.0);
-  s2qyaw_ = declare_parameter("ekf.sigma2_q_yaw", 100.0);
+  s2qyaw_ = declare_parameter("ekf.sigma2_q_yaw", 20.0);
   s2qr_ = declare_parameter("ekf.sigma2_q_r", 800.0);
   auto u_q = [this]() {
     Eigen::MatrixXd q(9, 9);
@@ -104,7 +104,7 @@ void Img_Sub::kalman_init()
   };
   // update_R - measurement noise covariance matrix
   r_xyz_factor = declare_parameter("ekf.r_xyz_factor", 0.05);
-  r_yaw = declare_parameter("ekf.r_yaw", 0.02);
+  r_yaw = declare_parameter("ekf.r_yaw", 0.05);
   auto u_r = [this](const Eigen::VectorXd & z) {
     Eigen::DiagonalMatrix<double, 4> r;
     double x = r_xyz_factor;
@@ -140,13 +140,14 @@ void Img_Sub::img_far_callback(sensor_msgs::msg::CompressedImage msg)
         this->far_robot_boxes.data.clear();
         this->far_robot_boxes.id = 0;
         this->far_robot_boxes.text = "none";
-        this->yolo_robot_identify(sub_img_far,far_robot_output,far_robot_boxes,far_robots,far_inf_robot,far_inf_armor);
+        this->yolo_robot_identify(sub_img_far,far_robot_boxes,far_robots,far_inf_robot,far_inf_armor);
         if(far_robot_boxes.data.size() != 0)
         {
             RCLCPP_INFO(get_logger(), "began to send farrobot_boxes");
             far_yolopoints_pub_->publish(far_robot_boxes);
         }
         this->draw_img(sub_img_far,far_robot_boxes);
+
         far_qimage_pub_->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", this->sub_img_far).toCompressedImageMsg()));
 }
 
@@ -166,7 +167,7 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
         this->close_robot_boxes.data.clear();
         this->close_robot_boxes.id = 0;
         this->close_robot_boxes.text = "none";
-        this->yolo_robot_identify(sub_img_close,close_robot_output,close_robot_boxes,close_robots,close_inf_robot,close_inf_armor);
+        this->yolo_robot_identify(sub_img_close,close_robot_boxes,close_robots,close_inf_robot,close_inf_armor);
         if(close_robot_boxes.data.size() != 0)
         {
             RCLCPP_INFO(get_logger(), "began to send farrobot_boxes");
@@ -207,11 +208,12 @@ void Img_Sub::yolo_init()
 
 
 //神经网络识别机器人
-void Img_Sub::yolo_robot_identify(Mat & sub_img,vector<Detection> &robot_output, my_msgss::msg::Yolopoints &robot_boxes, vector<Robot> &robots,Inference &inf_robot,Inference &inf_armor)
+void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes, vector<Robot> &robots,Inference &inf_robot,Inference &inf_armor)
 {
         auto start = std::chrono::steady_clock::now();
         // Inference starts here...
-        robot_output = inf_robot.runInference(sub_img);
+
+        vector<Detection> robot_output = inf_robot.runInference(sub_img);
 
         int detections = robot_output.size();
         std::cout << "Number of detections:" << detections << std::endl;
@@ -245,7 +247,9 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img,vector<Detection> &robot_output,
             this->yolo_armor_identify(sub_img,robots,box,inf_armor);
         }
         
-        allrobots_adjust(robots,robot_boxes);
+        //allrobots_adjust(robots,robot_boxes);
+
+        not_tracking_allrobots_adjust(robots,robot_boxes);
 
         auto end = std::chrono::steady_clock::now();
         RCLCPP_INFO(get_logger(), "Inference took %ld ms", std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
@@ -284,7 +288,9 @@ void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect
             continue;
         }
         
-        robots_adjust(armor_output[j],robots);
+        //robots_adjust(armor_output[j],robots);
+
+        not_tracking_robots_adjust(armor_output[j],robots);
     }
 
     std::cout << "armor_output.size():" << armor_output.size() << std::endl;
@@ -391,11 +397,13 @@ void Img_Sub::robots_init()
         close_robots.push_back(robot);
     }
 
+    kalman_init();
+
     min_accept_confidence = 0.3;
-    min_detection_times = 5;
+    min_detection_times = 2;
     max_lost_times = -50;
     max_tracking_lost_times = -25;
-    min_iou = 0.3;
+    min_iou = 0.1;
     max_accept_distance = 0.5;
 }
 
@@ -574,6 +582,22 @@ void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots
         return;
     }
 
+    std::cout << "before update x: " << robots[armor_number].box.x << " y: " << robots[armor_number].box.y << " width: " << robots[armor_number].box.width << " height: " << robots[armor_number].box.height << std::endl;
+    if(robots[armor_number].tracking == "not")
+    {
+        //kalman_init(robots[armor_number]);
+        robots[armor_number].box = box;
+        initEKF(robots[armor_number]);
+    }
+    else
+    {
+        Eigen::VectorXd measurement(4);
+        measurement << box.x, box.y, box.width, box.height;
+        update(robots[armor_number], measurement);
+    }
+
+    std::cout << "x: " << robots[armor_number].box.x << " y: " << robots[armor_number].box.y << " width: " << robots[armor_number].box.width << " height: " << robots[armor_number].box.height << std::endl;
+
     //对应到相应机器人并判断状态
 
     if(robots[armor_number].tracking == "not")
@@ -680,6 +704,7 @@ void Img_Sub::allrobots_adjust(vector<Robot> &robots, my_msgss::msg::Yolopoints 
 
         if(robots[i].tracking == "tracking" && robots[i].is_continue == false)
         {
+            predict(robots[i]);
             robots[i].record_times -= 1;
             if(robots[i].record_times <= max_tracking_lost_times)
             {
@@ -709,5 +734,116 @@ void Img_Sub::allrobots_adjust(vector<Robot> &robots, my_msgss::msg::Yolopoints 
     }
 }
 
+void Img_Sub::initEKF(Robot &robot)
+{
+    double x = robot.box.x;
+    double y = robot.box.y;
+    double width = robot.box.width;
+    double height = robot.box.height;
+
+    Eigen::VectorXd target_state = Eigen::VectorXd::Zero(9);
+    target_state << x, 0, y, 0, width, 0, height, 0, 0;
+    robot.ekf.setState(target_state);
+}
+
+void Img_Sub::predict(Robot &robot)
+{
+    // Predict
+    Eigen::VectorXd prediction(9);
+    prediction = robot.ekf.predict();
+    robot.box.x = prediction(0);
+    robot.box.y = prediction(2);
+    robot.box.width = prediction(4);
+    robot.box.height = prediction(6);
+}
+
+void Img_Sub::update(Robot &robot, const Eigen::VectorXd & measurement)
+{
+    // Predict
+    Eigen::VectorXd prediction(9);
+    prediction = robot.ekf.predict();
+
+    std::cout << "prediction x: " << prediction(0) << " y: " << prediction(2) << " width: " << prediction(4) << " height: " << prediction(6) << std::endl;
+
+    // Update
+    Eigen::VectorXd x_post(9);
+    x_post = robot.ekf.update(measurement);
+
+    std::cout << "x_post x: " << x_post(0) << " y: " << x_post(2) << " width: " << x_post(4) << " height: " << x_post(6) << std::endl;
+    robot.box.x = x_post(0);
+    robot.box.y = x_post(2);
+    robot.box.width = x_post(4);
+    robot.box.height = x_post(6);
+}
+
+void Img_Sub::not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots)
+{
+    int armor_number = -1;
+    float armor_confidence = 0.0;
+    cv::Rect box;
+    //神经网络分类详见readme.md
+    if(armor_output.class_id <= 8)
+    {
+        if(armor_output.class_id != 0 && armor_output.class_id <7)
+        {
+            armor_number = armor_output.class_id;
+        }
+        else if(armor_output.class_id == 0)  // 哨兵
+        {
+            armor_number = 7;
+        }
+        else
+        {
+            armor_number = armor_output.class_id + 1;
+        }
+    }
+    else if(armor_output.class_id >= 9 && armor_output.class_id<= 17)
+        {
+        if(armor_output.class_id != 9)
+        {
+            armor_number = armor_output.class_id;
+        }
+        else if(armor_output.class_id == 9)
+        {
+            armor_number = 16;
+        }
+        else
+        {
+            armor_number = armor_output.class_id + 1;
+        }
+    }
+
+    armor_confidence = armor_output.confidence;
+
+    box = armor_output.box;
+
+    robots[armor_number].confidence = armor_confidence;
+    robots[armor_number].is_continue = true;
+    robots[armor_number].box = box;
+
+}
+
+void Img_Sub::not_tracking_allrobots_adjust(vector<Robot> &robots, my_msgss::msg::Yolopoints &robot_boxes)
+{
+    my_msgss::msg::Yolopoint robot_box;
+    for(int i = 1;i<robots.size();i++)
+    {
+        if(robots[i].is_continue == false)
+        {
+            continue;
+        }
+        std::cout << "publish robot: " << i << std::endl;
+        robot_box.id = robots[i].id;
+        robot_box.confidence = robots[i].confidence;
+        robot_box.x = robots[i].box.x;
+        robot_box.y = robots[i].box.y;
+        robot_box.width = robots[i].box.width;
+        robot_box.height = robots[i].box.height;
+
+        robot_boxes.data.push_back(robot_box);
+
+        robots[i].is_continue = false;
+    }
+}
 
 //-----------------------------------------------------------------------------

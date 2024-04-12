@@ -53,7 +53,7 @@ public:
 
     void yolo_init();
 
-    void yolo_robot_identify(Mat & sub_img,vector<Detection> &robot_output, my_msgss::msg::Yolopoints &robot_boxes,vector<Robot> &robots,Inference &inf_robot,Inference &inf_armor);
+    void yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes,vector<Robot> &robots,Inference &inf_robot,Inference &inf_armor);
 
     void yolo_armor_identify(Mat & sub_img,vector<Robot> &robots, cv::Rect &box,Inference &inf_armor);
 
@@ -67,11 +67,15 @@ public:
 
     bool box_match(const cv::Rect &box, const cv::Rect &new_box);
 
-    bool distance_match(const cv::Rect &box, const cv::Rect &new_box)
+    bool distance_match(const cv::Rect &box, const cv::Rect &new_box);
 
     void robots_adjust(const Detection &armor_output, vector<Robot> &robots);
 
     void allrobots_adjust(vector<Robot> &robots,my_msgss::msg::Yolopoints &robot_boxes);
+
+    void not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots);
+
+    void not_tracking_allrobots_adjust(vector<Robot> &robots, my_msgss::msg::Yolopoints &robot_boxes);
     //new place
     vector<Robot> far_robots;
     vector<Robot> close_robots;
@@ -81,6 +85,7 @@ public:
     int max_tracking_lost_times;
     float min_accept_confidence;
     float min_iou;
+    float max_accept_distance;
     //
     //---------------------------------
     //---------------------------------
@@ -90,13 +95,17 @@ public:
     double r_xyz_factor, r_yaw;
 
     void kalman_init();
+
+    void initEKF(Robot &robot);
+
+    void predict(Robot &robot);
+
+    void update(Robot &robot, const Eigen::VectorXd & measurement);
     //---------------------------------
 
     my_msgss::msg::Yolopoints far_robot_boxes;
-    vector<Detection> far_robot_output;
 
     my_msgss::msg::Yolopoints close_robot_boxes;
-    vector<Detection> close_robot_output;
 
     Inference far_inf_armor;
     Inference close_inf_armor;
