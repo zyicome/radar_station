@@ -55,6 +55,7 @@ install(TARGETS
 install(DIRECTORY
   launch
   Yolov8_weight
+  new_model
   DESTINATION share/${PROJECT_NAME}
 )
 

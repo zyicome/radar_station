@@ -115,7 +115,9 @@ void Img_Sub::kalman_init()
   Eigen::DiagonalMatrix<double, 9> p0;
   p0.setIdentity();
 
-  for(int i = 1;i<19;i++)
+  int number = far_robots.size();
+
+  for(int i = 1;i<number;i++)
   {
     far_robots[i].ekf = ExtendedKalmanFilter{f, h, j_f, j_h, u_q, u_r, p0};
     close_robots[i].ekf = ExtendedKalmanFilter{f, h, j_f, j_h, u_q, u_r, p0};
@@ -183,13 +185,13 @@ void Img_Sub::yolo_init()
     auto pkg_path = ament_index_cpp::get_package_share_directory("Img_Handle");
     // 1. 设置你的onnx模型
     // Note that in this example the classes are hard-coded and 'classes.txt' is a place holder.
-    Inference inf_armors(pkg_path + "/Yolov8_weight/armor/weights/best.onnx",
+    Inference inf_armors(pkg_path + "/new_model/train2/weights/best.onnx",
                         cv::Size(640, 640),
-                        pkg_path + "/Yolov8_weight/armor/class/class.txt",
+                        pkg_path + "/new_model/train2/class/armor.txt",
                         runOnGPU); // classes.txt 可以缺失
-    Inference inf_robots(pkg_path + "/Yolov8_weight/robot/weights/best.onnx",
+    Inference inf_robots(pkg_path + "/new_model/train/weights/best.onnx",
                         cv::Size(640, 640),
-                        pkg_path + "/Yolov8_weight/robot/class/class.txt",
+                        pkg_path + "/new_model/train/class/car.txt",
                         runOnGPU);
 
     string model_path = pkg_path + "/Yolov8_weight/new_armor/mlp.onnx";
@@ -297,7 +299,7 @@ void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect
     if(armor_output.size() != 0)
     {
         std::cout << "armor_output.confidence:" << armor_output[0].confidence << std::endl;
-        std::cout << "armor_output.class_id:" << armor_output[0].class_id << std::endl;
+        std::cout << "armor_output.className:" << std::stoi(armor_output[0].className) << std::endl;
     }
 
     // 第二种识别方法--类识别，小图像
@@ -390,7 +392,7 @@ void Img_Sub::robots_init()
     robot.is_continue = false;
     robot.tracking = "not";
     robot.box = box;
-    for(int i =0;i<19;i++)
+    for(int i =0;i<13;i++)
     {
         robot.id++;
         far_robots.push_back(robot);
@@ -540,7 +542,7 @@ void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots
     float armor_confidence = 0.0;
     cv::Rect box;
     //神经网络分类详见readme.md
-    if(armor_output.class_id <= 8)
+    /*if(armor_output.class_id <= 8)
     {
         if(armor_output.class_id != 0 && armor_output.class_id <7)
         {
@@ -569,7 +571,9 @@ void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots
         {
             armor_number = armor_output.class_id + 1;
         }
-    }
+    }*/
+
+    armor_number = std::stoi(armor_output.className);
 
     armor_confidence = armor_output.confidence;
 
@@ -782,7 +786,7 @@ void Img_Sub::not_tracking_robots_adjust(const Detection &armor_output, vector<R
     float armor_confidence = 0.0;
     cv::Rect box;
     //神经网络分类详见readme.md
-    if(armor_output.class_id <= 8)
+    /*if(armor_output.class_id <= 8)
     {
         if(armor_output.class_id != 0 && armor_output.class_id <7)
         {
@@ -811,7 +815,9 @@ void Img_Sub::not_tracking_robots_adjust(const Detection &armor_output, vector<R
         {
             armor_number = armor_output.class_id + 1;
         }
-    }
+    }*/
+
+    armor_number = std::stoi(armor_output.className);
 
     armor_confidence = armor_output.confidence;
 

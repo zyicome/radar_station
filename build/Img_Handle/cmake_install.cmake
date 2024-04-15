@@ -106,6 +106,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/Img_Handle" TYPE DIRECTORY FILES
     "/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle/launch"
     "/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle/Yolov8_weight"
+    "/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Img_Handle/new_model"
     )
 endif()
 
