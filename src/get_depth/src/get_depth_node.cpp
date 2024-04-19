@@ -103,7 +103,7 @@ void GetDepth::init_camera_matrix()
     far_camera_matrix.at<float>(2, 2) = 1;
     far_uni_matrix.at<float>(0, 0) = 0.0242125;
     far_uni_matrix.at<float>(0, 1) = 0.252109;
-    far_uni_matrix.at<float>(0, 2) = 0.016576,;
+    far_uni_matrix.at<float>(0, 2) = 0.016576;
     far_uni_matrix.at<float>(0, 3) = -0.012270;
     far_uni_matrix.at<float>(1, 0) = 0.0189659;
     far_uni_matrix.at<float>(1, 1) = -0.00558721;

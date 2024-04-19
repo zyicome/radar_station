@@ -834,6 +834,8 @@ CMakeFiles/map_test.dir/src/map_test.cpp.o
  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp
  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp
  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp
+ /opt/ros/humble/include/ament_index_cpp/ament_index_cpp/get_package_share_directory.hpp
+ /opt/ros/humble/include/ament_index_cpp/ament_index_cpp/visibility_control.h
  /usr/include/CameraDefine.h
  /usr/include/CameraStatus.h
 
