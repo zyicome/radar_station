@@ -401,12 +401,25 @@ void Img_Sub::robots_init()
 
     kalman_init();
 
-    min_accept_confidence = 0.3;
-    min_detection_times = 2;
-    max_lost_times = -50;
-    max_tracking_lost_times = -25;
-    min_iou = 0.1;
-    max_accept_distance = 0.5;
+    min_accept_confidence = this->declare_parameter("min_accept_confidence", 0.3);
+    min_detection_times = this->declare_parameter("min_detection_times", 2);
+    max_lost_times = this->declare_parameter("max_lost_times", -50);
+    max_tracking_lost_times = this->declare_parameter("max_tracking_lost_times", -25);
+    min_iou = this->declare_parameter("min_iou", 0.1);
+    max_accept_distance = this->declare_parameter("max_accept_distance", 0.5);
+
+    this->get_parameter("min_accept_confidence",min_accept_confidence);
+    min_accept_confidence = this->get_parameter("min_accept_confidence").as_double();
+    min_detection_times = this->get_parameter("min_detection_times").as_int();
+    max_lost_times = this->get_parameter("max_lost_times").as_int();
+    max_tracking_lost_times = -this->get_parameter("max_tracking_lost_times").as_int();
+    min_iou = this->get_parameter("min_iou").as_double();
+    max_accept_distance = this->get_parameter("max_accept_distance").as_double();
+    std::cout << "min_accept_confidence:" << min_accept_confidence << std::endl;
+    std::cout << "min_detection_times:" << min_detection_times << std::endl;
+    std::cout << "max_lost_times:" << max_lost_times << std::endl;
+    std::cout << "max_tracking_lost_times:" << max_tracking_lost_times << std::endl;
+    std::cout << "min_iou:" << min_iou << std::endl;
 }
 
 // iou匹配法，判断前后两次识别的机器人是否为同一机器人

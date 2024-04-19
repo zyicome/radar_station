@@ -65,8 +65,8 @@ GetDepth::GetDepth() : Node("GetDepth_node")
     robots_init();
 
     times = 0;
-    imgRows = 480;
-    imgCols = 640;
+    imgRows = 1024;
+    imgCols = 1280;
     length_of_cloud_queue = 5;//default length is 5
     post_pub_flag = 0;
     far_camera_matrix = cv::Mat_<float>(3, 3);//相机内参矩阵
@@ -92,19 +92,19 @@ GetDepth::GetDepth() : Node("GetDepth_node")
 }
 void GetDepth::init_camera_matrix()
 {
-    far_camera_matrix.at<float>(0, 0) = 1474.62545;
+    far_camera_matrix.at<float>(0, 0) = 3135.31292;
     far_camera_matrix.at<float>(0, 1) = 0;
-    far_camera_matrix.at<float>(0, 2) = 367.67245;
+    far_camera_matrix.at<float>(0, 2) = 526.87116;
     far_camera_matrix.at<float>(1, 0) = 0;
-    far_camera_matrix.at<float>(1, 1) = 1463.59535;
-    far_camera_matrix.at<float>(1, 2) = 274.85727;
+    far_camera_matrix.at<float>(1, 1) = 3151.06425;
+    far_camera_matrix.at<float>(1, 2) = 695.83061;
     far_camera_matrix.at<float>(2, 0) = 0;
     far_camera_matrix.at<float>(2, 1) = 0;
     far_camera_matrix.at<float>(2, 2) = 1;
     far_uni_matrix.at<float>(0, 0) = 0.0242125;
-    far_uni_matrix.at<float>(0, 1) = -0.999689;
-    far_uni_matrix.at<float>(0, 2) = 0.00604586;
-    far_uni_matrix.at<float>(0, 3) = 0.00730231;
+    far_uni_matrix.at<float>(0, 1) = 0.252109;
+    far_uni_matrix.at<float>(0, 2) = 0.016576,;
+    far_uni_matrix.at<float>(0, 3) = -0.012270;
     far_uni_matrix.at<float>(1, 0) = 0.0189659;
     far_uni_matrix.at<float>(1, 1) = -0.00558721;
     far_uni_matrix.at<float>(1, 2) = -0.999805;
@@ -113,18 +113,18 @@ void GetDepth::init_camera_matrix()
     far_uni_matrix.at<float>(2, 1) = 0.0243225;
     far_uni_matrix.at<float>(2, 2) = 0.0188247;
     far_uni_matrix.at<float>(2, 3) = 0.163526;
-    far_distortion_coefficient.at<float>(0,0) = -0.025299;
-    far_distortion_coefficient.at<float>(1,0) = -0.874546;
-    far_distortion_coefficient.at<float>(2,0) = -0.000261;
-    far_distortion_coefficient.at<float>(3,0) = 0.018625;
+    far_distortion_coefficient.at<float>(0,0) = -0.019203;
+    far_distortion_coefficient.at<float>(1,0) = 0.252109;
+    far_distortion_coefficient.at<float>(2,0) = 0.016576;
+    far_distortion_coefficient.at<float>(3,0) = -0.012270;
     far_distortion_coefficient.at<float>(4,0) = 0.000000;
 
-    close_camera_matrix.at<float>(0, 0) = 1474.62545;
+    close_camera_matrix.at<float>(0, 0) = 1563.52174;
     close_camera_matrix.at<float>(0, 1) = 0;
-    close_camera_matrix.at<float>(0, 2) = 367.67245;
+    close_camera_matrix.at<float>(0, 2) = 626.90356;
     close_camera_matrix.at<float>(1, 0) = 0;
-    close_camera_matrix.at<float>(1, 1) = 1463.59535;
-    close_camera_matrix.at<float>(1, 2) = 274.85727;
+    close_camera_matrix.at<float>(1, 1) = 1568.90028;
+    close_camera_matrix.at<float>(1, 2) = 488.93524;
     close_camera_matrix.at<float>(2, 0) = 0;
     close_camera_matrix.at<float>(2, 1) = 0;
     close_camera_matrix.at<float>(2, 2) = 1;
@@ -140,10 +140,10 @@ void GetDepth::init_camera_matrix()
     close_uni_matrix.at<float>(2, 1) = 0.0243225;
     close_uni_matrix.at<float>(2, 2) = 0.0188247;
     close_uni_matrix.at<float>(2, 3) = 0.163526;
-    close_distortion_coefficient.at<float>(0,0) = -0.025299;
-    close_distortion_coefficient.at<float>(1,0) = -0.874546;
-    close_distortion_coefficient.at<float>(2,0) = -0.000261;
-    close_distortion_coefficient.at<float>(3,0) = 0.018625;
+    close_distortion_coefficient.at<float>(0,0) = -0.063200;
+    close_distortion_coefficient.at<float>(1,0) = -0.005061;
+    close_distortion_coefficient.at<float>(2,0) = -0.001755;
+    close_distortion_coefficient.at<float>(3,0) = 0.003472;
     close_distortion_coefficient.at<float>(4,0) = 0.000000;
 }
 

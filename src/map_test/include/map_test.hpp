@@ -11,6 +11,8 @@
 #include <bitset>
 #include "std_msgs/msg/float32_multi_array.hpp"
 
+#include <ament_index_cpp/get_package_share_directory.hpp>
+
 using namespace std;
 using namespace cv;
 using namespace std::chrono_literals;
@@ -59,15 +61,15 @@ private:
     float image_width;
     float image_height;
 
-    cv::Mat far_CamMatrix_ =Mat::zeros(3, 3, CV_64FC1);
-    cv::Mat far_distCoeffs_ =Mat::zeros(5, 1, CV_64FC1);
+    cv::Mat far_camera_matrix =Mat::zeros(3, 3, CV_64FC1);
+    cv::Mat far_distortion_coefficient =Mat::zeros(5, 1, CV_64FC1);
     Mat far_Rjacob = Mat::zeros(3, 1, CV_64FC1);
     Mat far_R = Mat::zeros(3, 3, CV_64FC1);
     Mat far_T = Mat::zeros(3, 1, CV_64FC1);
     my_msgss::msg::Points far_points;
 
-    cv::Mat close_CamMatrix_ =Mat::zeros(3, 3, CV_64FC1);
-    cv::Mat close_distCoeffs_ =Mat::zeros(5, 1, CV_64FC1);
+    cv::Mat close_camera_matrix =Mat::zeros(3, 3, CV_64FC1);
+    cv::Mat close_distortion_coefficient =Mat::zeros(5, 1, CV_64FC1);
     Mat close_Rjacob = Mat::zeros(3, 1, CV_64FC1);
     Mat close_R = Mat::zeros(3, 3, CV_64FC1);
     Mat close_T = Mat::zeros(3, 1, CV_64FC1);

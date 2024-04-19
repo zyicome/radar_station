@@ -83,9 +83,9 @@ public:
     int min_detection_times;
     int max_lost_times;
     int max_tracking_lost_times;
-    float min_accept_confidence;
-    float min_iou;
-    float max_accept_distance;
+    double min_accept_confidence;
+    double min_iou;
+    double max_accept_distance;
     //
     //---------------------------------
     //---------------------------------

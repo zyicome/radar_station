@@ -44,14 +44,14 @@ public:
     Ui::pnpWidget *ui;
     QVector<QPointF> points;
     std::vector<Point3d> objectPoints;
-    cv::Mat far_CamMatrix_ =cv::Mat::zeros(3, 3, CV_64FC1);
-    cv::Mat far_distCoeffs_ =cv::Mat::zeros(5, 1, CV_64FC1);
+    cv::Mat far_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
+    cv::Mat far_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
     cv::Mat far_Rjacob = cv::Mat::zeros(3, 1, CV_64FC1);
     cv::Mat far_R = cv::Mat::zeros(3, 3, CV_64FC1);
     cv::Mat far_T = cv::Mat::zeros(3, 1, CV_64FC1);
 
-    cv::Mat close_CamMatrix_ =cv::Mat::zeros(3, 3, CV_64FC1);
-    cv::Mat close_distCoeffs_ =cv::Mat::zeros(5, 1, CV_64FC1);
+    cv::Mat close_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
+    cv::Mat close_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
     cv::Mat close_Rjacob = cv::Mat::zeros(3, 1, CV_64FC1);
     cv::Mat close_R = cv::Mat::zeros(3, 3, CV_64FC1);
     cv::Mat close_T = cv::Mat::zeros(3, 1, CV_64FC1);

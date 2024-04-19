@@ -98,6 +98,7 @@
 /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/new_model/train2/weights/best.onnx
 /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/new_model/train2/weights/last.pt
 /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/new_model/train2/val_batch0_labels.jpg
+/home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/config/img_handle.yaml
 /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/ament_index/resource_index/package_run_dependencies/Img_Handle
 /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/ament_index/resource_index/parent_prefix_path/Img_Handle
 /home/mechax/zyb/radar_station_all/radar_station_fixed_class/install/Img_Handle/share/Img_Handle/environment/ament_prefix_path.sh

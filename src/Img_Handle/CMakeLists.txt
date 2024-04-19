@@ -56,6 +56,7 @@ install(DIRECTORY
   launch
   Yolov8_weight
   new_model
+  config
   DESTINATION share/${PROJECT_NAME}
 )
 

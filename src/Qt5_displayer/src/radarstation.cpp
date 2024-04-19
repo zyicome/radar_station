@@ -113,24 +113,40 @@ void radarStation::mapMessageDisplay(QString text)
 void radarStation::changeToMapWidget()
 {
     //qDebug() << "map";
+    ui->pnpMode.setChecked(false);
+    ui->mapMode.setChecked(true);
+    ui->pnpMode_2.setChecked(false);
+    ui->mapMode_2.setChecked(true);
     ui->allWidget->setCurrentWidget(ui->mapWidget);
 }
 
 void radarStation::changeToPnpWidget()
 {
     //qDebug() << "pnp";
+    ui->pnpMode.setChecked(true);
+    ui->mapMode.setChecked(false);
+    ui->pnpMode_2.setChecked(true);
+    ui->mapMode_2.setChecked(false);
     ui->allWidget->setCurrentWidget(ui->solvePnpWidget);
 }
 
 void radarStation::changeToMapWidget_2()
 {
     //qDebug() << "map";
+    ui->pnpMode.setChecked(false);
+    ui->mapMode.setChecked(true);
+    ui->pnpMode_2.setChecked(false);
+    ui->mapMode_2.setChecked(true);
     ui->allWidget->setCurrentWidget(ui->mapWidget);
 }
 
 void radarStation::changeToPnpWidget_2()
 {
     //qDebug() << "pnp";
+    ui->pnpMode.setChecked(true);
+    ui->mapMode.setChecked(false);
+    ui->pnpMode_2.setChecked(true);
+    ui->mapMode_2.setChecked(false);
     ui->allWidget->setCurrentWidget(ui->solvePnpWidget);
 }
 

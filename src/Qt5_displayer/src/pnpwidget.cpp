@@ -47,35 +47,35 @@ pnpWidget::~pnpWidget()
 
 void pnpWidget::parameter_init()
 {
-    far_CamMatrix_.at<double>(0, 0) = 1474.62545;
-    far_CamMatrix_.at<double>(0, 1) = 0.0;
-    far_CamMatrix_.at<double>(0, 2) = 367.67245;
-    far_CamMatrix_.at<double>(1, 0) = 0.0;
-    far_CamMatrix_.at<double>(1, 1) = 1463.59535;
-    far_CamMatrix_.at<double>(1, 2) = 274.85727;
-    far_CamMatrix_.at<double>(2, 0) = 0.0;
-    far_CamMatrix_.at<double>(2, 1) = 0.0;
-    far_CamMatrix_.at<double>(2, 2) = 1.0;
-    far_distCoeffs_.at<double>(0, 0) = -0.025299;
-    far_distCoeffs_.at<double>(0, 1) = -0.874546;
-    far_distCoeffs_.at<double>(0, 2) = -0.000261;
-    far_distCoeffs_.at<double>(0, 3) = 0.018625;
-    far_distCoeffs_.at<double>(0, 4) = 0.0;
+    far_camera_matrix.at<float>(0, 0) = 3135.31292;
+    far_camera_matrix.at<float>(0, 1) = 0;
+    far_camera_matrix.at<float>(0, 2) = 526.87116;
+    far_camera_matrix.at<float>(1, 0) = 0;
+    far_camera_matrix.at<float>(1, 1) = 3151.06425;
+    far_camera_matrix.at<float>(1, 2) = 695.83061;
+    far_camera_matrix.at<float>(2, 0) = 0;
+    far_camera_matrix.at<float>(2, 1) = 0;
+    far_camera_matrix.at<float>(2, 2) = 1;
+    far_distortion_coefficient.at<float>(0,0) = -0.019203;
+    far_distortion_coefficient.at<float>(1,0) = 0.252109;
+    far_distortion_coefficient.at<float>(2,0) = 0.016576;
+    far_distortion_coefficient.at<float>(3,0) = -0.012270;
+    far_distortion_coefficient.at<float>(4,0) = 0.000000;
 
-    close_CamMatrix_.at<double>(0, 0) = 1474.62545;
-    close_CamMatrix_.at<double>(0, 1) = 0.0;
-    close_CamMatrix_.at<double>(0, 2) = 367.67245;
-    close_CamMatrix_.at<double>(1, 0) = 0.0;
-    close_CamMatrix_.at<double>(1, 1) = 1463.59535;
-    close_CamMatrix_.at<double>(1, 2) = 274.85727;
-    close_CamMatrix_.at<double>(2, 0) = 0.0;
-    close_CamMatrix_.at<double>(2, 1) = 0.0;
-    close_CamMatrix_.at<double>(2, 2) = 1.0;
-    close_distCoeffs_.at<double>(0, 0) = -0.025299;
-    close_distCoeffs_.at<double>(0, 1) = -0.874546;
-    close_distCoeffs_.at<double>(0, 2) = -0.000261;
-    close_distCoeffs_.at<double>(0, 3) = 0.018625;
-    close_distCoeffs_.at<double>(0, 4) = 0.0;
+    close_camera_matrix.at<float>(0, 0) = 1563.52174;
+    close_camera_matrix.at<float>(0, 1) = 0;
+    close_camera_matrix.at<float>(0, 2) = 626.90356;
+    close_camera_matrix.at<float>(1, 0) = 0;
+    close_camera_matrix.at<float>(1, 1) = 1568.90028;
+    close_camera_matrix.at<float>(1, 2) = 488.93524;
+    close_camera_matrix.at<float>(2, 0) = 0;
+    close_camera_matrix.at<float>(2, 1) = 0;
+    close_camera_matrix.at<float>(2, 2) = 1;
+    close_distortion_coefficient.at<float>(0,0) = -0.063200;
+    close_distortion_coefficient.at<float>(1,0) = -0.005061;
+    close_distortion_coefficient.at<float>(2,0) = -0.001755;
+    close_distortion_coefficient.at<float>(3,0) = 0.003472;
+    close_distortion_coefficient.at<float>(4,0) = 0.000000;
 
     Point3d objectpoint_one;
     objectpoint_one.x = 2350.0;
@@ -348,7 +348,7 @@ void pnpWidget::beginPnp()
 
         if(pnp_img_id == 1)
         {
-            solvePnP(objectPoints,image_points,close_CamMatrix_,close_distCoeffs_,close_Rjacob,close_T);
+            solvePnP(objectPoints,image_points,close_camera_matrix,close_distortion_coefficient,close_Rjacob,close_T);
             cout << "solvePnP" << endl;
             Rodrigues(close_Rjacob, far_R);
             cout << "Rodrigues" << endl;
@@ -365,7 +365,7 @@ void pnpWidget::beginPnp()
         }
         else if(pnp_img_id = 2)
         {
-            solvePnP(objectPoints,image_points,far_CamMatrix_,far_distCoeffs_,far_Rjacob,far_T);
+            solvePnP(objectPoints,image_points,far_camera_matrix,far_distortion_coefficient,far_Rjacob,far_T);
             cout << "solvePnP" << endl;
             Rodrigues(far_Rjacob, far_R);
             cout << "Rodrigues" << endl;
