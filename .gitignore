@@ -1,9 +1,8 @@
 build/
 install/
 log/
-**/build/
-**/log/
-**/install/
+Camera/
 .cache/
+.git/
 .src/Video_save/video_close_/
 .src/Video_save/video_far_/
