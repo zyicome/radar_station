@@ -1,4 +1,9 @@
 build/
 install/
 log/
+**/build/
+**/log/
+**/install/
 .cache/
+.src/Video_save/video_close_/
+.src/Video_save/video_far_/
