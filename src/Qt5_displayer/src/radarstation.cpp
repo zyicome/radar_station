@@ -291,6 +291,12 @@ void radarStation::closePointsUpdate()
                                 + QString::number((closepos.x - ui->map->drawPos.x()) / ui->map->scaleValue) +" y:"
                                 + QString::number((closepos.y - ui->map->drawPos.y()) / ui->map->scaleValue);
             mapMessageDisplay(close_pointText);
+
+            cout << "closepos.x:" << closepos.x << " closepos.y:" << closepos.y << endl;
+            cout << "ui->map->drawPos.x():" << ui->map->drawPos.x() << " ui->map->drawPos.y():" << ui->map->drawPos.y() << endl;
+            cout << "ui->map->scaleValue:" << ui->map->scaleValue << endl;
+            cout << "ui->map->close_robots[i].x" << ui->map->close_robots[i].x << " ui->map->close_robots[i].y" << ui->map->close_robots[i].y << endl;
+            cout << "width:" << width << " height:" << height << endl;
         }
     }
     ui->map->update();

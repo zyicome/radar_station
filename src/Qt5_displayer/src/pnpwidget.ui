@@ -118,8 +118,6 @@
     <bool>true</bool>
    </property>
   </widget>
-<<<<<<< HEAD
-=======
   <widget class="QLabel" name="far_label">
    <property name="geometry">
     <rect>
@@ -146,18 +144,14 @@
     <string>近距离相机</string>
    </property>
   </widget>
->>>>>>> 431e9f5 (2024.4.20)
   <zorder>beginPoint</zorder>
   <zorder>restartPoint</zorder>
   <zorder>beginPnp</zorder>
   <zorder>farImg</zorder>
   <zorder>message</zorder>
   <zorder>closeImg</zorder>
-<<<<<<< HEAD
-=======
   <zorder>far_label</zorder>
   <zorder>closeLabel</zorder>
->>>>>>> 431e9f5 (2024.4.20)
  </widget>
  <resources/>
  <connections/>
