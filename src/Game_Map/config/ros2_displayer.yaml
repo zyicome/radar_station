@@ -1,0 +1,18 @@
+/game_map:
+  ros__parameters:
+    camera:
+      list:
+        farCam:
+          calibrationDefault:
+            pointone:
+              x: 0.247
+              y: 0.070
+            pointtwo:
+              x: 0.541
+              y: 0.411
+            pointthree:
+              x: 0.632
+              y: 0.411
+            pointfour:
+              x: 0.614
+              y: 0.016
