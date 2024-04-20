@@ -74,7 +74,6 @@ void smallMap::paintEvent(QPaintEvent *event)
                 painter.setBrush(Qt::red);
             }
             painter.drawEllipse(far_robots[i].x,far_robots[i].y,20 * this->scaleValue,20 * this->scaleValue);
-            //std::cout << "绘画坐标点" << std::endl;
             painter.setPen(QPen(Qt::black,5));
             painter.drawText(far_robots[i].x + (20 * this->scaleValue) / 2,far_robots[i].y + (20 * this->scaleValue) / 2,QString::number(id));
         }
@@ -84,20 +83,19 @@ void smallMap::paintEvent(QPaintEvent *event)
         int id;
         if(close_robots[i].confidence != 0.0)
         {
-            if(i<=9)
+            if(i<=6)
             {
                 id = i;
                 painter.setPen(QPen(Qt::blue,5));
                 painter.setBrush(Qt::blue);
             }
-            else if(i > 9)
+            else if(i > 6)
             {
-                id = i - 9;
+                id = i - 6;
                 painter.setPen(QPen(Qt::red,5));
                 painter.setBrush(Qt::red);
             }
             painter.drawEllipse(close_robots[i].x,close_robots[i].y,20 * this->scaleValue,20 * this->scaleValue);
-            //std::cout << "绘画坐标点" << std::endl;
             painter.setPen(QPen(Qt::black,5));
             painter.drawText(close_robots[i].x + (20 * this->scaleValue) / 2,close_robots[i].y + (20 * this->scaleValue) / 2,QString::number(id));
         }

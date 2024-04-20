@@ -10,30 +10,30 @@ using namespace cv;
 
 // uint16_t times = 0;
 // std::vector<int> cnt;
-// std::vector<float> dists;
+// std::vector<double> dists;
 // int imgRows = 1024, imgCols = 1280;
 // int length_of_cloud_queue = 5;//default length is 5
 // int post_pub_flag = 0;
 // Point2f outpost_point;
 // pcl::PointCloud<pcl::PointXYZ>::Ptr cloud;
 // std::vector<cv::Mat> far_depth_queue;
-// cv::Mat far_camera_matrix = cv::Mat_<float>(3, 3);//相机内参矩阵
-// cv::Mat far_uni_matrix = cv::Mat_<float>(3, 4);//相机和雷达的变换矩阵
-// cv::Mat far_distortion_coefficient = cv::Mat_<float>(5, 1);
+// cv::Mat far_camera_matrix = cv::Mat_<double>(3, 3);//相机内参矩阵
+// cv::Mat far_uni_matrix = cv::Mat_<double>(3, 4);//相机和雷达的变换矩阵
+// cv::Mat far_distortion_coefficient = cv::Mat_<double>(5, 1);
 // std::vector<cv::Mat> close_depth_queue;
-// cv::Mat close_camera_matrix = cv::Mat_<float>(3, 3);//相机内参矩阵
-// cv::Mat close_uni_matrix = cv::Mat_<float>(3, 4);//相机和雷达的变换矩阵
-// cv::Mat close_distortion_coefficient = cv::Mat_<float>(5, 1);
+// cv::Mat close_camera_matrix = cv::Mat_<double>(3, 3);//相机内参矩阵
+// cv::Mat close_uni_matrix = cv::Mat_<double>(3, 4);//相机和雷达的变换矩阵
+// cv::Mat close_distortion_coefficient = cv::Mat_<double>(5, 1);
 
 
 
 // typedef struct {
-//     float Last_P;//上次估算协方差 不可以为0 ! ! ! ! !
-//     float Now_P;//当前估算协方差
-//     float out;//卡尔曼滤波器输出
-//     float Kg;//卡尔曼增益
-//     float Q;//过程噪声协方差
-//     float R;//观测噪声协方差
+//     double Last_P;//上次估算协方差 不可以为0 ! ! ! ! !
+//     double Now_P;//当前估算协方差
+//     double out;//卡尔曼滤波器输出
+//     double Kg;//卡尔曼增益
+//     double Q;//过程噪声协方差
+//     double R;//观测噪声协方差
 // } ;
 
 //  Kalman;
@@ -48,7 +48,7 @@ using namespace cv;
 //     kfp.R = 0.01;
 // }
 
-// float GetDepth::my_KalmanFilter(Kalman *kfp, float input) {
+// double GetDepth::my_KalmanFilter(Kalman *kfp, double input) {
 //     //预测协方差方程：k时刻系统估算协方差 = k-1时刻的系统协方差 + 过程噪声协方差
 //     kfp->Now_P = kfp->Last_P + kfp->Q;
 //     //卡尔曼增益方程：卡尔曼增益 = k时刻系统估算协方差 / （k时刻系统估算协方差 + 观测噪声协方差）
@@ -128,37 +128,30 @@ void GetDepth::init_camera_matrix()
     close_camera_matrix.at<double>(2, 0) = 0;
     close_camera_matrix.at<double>(2, 1) = 0;
     close_camera_matrix.at<double>(2, 2) = 1;
-    close_uni_matrix.at<double>(0, 0) = 0.0298114;
-    close_uni_matrix.at<double>(0, 1) = -0.963026;
-    close_uni_matrix.at<double>(0, 2) = 0.267756;
-    close_uni_matrix.at<double>(0, 3) = -0.0873165;
-    close_uni_matrix.at<double>(1, 0) = 0.964763;
-    close_uni_matrix.at<double>(1, 1) = 0.0977833;
-    close_uni_matrix.at<double>(1, 2) = 0.244278;
-    close_uni_matrix.at<double>(1, 3) = -2.95739;
-    close_uni_matrix.at<double>(2, 0) = -0.261428;
-    close_uni_matrix.at<double>(2, 1) = 0.251038;
-    close_uni_matrix.at<double>(2, 2) = 0.932006;
-    close_uni_matrix.at<double>(2, 3) = 0.787003;
+    close_uni_matrix.at<double>(0, 0) = 0.30193;
+    close_uni_matrix.at<double>(0, 1) = -0.953261;
+    close_uni_matrix.at<double>(0, 2) = -0.0114317;
+    close_uni_matrix.at<double>(0, 3) = -1.17138;
+    close_uni_matrix.at<double>(1, 0) = 0.150677;
+    close_uni_matrix.at<double>(1, 1) = 0.0595584;
+    close_uni_matrix.at<double>(1, 2) = -0.986787;
+    close_uni_matrix.at<double>(1, 3) = -0.00000483311;
+    close_uni_matrix.at<double>(2, 0) = 0.941347;
+    close_uni_matrix.at<double>(2, 1) = 0.296218;
+    close_uni_matrix.at<double>(2, 2) = 0.161617;
+    close_uni_matrix.at<double>(2, 3) = 0.402439;
     close_distortion_coefficient.at<double>(0,0) = -0.063200;
     close_distortion_coefficient.at<double>(1,0) = -0.005061;
     close_distortion_coefficient.at<double>(2,0) = -0.001755;
     close_distortion_coefficient.at<double>(3,0) = 0.003472;
     close_distortion_coefficient.at<double>(4,0) = 0.000000;
-
-    cout << "close_camera_matrix" << close_camera_matrix << endl;
-    cout << "close_uni_matrix" << close_uni_matrix << endl;
-    cout << "close_distortion_coefficient" << close_distortion_coefficient << endl;
-    cout << "far_camera_matrix" << far_camera_matrix << endl;
-    cout << "far_uni_matrix" << far_uni_matrix << endl;
-    cout << "far_distortion_coefficient" << far_distortion_coefficient << endl;
 }
 
-void GetDepth::write_csv(std::string filename, std::vector<float> vals) {
+void GetDepth::write_csv(std::string filename, std::vector<double> vals) {
     // Create an output filestream object
     ofstream myFile(filename);
     // Send data to the stream
-    for (float val: vals) {
+    for (double val: vals) {
         myFile << val << "\n";
     }
     // Close the file
@@ -174,11 +167,9 @@ cv::Mat GetDepth::Cloud2Mat(const pcl::PointCloud<pcl::PointXYZ>::Ptr &input) {
     cv::Mat res = cv::Mat::zeros(4, (int) input->size(), CV_64F);
     for (int k = 0; k < res.cols; k++) {
         for (int j = 0; j < 4; j++) {
-            res.at<float>(j, k) = input->points[k].data[j];
+            res.at<double>(j, k) = input->points[k].data[j];
         }
     }
-    // RCLCPP_INFO(get_logger(), "Cloud2Mat:");
-    // cout << "Cloud2Mat:" << res << endl;
     return res;
 };
 
@@ -192,15 +183,13 @@ cv::Mat GetDepth::Cloud2Mat(const pcl::PointCloud<pcl::PointXYZ>::Ptr &input) {
 void GetDepth::MatProject(cv::Mat &input_depth, cv::Mat &input_uv, cv::Mat &Cam_matrix, cv::Mat &Uni_matrix) {
     cv::Mat res = Cam_matrix * Uni_matrix * input_uv;
     for (int i = 0; i < res.cols; i++) {
-        int x = round(res.at<float>(0, i) / res.at<float>(2, i));
-        int y = round(res.at<float>(1, i) / res.at<float>(2, i));
-        //cout << res.at<float>(0, i) << "          "  << res.at<float>(1, i) << "        " <<res.at<float>(2, i) <<"         " << x << "      " << y << endl;
+        int x = round(res.at<double>(0, i) / res.at<double>(2, i));
+        int y = round(res.at<double>(1, i) / res.at<double>(2, i));
         if (x >= 0 && x < imgCols && y >= 0 && y < imgRows) {
-            input_depth.at<float>(y, x) = res.at<float>(2, i);
+            input_depth.at<double>(y, x) = res.at<double>(2, i);
         }
     }
     RCLCPP_INFO(get_logger(), "MatProject:");
-    //cout << "MatProject:" << input_depth << endl;
 };
 
 /**
@@ -270,7 +259,6 @@ void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
     }
     far_distancePointPub->publish(close_distance_it);
     resize(far_depth_show, far_depth_show, Size(640, 480));
-    //std::cout << "发送深度图像Qimage" << endl;
     far_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "mono8", far_depth_show).toCompressedImageMsg()));
     /*imshow("far_depth_show", far_depth_show);
     waitKey(1);*/
@@ -293,10 +281,6 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
         if (close_depth_queue.size() == length_of_cloud_queue) {
             close_depth_queue.erase(close_depth_queue.begin());
         }
-        /*cout << "cloud" << cloud << endl;
-        cout << "close_MatCloud" << close_MatCloud << endl;
-        cout << "close_depthes" << close_depthes << endl;
-        cout << "close_depth_show" << close_depth_show << endl;*/
     }
 
     get_robots(close_robots, input);
@@ -325,13 +309,6 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
             putText(close_depth_show, std::to_string(point_it.dist), Point(point_it.x, point_it.y),
                     FONT_HERSHEY_COMPLEX_SMALL, 1,
                     Scalar(255, 255, 255), 1, 8, 0);
-            cout << "close_robots[i].id: " << close_robots[i].id << endl;
-            cout << "close_robots[i].tracking: " << close_robots[i].tracking << endl;
-            cout << "close_robots[i].box.x: " << close_robots[i].box.x << endl;
-            cout << "close_robots[i].box.y: " << close_robots[i].box.y << endl;
-            cout << "close_robots[i].box.width: " << close_robots[i].box.width << endl;
-            cout << "close_robots[i].box.height: " << close_robots[i].box.height << endl;
-            cout << "point_it.dist: " << point_it.dist << endl;
         }
     }
     frame_point_match(last_close_distance_it, close_distance_it);
@@ -375,18 +352,18 @@ void GetDepth::outpost_Callback(const my_msgss::msg::Points &outpost) {
  * @param id 车辆ID
  * @return 深度值
  */
-float GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my_msgss::msg::Yolopoint::_id_type id) {
-    std::vector<float> distances;
+double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my_msgss::msg::Yolopoint::_id_type id) {
+    std::vector<double> distances;
     //从新到旧遍历深度图队列，直到ROI深度不为0
     for (int i = rect.y; i < (rect.y + rect.height); i++) {
         for (int j = rect.x; j < (rect.x + rect.width); j++) {
             for (uint8_t k = 0; k < depth_queue.size(); k++) {
-                if (depth_queue[depth_queue.size() - 1].at<float>(i, j) > 0) {
-                    distances.push_back(depth_queue[depth_queue.size() - 1].at<float>(i, j));
+                if (depth_queue[depth_queue.size() - 1].at<double>(i, j) > 0) {
+                    distances.push_back(depth_queue[depth_queue.size() - 1].at<double>(i, j));
                     break;
-                } else if (k < depth_queue.size() - 1 && depth_queue[k + 1].at<float>(i, j) == 0 &&
-                           depth_queue[k].at<float>(i, j) > 0) {
-                    distances.push_back(depth_queue[k].at<float>(i, j));
+                } else if (k < depth_queue.size() - 1 && depth_queue[k + 1].at<double>(i, j) == 0 &&
+                           depth_queue[k].at<double>(i, j) > 0) {
+                    distances.push_back(depth_queue[k].at<double>(i, j));
                     break;
                 }
             }
@@ -396,11 +373,11 @@ float GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my_
         cout << "No Livox Points in ROI" << rect << endl;
         return 0;
     } else {
-        float mean_distance;
-        float sum = 0;
+        double mean_distance;
+        double sum = 0;
         //根据不同的策略获取深度
         if (id != 12 && id != 13) {
-            for (float distance: distances) {
+            for (double distance: distances) {
                 sum += distance;
             }
             mean_distance = sum / distances.size();
@@ -459,16 +436,16 @@ void GetDepth::robots_init()
 }
 
 // iou匹配法，判断前后两次识别的机器人是否为同一机器人
-bool GetDepth::box_match(const cv::Rect &box, const cv::Rect &new_box,const float & min_iou)
+bool GetDepth::box_match(const cv::Rect &box, const cv::Rect &new_box,const double & min_iou)
 {
-    float x_one = 0.0;
-    float x_two = 0.0;
-    float y_one = 0.0;
-    float y_two = 0.0;
-    float area_intersection = 0.0;
-    float area_box = 0.0;
-    float area_new_box = 0.0;
-    float iou = 0.0;
+    double x_one = 0.0;
+    double x_two = 0.0;
+    double y_one = 0.0;
+    double y_two = 0.0;
+    double area_intersection = 0.0;
+    double area_box = 0.0;
+    double area_new_box = 0.0;
+    double iou = 0.0;
 
     if((box.x + box.width) <= (new_box.x + new_box.width))
     {

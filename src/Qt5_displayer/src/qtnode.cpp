@@ -22,7 +22,6 @@ void qtNode::farImageCallback(const sensor_msgs::msg::CompressedImage msg)
             cv::resize(far_image,far_image,cv::Size(FAR_IMAGE_WIDTH,FAR_IMAGE_HEIGHT));
             far_qimage = QImage((const unsigned char*)(far_image.data),far_image.cols,far_image.rows,QImage::Format_BGR888);
         }
-        //cout << "激活far函数" << endl;
         Q_EMIT updateFarImage();
     }
     catch(cv_bridge::Exception &e)
@@ -44,7 +43,6 @@ void qtNode::closeImageCallback(const sensor_msgs::msg::CompressedImage msg)
             cv::resize(close_image,close_image,cv::Size(FAR_IMAGE_WIDTH,FAR_IMAGE_HEIGHT));
             close_qimage = QImage((const unsigned char*)(close_image.data),close_image.cols,close_image.rows,QImage::Format_BGR888);
         }
-        //cout << "激活far函数" << endl;
         Q_EMIT updateCloseImage();
     }
     catch(cv_bridge::Exception &e)
@@ -71,7 +69,6 @@ void qtNode::farDepthImageCallback(const sensor_msgs::msg::CompressedImage msg)
             fardepth_qimage = QImage((const unsigned char*)(fardepth_bgrimage.data),fardepth_bgrimage.cols,fardepth_bgrimage.rows,QImage::Format_BGR888);
             //depth_qimage = QImage((const unsigned char*)(depth_image.data),depth_image.cols,depth_image.rows,QImage::Format_Grayscale8);
         }
-        //cout << "激活depth函数" << endl;
         Q_EMIT updateFarDepthImage();
     }
     catch(cv_bridge::Exception &e)
@@ -98,7 +95,6 @@ void qtNode::closeDepthImageCallback(const sensor_msgs::msg::CompressedImage msg
             closedepth_qimage = QImage((const unsigned char*)(closedepth_bgrimage.data),closedepth_bgrimage.cols,closedepth_bgrimage.rows,QImage::Format_BGR888);
             //depth_qimage = QImage((const unsigned char*)(depth_image.data),depth_image.cols,depth_image.rows,QImage::Format_Grayscale8);
         }
-        //cout << "激活depth函数" << endl;
         Q_EMIT updateCloseDepthImage();
     }
     catch(cv_bridge::Exception &e)
@@ -117,18 +113,6 @@ void qtNode::farPointsCallback(const my_msgss::msg::Points msg)
 void qtNode::closePointsCallback(const my_msgss::msg::Points msg)
 {
     close_world_qpoints = msg;
- 
-    for(int i = 0; i<close_world_qpoints.data.size(); i++)
-    {
-        cout << "close_world_qpoints.data[" << i << "].x: " << close_world_qpoints.data[i].x << endl;
-        cout << "close_world_qpoints.data[" << i << "].y: " << close_world_qpoints.data[i].y << endl;
-    }
-
-    for(int i =0;i<msg.data.size();i++)
-    {
-        cout << "close_world_qpoints.data[" << i << "].x: " << msg.data[i].x << endl;
-        cout << "close_world_qpoints.data[" << i << "].y: " << msg.data[i].y << endl;
-    }
 
     Q_EMIT updateClosePoints();
 }
@@ -138,17 +122,7 @@ void qtNode::run()
     cout << "node开始运行" << endl;
     rclcpp::init(0, nullptr);
     qnode = std::make_shared<rclcpp::Node>("qt_node");
-    /*try {
-    node = std::make_shared<rclcpp::Node>("qt_node");
-} catch (const std::bad_alloc& e) {
-    std::cout << "Failed to allocate memory for node: " << e.what() << std::endl;
-} catch (const rclcpp::exceptions::InvalidNodeNameError& e) {
-    std::cout << "Invalid node name: " << e.what() << std::endl;
-} catch (const rclcpp::exceptions::NameValidationError& e) {
-    std::cout << "Node name validation error: " << e.what() << std::endl;
-} catch (const std::exception& e) {
-    std::cout << "Failed to create node: " << e.what() << std::endl;
-}*/
+
     pnp_pub_ = qnode->create_publisher<std_msgs::msg::Float32MultiArray>("/qt/pnp", 10);
 
     far_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/far_qimage", 1, std::bind(&qtNode::farImageCallback, this, std::placeholders::_1));

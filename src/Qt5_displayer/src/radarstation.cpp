@@ -156,13 +156,11 @@ void radarStation::farImageUpdate()
     //mapMessageDisplay("farImageUpdate");
     if(ui->pnpMode->isChecked())
     {
-        //cout << "pnpMode" << endl;
         ui->solvePnpWidget->farimage = QPixmap::fromImage(qtnode.far_qimage);
         ui->solvePnpWidget->ui->farImg->update();
     }
     else if(ui->mapMode->isChecked())
     {
-        //cout << "mapMode" << endl;
         ui->farImg->setPixmap(QPixmap::fromImage(qtnode.far_qimage));
         ui->farImg->update();
     }
@@ -175,13 +173,11 @@ void radarStation::closeImageUpdate()
     //mapMessageDisplay("farImageUpdate");
     if(ui->pnpMode->isChecked())
     {
-        //cout << "pnpMode" << endl;
         ui->solvePnpWidget->closeimage = QPixmap::fromImage(qtnode.close_qimage);
         ui->solvePnpWidget->ui->closeImg->update();
     }
     else if(ui->mapMode->isChecked())
     {
-        //cout << "mapMode" << endl;
         ui->closeImg->setPixmap(QPixmap::fromImage(qtnode.close_qimage));
         ui->closeImg->update();
     }
@@ -194,7 +190,6 @@ void radarStation::farDepthImageUpdate()
     //mapMessageDisplay("depthImageUpdate");
     if(ui->mapMode->isChecked())
     {
-        //cout << "绘画深度图" << endl;
         ui->farDepth->setPixmap(QPixmap::fromImage(qtnode.fardepth_qimage));
         ui->farDepth->update();
     }
@@ -207,7 +202,6 @@ void radarStation::closeDepthImageUpdate()
     //mapMessageDisplay("depthImageUpdate");
     if(ui->mapMode->isChecked())
     {
-        //cout << "绘画深度图" << endl;
         ui->closeDepth->setPixmap(QPixmap::fromImage(qtnode.closedepth_qimage));
         ui->closeDepth->update();
     }
@@ -231,7 +225,6 @@ void radarStation::publishPnpResult()
     pnp_result.data.push_back(ui->solvePnpWidget->far_T.at<double>(2,0));
     pnp_result.data.push_back(ui->solvePnpWidget->pnp_img_id);
     qtnode.pnp_pub_->publish(pnp_result);
-    cout << "发送pnp结果" << endl;
 }
 
 void radarStation::farPointsUpdate()
@@ -274,15 +267,6 @@ void radarStation::closePointsUpdate()
     ui->map->get_robots(ui->map->close_robots,close_qpoints);
     ui->map->allrobots_adjust(ui->map->close_robots);
 
-    for(int i = 0;i<close_qpoints.data.size();i++)
-    {
-        cout << "close_qpoints.data[i].id:" << close_qpoints.data[i].id << " close_qpoints.data[i].x:" << close_qpoints.data[i].x << " close_qpoints.data[i].y:" << close_qpoints.data[i].y << endl;
-    }
-    for(int i =0;i<qtnode.close_world_qpoints.data.size();i++)
-    {
-        cout << "qtnode.close_world_qpoints.data[i].id:" << qtnode.close_world_qpoints.data[i].id << " qtnode.close_world_qpoints.data[i].x:" << qtnode.close_world_qpoints.data[i].x << " qtnode.close_world_qpoints.data[i].y:" << qtnode.close_world_qpoints.data[i].y << endl;
-    }
-
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
     mapPos closepos;
@@ -295,17 +279,12 @@ void radarStation::closePointsUpdate()
             closepos.y = height - (ui->map->close_robots[i].y / object_height * height);
             closepos.x = closepos.x + ui->map->drawPos.x();
             closepos.y = closepos.y + ui->map->drawPos.y();
-            ui->map->closeMapPoints.push_back(closepos);
+            ui->map->close_robots[i].x = closepos.x;
+            ui->map->close_robots[i].y = closepos.y;
             QString close_pointText = QString::number(closepos.id) + "号机器人相对于初始小地图的坐标为 x:" 
                                 + QString::number((closepos.x - ui->map->drawPos.x()) / ui->map->scaleValue) +" y:"
                                 + QString::number((closepos.y - ui->map->drawPos.y()) / ui->map->scaleValue);
             mapMessageDisplay(close_pointText);
-            cout << "i: " << i << endl;
-            cout << "closepos.x:" << closepos.x << " closepos.y:" << closepos.y << endl;
-            cout << "ui->map->drawPos.x():" << ui->map->drawPos.x() << " ui->map->drawPos.y():" << ui->map->drawPos.y() << endl;
-            cout << "ui->map->scaleValue:" << ui->map->scaleValue << endl;
-            cout << "ui->map->close_robots[i].x" << ui->map->close_robots[i].x << " ui->map->close_robots[i].y" << ui->map->close_robots[i].y << endl;
-            cout << "width:" << width << " height:" << height << endl;
         }
     }
     ui->map->update();

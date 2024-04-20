@@ -28,7 +28,7 @@ struct Robot
 {
   int id;
   int record_times;
-  float confidence;
+  double confidence;
   bool is_continue;
   std::string tracking;
   cv::Rect box;
@@ -44,9 +44,9 @@ public:
 private:
   //声明所有的函数
   // void Kalman_Init();
-  // float my_KalmanFilter(Kalman *kfp, float input);
+  // double my_KalmanFilter(Kalman *kfp, double input);
   void init_camera_matrix();
-  void write_csv(std::string filename, std::vector<float> vals);
+  void write_csv(std::string filename, std::vector<double> vals);
   cv::Mat Cloud2Mat(const pcl::PointCloud<pcl::PointXYZ>::Ptr &input);//Convert PointCloud to Mat
   void MatProject(cv::Mat &input_depth, cv::Mat &input_uv, cv::Mat &Cam_matrix, cv::Mat &Uni_matrix);
   void frame_point_match(const my_msgss::msg::Distpoints &last_frame, my_msgss::msg::Distpoints &this_frame);
@@ -54,7 +54,7 @@ private:
   void close_yoloCallback(const my_msgss::msg::Yolopoints &input);
   void pointCloudCallback(const sensor_msgs::msg::PointCloud2 &input);
   void outpost_Callback(const my_msgss::msg::Points &outpost);
-  float getDepthInRect(cv::Rect rect, std::vector<cv::Mat>& depth_queue, my_msgss::msg::Yolopoint::_id_type id);//得到ROI中点的深度
+  double getDepthInRect(cv::Rect rect, std::vector<cv::Mat>& depth_queue, my_msgss::msg::Yolopoint::_id_type id);//得到ROI中点的深度
   //声明publisher
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr far_distancePointPub;
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr close_distancePointPub;
@@ -79,7 +79,7 @@ private:
 
   uint16_t times;
   std::vector<int> cnt;
-  std::vector<float> dists;
+  std::vector<double> dists;
   int imgRows, imgCols;
   int length_of_cloud_queue;//default length is 5
   int post_pub_flag = 0;
@@ -99,10 +99,10 @@ private:
   std::vector<Robot> far_robots;
   std::vector<Robot> close_robots;
 
-  float min_iou;
+  double min_iou;
 
   void robots_init();
-  bool box_match(const cv::Rect &box, const cv::Rect &new_box,const float & min_iou);
+  bool box_match(const cv::Rect &box, const cv::Rect &new_box,const double & min_iou);
   void get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolopoints &input);
   void allrobots_adjust(std::vector<Robot> &robots);
   //---------------------------------------------------

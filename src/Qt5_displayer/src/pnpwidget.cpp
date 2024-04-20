@@ -77,11 +77,6 @@ void pnpWidget::parameter_init()
     close_distortion_coefficient.at<double>(3,0) = 0.003472;
     close_distortion_coefficient.at<double>(4,0) = 0.000000;
 
-    /*cout << "far_camera_matrix:" << far_camera_matrix << endl;
-    cout << "far_distortion_coefficient:" << far_distortion_coefficient << endl;
-    cout << "close_camera_matrix:" << close_camera_matrix << endl;
-    cout << "close_distortion_coefficient:" << close_distortion_coefficient << endl;*/
-
     Point3d objectpoint_one;
     objectpoint_one.x = 2350.0 / 1000;
     objectpoint_one.y = 7000.0 / 1000;
@@ -174,7 +169,6 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
             QPainter painter(ui->closeImg);
             painter.setPen(QPen(Qt::black,2));
             QRect rect(0,0,ui->closeImg->width(),ui->closeImg->height());
-            //std::cout << "绘画camerimage" << std::endl;
             painter.drawPixmap(rect,closeimage);
             //qDebug() << "x: " << ui->closeImg->x() << "y: " << ui->closeImg->y();
             //qDebug() << "width: " << ui->closeImg->width() << "height: " << ui->closeImg->height();
@@ -276,7 +270,6 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
             QPainter painter(ui->farImg);
             painter.setPen(QPen(Qt::black,2));
             QRect rect(0,0,ui->farImg->width(),ui->farImg->height());
-            //std::cout << "绘画camerimage" << std::endl;
             painter.drawPixmap(rect,farimage);
             //qDebug() << "x: " << ui->farImg->x() << "y: " << ui->farImg->y();
             //qDebug() << "width: " << ui->farImg->width() << "height: " << ui->farImg->height();
@@ -348,21 +341,9 @@ void pnpWidget::beginPnp()
         image_points.push_back(p2);
         image_points.push_back(p3);
         image_points.push_back(p4);
-        cout << "image_points.size():" << image_points.size() << endl;
-        cout << "objectPoints.size():" << objectPoints.size() << endl;
 
         if(pnp_img_id == 1)
         {
-            /*cout << "image_points[0].x : " << image_points[0].x << "image_points[0].y : " << image_points[0].y << endl;
-            cout << "image_points[1].x : " << image_points[1].x << "image_points[1].y : " << image_points[1].y << endl;
-            cout << "image_points[2].x : " << image_points[2].x << "image_points[2].y : " << image_points[2].y << endl;
-            cout << "image_points[3].x : " << image_points[3].x << "image_points[3].y : " << image_points[3].y << endl;
-            cout << "objectPoints[0].x : " << objectPoints[0].x << "objectPoints[0].y : " << objectPoints[0].y << "objectPoints[0].z : " << objectPoints[0].z << endl;
-            cout << "objectPoints[1].x : " << objectPoints[1].x << "objectPoints[1].y : " << objectPoints[1].y << "objectPoints[1].z : " << objectPoints[1].z << endl;
-            cout << "objectPoints[2].x : " << objectPoints[2].x << "objectPoints[2].y : " << objectPoints[2].y << "objectPoints[2].z : " << objectPoints[2].z << endl;
-            cout << "objectPoints[3].x : " << objectPoints[3].x << "objectPoints[3].y : " << objectPoints[3].y << "objectPoints[3].z : " << objectPoints[3].z << endl;
-            cout << "close_camera_matrix:" << close_camera_matrix << endl;
-            cout << "close_distortion_coefficient:" << close_distortion_coefficient << endl;*/
             solvePnP(objectPoints,image_points,close_camera_matrix,close_distortion_coefficient,close_Rjacob,close_T);
             /*cout << "cosed_Rjacob:" << close_Rjacob << endl;
             cout << "close_T:" << close_T << endl;*/
