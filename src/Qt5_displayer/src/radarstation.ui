@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>radarStation</class>
+ <widget class="QMainWindow" name="radarStation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>1400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>radarStation</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <widget class="QStackedWidget" name="allWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1600</width>
+      <height>1400</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="mapWidget">
+     <widget class="QLabel" name="closeImg">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>1070</x>
+        <y>40</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="smallMap" name="map">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>40</y>
+        <width>1041</width>
+        <height>611</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="mapMessage">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>660</y>
+        <width>661</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="lineWrapMode">
+       <enum>QPlainTextEdit::WidgetWidth</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="overwriteMode">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="closeDepth">
+      <property name="geometry">
+       <rect>
+        <x>1070</x>
+        <y>360</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="farImg">
+      <property name="geometry">
+       <rect>
+        <x>1070</x>
+        <y>690</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="farDepth">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>690</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_1">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>860</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>940</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>五号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_1">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>880</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_5">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>960</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_2">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>860</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>2号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_6">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>940</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>无人机</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_6">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>960</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_2">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>880</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_3">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>860</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>3号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_7">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>940</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>哨兵</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_7">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>960</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_3">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>880</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_4">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>860</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>四号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_9">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>940</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>飞镖</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_8">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>960</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hp_4">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>880</y>
+        <width>67</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="mapMode">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>0</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>小地图模式</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="pnpMode">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>0</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>pnp模式</string>
+      </property>
+     </widget>
+     <zorder>closeDepth</zorder>
+     <zorder>mapMessage</zorder>
+     <zorder>map</zorder>
+     <zorder>closeImg</zorder>
+     <zorder>farImg</zorder>
+     <zorder>farDepth</zorder>
+     <zorder>robot_1</zorder>
+     <zorder>robot_5</zorder>
+     <zorder>hp_1</zorder>
+     <zorder>hp_5</zorder>
+     <zorder>robot_2</zorder>
+     <zorder>robot_6</zorder>
+     <zorder>hp_6</zorder>
+     <zorder>hp_2</zorder>
+     <zorder>robot_3</zorder>
+     <zorder>robot_7</zorder>
+     <zorder>hp_7</zorder>
+     <zorder>hp_3</zorder>
+     <zorder>robot_4</zorder>
+     <zorder>robot_9</zorder>
+     <zorder>hp_8</zorder>
+     <zorder>hp_4</zorder>
+     <zorder>mapMode</zorder>
+     <zorder>pnpMode</zorder>
+    </widget>
+    <widget class="pnpWidget" name="solvePnpWidget">
+     <widget class="QRadioButton" name="mapMode_2">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>10</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>小地图模式</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="pnpMode_2">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>10</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>pnp模式</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>smallMap</class>
+   <extends>QLabel</extends>
+   <header location="global">smallmap.h</header>
+  </customwidget>
+  <customwidget>
+   <class>pnpWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">pnpwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

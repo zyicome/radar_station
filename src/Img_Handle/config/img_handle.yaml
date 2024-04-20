@@ -1,0 +1,8 @@
+/img_sub:
+  ros__parameters:
+    min_accept_confidence: 0.3
+    min_detection_times: 2
+    max_lost_times: -50
+    max_tracking_lost_times: -25
+    min_iou: 0.1
+    max_accept_distance: 0.5
