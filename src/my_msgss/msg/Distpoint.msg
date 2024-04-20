@@ -1,7 +1,0 @@
-uint8 id
-float32 confidence
-float32 x
-float32 y
-float32 dist
-float32 lastdist
-string color
