@@ -33,11 +33,19 @@ pnpWidget::pnpWidget() :
     this->isBeginPoint = false;
     this->pnp_img_id=-1;
 
+<<<<<<< HEAD
     connect(ui->beginPoint,SIGNAL(clicked()),this,SLOT(beginPoint()));
     connect(ui->restartPoint,SIGNAL(clicked()),this,SLOT(restartPoint()));
     connect(ui->beginPnp,SIGNAL(clicked()),this,SLOT(beginPnp()));
 
     parameter_init();
+=======
+    parameter_init();
+
+    connect(ui->beginPoint,SIGNAL(clicked()),this,SLOT(beginPoint()));
+    connect(ui->restartPoint,SIGNAL(clicked()),this,SLOT(restartPoint()));
+    connect(ui->beginPnp,SIGNAL(clicked()),this,SLOT(beginPnp()));
+>>>>>>> 431e9f5 (2024.4.20)
 }
 
 pnpWidget::~pnpWidget()
@@ -47,6 +55,7 @@ pnpWidget::~pnpWidget()
 
 void pnpWidget::parameter_init()
 {
+<<<<<<< HEAD
     far_camera_matrix.at<float>(0, 0) = 3135.31292;
     far_camera_matrix.at<float>(0, 1) = 0;
     far_camera_matrix.at<float>(0, 2) = 526.87116;
@@ -96,6 +105,62 @@ void pnpWidget::parameter_init()
     objectpoint_four.x = 4750.0;
     objectpoint_four.y = 6800.0;
     objectpoint_four.z = 0.0;
+=======
+    far_camera_matrix.at<double>(0, 0) = 3135.31292;
+    far_camera_matrix.at<double>(0, 1) = 0;
+    far_camera_matrix.at<double>(0, 2) = 526.87116;
+    far_camera_matrix.at<double>(1, 0) = 0;
+    far_camera_matrix.at<double>(1, 1) = 3151.06425;
+    far_camera_matrix.at<double>(1, 2) = 695.83061;
+    far_camera_matrix.at<double>(2, 0) = 0.0;
+    far_camera_matrix.at<double>(2, 1) = 0.0;
+    far_camera_matrix.at<double>(2, 2) = 1.0;
+    far_distortion_coefficient.at<double>(0,0) = -0.019203;
+    far_distortion_coefficient.at<double>(1,0) = 0.252109;
+    far_distortion_coefficient.at<double>(2,0) = 0.016576;
+    far_distortion_coefficient.at<double>(3,0) = -0.012270;
+    far_distortion_coefficient.at<double>(4,0) = 0.000000;
+
+    close_camera_matrix.at<double>(0, 0) = 1563.52174;
+    close_camera_matrix.at<double>(0, 1) = 0;
+    close_camera_matrix.at<double>(0, 2) = 626.90356;
+    close_camera_matrix.at<double>(1, 0) = 0;
+    close_camera_matrix.at<double>(1, 1) = 1568.90028;
+    close_camera_matrix.at<double>(1, 2) = 488.93524;
+    close_camera_matrix.at<double>(2, 0) = 0;
+    close_camera_matrix.at<double>(2, 1) = 0;
+    close_camera_matrix.at<double>(2, 2) = 1;
+    close_distortion_coefficient.at<double>(0,0) = -0.063200;
+    close_distortion_coefficient.at<double>(1,0) = -0.005061;
+    close_distortion_coefficient.at<double>(2,0) = -0.001755;
+    close_distortion_coefficient.at<double>(3,0) = 0.003472;
+    close_distortion_coefficient.at<double>(4,0) = 0.000000;
+
+    /*cout << "far_camera_matrix:" << far_camera_matrix << endl;
+    cout << "far_distortion_coefficient:" << far_distortion_coefficient << endl;
+    cout << "close_camera_matrix:" << close_camera_matrix << endl;
+    cout << "close_distortion_coefficient:" << close_distortion_coefficient << endl;*/
+
+    Point3d objectpoint_one;
+    objectpoint_one.x = 2350.0 / 1000;
+    objectpoint_one.y = 7000.0 / 1000;
+    objectpoint_one.z = 0.0 / 1000;
+    objectPoints.push_back(objectpoint_one);
+    Point3d objectpoint_two;
+    objectpoint_two.x = 2350.0 / 1000;
+    objectpoint_two.y = 7000.0 / 1000;
+    objectpoint_two.z = 500.0 / 1000;
+    objectPoints.push_back(objectpoint_two);
+    Point3d objectpoint_three;
+    objectpoint_three.x = 4750.0 / 1000;
+    objectpoint_three.y = 6800.0 / 1000;
+    objectpoint_three.z = 500.0 / 1000;
+    objectPoints.push_back(objectpoint_three);
+    Point3d objectpoint_four;
+    objectpoint_four.x = 4750.0 / 1000;
+    objectpoint_four.y = 6800.0 / 1000;
+    objectpoint_four.z = 0.0 / 1000;
+>>>>>>> 431e9f5 (2024.4.20)
     objectPoints.push_back(objectpoint_four);
 }
 
@@ -348,9 +413,27 @@ void pnpWidget::beginPnp()
 
         if(pnp_img_id == 1)
         {
+<<<<<<< HEAD
             solvePnP(objectPoints,image_points,close_camera_matrix,close_distortion_coefficient,close_Rjacob,close_T);
             cout << "solvePnP" << endl;
             Rodrigues(close_Rjacob, far_R);
+=======
+            cout << "image_points[0].x : " << image_points[0].x << "image_points[0].y : " << image_points[0].y << endl;
+            cout << "image_points[1].x : " << image_points[1].x << "image_points[1].y : " << image_points[1].y << endl;
+            cout << "image_points[2].x : " << image_points[2].x << "image_points[2].y : " << image_points[2].y << endl;
+            cout << "image_points[3].x : " << image_points[3].x << "image_points[3].y : " << image_points[3].y << endl;
+            cout << "objectPoints[0].x : " << objectPoints[0].x << "objectPoints[0].y : " << objectPoints[0].y << "objectPoints[0].z : " << objectPoints[0].z << endl;
+            cout << "objectPoints[1].x : " << objectPoints[1].x << "objectPoints[1].y : " << objectPoints[1].y << "objectPoints[1].z : " << objectPoints[1].z << endl;
+            cout << "objectPoints[2].x : " << objectPoints[2].x << "objectPoints[2].y : " << objectPoints[2].y << "objectPoints[2].z : " << objectPoints[2].z << endl;
+            cout << "objectPoints[3].x : " << objectPoints[3].x << "objectPoints[3].y : " << objectPoints[3].y << "objectPoints[3].z : " << objectPoints[3].z << endl;
+            cout << "close_camera_matrix:" << close_camera_matrix << endl;
+            cout << "close_distortion_coefficient:" << close_distortion_coefficient << endl;
+            solvePnP(objectPoints,image_points,close_camera_matrix,close_distortion_coefficient,close_Rjacob,close_T);
+            cout << "cosed_Rjacob:" << close_Rjacob << endl;
+            cout << "close_T:" << close_T << endl;
+            cout << "solvePnP" << endl;
+            Rodrigues(close_Rjacob, close_R);
+>>>>>>> 431e9f5 (2024.4.20)
             cout << "Rodrigues" << endl;
             QString closeR_message = "广角相机旋转矩阵:" + QString::number(close_R.at<double>(0,0)) + " " + QString::number(close_R.at<double>(0,1)) + " " + QString::number(close_R.at<double>(0,2)) + "\n"
                     + QString::number(close_R.at<double>(1,0)) + " " + QString::number(close_R.at<double>(1,1)) + " " + QString::number(close_R.at<double>(1,2)) + "\n"
@@ -363,7 +446,11 @@ void pnpWidget::beginPnp()
             mapMessageDisplay(closeT_message);
             cout << "message" <<endl;
         }
+<<<<<<< HEAD
         else if(pnp_img_id = 2)
+=======
+        else if(pnp_img_id == 2)
+>>>>>>> 431e9f5 (2024.4.20)
         {
             solvePnP(objectPoints,image_points,far_camera_matrix,far_distortion_coefficient,far_Rjacob,far_T);
             cout << "solvePnP" << endl;

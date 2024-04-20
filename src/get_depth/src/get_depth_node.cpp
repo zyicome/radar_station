@@ -101,6 +101,7 @@ void GetDepth::init_camera_matrix()
     far_camera_matrix.at<float>(2, 0) = 0;
     far_camera_matrix.at<float>(2, 1) = 0;
     far_camera_matrix.at<float>(2, 2) = 1;
+<<<<<<< HEAD
     far_uni_matrix.at<float>(0, 0) = 0.0242125;
     far_uni_matrix.at<float>(0, 1) = 0.252109;
     far_uni_matrix.at<float>(0, 2) = 0.016576;
@@ -113,6 +114,20 @@ void GetDepth::init_camera_matrix()
     far_uni_matrix.at<float>(2, 1) = 0.0243225;
     far_uni_matrix.at<float>(2, 2) = 0.0188247;
     far_uni_matrix.at<float>(2, 3) = 0.163526;
+=======
+    far_uni_matrix.at<float>(0, 0) = -0.0388939;
+    far_uni_matrix.at<float>(0, 1) = -0.993756;
+    far_uni_matrix.at<float>(0, 2) = 0.10458;
+    far_uni_matrix.at<float>(0, 3) = 0.125157;
+    far_uni_matrix.at<float>(1, 0) = 0.31202;
+    far_uni_matrix.at<float>(1, 1) = -0.111504;
+    far_uni_matrix.at<float>(1, 2) = -0.943509;
+    far_uni_matrix.at<float>(1, 3) = -0.964176;
+    far_uni_matrix.at<float>(2, 0) = 0.949279;
+    far_uni_matrix.at<float>(2, 1) = -0.00406564;
+    far_uni_matrix.at<float>(2, 2) = 0.314409;
+    far_uni_matrix.at<float>(2, 3) = -2.36543;
+>>>>>>> 431e9f5 (2024.4.20)
     far_distortion_coefficient.at<float>(0,0) = -0.019203;
     far_distortion_coefficient.at<float>(1,0) = 0.252109;
     far_distortion_coefficient.at<float>(2,0) = 0.016576;
@@ -128,6 +143,7 @@ void GetDepth::init_camera_matrix()
     close_camera_matrix.at<float>(2, 0) = 0;
     close_camera_matrix.at<float>(2, 1) = 0;
     close_camera_matrix.at<float>(2, 2) = 1;
+<<<<<<< HEAD
     close_uni_matrix.at<float>(0, 0) = 0.0242125;
     close_uni_matrix.at<float>(0, 1) = -0.999689;
     close_uni_matrix.at<float>(0, 2) = 0.00604586;
@@ -140,6 +156,20 @@ void GetDepth::init_camera_matrix()
     close_uni_matrix.at<float>(2, 1) = 0.0243225;
     close_uni_matrix.at<float>(2, 2) = 0.0188247;
     close_uni_matrix.at<float>(2, 3) = 0.163526;
+=======
+    close_uni_matrix.at<float>(0, 0) = 0.0298114;
+    close_uni_matrix.at<float>(0, 1) = -0.963026;
+    close_uni_matrix.at<float>(0, 2) = 0.267756;
+    close_uni_matrix.at<float>(0, 3) = -0.0873165;
+    close_uni_matrix.at<float>(1, 0) = 0.964763;
+    close_uni_matrix.at<float>(1, 1) = 0.0977833;
+    close_uni_matrix.at<float>(1, 2) = 0.244278;
+    close_uni_matrix.at<float>(1, 3) = -2.95739;
+    close_uni_matrix.at<float>(2, 0) = -0.261428;
+    close_uni_matrix.at<float>(2, 1) = 0.251038;
+    close_uni_matrix.at<float>(2, 2) = 0.932006;
+    close_uni_matrix.at<float>(2, 3) = 0.787003;
+>>>>>>> 431e9f5 (2024.4.20)
     close_distortion_coefficient.at<float>(0,0) = -0.063200;
     close_distortion_coefficient.at<float>(1,0) = -0.005061;
     close_distortion_coefficient.at<float>(2,0) = -0.001755;
