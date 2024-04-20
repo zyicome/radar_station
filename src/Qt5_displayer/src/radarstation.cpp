@@ -274,6 +274,15 @@ void radarStation::closePointsUpdate()
     ui->map->get_robots(ui->map->close_robots,close_qpoints);
     ui->map->allrobots_adjust(ui->map->close_robots);
 
+    for(int i = 0;i<close_qpoints.data.size();i++)
+    {
+        cout << "close_qpoints.data[i].id:" << close_qpoints.data[i].id << " close_qpoints.data[i].x:" << close_qpoints.data[i].x << " close_qpoints.data[i].y:" << close_qpoints.data[i].y << endl;
+    }
+    for(int i =0;i<qtnode.close_world_qpoints.data.size();i++)
+    {
+        cout << "qtnode.close_world_qpoints.data[i].id:" << qtnode.close_world_qpoints.data[i].id << " qtnode.close_world_qpoints.data[i].x:" << qtnode.close_world_qpoints.data[i].x << " qtnode.close_world_qpoints.data[i].y:" << qtnode.close_world_qpoints.data[i].y << endl;
+    }
+
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
     mapPos closepos;
@@ -291,7 +300,7 @@ void radarStation::closePointsUpdate()
                                 + QString::number((closepos.x - ui->map->drawPos.x()) / ui->map->scaleValue) +" y:"
                                 + QString::number((closepos.y - ui->map->drawPos.y()) / ui->map->scaleValue);
             mapMessageDisplay(close_pointText);
-
+            cout << "i: " << i << endl;
             cout << "closepos.x:" << closepos.x << " closepos.y:" << closepos.y << endl;
             cout << "ui->map->drawPos.x():" << ui->map->drawPos.x() << " ui->map->drawPos.y():" << ui->map->drawPos.y() << endl;
             cout << "ui->map->scaleValue:" << ui->map->scaleValue << endl;

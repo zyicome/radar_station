@@ -20,7 +20,7 @@ void qtNode::farImageCallback(const sensor_msgs::msg::CompressedImage msg)
         {
             Mat far_image = far_cv_ptr->image;
             cv::resize(far_image,far_image,cv::Size(FAR_IMAGE_WIDTH,FAR_IMAGE_HEIGHT));
-            far_qimage = QImage((const unsigned char*)(far_image.data),far_image.cols,far_image.rows,QImage::Format_RGB888);
+            far_qimage = QImage((const unsigned char*)(far_image.data),far_image.cols,far_image.rows,QImage::Format_BGR888);
         }
         //cout << "激活far函数" << endl;
         Q_EMIT updateFarImage();
@@ -42,7 +42,7 @@ void qtNode::closeImageCallback(const sensor_msgs::msg::CompressedImage msg)
         {
             Mat close_image = close_cv_ptr->image;
             cv::resize(close_image,close_image,cv::Size(FAR_IMAGE_WIDTH,FAR_IMAGE_HEIGHT));
-            close_qimage = QImage((const unsigned char*)(close_image.data),close_image.cols,close_image.rows,QImage::Format_RGB888);
+            close_qimage = QImage((const unsigned char*)(close_image.data),close_image.cols,close_image.rows,QImage::Format_BGR888);
         }
         //cout << "激活far函数" << endl;
         Q_EMIT updateCloseImage();
@@ -117,6 +117,19 @@ void qtNode::farPointsCallback(const my_msgss::msg::Points msg)
 void qtNode::closePointsCallback(const my_msgss::msg::Points msg)
 {
     close_world_qpoints = msg;
+ 
+    for(int i = 0; i<close_world_qpoints.data.size(); i++)
+    {
+        cout << "close_world_qpoints.data[" << i << "].x: " << close_world_qpoints.data[i].x << endl;
+        cout << "close_world_qpoints.data[" << i << "].y: " << close_world_qpoints.data[i].y << endl;
+    }
+
+    for(int i =0;i<msg.data.size();i++)
+    {
+        cout << "close_world_qpoints.data[" << i << "].x: " << msg.data[i].x << endl;
+        cout << "close_world_qpoints.data[" << i << "].y: " << msg.data[i].y << endl;
+    }
+
     Q_EMIT updateClosePoints();
 }
 

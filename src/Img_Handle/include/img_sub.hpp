@@ -55,7 +55,7 @@ public:
 
     void yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes,vector<Robot> &robots,Inference &inf_robot,Inference &inf_armor);
 
-    void yolo_armor_identify(Mat & sub_img,vector<Robot> &robots, cv::Rect &box,Inference &inf_armor);
+    void yolo_armor_identify(Mat & sub_img,vector<Robot> &robots, cv::Rect &box,Inference &inf_armor,Detection &robot_output);
 
     void draw_img(Mat & sub_img,my_msgss::msg::Yolopoints &robot_boxes);
 
@@ -69,11 +69,11 @@ public:
 
     bool distance_match(const cv::Rect &box, const cv::Rect &new_box);
 
-    void robots_adjust(const Detection &armor_output, vector<Robot> &robots);
+    void robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output);
 
     void allrobots_adjust(vector<Robot> &robots,my_msgss::msg::Yolopoints &robot_boxes);
 
-    void not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots);
+    void not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output);
 
     void not_tracking_allrobots_adjust(vector<Robot> &robots, my_msgss::msg::Yolopoints &robot_boxes);
     //new place

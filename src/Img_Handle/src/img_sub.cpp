@@ -158,6 +158,7 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
     cv_bridge::CvImagePtr cv_ptr;
         try
         {
+            //this->sub_img_close = cv_bridge::toCvShare(msg, "rgb8")->image;
             cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
         }
         catch(cv_bridge::Exception& e)
@@ -224,6 +225,8 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
         // 这里需要resize下，否则结果不对
         cv::resize(sub_img, sub_img, cv::Size(sub_img.cols, sub_img.rows));
 
+        cout << "sub_img.cols:" << sub_img.cols << " sub_img.rows:" << sub_img.rows << endl;
+
         for (int i = 0; i < detections; ++i)
         {
             Detection detection = robot_output[i];
@@ -245,8 +248,11 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
             {
                 box.height = sub_img.rows - box.y;
             }
+            cout << "box.x:" << box.x << " box.y:" << box.y << " box.width:" << box.width << " box.height:" << box.height << endl;
             cv::rectangle(sub_img, box, Scalar(255,0,0), 2);
-            this->yolo_armor_identify(sub_img,robots,box,inf_armor);
+            /*imshow("sub_img",sub_img);
+            waitKey(0);*/
+            this->yolo_armor_identify(sub_img,robots,box,inf_armor,robot_output[i]);
         }
         
         //allrobots_adjust(robots,robot_boxes);
@@ -258,7 +264,7 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
 
 }
 
-void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect &box, Inference &inf_armor)
+void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect &box, Inference &inf_armor, Detection &robot_output)
 {
     if(box.x < 0)
     {
@@ -292,7 +298,7 @@ void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect
         
         //robots_adjust(armor_output[j],robots);
 
-        not_tracking_robots_adjust(armor_output[j],robots);
+        not_tracking_robots_adjust(armor_output[j],robots,robot_output);
     }
 
     std::cout << "armor_output.size():" << armor_output.size() << std::endl;
@@ -549,7 +555,7 @@ bool Img_Sub::distance_match(const cv::Rect &box, const cv::Rect &new_box)
 }
 
 // 机器人状态更新，有被神经网络识别到时触发
-void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots)
+void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output)
 {
     int armor_number = -1;
     float armor_confidence = 0.0;
@@ -590,7 +596,7 @@ void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots
 
     armor_confidence = armor_output.confidence;
 
-    box = armor_output.box;
+    box = robot_output.box;
 
     if(armor_output.confidence <= robots[armor_number].confidence)
     {
@@ -793,7 +799,7 @@ void Img_Sub::update(Robot &robot, const Eigen::VectorXd & measurement)
     robot.box.height = x_post(6);
 }
 
-void Img_Sub::not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots)
+void Img_Sub::not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output)
 {
     int armor_number = -1;
     float armor_confidence = 0.0;
@@ -834,7 +840,7 @@ void Img_Sub::not_tracking_robots_adjust(const Detection &armor_output, vector<R
 
     armor_confidence = armor_output.confidence;
 
-    box = armor_output.box;
+    box = robot_output.box;
 
     robots[armor_number].confidence = armor_confidence;
     robots[armor_number].is_continue = true;

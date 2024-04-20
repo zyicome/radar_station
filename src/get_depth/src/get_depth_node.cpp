@@ -69,12 +69,12 @@ GetDepth::GetDepth() : Node("GetDepth_node")
     imgCols = 1280;
     length_of_cloud_queue = 5;//default length is 5
     post_pub_flag = 0;
-    far_camera_matrix = cv::Mat_<float>(3, 3);//相机内参矩阵
-    far_uni_matrix = cv::Mat_<float>(3, 4);//相机和雷达的变换矩阵
-    far_distortion_coefficient = cv::Mat_<float>(5, 1);
-    close_camera_matrix = cv::Mat_<float>(3, 3);//相机内参矩阵
-    close_uni_matrix = cv::Mat_<float>(3, 4);//相机和雷达的变换矩阵
-    close_distortion_coefficient = cv::Mat_<float>(5, 1);   
+    far_camera_matrix = cv::Mat::zeros(3, 3, CV_64FC1);//相机内参矩阵
+    far_uni_matrix = cv::Mat::zeros(3, 4, CV_64FC1);//相机和雷达的变换矩阵
+    far_distortion_coefficient = cv::Mat::zeros(5, 1, CV_64FC1);
+    close_camera_matrix = cv::Mat::zeros(3, 3, CV_64FC1);//相机内参矩阵
+    close_uni_matrix = cv::Mat::zeros(3, 4, CV_64FC1);//相机和雷达的变换矩阵
+    close_distortion_coefficient = cv::Mat::zeros(5, 1, CV_64FC1);   
     this->init_camera_matrix();
 
     cloud_sub = this->create_subscription<sensor_msgs::msg::PointCloud2>("/livox/lidar", 10, std::bind(&GetDepth::pointCloudCallback, this, std::placeholders::_1));
@@ -92,59 +92,66 @@ GetDepth::GetDepth() : Node("GetDepth_node")
 }
 void GetDepth::init_camera_matrix()
 {
-    far_camera_matrix.at<float>(0, 0) = 3135.31292;
-    far_camera_matrix.at<float>(0, 1) = 0;
-    far_camera_matrix.at<float>(0, 2) = 526.87116;
-    far_camera_matrix.at<float>(1, 0) = 0;
-    far_camera_matrix.at<float>(1, 1) = 3151.06425;
-    far_camera_matrix.at<float>(1, 2) = 695.83061;
-    far_camera_matrix.at<float>(2, 0) = 0;
-    far_camera_matrix.at<float>(2, 1) = 0;
-    far_camera_matrix.at<float>(2, 2) = 1;
-    far_uni_matrix.at<float>(0, 0) = -0.0388939;
-    far_uni_matrix.at<float>(0, 1) = -0.993756;
-    far_uni_matrix.at<float>(0, 2) = 0.10458;
-    far_uni_matrix.at<float>(0, 3) = 0.125157;
-    far_uni_matrix.at<float>(1, 0) = 0.31202;
-    far_uni_matrix.at<float>(1, 1) = -0.111504;
-    far_uni_matrix.at<float>(1, 2) = -0.943509;
-    far_uni_matrix.at<float>(1, 3) = -0.964176;
-    far_uni_matrix.at<float>(2, 0) = 0.949279;
-    far_uni_matrix.at<float>(2, 1) = -0.00406564;
-    far_uni_matrix.at<float>(2, 2) = 0.314409;
-    far_uni_matrix.at<float>(2, 3) = -2.36543;
-    far_distortion_coefficient.at<float>(0,0) = -0.019203;
-    far_distortion_coefficient.at<float>(1,0) = 0.252109;
-    far_distortion_coefficient.at<float>(2,0) = 0.016576;
-    far_distortion_coefficient.at<float>(3,0) = -0.012270;
-    far_distortion_coefficient.at<float>(4,0) = 0.000000;
+    far_camera_matrix.at<double>(0, 0) = 3135.31292;
+    far_camera_matrix.at<double>(0, 1) = 0;
+    far_camera_matrix.at<double>(0, 2) = 526.87116;
+    far_camera_matrix.at<double>(1, 0) = 0;
+    far_camera_matrix.at<double>(1, 1) = 3151.06425;
+    far_camera_matrix.at<double>(1, 2) = 695.83061;
+    far_camera_matrix.at<double>(2, 0) = 0;
+    far_camera_matrix.at<double>(2, 1) = 0;
+    far_camera_matrix.at<double>(2, 2) = 1;
+    far_uni_matrix.at<double>(0, 0) = -0.0388939;
+    far_uni_matrix.at<double>(0, 1) = -0.993756;
+    far_uni_matrix.at<double>(0, 2) = 0.10458;
+    far_uni_matrix.at<double>(0, 3) = 0.125157;
+    far_uni_matrix.at<double>(1, 0) = 0.31202;
+    far_uni_matrix.at<double>(1, 1) = -0.111504;
+    far_uni_matrix.at<double>(1, 2) = -0.943509;
+    far_uni_matrix.at<double>(1, 3) = -0.964176;
+    far_uni_matrix.at<double>(2, 0) = 0.949279;
+    far_uni_matrix.at<double>(2, 1) = -0.00406564;
+    far_uni_matrix.at<double>(2, 2) = 0.314409;
+    far_uni_matrix.at<double>(2, 3) = -2.36543;
+    far_distortion_coefficient.at<double>(0,0) = -0.019203;
+    far_distortion_coefficient.at<double>(1,0) = 0.252109;
+    far_distortion_coefficient.at<double>(2,0) = 0.016576;
+    far_distortion_coefficient.at<double>(3,0) = -0.012270;
+    far_distortion_coefficient.at<double>(4,0) = 0.000000;
 
-    close_camera_matrix.at<float>(0, 0) = 1563.52174;
-    close_camera_matrix.at<float>(0, 1) = 0;
-    close_camera_matrix.at<float>(0, 2) = 626.90356;
-    close_camera_matrix.at<float>(1, 0) = 0;
-    close_camera_matrix.at<float>(1, 1) = 1568.90028;
-    close_camera_matrix.at<float>(1, 2) = 488.93524;
-    close_camera_matrix.at<float>(2, 0) = 0;
-    close_camera_matrix.at<float>(2, 1) = 0;
-    close_camera_matrix.at<float>(2, 2) = 1;
-    close_uni_matrix.at<float>(0, 0) = 0.0298114;
-    close_uni_matrix.at<float>(0, 1) = -0.963026;
-    close_uni_matrix.at<float>(0, 2) = 0.267756;
-    close_uni_matrix.at<float>(0, 3) = -0.0873165;
-    close_uni_matrix.at<float>(1, 0) = 0.964763;
-    close_uni_matrix.at<float>(1, 1) = 0.0977833;
-    close_uni_matrix.at<float>(1, 2) = 0.244278;
-    close_uni_matrix.at<float>(1, 3) = -2.95739;
-    close_uni_matrix.at<float>(2, 0) = -0.261428;
-    close_uni_matrix.at<float>(2, 1) = 0.251038;
-    close_uni_matrix.at<float>(2, 2) = 0.932006;
-    close_uni_matrix.at<float>(2, 3) = 0.787003;
-    close_distortion_coefficient.at<float>(0,0) = -0.063200;
-    close_distortion_coefficient.at<float>(1,0) = -0.005061;
-    close_distortion_coefficient.at<float>(2,0) = -0.001755;
-    close_distortion_coefficient.at<float>(3,0) = 0.003472;
-    close_distortion_coefficient.at<float>(4,0) = 0.000000;
+    close_camera_matrix.at<double>(0, 0) = 1563.52174;
+    close_camera_matrix.at<double>(0, 1) = 0;
+    close_camera_matrix.at<double>(0, 2) = 626.90356;
+    close_camera_matrix.at<double>(1, 0) = 0;
+    close_camera_matrix.at<double>(1, 1) = 1568.90028;
+    close_camera_matrix.at<double>(1, 2) = 488.93524;
+    close_camera_matrix.at<double>(2, 0) = 0;
+    close_camera_matrix.at<double>(2, 1) = 0;
+    close_camera_matrix.at<double>(2, 2) = 1;
+    close_uni_matrix.at<double>(0, 0) = 0.0298114;
+    close_uni_matrix.at<double>(0, 1) = -0.963026;
+    close_uni_matrix.at<double>(0, 2) = 0.267756;
+    close_uni_matrix.at<double>(0, 3) = -0.0873165;
+    close_uni_matrix.at<double>(1, 0) = 0.964763;
+    close_uni_matrix.at<double>(1, 1) = 0.0977833;
+    close_uni_matrix.at<double>(1, 2) = 0.244278;
+    close_uni_matrix.at<double>(1, 3) = -2.95739;
+    close_uni_matrix.at<double>(2, 0) = -0.261428;
+    close_uni_matrix.at<double>(2, 1) = 0.251038;
+    close_uni_matrix.at<double>(2, 2) = 0.932006;
+    close_uni_matrix.at<double>(2, 3) = 0.787003;
+    close_distortion_coefficient.at<double>(0,0) = -0.063200;
+    close_distortion_coefficient.at<double>(1,0) = -0.005061;
+    close_distortion_coefficient.at<double>(2,0) = -0.001755;
+    close_distortion_coefficient.at<double>(3,0) = 0.003472;
+    close_distortion_coefficient.at<double>(4,0) = 0.000000;
+
+    cout << "close_camera_matrix" << close_camera_matrix << endl;
+    cout << "close_uni_matrix" << close_uni_matrix << endl;
+    cout << "close_distortion_coefficient" << close_distortion_coefficient << endl;
+    cout << "far_camera_matrix" << far_camera_matrix << endl;
+    cout << "far_uni_matrix" << far_uni_matrix << endl;
+    cout << "far_distortion_coefficient" << far_distortion_coefficient << endl;
 }
 
 void GetDepth::write_csv(std::string filename, std::vector<float> vals) {
@@ -164,7 +171,7 @@ void GetDepth::write_csv(std::string filename, std::vector<float> vals) {
  * @return 输出矩阵
  */
 cv::Mat GetDepth::Cloud2Mat(const pcl::PointCloud<pcl::PointXYZ>::Ptr &input) {
-    cv::Mat res = cv::Mat::zeros(4, (int) input->size(), CV_32F);
+    cv::Mat res = cv::Mat::zeros(4, (int) input->size(), CV_64F);
     for (int k = 0; k < res.cols; k++) {
         for (int j = 0; j < 4; j++) {
             res.at<float>(j, k) = input->points[k].data[j];
@@ -219,8 +226,8 @@ void GetDepth::frame_point_match(const my_msgss::msg::Distpoints &last_frame, my
 //update the car_rects
 void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
     RCLCPP_INFO(get_logger(), "BEGIN far_yoloCallback");
-    cv::Mat far_depthes = cv::Mat::zeros(imgRows, imgCols, CV_32FC1);//initialize the depth img 用于运算的深度图
-    cv::Mat far_depth_show = cv::Mat::zeros(imgRows, imgCols, CV_32FC1); //用于显示的深度图
+    cv::Mat far_depthes = cv::Mat::zeros(imgRows, imgCols, CV_64FC1);//initialize the depth img 用于运算的深度图
+    cv::Mat far_depth_show = cv::Mat::zeros(imgRows, imgCols, CV_64FC1); //用于显示的深度图
     std::vector<my_msgss::msg::Distpoint>().swap(far_distance_it.data);
     if (cloud) {
         RCLCPP_INFO(get_logger(), "have cloud");
@@ -264,15 +271,15 @@ void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
     far_distancePointPub->publish(close_distance_it);
     resize(far_depth_show, far_depth_show, Size(640, 480));
     //std::cout << "发送深度图像Qimage" << endl;
-    far_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", far_depth_show).toCompressedImageMsg()));
+    far_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "mono8", far_depth_show).toCompressedImageMsg()));
     /*imshow("far_depth_show", far_depth_show);
     waitKey(1);*/
 };
 
 //update the car_rects
 void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
-    cv::Mat close_depthes = cv::Mat::zeros(imgRows, imgCols, CV_32FC1);//initialize the depth img
-    cv::Mat close_depth_show = cv::Mat::zeros(imgRows, imgCols, CV_32FC1);
+    cv::Mat close_depthes = cv::Mat::zeros(imgRows, imgCols, CV_64FC1);//initialize the depth img
+    cv::Mat close_depth_show = cv::Mat::zeros(imgRows, imgCols, CV_64FC1);
     std::vector<my_msgss::msg::Distpoint>().swap(last_close_distance_it.data);
     for (auto &i: close_distance_it.data) {
         last_close_distance_it.data.emplace_back(i);
@@ -286,6 +293,10 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
         if (close_depth_queue.size() == length_of_cloud_queue) {
             close_depth_queue.erase(close_depth_queue.begin());
         }
+        /*cout << "cloud" << cloud << endl;
+        cout << "close_MatCloud" << close_MatCloud << endl;
+        cout << "close_depthes" << close_depthes << endl;
+        cout << "close_depth_show" << close_depth_show << endl;*/
     }
 
     get_robots(close_robots, input);
@@ -314,13 +325,21 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
             putText(close_depth_show, std::to_string(point_it.dist), Point(point_it.x, point_it.y),
                     FONT_HERSHEY_COMPLEX_SMALL, 1,
                     Scalar(255, 255, 255), 1, 8, 0);
+            cout << "close_robots[i].id: " << close_robots[i].id << endl;
+            cout << "close_robots[i].tracking: " << close_robots[i].tracking << endl;
+            cout << "close_robots[i].box.x: " << close_robots[i].box.x << endl;
+            cout << "close_robots[i].box.y: " << close_robots[i].box.y << endl;
+            cout << "close_robots[i].box.width: " << close_robots[i].box.width << endl;
+            cout << "close_robots[i].box.height: " << close_robots[i].box.height << endl;
+            cout << "point_it.dist: " << point_it.dist << endl;
         }
     }
     frame_point_match(last_close_distance_it, close_distance_it);
     close_distancePointPub->publish(close_distance_it);
     resize(close_depth_show, close_depth_show, Size(640, 480));
-    close_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", close_depth_show).toCompressedImageMsg()));
-    //waitKey(0);
+    close_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "mono8", close_depth_show).toCompressedImageMsg()));
+    imshow("close_depth_show", close_depth_show);
+    waitKey(1);
 };
 /**
  * 将受到的点云消息转换成点云
@@ -553,13 +572,13 @@ void GetDepth::get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolop
     for(int i = 0;i<input.data.size();i++)
     {
         armor_number = input.data[i].id;
-        iou_matched = box_match(robots[armor_number].box, cv::Rect(input.data[i].x, input.data[i].y, input.data[i].x+ input.data[i].width, input.data[i].y + input.data[i].height), min_iou);
+        iou_matched = box_match(robots[armor_number].box, cv::Rect(input.data[i].x, input.data[i].y, input.data[i].width, input.data[i].height), min_iou);
         if(robots[armor_number].tracking == "not")
         {
             robots[armor_number].tracking = "tracking";
             robots[armor_number].confidence = input.data[i].confidence;
             robots[armor_number].is_continue = true;
-            robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].x+ input.data[i].width, input.data[i].y + input.data[i].height);
+            robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].width, input.data[i].height);
         }
         else if(robots[armor_number].tracking == "tracking")
         {
@@ -568,7 +587,7 @@ void GetDepth::get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolop
                 robots[armor_number].tracking = "tracking";
                 robots[armor_number].confidence = input.data[i].confidence;
                 robots[armor_number].is_continue = true;
-                robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].x+ input.data[i].width, input.data[i].y + input.data[i].height);
+                robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].width, input.data[i].height);
             }
             else
             {
@@ -577,7 +596,7 @@ void GetDepth::get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolop
                     robots[armor_number].tracking = "tracking";
                     robots[armor_number].confidence = input.data[i].confidence;
                     robots[armor_number].is_continue = true;
-                    robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].x+ input.data[i].width, input.data[i].y + input.data[i].height);
+                    robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].width, input.data[i].height);
                 }
                 else
                 {
@@ -593,7 +612,7 @@ void GetDepth::get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolop
             robots[armor_number].tracking = "tracking_locking";
             robots[armor_number].confidence = input.data[i].confidence;
             robots[armor_number].is_continue = true;
-            robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].x+ input.data[i].width, input.data[i].y + input.data[i].height);
+            robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].width, input.data[i].height);
         }
         else if(robots[armor_number].tracking == "tracking_locking")
         {
@@ -602,7 +621,7 @@ void GetDepth::get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolop
                 robots[armor_number].tracking = "tracking_locking";
                 robots[armor_number].confidence = input.data[i].confidence;
                 robots[armor_number].is_continue = true;
-                robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].x+ input.data[i].width, input.data[i].y + input.data[i].height);
+                robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].width,input.data[i].height);
             }
             else
             {
@@ -611,7 +630,7 @@ void GetDepth::get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolop
                     robots[armor_number].tracking = "tracking_locking";
                     robots[armor_number].confidence = input.data[i].confidence;
                     robots[armor_number].is_continue = true;
-                    robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].x+ input.data[i].width, input.data[i].y + input.data[i].height);
+                    robots[armor_number].box = cv::Rect(input.data[i].x, input.data[i].y, input.data[i].width, input.data[i].height);
                 }
                 else
                 {

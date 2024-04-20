@@ -77,6 +77,8 @@ public:
     // 设置手动曝光
     CameraSetAeState(h_leftcamera_, false);
     CameraSetExposureTime(h_rightcamera_, false);
+    CameraSetAeState(h_rightcamera_, false);
+    CameraSetExposureTime(h_leftcamera_, false);
 
     // Declare camera parameters
     declareleftParameters();
@@ -314,7 +316,7 @@ private:
         t_rightcapability_.sExposeDesc.uiExposeTimeMin * rightexposure_line_time;
         rightparam_desc.integer_range[0].to_value =
         t_rightcapability_.sExposeDesc.uiExposeTimeMax * rightexposure_line_time;
-        double rightexposure_time = this->declare_parameter("rightexposure_time", 5000, rightparam_desc);
+        double rightexposure_time = this->declare_parameter("rightexposure_time", 3000, rightparam_desc);
         CameraSetExposureTime(h_rightcamera_, rightexposure_time);
         RCLCPP_INFO(this->get_logger(), "rightExposure time = %f", rightexposure_time);
     
@@ -372,182 +374,6 @@ private:
         rightflip_image_ = this->declare_parameter("rightflip_image", false);
     }
 
-  /*rcl_interfaces::msg::SetParametersResult leftparametersCallback(
-    const std::vector<rclcpp::Parameter> & parameters)
-  {
-    rcl_interfaces::msg::SetParametersResult leftresult;
-    leftresult.successful = true;
-    for (const auto & param : parameters) {
-      if (param.get_name() == "leftexposure_time") {
-        int status = CameraSetExposureTime(h_leftcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set exposure time, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftanalog_gain") {
-        int status = CameraSetAnalogGain(h_leftcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set analog gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.r") {
-        leftr_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.g") {
-        leftg_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.b") {
-        leftb_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftsaturation") {
-        int status = CameraSetSaturation(h_leftcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set saturation, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftgamma") {
-        int gamma = param.as_int();
-        int status = CameraSetGamma(h_leftcamera_, gamma);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set Gamma, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftflip_image") {
-        leftflip_image_ = param.as_bool();
-      } else {
-        leftresult.successful = false;
-        leftresult.reason = "Unknown parameter: " + param.get_name();
-      }
-    }
-    return leftresult;
-  }*/
-
-  /*rcl_interfaces::msg::SetParametersResult rightparametersCallback(
-    const std::vector<rclcpp::Parameter> & parameters)
-  {
-    rcl_interfaces::msg::SetParametersResult rightresult;
-    rightresult.successful = true;
-    for (const auto & param : parameters) {
-      if (param.get_name() == "rightexposure_time") {
-        int status = CameraSetExposureTime(h_rightcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          rightresult.successful = false;
-          rightresult.reason = "Failed to set exposure time, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightanalog_gain") {
-        int status = CameraSetAnalogGain(h_rightcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          rightresult.successful = false;
-          rightresult.reason = "Failed to set analog gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightrgb_gain.r") {
-        rightr_gain_ = param.as_int();
-        int status = CameraSetGain(h_rightcamera_, rightr_gain_, rightg_gain_, rightb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          rightresult.successful = false;
-          rightresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightrgb_gain.g") {
-        rightg_gain_ = param.as_int();
-        int status = CameraSetGain(h_rightcamera_, rightr_gain_, rightg_gain_, rightb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          rightresult.successful = false;
-          rightresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightrgb_gain.b") {
-        rightb_gain_ = param.as_int();
-        int status = CameraSetGain(h_rightcamera_, rightr_gain_, rightg_gain_, rightb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          rightresult.successful = false;
-          rightresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightsaturation") {
-        int status = CameraSetSaturation(h_rightcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          rightresult.successful = false;
-          rightresult.reason = "Failed to set saturation, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightgamma") {
-        int gamma = param.as_int();
-        int status = CameraSetGamma(h_rightcamera_, gamma);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          rightresult.successful = false;
-          rightresult.reason = "Failed to set Gamma, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightflip_image") {
-        rightflip_image_ = param.as_bool();
-      } else if {
-        rightresult.successful = false;
-        rightresult.reason = "Unknown parameter: " + param.get_name();
-      }
-      else if (param.get_name() == "leftexposure_time") {
-        int status = CameraSetExposureTime(h_leftcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set exposure time, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftanalog_gain") {
-        int status = CameraSetAnalogGain(h_leftcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set analog gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.r") {
-        leftr_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.g") {
-        leftg_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.b") {
-        leftb_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftsaturation") {
-        int status = CameraSetSaturation(h_leftcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set saturation, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftgamma") {
-        int gamma = param.as_int();
-        int status = CameraSetGamma(h_leftcamera_, gamma);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          leftresult.successful = false;
-          leftresult.reason = "Failed to set Gamma, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftflip_image") {
-        leftflip_image_ = param.as_bool();
-      } else if{
-        leftresult.successful = false;
-        leftresult.reason = "Unknown parameter: " + param.get_name();
-      }
-    }
-    return rightresult;
-  }*/
-
   rcl_interfaces::msg::SetParametersResult parametersCallback(const std::vector<rclcpp::Parameter> & parameters)
   {
     rcl_interfaces::msg::SetParametersResult result;
@@ -565,33 +391,6 @@ private:
           result.successful = false;
           result.reason = "Failed to set analog gain, status = " + std::to_string(status);
         }
-      } else if (param.get_name() == "rightrgb_gain.r") {
-        rightr_gain_ = param.as_int();
-        int status = CameraSetGain(h_rightcamera_, rightr_gain_, rightg_gain_, rightb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightrgb_gain.g") {
-        rightg_gain_ = param.as_int();
-        int status = CameraSetGain(h_rightcamera_, rightr_gain_, rightg_gain_, rightb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightrgb_gain.b") {
-        rightb_gain_ = param.as_int();
-        int status = CameraSetGain(h_rightcamera_, rightr_gain_, rightg_gain_, rightb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "rightsaturation") {
-        int status = CameraSetSaturation(h_rightcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set saturation, status = " + std::to_string(status);
-        }
       } else if (param.get_name() == "rightgamma") {
         int gamma = param.as_int();
         int status = CameraSetGamma(h_rightcamera_, gamma);
@@ -599,10 +398,7 @@ private:
           result.successful = false;
           result.reason = "Failed to set Gamma, status = " + std::to_string(status);
         }
-      } else if (param.get_name() == "rightflip_image") {
-        rightflip_image_ = param.as_bool();
-      }
-      else if (param.get_name() == "leftexposure_time") {
+      } else if (param.get_name() == "leftexposure_time") {
         int status = CameraSetExposureTime(h_leftcamera_, param.as_int());
         if (status != CAMERA_STATUS_SUCCESS) {
           result.successful = false;
@@ -614,33 +410,6 @@ private:
           result.successful = false;
           result.reason = "Failed to set analog gain, status = " + std::to_string(status);
         }
-      } else if (param.get_name() == "leftrgb_gain.r") {
-        leftr_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.g") {
-        leftg_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftrgb_gain.b") {
-        leftb_gain_ = param.as_int();
-        int status = CameraSetGain(h_leftcamera_, leftr_gain_, leftg_gain_, leftb_gain_);
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set RGB gain, status = " + std::to_string(status);
-        }
-      } else if (param.get_name() == "leftsaturation") {
-        int status = CameraSetSaturation(h_leftcamera_, param.as_int());
-        if (status != CAMERA_STATUS_SUCCESS) {
-          result.successful = false;
-          result.reason = "Failed to set saturation, status = " + std::to_string(status);
-        }
       } else if (param.get_name() == "leftgamma") {
         int gamma = param.as_int();
         int status = CameraSetGamma(h_leftcamera_, gamma);
@@ -648,10 +417,7 @@ private:
           result.successful = false;
           result.reason = "Failed to set Gamma, status = " + std::to_string(status);
         }
-      } else if (param.get_name() == "leftflip_image") {
-        leftflip_image_ = param.as_bool();
-      }
-      else {
+      } else {
         result.successful = false;
         result.reason = "Unknown parameter: " + param.get_name();
       }
