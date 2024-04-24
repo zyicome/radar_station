@@ -16,7 +16,7 @@ cmd=("ros2 launch livox_ros2_driver livox_lidar_launch.py")
 
 for cmd in "${cmd[@]}";
 do
-    gnome-terminal -- bash -c "cd /home/qianli/zyb/livox_ros2_driver;source install/setup.bash;$cmd;exec bash;"
+    gnome-terminal -- bash -c "cd ~/livox_ros2_driver;source install/setup.bash;$cmd;exec bash;"
     sleep 0.2
 done
 

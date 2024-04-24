@@ -4,6 +4,7 @@ Img_Sub::Img_Sub() : Node("img_sub")
 {
     robots_init();
 
+   this->yolo_init();
    img_far_sub_ = this->create_subscription<sensor_msgs::msg::CompressedImage>("/image_far/compressed",1,std::bind(&Img_Sub::img_far_callback,this,std::placeholders::_1));
    this->far_yolopoint_pub_ = this->create_publisher<my_msgss::msg::Yolopoint>("/img/far/yolopoint",1);
    this->far_yolopoints_pub_ = this->create_publisher<my_msgss::msg::Yolopoints>("/far_rectangles",1);
@@ -13,9 +14,8 @@ Img_Sub::Img_Sub() : Node("img_sub")
    this->close_yolopoint_pub_ = this->create_publisher<my_msgss::msg::Yolopoint>("/img/close/yolopoint",1);
    this->close_yolopoints_pub_ = this->create_publisher<my_msgss::msg::Yolopoints>("/close_rectangles",1);
    this->close_qimage_pub_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/qt/close_qimage",1);
-   RCLCPP_INFO(this->get_logger(), "begin to init");
+   RCLCPP_INFO(this->get_logger(), "yolo begin to init");
 
-   this->yolo_init();
 }
 
 Img_Sub::~Img_Sub()
@@ -128,6 +128,7 @@ void Img_Sub::kalman_init()
 
 void Img_Sub::img_far_callback(sensor_msgs::msg::CompressedImage msg)
 {
+    RCLCPP_INFO(this->get_logger(), "img_far");
     cv_bridge::CvImagePtr cv_ptr;
         try
         {
@@ -170,6 +171,7 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
         this->close_robot_boxes.data.clear();
         this->close_robot_boxes.id = 0;
         this->close_robot_boxes.text = "none";
+        
         this->yolo_robot_identify(sub_img_close,close_robot_boxes,close_robots,close_inf_robot,close_inf_armor);
         if(close_robot_boxes.data.size() != 0)
         {
@@ -182,7 +184,7 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
 
 void Img_Sub::yolo_init()
 {
-    bool runOnGPU = false;
+    /*bool runOnGPU = false;
     auto pkg_path = ament_index_cpp::get_package_share_directory("Img_Handle");
     // 1. 设置你的onnx模型
     // Note that in this example the classes are hard-coded and 'classes.txt' is a place holder.
@@ -204,20 +206,41 @@ void Img_Sub::yolo_init()
     this->far_inf_armor = inf_armors;
     this->far_inf_robot = inf_robots;
     this->close_inf_armor = inf_armors;
-    this->close_inf_robot = inf_robots;
+    this->close_inf_robot = inf_robots;*/
+    bool runOnGPU = false;
 
-    RCLCPP_INFO(this->get_logger(), "begin to init");
+    std::string pkg_path = ament_index_cpp::get_package_share_directory("Img_Handle");
+    // 1. 设置你的wts模型
+
+    const std::string wtsName = pkg_path + "/new_model/train/weights/yolo_car_best.wts";
+    const std::string engineName = pkg_path + "/new_model/train/weights/yolo_car_best.engine";
+    const std::string classes_txt_file = pkg_path + "/new_model/train/class/car.txt";
+
+    const std::string wtsName2= pkg_path + "/new_model/train2/weights/yolo_armor_best.wts";
+    const std::string engineName2 = pkg_path + "/new_model/train2/weights/yolo_armor_best.engine";
+    const std::string classes_txt_file2 = pkg_path + "/new_model/train2/class/armor.txt";
+
+
+    Inference_cuda inf_robot(wtsName,engineName,classes_txt_file,1,0.33,0.25); // classes.txt 可以缺失
+    // Inference_cuda inf_robot_far(wtsName,engineName,classes_txt_file,1,0.33,0.25); 
+    Inference_cuda inf_armors(wtsName2,engineName2,classes_txt_file2,12,0.33,0.25);
+    // Inference_cuda inf_armors_far(wtsName2,engineName2,classes_txt_file2,12,0.33,0.25);
+    this->far_inf_armor = inf_armors;
+    this->far_inf_robot = inf_robot;
+    this->close_inf_armor = inf_armors;
+    this->close_inf_robot = inf_robot;
+
+    // RCLCPP_INFO(this->get_logger(), "begin to init");
 }
 
 
 //神经网络识别机器人
-void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes, vector<Robot> &robots,Inference &inf_robot,Inference &inf_armor)
+void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes, vector<Robot> &robots,Inference_cuda &inf_robot,Inference_cuda &inf_armor)
 {
         auto start = std::chrono::steady_clock::now();
         // Inference starts here...
-
-        vector<Detection> robot_output = inf_robot.runInference(sub_img);
-
+        RCLCPP_INFO(this->get_logger(), "Inference starts here...");
+        vector<Detection_output> robot_output = inf_robot.runInferenceCuda(sub_img);
         int detections = robot_output.size();
         std::cout << "Number of detections:" << detections << std::endl;
 
@@ -229,7 +252,7 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
 
         for (int i = 0; i < detections; ++i)
         {
-            Detection detection = robot_output[i];
+            Detection_output detection = robot_output[i];
 
             cv::Rect box = detection.box;
             if(box.x < 0)
@@ -264,7 +287,7 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
 
 }
 
-void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect &box, Inference &inf_armor, Detection &robot_output)
+void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect &box, Inference_cuda &inf_armor, Detection_output &robot_output)
 {
     if(box.x < 0)
     {
@@ -286,7 +309,7 @@ void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect
     resize(armor_img, armor_img, Size(300, 300));
 
     // 第一种识别方法--大图像
-    vector<Detection> armor_output = inf_armor.runInference(armor_img);
+    vector<Detection_output> armor_output = inf_armor.runInferenceCuda(armor_img);
     resize(armor_img, armor_img, Size(300, 300));
     int detections = armor_output.size();
     for(int j = 0; j < detections; j++)
@@ -555,7 +578,7 @@ bool Img_Sub::distance_match(const cv::Rect &box, const cv::Rect &new_box)
 }
 
 // 机器人状态更新，有被神经网络识别到时触发
-void Img_Sub::robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output)
+void Img_Sub::robots_adjust(const Detection_output &armor_output, vector<Robot> &robots, Detection_output &robot_output)
 {
     int armor_number = -1;
     float armor_confidence = 0.0;
@@ -799,7 +822,7 @@ void Img_Sub::update(Robot &robot, const Eigen::VectorXd & measurement)
     robot.box.height = x_post(6);
 }
 
-void Img_Sub::not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output)
+void Img_Sub::not_tracking_robots_adjust(const Detection_output &armor_output, vector<Robot> &robots, Detection_output &robot_output)
 {
     int armor_number = -1;
     float armor_confidence = 0.0;

@@ -31,6 +31,7 @@ namespace Yolo
         float conf;  // bbox_conf * cls_conf
         float class_id;
     };
+    //alignas(float) 
 }
 
 namespace nvinfer1

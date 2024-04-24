@@ -12,7 +12,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/dnn.hpp>
 
-struct Detection
+struct Detection_inf
 {
     int class_id{0};
     std::string className{};
@@ -26,7 +26,7 @@ class Inference
 public:
     Inference();
     Inference(const std::string &onnxModelPath, const cv::Size &modelInputShape = {640, 640}, const std::string &classesTxtFile = "", const bool &runWithCuda = true);
-    std::vector<Detection> runInference(const cv::Mat &input);
+    std::vector<Detection_inf> runInference(const cv::Mat &input);
     std::vector<std::string> classes;
 private:
     void loadClassesFromFile();

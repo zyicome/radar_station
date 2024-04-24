@@ -11,7 +11,7 @@ using namespace cv;
 
 int main(int argc, char **argv)
 {
-    bool runOnGPU = false;
+    bool runOnGPU = true;
 
     // 1. 设置你的onnx模型
     // Note that in this example the classes are hard-coded and 'classes.txt' is a place holder.
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
     {
         cv::Mat frame = cv::imread(imageNames[i]);
         // Inference starts here...
-        std::vector<Detection> output = inf_robot.runInference(frame);
+        std::vector<Detection_inf> output = inf_robot.runInference(frame);
 
         int detections = output.size();
         std::cout << "Number of detections:" << detections << std::endl;
@@ -43,15 +43,15 @@ int main(int argc, char **argv)
 
         for (int i = 0; i < detections; ++i)
         {
-            Detection detection = output[i];
+            Detection_inf detection = output[i];
 
             cv::Rect box = detection.box;
             cv::Scalar color = detection.color;
 
-            // Detection box
+            // Detection_inf box
             cv::rectangle(frame, box, color, 2);
 
-            // Detection box text
+            // Detection_inf box text
             std::string classString = detection.className + ' ' + std::to_string(detection.confidence).substr(0, 4);
             cv::Size textSize = cv::getTextSize(classString, cv::FONT_HERSHEY_DUPLEX, 1, 2, 0);
             cv::Rect textBox(box.x, box.y - 40, textSize.width + 10, textSize.height + 20);

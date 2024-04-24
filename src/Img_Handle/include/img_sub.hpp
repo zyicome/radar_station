@@ -15,6 +15,8 @@
 
 #include "extended_kalman_filter.hpp"
 
+#include "inference_cuda.h"
+
 using namespace std;
 using namespace cv;
 
@@ -53,9 +55,9 @@ public:
 
     void yolo_init();
 
-    void yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes,vector<Robot> &robots,Inference &inf_robot,Inference &inf_armor);
+    void yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes,vector<Robot> &robots,Inference_cuda &inf_robot,Inference_cuda &inf_armor);
 
-    void yolo_armor_identify(Mat & sub_img,vector<Robot> &robots, cv::Rect &box,Inference &inf_armor,Detection &robot_output);
+    void yolo_armor_identify(Mat & sub_img,vector<Robot> &robots, cv::Rect &box,Inference_cuda &inf_armor,Detection_output &robot_output);
 
     void draw_img(Mat & sub_img,my_msgss::msg::Yolopoints &robot_boxes);
 
@@ -69,11 +71,11 @@ public:
 
     bool distance_match(const cv::Rect &box, const cv::Rect &new_box);
 
-    void robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output);
+    void robots_adjust(const Detection_output &armor_output, vector<Robot> &robots, Detection_output &robot_output);
 
     void allrobots_adjust(vector<Robot> &robots,my_msgss::msg::Yolopoints &robot_boxes);
 
-    void not_tracking_robots_adjust(const Detection &armor_output, vector<Robot> &robots, Detection &robot_output);
+    void not_tracking_robots_adjust(const Detection_output &armor_output, vector<Robot> &robots, Detection_output &robot_output);
 
     void not_tracking_allrobots_adjust(vector<Robot> &robots, my_msgss::msg::Yolopoints &robot_boxes);
     //new place
@@ -107,11 +109,11 @@ public:
 
     my_msgss::msg::Yolopoints close_robot_boxes;
 
-    Inference far_inf_armor;
-    Inference close_inf_armor;
+    Inference_cuda far_inf_armor;
+    Inference_cuda close_inf_armor;
 
-    Inference far_inf_robot;
-    Inference close_inf_robot;
+    Inference_cuda far_inf_robot;
+    Inference_cuda close_inf_robot;
 
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr img_far_sub_;
     rclcpp::Publisher<my_msgss::msg::Yolopoint>::SharedPtr far_yolopoint_pub_;
