@@ -28,12 +28,13 @@ struct Detection_output
 class Inference_cuda
 {
 public:
-    Inference_cuda(const std::string &wtsName,const std::string &engineName,const std::string &classes_txt_file,int k_num_class, float gd,float gw);
     Inference_cuda();
     ~Inference_cuda();
+    void Inference_cuda_reset(const std::string &wtsName,const std::string &engineName,const std::string &classes_txt_file,int k_num_class, float gd,float gw);
     std::vector<Detection_output> runInferenceCuda(const cv::Mat &input);
     std::vector<std::string> classes;
 private:
+    
     int is_p=0;
     std::string sub_type;//yolov8模型相关
     int k_num_class;

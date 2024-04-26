@@ -109,8 +109,8 @@ public:
 
     my_msgss::msg::Yolopoints close_robot_boxes;
 
-    Inference_cuda far_inf_armor;
-    Inference_cuda close_inf_armor;
+    Inference_cuda far_inf_armors;
+    Inference_cuda close_inf_armors;
 
     Inference_cuda far_inf_robot;
     Inference_cuda close_inf_robot;

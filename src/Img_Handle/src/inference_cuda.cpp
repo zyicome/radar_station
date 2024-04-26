@@ -1,7 +1,7 @@
 #include "inference_cuda.h"
 Logger gLogger;
 const int kOutputSize = kMaxNumOutputBbox * sizeof(Detection) / sizeof(float) + 1;
-Inference_cuda::Inference_cuda(const std::string &wtsName ,const std::string &engineName ,const std::string &classes_txt_file,int k_num_class, float gd = 0.33,float gw = 0.25)
+void Inference_cuda::Inference_cuda_reset(const std::string &wtsName ,const std::string &engineName ,const std::string &classes_txt_file,int k_num_class, float gd = 0.33,float gw = 0.25)
 {
     this->engine_name = engineName;
     this->wts_name = wtsName;
@@ -10,7 +10,7 @@ Inference_cuda::Inference_cuda(const std::string &wtsName ,const std::string &en
     cudaSetDevice(kGpuId);//设置cuda
     int max_channels = 1024;
     this->k_num_class = k_num_class;
-    std::cout<<"kNumClass:"<<this->k_num_class<<std::endl;
+    // std::cout<<"kNumClass:"<<this->k_num_class<<std::endl;
     sub_type = "";
     // if (!wts_name.empty()) {
     //     std::cout<<wts_name<<std::endl;
@@ -33,7 +33,7 @@ Inference_cuda::Inference_cuda(const std::string &wtsName ,const std::string &en
     model_bboxes = out_dims.d[0];
     prepare_buffer(engine, &device_buffers[0], &device_buffers[1], &output_buffer_host, &decode_ptr_host,
                    &decode_ptr_device, cuda_post_process);
-    std::cout<<"Inference_cuda init end!"<<std::endl;
+    // std::cout<<"Inference_cuda init end!"<<std::endl;
 
 }
 Inference_cuda::Inference_cuda()
@@ -188,17 +188,13 @@ std::vector<Detection_output> Inference_cuda::runInferenceCuda(const cv::Mat &in
     
     cv::Mat img;
     input.copyTo(img);
-    std::cout<<"img_process_start!"<<std::endl;
     if (this->k_num_class == 1)
     {
         cuda_preprocess_car(img.ptr(), img.cols, img.rows, device_buffers[0], 640, 640, stream);
     }else{
         cuda_preprocess_armor(img.ptr(), img.cols, img.rows, device_buffers[0], 640, 640, stream);
     }
-    std::cout<<"img_process_end!"<<std::endl;
     infer(*context, stream, (void**)device_buffers, output_buffer_host, BATCH_SIZE, decode_ptr_host,decode_ptr_device, model_bboxes, cuda_post_process);
-    std::cout<<"infer_end!"<<std::endl;
-    //output->decode_ptr_host
     std::vector<Detection> res_car;
     // batch_process(res_batch, decode_ptr_host, img_batch.size(), bbox_element, img_batch);
     int count = static_cast<int>(*decode_ptr_host);
@@ -211,7 +207,6 @@ std::vector<Detection_output> Inference_cuda::runInferenceCuda(const cv::Mat &in
         Detection_output result;
         result.class_id = idx;
         result.confidence = res_car[i].conf;
-
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<int> dis(100, 255);
@@ -220,9 +215,8 @@ std::vector<Detection_output> Inference_cuda::runInferenceCuda(const cv::Mat &in
                                   dis(gen));
 
         result.className = classes[result.class_id];
-        cv::Rect bbox = cv::Rect(res_car[i].bbox[0],res_car[i].bbox[1],res_car[i].bbox[2],res_car[i].bbox[3]);
-        result.box = bbox;
-
+        cv::Rect r = get_rect(img, res_car[i].bbox);
+        result.box = r;
         detections.push_back(result);
     }
 

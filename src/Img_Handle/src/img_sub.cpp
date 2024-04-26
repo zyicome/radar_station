@@ -143,7 +143,7 @@ void Img_Sub::img_far_callback(sensor_msgs::msg::CompressedImage msg)
         this->far_robot_boxes.data.clear();
         this->far_robot_boxes.id = 0;
         this->far_robot_boxes.text = "none";
-        this->yolo_robot_identify(sub_img_far,far_robot_boxes,far_robots,far_inf_robot,far_inf_armor);
+        this->yolo_robot_identify(sub_img_far,far_robot_boxes,far_robots,far_inf_robot,far_inf_armors);
         if(far_robot_boxes.data.size() != 0)
         {
             RCLCPP_INFO(get_logger(), "began to send farrobot_boxes");
@@ -172,7 +172,7 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
         this->close_robot_boxes.id = 0;
         this->close_robot_boxes.text = "none";
         
-        this->yolo_robot_identify(sub_img_close,close_robot_boxes,close_robots,close_inf_robot,close_inf_armor);
+        this->yolo_robot_identify(sub_img_close,close_robot_boxes,close_robots,close_inf_robot,close_inf_armors);
         if(close_robot_boxes.data.size() != 0)
         {
             RCLCPP_INFO(get_logger(), "began to send farrobot_boxes");
@@ -221,15 +221,12 @@ void Img_Sub::yolo_init()
     const std::string classes_txt_file2 = pkg_path + "/new_model/train2/class/armor.txt";
 
 
-    Inference_cuda inf_robot(wtsName,engineName,classes_txt_file,1,0.33,0.25); // classes.txt 可以缺失
+    far_inf_robot.Inference_cuda_reset(wtsName,engineName,classes_txt_file,1,0.33,0.25);// classes.txt 可以缺失
+    close_inf_robot.Inference_cuda_reset(wtsName,engineName,classes_txt_file,1,0.33,0.25);
     // Inference_cuda inf_robot_far(wtsName,engineName,classes_txt_file,1,0.33,0.25); 
-    Inference_cuda inf_armors(wtsName2,engineName2,classes_txt_file2,12,0.33,0.25);
+    far_inf_armors.Inference_cuda_reset(wtsName2,engineName2,classes_txt_file2,12,0.33,0.25);
+    close_inf_armors.Inference_cuda_reset(wtsName2,engineName2,classes_txt_file2,12,0.33,0.25);
     // Inference_cuda inf_armors_far(wtsName2,engineName2,classes_txt_file2,12,0.33,0.25);
-    this->far_inf_armor = inf_armors;
-    this->far_inf_robot = inf_robot;
-    this->close_inf_armor = inf_armors;
-    this->close_inf_robot = inf_robot;
-
     // RCLCPP_INFO(this->get_logger(), "begin to init");
 }
 
