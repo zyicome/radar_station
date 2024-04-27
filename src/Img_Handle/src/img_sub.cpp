@@ -270,6 +270,8 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
             }
             cout << "box.x:" << box.x << " box.y:" << box.y << " box.width:" << box.width << " box.height:" << box.height << endl;
             cv::rectangle(sub_img, box, Scalar(255,0,0), 2);
+            cv::Rect bbox = cv::Rect(box.x + box.width /8, box.y + box.height /2, box.width / 4 * 3, box.height /2);
+            cv::rectangle(sub_img, bbox, Scalar(255,0,0), 2);
             /*imshow("sub_img",sub_img);
             waitKey(0);*/
             this->yolo_armor_identify(sub_img,robots,box,inf_armor,robot_output[i]);

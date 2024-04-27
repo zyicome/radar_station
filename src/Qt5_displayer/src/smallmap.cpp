@@ -17,8 +17,8 @@ smallMap::smallMap(QWidget * parent)
     //connect(this,SIGNAL(clicked(bool)),this,SLOT(drawCircle(QMouthEvent &e)));
 
     QString img_path = QString::fromStdString(ament_index_cpp::get_package_share_directory("Qt5_displayer"));
-    QString redimage_path = img_path + "/map/redmap.png";
-    QString blueimage_path = img_path + "/map/bluemap.png";
+    redimage_path = img_path + "/map/UC_redMap.png";
+    blueimage_path = img_path + "/map/UC_blueMap.png";
 
     our_color = 0;
     if(our_color == 0) // red
@@ -194,7 +194,7 @@ void smallMap::robots_init()
     robot.is_continue = false;
     robot.x = 0.0;
     robot.y = 0.0;
-    for(int i =0;i<19;i++)
+    for(int i =0;i<13;i++)
     {
         robot.id++;
         far_robots.push_back(robot);

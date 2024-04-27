@@ -34,6 +34,7 @@ radarStation::radarStation(QWidget *parent)
     ui->closeImg->moveToThread(&close_thread);
 
     init();
+    robots_init();
 }
 
 radarStation::~radarStation()
@@ -49,12 +50,15 @@ void radarStation::init()
     connect(ui->pnpMode_2,SIGNAL(clicked()),this,SLOT(changeToPnpWidget_2()));
     connect(ui->mapMode_2,SIGNAL(clicked()),this,SLOT(changeToMapWidget_2()));
 
+    connect(ui->blueMode,SIGNAL(clicked()),this,SLOT(blueMode()));
+    connect(ui->redMode,SIGNAL(clicked()),this,SLOT(redMode()));
+
     connect(&this->qtnode,SIGNAL(updateFarImage()),this,SLOT(farImageUpdate()));
-    connect(&this->qtnode,SIGNAL(updateDepthImage()),this,SLOT(farDepthImageUpdate()));
+    //connect(&this->qtnode,SIGNAL(updateDepthImage()),this,SLOT(farDepthImageUpdate()));
     connect(&this->qtnode,SIGNAL(updateFarPoints()),this,SLOT(farPointsUpdate()));
 
     connect(&this->qtnode,SIGNAL(updateCloseImage()),this,SLOT(closeImageUpdate()));
-    connect(&this->qtnode,SIGNAL(updateCloseDepthImage()),this,SLOT(closeDepthImageUpdate()));
+    //connect(&this->qtnode,SIGNAL(updateCloseDepthImage()),this,SLOT(closeDepthImageUpdate()));
     connect(&this->qtnode,SIGNAL(updateClosePoints()),this,SLOT(closePointsUpdate()));
 
     connect(ui->solvePnpWidget,SIGNAL(pnpFinished()),this,SLOT(publishPnpResult()));
@@ -184,7 +188,7 @@ void radarStation::closeImageUpdate()
     //close_qimage_mutex.unlock();
 }
 
-void radarStation::farDepthImageUpdate()
+/*void radarStation::farDepthImageUpdate()
 {
     far_qimage_mutex.lock();
     //mapMessageDisplay("depthImageUpdate");
@@ -194,9 +198,9 @@ void radarStation::farDepthImageUpdate()
         ui->farDepth->update();
     }
     far_qimage_mutex.unlock();
-}
+}*/
 
-void radarStation::closeDepthImageUpdate()
+/*void radarStation::closeDepthImageUpdate()
 {
     close_qimage_mutex.lock();
     //mapMessageDisplay("depthImageUpdate");
@@ -206,7 +210,7 @@ void radarStation::closeDepthImageUpdate()
         ui->closeDepth->update();
     }
     close_qimage_mutex.unlock();
-}
+}*/
 
 void radarStation::publishPnpResult()
 {
@@ -229,12 +233,16 @@ void radarStation::publishPnpResult()
 
 void radarStation::farPointsUpdate()
 {
-    float object_width = 11.5;
-    float object_height = 8;
+    float object_width = 28;
+    float object_height = 15;
 
     my_msgss::msg::Points far_qpoints = qtnode.far_world_qpoints;
     ui->map->get_robots(ui->map->far_robots,far_qpoints);
     ui->map->allrobots_adjust(ui->map->far_robots);
+    robots_adjust(ui->map->far_robots,true);
+    all_robots_adjust(true);
+    status_adjust(robots);
+    decision(robots);
 
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
@@ -260,12 +268,16 @@ void radarStation::farPointsUpdate()
 
 void radarStation::closePointsUpdate()
 {
-    float object_width = 11.5;
-    float object_height = 8;
+    float object_width = 28;
+    float object_height = 15;
 
     my_msgss::msg::Points close_qpoints = qtnode.close_world_qpoints;
     ui->map->get_robots(ui->map->close_robots,close_qpoints);
     ui->map->allrobots_adjust(ui->map->close_robots);
+    robots_adjust(ui->map->close_robots,false);
+    all_robots_adjust(false);
+    status_adjust(robots);
+    decision(robots);
 
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
@@ -288,4 +300,223 @@ void radarStation::closePointsUpdate()
         }
     }
     ui->map->update();
+}
+
+void radarStation::blueMode()
+{
+    ui->map->our_color = 1;
+    ui->map->image.load(ui->map->blueimage_path);
+    ui->map->update();
+}
+
+void radarStation::redMode()
+{
+    ui->map->our_color = 0;
+    ui->map->image.load(ui->map->redimage_path);
+    ui->map->update();
+}
+
+void radarStation::robots_init()
+{
+    DecisionRobot robot;
+    robot.id = -1;
+    robot.confidence = 0.0;
+    robot.is_continue = false;
+    robot.is_far_continue = false;
+    robot.is_close_continue = false;
+    robot.x = 0.0;
+    robot.y = 0.0;
+    for(int i =0;i<13;i++)
+    {
+        robot.id++;
+        robots.push_back(robot);
+    }
+}
+
+void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
+{
+    float object_width = 28;
+    float object_height = 15;
+    float width = ui->map->width();
+    float height = ui->map->height();
+    int armor_number = 0;
+    float confidence = 0.0;
+    float x = 0.0;
+    float y = 0.0;
+
+    for(int i = 0;i<get_robots.size();i++)
+    {
+        if(get_robots[i].confidence != 0.0)
+        {
+            armor_number = get_robots[i].id;
+            confidence = get_robots[i].confidence;
+            cout << "get_robots_armor_number:" << armor_number << " confidence:" << confidence << endl;
+            x = get_robots[i].x / object_width * width;
+            y = height - (get_robots[i].y / object_height * height);
+            if(is_far)
+            {
+                if(robots[armor_number].confidence == 0.0)
+                {
+                    robots[armor_number].id = armor_number;
+                    robots[armor_number].is_continue = true;
+                    robots[armor_number].is_far_continue = true;
+                    robots[armor_number].is_close_continue = false;
+                    robots[armor_number].confidence = confidence;
+                    robots[armor_number].x = x;
+                    robots[armor_number].y = y;
+                }
+                else if(robots[armor_number].confidence != 0.0)
+                {
+                    if(confidence >= robots[armor_number].confidence)
+                    {
+                        robots[armor_number].id = armor_number;
+                        robots[armor_number].is_continue = true;
+                        robots[armor_number].is_far_continue = true;
+                        robots[armor_number].is_close_continue = false;
+                        robots[armor_number].confidence = confidence;
+                        robots[armor_number].x = x;
+                        robots[armor_number].y = y;
+                    }
+                    else
+                    {
+                        robots[armor_number].is_far_continue = false;
+                    }
+                }
+            else
+            {
+                if(robots[armor_number].confidence == 0.0)
+                {
+                    robots[armor_number].id = armor_number;
+                    robots[armor_number].is_continue = true;
+                    robots[armor_number].is_far_continue = false;
+                    robots[armor_number].is_close_continue = true;
+                    robots[armor_number].confidence = confidence;
+                    robots[armor_number].x = x;
+                    robots[armor_number].y = y;
+                }
+                else if(robots[armor_number].confidence != 0.0)
+                {
+                    if(confidence >= robots[armor_number].confidence)
+                    {
+                        robots[armor_number].id = armor_number;
+                        robots[armor_number].is_continue = true;
+                        robots[armor_number].is_far_continue = false;
+                        robots[armor_number].is_close_continue = true;
+                        robots[armor_number].confidence = confidence;
+                        robots[armor_number].x = x;
+                        robots[armor_number].y = y;
+                    }
+                    else
+                    {
+                        robots[armor_number].is_close_continue = false;
+                    }
+                }
+            }
+        }
+    }
+    }
+}
+
+void radarStation::all_robots_adjust(bool is_far)
+{
+    for(int i = 0;i<robots.size();i++)
+    {
+        if(robots[i].is_continue == false)
+        {
+            if(robots[i].is_far_continue == false && robots[i].is_close_continue == false)
+            {
+                robots[i].confidence = 0.0;
+                robots[i].x = 0.0;
+                robots[i].y = 0.0;
+            }
+        }
+        if(is_far)
+        {
+            robots[i].is_far_continue = false;
+        }
+        else
+        {
+            robots[i].is_close_continue = false;
+        }
+        if(robots[i].is_far_continue == false && robots[i].is_close_continue == false)
+        {
+            robots[i].is_continue = false;
+        }
+    }
+}
+
+void radarStation::status_adjust(std::vector<DecisionRobot> &robots)
+{
+    int armor_number = 0;
+    float confidence = 0.0;
+    if(ui->map->our_color == 0) // red
+    {
+        for(int i = 1;i<7;i++)
+        {
+            if(robots[i].confidence != 0.0)
+            {
+            armor_number = robots[i].id;
+            confidence = robots[i].confidence;
+            std::cout << "armor_number:" << armor_number << " confidence:" << confidence << std::endl;
+            switch(armor_number)
+            {
+                case 1:
+                    ui->hp_1->setText(QString::number(confidence));
+                    break;
+                case 2: 
+                    ui->hp_2->setText(QString::number(confidence));
+                    break;
+                case 3:
+                    ui->hp_3->setText(QString::number(confidence));
+                    break;
+                case 4:
+                    ui->hp_4->setText(QString::number(confidence));
+                    break;
+                case 5:
+                    ui->hp_5->setText(QString::number(confidence));
+                    break;
+                case 6:
+                    ui->hp_6->setText(QString::number(confidence));
+                    break;
+            }
+            }
+        }
+    }
+    else
+    {
+        for(int i = 7;i<13;i++)
+        {
+            if(robots[i].confidence != 0.0)
+            {
+            armor_number = robots[i].id - 6;
+            confidence = robots[i].confidence;
+            switch(armor_number)
+            {
+                case 1:
+                    ui->hp_1->setText(QString::number(confidence));
+                    break;
+                case 2: 
+                    ui->hp_2->setText(QString::number(confidence));
+                    break;
+                case 3:
+                    ui->hp_3->setText(QString::number(confidence));
+                    break;
+                case 4:
+                    ui->hp_4->setText(QString::number(confidence));
+                    break;
+                case 5:
+                    ui->hp_5->setText(QString::number(confidence));
+                    break;
+                case 6:
+                    ui->hp_6->setText(QString::number(confidence));
+                    break;
+            }
+            }
+        }
+    }
+}
+
+void radarStation::decision(std::vector<DecisionRobot> &robots)
+{
+
 }

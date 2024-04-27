@@ -8,12 +8,24 @@
 #include "qtnode.h"
 #include "std_msgs/msg/float32_multi_array.hpp"
 #include "my_msgss/msg/points.hpp"
+#include "smallmap.h"
 
 #include <QThread>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class radarStation; }
 QT_END_NAMESPACE
+
+struct DecisionRobot
+{
+    int id;
+    bool is_continue;
+    bool is_far_continue;
+    bool is_close_continue;
+    float confidence;
+    float x;
+    float y;
+};
 
 class radarStation : public QMainWindow
 {
@@ -29,6 +41,16 @@ public:
 
     void mapMessageDisplay(QString text);
 
+    void robots_init();
+
+    void robots_adjust(std::vector<Robot> &get_robots, bool is_far);
+
+    void all_robots_adjust(bool is_far);
+
+    void status_adjust(std::vector<DecisionRobot> &robots);
+
+    void decision(std::vector<DecisionRobot> &robots);
+
     void init();
 public Q_SLOTS:
     void changeToMapWidget();
@@ -43,20 +65,26 @@ public Q_SLOTS:
 
     void closeImageUpdate();
 
-    void farDepthImageUpdate();
+    //void farDepthImageUpdate();
 
-    void closeDepthImageUpdate();
+    //void closeDepthImageUpdate();
 
     void publishPnpResult();
 
     void farPointsUpdate();
 
     void closePointsUpdate();
+
+    void blueMode();
+
+    void redMode();
 private:
     Ui::radarStation *ui;
     qtNode qtnode;
     mutable QMutex far_qimage_mutex;
     mutable QMutex close_qimage_mutex;
+
+    std::vector<DecisionRobot> robots;
 
     QPoint pos;
 

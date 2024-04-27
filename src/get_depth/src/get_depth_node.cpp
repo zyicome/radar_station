@@ -101,18 +101,18 @@ void GetDepth::init_camera_matrix()
     far_camera_matrix.at<double>(2, 0) = 0;
     far_camera_matrix.at<double>(2, 1) = 0;
     far_camera_matrix.at<double>(2, 2) = 1;
-    far_uni_matrix.at<double>(0, 0) = -0.0388939;
-    far_uni_matrix.at<double>(0, 1) = -0.993756;
-    far_uni_matrix.at<double>(0, 2) = 0.10458;
-    far_uni_matrix.at<double>(0, 3) = 0.125157;
-    far_uni_matrix.at<double>(1, 0) = 0.31202;
-    far_uni_matrix.at<double>(1, 1) = -0.111504;
-    far_uni_matrix.at<double>(1, 2) = -0.943509;
-    far_uni_matrix.at<double>(1, 3) = -0.964176;
-    far_uni_matrix.at<double>(2, 0) = 0.949279;
-    far_uni_matrix.at<double>(2, 1) = -0.00406564;
-    far_uni_matrix.at<double>(2, 2) = 0.314409;
-    far_uni_matrix.at<double>(2, 3) = -2.36543;
+    far_uni_matrix.at<double>(0, 0) = 0.0700096;
+    far_uni_matrix.at<double>(0, 1) = -0.99307;
+    far_uni_matrix.at<double>(0, 2) = -0.0943929;
+    far_uni_matrix.at<double>(0, 3) = -0.225929;
+    far_uni_matrix.at<double>(1, 0) = -0.0587029;
+    far_uni_matrix.at<double>(1, 1) = 0.0903597;
+    far_uni_matrix.at<double>(1, 2) = -0.994178;
+    far_uni_matrix.at<double>(1, 3) = 0.240583;
+    far_uni_matrix.at<double>(2, 0) = 0.995818;
+    far_uni_matrix.at<double>(2, 1) = 0.0751431;
+    far_uni_matrix.at<double>(2, 2) = -0.0519701;
+    far_uni_matrix.at<double>(2, 3) = -0.667486;
     far_distortion_coefficient.at<double>(0,0) = -0.019203;
     far_distortion_coefficient.at<double>(1,0) = 0.252109;
     far_distortion_coefficient.at<double>(2,0) = 0.016576;
@@ -128,18 +128,18 @@ void GetDepth::init_camera_matrix()
     close_camera_matrix.at<double>(2, 0) = 0;
     close_camera_matrix.at<double>(2, 1) = 0;
     close_camera_matrix.at<double>(2, 2) = 1;
-    close_uni_matrix.at<double>(0, 0) = 0.30193;
-    close_uni_matrix.at<double>(0, 1) = -0.953261;
-    close_uni_matrix.at<double>(0, 2) = -0.0114317;
-    close_uni_matrix.at<double>(0, 3) = -1.17138;
-    close_uni_matrix.at<double>(1, 0) = 0.150677;
-    close_uni_matrix.at<double>(1, 1) = 0.0595584;
-    close_uni_matrix.at<double>(1, 2) = -0.986787;
-    close_uni_matrix.at<double>(1, 3) = -0.00000483311;
-    close_uni_matrix.at<double>(2, 0) = 0.941347;
-    close_uni_matrix.at<double>(2, 1) = 0.296218;
-    close_uni_matrix.at<double>(2, 2) = 0.161617;
-    close_uni_matrix.at<double>(2, 3) = 0.402439;
+    close_uni_matrix.at<double>(0, 0) = 0.0363514;
+    close_uni_matrix.at<double>(0, 1) = -0.999079;
+    close_uni_matrix.at<double>(0, 2) = 0.0227922;
+    close_uni_matrix.at<double>(0, 3) = -0.147925;
+    close_uni_matrix.at<double>(1, 0) = 0.0685296;
+    close_uni_matrix.at<double>(1, 1) = -0.0202615;
+    close_uni_matrix.at<double>(1, 2) = -0.997443;
+    close_uni_matrix.at<double>(1, 3) = -0.0908943;
+    close_uni_matrix.at<double>(2, 0) = 0.996987;
+    close_uni_matrix.at<double>(2, 1) = 0.0378204;
+    close_uni_matrix.at<double>(2, 2) = 0.06773;
+    close_uni_matrix.at<double>(2, 3) = 0.238152;
     close_distortion_coefficient.at<double>(0,0) = -0.063200;
     close_distortion_coefficient.at<double>(1,0) = -0.005061;
     close_distortion_coefficient.at<double>(2,0) = -0.001755;
@@ -260,8 +260,8 @@ void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
     far_distancePointPub->publish(close_distance_it);
     resize(far_depth_show, far_depth_show, Size(640, 480));
     far_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "mono8", far_depth_show).toCompressedImageMsg()));
-    /*imshow("far_depth_show", far_depth_show);
-    waitKey(1);*/
+    imshow("far_depth_show", far_depth_show);
+    waitKey(1);
 };
 
 //update the car_rects
@@ -354,6 +354,10 @@ void GetDepth::outpost_Callback(const my_msgss::msg::Points &outpost) {
  */
 double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my_msgss::msg::Yolopoint::_id_type id) {
     std::vector<double> distances;
+    rect.x = rect.x + rect.width / 8;
+    rect.y = rect.y + rect.height / 2;
+    rect.width = rect.width / 4 * 3;
+    rect.height = rect.height / 2;
     //从新到旧遍历深度图队列，直到ROI深度不为0
     for (int i = rect.y; i < (rect.y + rect.height); i++) {
         for (int j = rect.x; j < (rect.x + rect.width); j++) {
@@ -373,31 +377,25 @@ double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my
         cout << "No Livox Points in ROI" << rect << endl;
         return 0;
     } else {
+        sort(distances.begin(), distances.end());
+        for(int i = 0;i<distances.size();i++)
+        {
+            cout << "distances[" << i << "]:" << distances[i] << endl;
+        }
+        distance_filter(distances);
+        cout << "after distance_filter" << endl;
+        for(int i = 0;i<distances.size();i++)
+        {
+            cout << "distances{" << i << "}:" << distances[i] << endl;
+        }
         double mean_distance;
         double sum = 0;
         //根据不同的策略获取深度
-        if (id != 12 && id != 13) {
-            for (double distance: distances) {
-                sum += distance;
-            }
-            mean_distance = sum / distances.size();
-            return mean_distance;
-        } else {
-            sort(distances.begin(), distances.end());
-            return distances[distances.size() / 2];
-//            if (distances.size() >= 5){
-//                for(uint8_t j=0;j<5;j++){
-//                    sum+=distances[j];
-//                }
-//                mean_distance=sum/5;
-            //return mean_distance;
-//                return distances[distances.size()/2];
-//            }
-//            else {
-//                return distances[0];
-//                return distances[distances.size()/2];
-//            }
+        for (double distance: distances) {
+            sum += distance;
         }
+        mean_distance = sum / distances.size();
+        return mean_distance;
     }
 };
 
@@ -646,4 +644,21 @@ void GetDepth::allrobots_adjust(std::vector<Robot> &robots)
 
 // 差雷达追踪功能的添加
 //--------------------------------------------------------------------------------------------------------------------------
-
+void GetDepth::distance_filter(std::vector<double> & distances)
+{
+    double sum = 0.0;
+    double mean_distance = 0.0;
+    for(int i = 0;i < distances.size();i++)
+    {
+        sum += distances[i];
+    }
+    mean_distance = sum / distances.size();
+    for(int i = 0;i < distances.size();i++)
+    {
+        if(abs(distances[i] - mean_distance) > 0.5)
+        {
+            distances.erase(distances.begin() + i);
+            i--;
+        }
+    }
+}

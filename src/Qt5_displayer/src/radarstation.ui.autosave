@@ -391,7 +391,7 @@
        <string>蓝方模式</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="colorLabel">
       <property name="geometry">
        <rect>
         <x>620</x>
@@ -429,7 +429,7 @@
      <zorder>decisionMessage</zorder>
      <zorder>redMode</zorder>
      <zorder>blueMode</zorder>
-     <zorder>label</zorder>
+     <zorder>colorLabel</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">

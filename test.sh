@@ -2,7 +2,7 @@ echo "Starting colcon build"
 colcon build
 echo "Colcon build finished"
 
-cmds=( "ros2 launch mindvision_camera mv_camera.py"
+cmds=(  "ros2 launch mindvision_camera mv_camera.py"
 	      #"ros2 launch hik_camera hik_camera.launch.py"
         "ros2 launch Img_Handle img_handle_launch.py"
         "ros2 launch get_depth get_depth_launch.py"

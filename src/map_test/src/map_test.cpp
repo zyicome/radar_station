@@ -199,7 +199,7 @@ void MapTest::far_callback(const my_msgss::msg::Distpoints msg)
     {
         if(far_robots[i].distance != 0.0)
         {
-            RCLCPP_INFO(this->get_logger(), "begin to calculate");
+            //RCLCPP_INFO(this->get_logger(), "begin to calculate");
             Mat x8_pixel;
             x8_pixel = (Mat_<double>(3, 1) << (double) far_robots[i].x, (double) far_robots[i].y, 1);
             //以mm为单位，从m->mm 
@@ -243,7 +243,7 @@ void MapTest::close_callback(const my_msgss::msg::Distpoints msg)
     {
         if(close_robots[i].distance != 0.0)
         {
-            RCLCPP_INFO(this->get_logger(), "begin to calculate");
+            //RCLCPP_INFO(this->get_logger(), "begin to calculate");
             Mat x8_pixel;
             x8_pixel = (Mat_<double>(3, 1) << (double) close_robots[i].x, (double) close_robots[i].y, 1);
             //以mm为单位，从m->mm 

@@ -45,6 +45,8 @@ public:
     QVector<mapPos> farMapPoints;
     QVector<mapPos> closeMapPoints;
     QPixmap image;
+    QString redimage_path;
+    QString blueimage_path;
     int mapx;
     int mapy;
     int mapcols;
