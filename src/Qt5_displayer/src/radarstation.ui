@@ -359,7 +359,7 @@
       <property name="geometry">
        <rect>
         <x>680</x>
-        <y>690</y>
+        <y>730</y>
         <width>781</width>
         <height>261</height>
        </rect>
@@ -391,7 +391,7 @@
        <string>蓝方模式</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="colorExplain">
       <property name="geometry">
        <rect>
         <x>620</x>
@@ -402,6 +402,19 @@
       </property>
       <property name="text">
        <string>按照我方颜色确定：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="gameProgress">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>700</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>比赛状态</string>
       </property>
      </widget>
      <zorder>mapMessage</zorder>
@@ -429,7 +442,8 @@
      <zorder>decisionMessage</zorder>
      <zorder>redMode</zorder>
      <zorder>blueMode</zorder>
-     <zorder>label</zorder>
+     <zorder>colorExplain</zorder>
+     <zorder>gameProgress</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">

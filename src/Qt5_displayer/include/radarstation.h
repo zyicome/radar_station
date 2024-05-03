@@ -49,6 +49,8 @@ public:
 
     void status_adjust(std::vector<DecisionRobot> &robots);
 
+    void sendRobots(std::vector<DecisionRobot> &robots);
+
     void decision(std::vector<DecisionRobot> &robots);
 
     void init();
@@ -74,6 +76,8 @@ public Q_SLOTS:
     void farPointsUpdate();
 
     void closePointsUpdate();
+
+    void gameStateUpdate();
 
     void blueMode();
 

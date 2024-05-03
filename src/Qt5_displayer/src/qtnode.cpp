@@ -117,6 +117,13 @@ void qtNode::closePointsCallback(const my_msgss::msg::Points msg)
     Q_EMIT updateClosePoints();
 }
 
+void qtNode::gameStateCallback(const my_msgss::msg::Gamestate msg)
+{
+    game_state_msg = msg;
+    
+    Q_EMIT updateGameState();
+}
+
 void qtNode::run()
 {   
     cout << "node开始运行" << endl;
@@ -124,6 +131,7 @@ void qtNode::run()
     qnode = std::make_shared<rclcpp::Node>("qt_node");
 
     pnp_pub_ = qnode->create_publisher<std_msgs::msg::Float32MultiArray>("/qt/pnp", 10);
+    points_pub_ = qnode->create_publisher<my_msgss::msg::Points>("/serial/world_points", 10);
 
     far_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/far_qimage", 1, std::bind(&qtNode::farImageCallback, this, std::placeholders::_1));
     fardepth_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/fardepth_qimage", 1, std::bind(&qtNode::farDepthImageCallback, this, std::placeholders::_1));
@@ -132,6 +140,8 @@ void qtNode::run()
     close_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/close_qimage", 1, std::bind(&qtNode::closeImageCallback, this, std::placeholders::_1));
     closedepth_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/closedepth_qimage", 1, std::bind(&qtNode::closeDepthImageCallback, this, std::placeholders::_1));
     closepoints_sub_ = qnode->create_subscription<my_msgss::msg::Points>("/qt/closepoints", 10, std::bind(&qtNode::closePointsCallback, this, std::placeholders::_1));
+
+    game_state_sub_ = qnode->create_subscription<my_msgss::msg::Gamestate>("/game_state", 10, std::bind(&qtNode::gameStateCallback, this, std::placeholders::_1));
 
     rclcpp::spin(qnode);
     cout << "node异常关闭" << endl;

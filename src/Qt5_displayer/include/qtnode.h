@@ -10,6 +10,7 @@
 #include "sensor_msgs/msg/compressed_image.hpp"
 #include "std_msgs/msg/float32_multi_array.hpp"
 #include "my_msgss/msg/points.hpp"
+#include "my_msgss/msg/gamestate.hpp"
 #include "opencv2/opencv.hpp"
 #include "cv_bridge/cv_bridge.h"
 
@@ -31,6 +32,8 @@ public:
     void closeDepthImageCallback(const sensor_msgs::msg::CompressedImage msg);
     void closePointsCallback(const my_msgss::msg::Points msg);
 
+    void gameStateCallback(const my_msgss::msg::Gamestate msg);
+
     void run() override;
 
 Q_SIGNALS:
@@ -40,6 +43,7 @@ Q_SIGNALS:
     void updateCloseDepthImage();
     void updateFarPoints();
     void updateClosePoints();
+    void updateGameState();
 
 public:
     QImage far_qimage;
@@ -48,8 +52,10 @@ public:
     QImage closedepth_qimage;
     my_msgss::msg::Points far_world_qpoints;
     my_msgss::msg::Points close_world_qpoints;
+    my_msgss::msg::Gamestate game_state_msg;
 
     rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr pnp_pub_;
+    rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr points_pub_;
 
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr far_sub_;
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr close_sub_;
@@ -57,6 +63,7 @@ public:
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr closedepth_sub_;
     rclcpp::Subscription<my_msgss::msg::Points>::SharedPtr farpoints_sub_;
     rclcpp::Subscription<my_msgss::msg::Points>::SharedPtr closepoints_sub_;
+    rclcpp::Subscription<my_msgss::msg::Gamestate>::SharedPtr game_state_sub_;
     rclcpp::Node::SharedPtr qnode;
 
     float FAR_IMAGE_WIDTH = 640;
