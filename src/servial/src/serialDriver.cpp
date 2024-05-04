@@ -10,6 +10,8 @@ SerialDriver::SerialDriver() : Node("serial")
 
     worldPointsSub = this->create_subscription<my_msgss::msg::Points>("/serial/world_points", 10, std::bind(&SerialDriver::worldPointsCallback, this, std::placeholders::_1));
 
+    color_sub = this->create_subscription<std_msgs::msg::Int8>("/our_color", 10, std::bind(&SerialDriver::colorCallback, this, std::placeholders::_1));
+
     gameStatePub = this->create_publisher<my_msgss::msg::Gamestate>("/game_state", 10);
 
     timer = this->create_wall_timer(std::chrono::milliseconds(100), std::bind(&SerialDriver::serialCommunication, this));
@@ -126,7 +128,7 @@ bool SerialDriver::receiveAllData()
                                                                                              (sizeof(supplyProjectileActionMsg) -
                                                                                               sizeof(supplyProjectileActionMsg.crc)),
                                                                                              0xffff))) {
-                supplyProjectileActionRosMsg.supply_projectile_id = supplyProjectileActionMsg.data.supply_projectile_id;
+                supplyProjectileActionRosMsg.reserved = supplyProjectileActionMsg.data.reserved;
                 supplyProjectileActionRosMsg.supply_robot_id = supplyProjectileActionMsg.data.supply_robot_id;
                 supplyProjectileActionRosMsg.supply_projectile_step = supplyProjectileActionMsg.data.supply_projectile_step;
                 supplyProjectileActionRosMsg.supply_projectile_num = supplyProjectileActionMsg.data.supply_projectile_num;
@@ -180,6 +182,11 @@ void SerialDriver::worldPointsCallback(const my_msgss::msg::Points msg)
     allrobots_adjust();
 }
 
+void SerialDriver::colorCallback(const std_msgs::msg::Int8::SharedPtr msg)
+{
+    our_color = msg->data;
+}
+
 void SerialDriver::robots_init()
 {
     serialRobot robot;
@@ -211,6 +218,8 @@ void SerialDriver::allrobots_adjust()
 
 void SerialDriver::serialCommunication()
 {
+    std::cout << "serialCommunication" << std::endl;
+
     sendPointsData();
 
     receiveAllData();
@@ -220,12 +229,16 @@ void SerialDriver::serialCommunication()
 //-----------------------------------------------------------------------------------------
 bool SerialDriver::sendPointsData()
 {
+    /*for(int i = 0;i<serialRobots.size();i++)
+    {
+        std::cout << "serialRobots[" << i << "].x = " << serialRobots[i].x << " serialRobots[" << i << "].y = " << serialRobots[i].y << std::endl;
+    }*/
     bool if_send = false;
     serialRobot best_robot;
     best_robot.confidence = 0.0;
-    if(our_color == 0)
+    if(our_color == 0) // 我们是红方
     {
-        for(int i =7;i<serialRobots.size();i++)
+        for(int i =1;i<7;i++)
         {
             if(serialRobots[i].x !=0.0 && serialRobots[i].y != 0.0)
             {
@@ -237,15 +250,16 @@ bool SerialDriver::sendPointsData()
             }
         }
     }
-    else if(our_color == 1)
+    else if(our_color == 1) // 我们是蓝方
     {
-        for(int i =1;i<7;i++)
+        for(int i =7;i<serialRobots.size();i++)
         {
             if(serialRobots[i].x !=0.0 && serialRobots[i].y != 0.0)
             {
                 if(serialRobots[i].confidence > best_robot.confidence)
                 {
                     best_robot = serialRobots[i];
+                    best_robot.id = i - 6;
                     if_send = true;
                 }
             }

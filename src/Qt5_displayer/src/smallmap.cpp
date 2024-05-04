@@ -7,18 +7,12 @@
 #include <QPainter>
 #include <iostream>
 
-#include <ament_index_cpp/get_package_share_directory.hpp>
-
 smallMap::smallMap(QWidget * parent)
 {
     robots_init();
 
     this->setParent(parent);
     //connect(this,SIGNAL(clicked(bool)),this,SLOT(drawCircle(QMouthEvent &e)));
-
-    /*QString img_path = QString::fromStdString(ament_index_cpp::get_package_share_directory("Qt5_displayer"));
-    redimage_path = img_path + "/map/UC_redMap.png";
-    blueimage_path = img_path + "/map/UC_blueMap.png";*/
 
     std::string image_path = ament_index_cpp::get_package_share_directory("Qt5_displayer");
     std::string redimage_path = image_path + "/map/UC_redMap.png";

@@ -18,9 +18,11 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Distpoints.msg"
   "msg/Point.msg"
   "msg/Points.msg"
+
   "msg/Gamestate.msg"
   "msg/Supplyaction.msg"
   "msg/Refereewarning.msg"
+  "msg/Radarmark.msg"
 )
 
 install(DIRECTORY
