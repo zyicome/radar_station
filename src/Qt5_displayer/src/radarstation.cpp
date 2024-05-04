@@ -65,7 +65,7 @@ void radarStation::init()
     connect(ui->blueMode,SIGNAL(clicked()),this,SLOT(blueMode()));
     connect(ui->redMode,SIGNAL(clicked()),this,SLOT(redMode()));
 
-    //connect(&this->qtnode,SIGNAL(updateFarImage()),this,SLOT(farImageUpdate()));
+    connect(&this->qtnode,SIGNAL(updateFarImage()),this,SLOT(farImageUpdate()));
     //connect(&this->qtnode,SIGNAL(updateDepthImage()),this,SLOT(farDepthImageUpdate()));
     connect(&this->qtnode,SIGNAL(updateFarPoints()),this,SLOT(farPointsUpdate()));
 
@@ -171,7 +171,7 @@ void radarStation::changeToPnpWidget_2()
 
 void radarStation::farImageUpdate()
 {
-    //far_qimage_mutex.lock();
+    far_qimage_mutex.lock();
     //mapMessageDisplay("farImageUpdate");
     if(ui->pnpMode->isChecked())
     {
@@ -183,12 +183,12 @@ void radarStation::farImageUpdate()
         ui->farImg->setPixmap(QPixmap::fromImage(qtnode.far_qimage));
         ui->farImg->update();
     }
-    //far_qimage_mutex.unlock();
+    far_qimage_mutex.unlock();
 }
 
 void radarStation::closeImageUpdate()
 {
-    //close_qimage_mutex.lock();
+    close_qimage_mutex.lock();
     //mapMessageDisplay("farImageUpdate");
     if(ui->pnpMode->isChecked())
     {
@@ -200,7 +200,7 @@ void radarStation::closeImageUpdate()
         ui->closeImg->setPixmap(QPixmap::fromImage(qtnode.close_qimage));
         ui->closeImg->update();
     }
-    //close_qimage_mutex.unlock();
+    close_qimage_mutex.unlock();
 }
 
 /*void radarStation::farDepthImageUpdate()
@@ -672,5 +672,48 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
 
 void radarStation::decision(std::vector<DecisionRobot> &robots)
 {
+    int armor_number = 0;
+    int number_begin = 0;
+    int number_end = 0;
+    if(ui->map->our_color) // 我们是红方，只需要检索蓝方
+    {
+        number_begin = 1;
+        number_end = 7;
+    }
+    else
+    {
+        number_begin = 7;
+        number_end = 13;
+    }
 
+    QString decisionText;
+
+    for(int i = number_begin;i<number_end;i++)
+    {
+        armor_number = i;
+        if(robots[armor_number].confidence != 0.0)
+        {
+            cv::Point2f robot_point = cv::Point(robots[armor_number].x,robots[armor_number].y);
+            if(pointPolygonTest(ui->map->our_R3_region,robot_point,false) == 1)
+            {
+                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方R3区域内";
+            }
+            else if(pointPolygonTest(ui->map->our_R2_region,robot_point,false) == 1)
+            {
+                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方R2区域内";
+            }
+            else if(pointPolygonTest(ui->map->our_R4_region,robot_point,false) == 1)
+            {
+                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方R4区域内";
+            }
+            else if(pointPolygonTest(ui->map->our_energy_region,robot_point,false) == 1)
+            {
+                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方能量机关区域内";
+            }
+            else if(pointPolygonTest(ui->map->enemy_fly_down_region,robot_point,false) == 1)
+            {
+                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人飞坡!!!!!!";
+            }
+        }
+    }
 }
