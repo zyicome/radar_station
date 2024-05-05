@@ -21,6 +21,8 @@
 #include "my_msgss/msg/yolopoints.hpp"
 #include "my_msgss/msg/points.hpp"
 
+#include <std_msgs/msg/float64_multi_array.hpp>
+
 
 #include <fstream>
 
@@ -54,6 +56,7 @@ private:
   void close_yoloCallback(const my_msgss::msg::Yolopoints &input);
   void pointCloudCallback(const sensor_msgs::msg::PointCloud2 &input);
   void outpost_Callback(const my_msgss::msg::Points &outpost);
+  void calibration_result_Callback(const std_msgs::msg::Float64MultiArray &calibration_result);
   double getDepthInRect(cv::Rect rect, std::vector<cv::Mat>& depth_queue, my_msgss::msg::Yolopoint::_id_type id);//得到ROI中点的深度
   void distance_filter(std::vector<double> & distances);
   //声明publisher
@@ -76,6 +79,8 @@ private:
   rclcpp::Subscription<my_msgss::msg::Yolopoints>::SharedPtr far_yolo_sub;
   rclcpp::Subscription<my_msgss::msg::Yolopoints>::SharedPtr close_yolo_sub;
   rclcpp::Subscription<my_msgss::msg::Points>::SharedPtr outpost_Sub;
+
+  rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr calibration_result_sub;
   
 
   uint16_t times;

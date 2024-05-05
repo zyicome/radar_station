@@ -89,6 +89,8 @@ GetDepth::GetDepth() : Node("GetDepth_node")
 
     outpost_distancePointPub = this->create_publisher<my_msgss::msg::Distpoint>("sensor_far/outpost", 10);
     outpost_Sub = this->create_subscription<my_msgss::msg::Points>("/sensor_far/calibration", 1, std::bind(&GetDepth::outpost_Callback, this, std::placeholders::_1));
+
+    calibration_result_sub = this->create_subscription<std_msgs::msg::Float64MultiArray>("/calibration_result", 10, std::bind(&GetDepth::calibration_result_Callback, this, std::placeholders::_1));
 }
 void GetDepth::init_camera_matrix()
 {
@@ -189,7 +191,7 @@ void GetDepth::MatProject(cv::Mat &input_depth, cv::Mat &input_uv, cv::Mat &Cam_
             input_depth.at<double>(y, x) = res.at<double>(2, i);
         }
     }
-    RCLCPP_INFO(get_logger(), "MatProject:");
+    //RCLCPP_INFO(get_logger(), "MatProject:");
 };
 
 /**
@@ -214,12 +216,12 @@ void GetDepth::frame_point_match(const my_msgss::msg::Distpoints &last_frame, my
 
 //update the car_rects
 void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
-    RCLCPP_INFO(get_logger(), "BEGIN far_yoloCallback");
+    //RCLCPP_INFO(get_logger(), "BEGIN far_yoloCallback");
     cv::Mat far_depthes = cv::Mat::zeros(imgRows, imgCols, CV_64FC1);//initialize the depth img 用于运算的深度图
     cv::Mat far_depth_show = cv::Mat::zeros(imgRows, imgCols, CV_64FC1); //用于显示的深度图
     std::vector<my_msgss::msg::Distpoint>().swap(far_distance_it.data);
     if (cloud) {
-        RCLCPP_INFO(get_logger(), "have cloud");
+        //RCLCPP_INFO(get_logger(), "have cloud");
         cv::Mat far_MatCloud = Cloud2Mat(cloud);
         MatProject(far_depthes, far_MatCloud, far_camera_matrix, far_uni_matrix);
         far_depthes.copyTo(far_depth_show);
@@ -231,7 +233,7 @@ void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
 
     get_robots(far_robots, input);
     allrobots_adjust(far_robots);
-    RCLCPP_INFO(get_logger(), "far_yoloCallback");
+    //RCLCPP_INFO(get_logger(), "far_yoloCallback");
     for(int i = 0;i<far_robots.size();i++)
     {
         if(far_robots[i].tracking == "tracking" || far_robots[i].tracking == "locking" || far_robots[i].tracking == "tracking_locking")
@@ -285,7 +287,7 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
 
     get_robots(close_robots, input);
     allrobots_adjust(close_robots);
-    RCLCPP_INFO(get_logger(), "close_yoloCallback");
+    //RCLCPP_INFO(get_logger(), "close_yoloCallback");
     for(int i = 0;i<close_robots.size();i++)
     {
         if(close_robots[i].tracking == "tracking" || close_robots[i].tracking == "locking" || close_robots[i].tracking == "tracking_locking")
@@ -325,13 +327,13 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
 
 void GetDepth::pointCloudCallback(const sensor_msgs::msg::PointCloud2 &input) 
 {
-    RCLCPP_INFO(get_logger(), "begin to get pointcloud");
+    //RCLCPP_INFO(get_logger(), "begin to get pointcloud");
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
     pcl::PCLPointCloud2 pcl_pc2;
     pcl_conversions::toPCL(input, pcl_pc2);
     pcl::fromPCLPointCloud2(pcl_pc2, *cloud);   
     this->cloud = cloud;
-    RCLCPP_INFO(get_logger(), "get pointcloud");
+    //RCLCPP_INFO(get_logger(), "get pointcloud");
 };
 
 
@@ -343,6 +345,48 @@ void GetDepth::outpost_Callback(const my_msgss::msg::Points &outpost) {
     post_pub_flag = 1;
     outpost_point.x = outpost.data[0].x * 1280;
     outpost_point.y = outpost.data[0].y * 1024;
+};
+
+void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArray &calibration_result) {
+    if(calibration_result.data[12] == 0)
+    {
+        close_uni_matrix.at<double>(0, 0) = calibration_result.data[0];
+        close_uni_matrix.at<double>(0, 1) = calibration_result.data[1];
+        close_uni_matrix.at<double>(0, 2) = calibration_result.data[2];
+        close_uni_matrix.at<double>(0, 3) = calibration_result.data[3];
+        close_uni_matrix.at<double>(1, 0) = calibration_result.data[4];
+        close_uni_matrix.at<double>(1, 1) = calibration_result.data[5];
+        close_uni_matrix.at<double>(1, 2) = calibration_result.data[6];
+        close_uni_matrix.at<double>(1, 3) = calibration_result.data[7];
+        close_uni_matrix.at<double>(2, 0) = calibration_result.data[8];
+        close_uni_matrix.at<double>(2, 1) = calibration_result.data[9];
+        close_uni_matrix.at<double>(2, 2) = calibration_result.data[10];
+        close_uni_matrix.at<double>(2, 3) = calibration_result.data[11];
+    }
+    else
+    {
+        far_uni_matrix.at<double>(0, 0) = calibration_result.data[0];
+        far_uni_matrix.at<double>(0, 1) = calibration_result.data[1];
+        far_uni_matrix.at<double>(0, 2) = calibration_result.data[2];
+        far_uni_matrix.at<double>(0, 3) = calibration_result.data[3];
+        far_uni_matrix.at<double>(1, 0) = calibration_result.data[4];
+        far_uni_matrix.at<double>(1, 1) = calibration_result.data[5];
+        far_uni_matrix.at<double>(1, 2) = calibration_result.data[6];
+        far_uni_matrix.at<double>(1, 3) = calibration_result.data[7];
+        far_uni_matrix.at<double>(2, 0) = calibration_result.data[8];
+        far_uni_matrix.at<double>(2, 1) = calibration_result.data[9];
+        far_uni_matrix.at<double>(2, 2) = calibration_result.data[10];
+        far_uni_matrix.at<double>(2, 3) = calibration_result.data[11];
+    }
+
+    std::cout << "get_calibration_result" << std::endl;
+    for(int i =0;i<3;i++)
+    {
+        for(int j = 0;j<4;j++)
+        {
+            std::cout << "calibration_result[" << i << "][" << j << "]:" << calibration_result.data[i*4+j] << std::endl;
+        }
+    }
 };
 
 /**far_rectangles
@@ -378,16 +422,16 @@ double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my
         return 0;
     } else {
         sort(distances.begin(), distances.end());
-        for(int i = 0;i<distances.size();i++)
+        /*for(int i = 0;i<distances.size();i++)
         {
             cout << "distances[" << i << "]:" << distances[i] << endl;
-        }
+        }*/
         distance_filter(distances);
-        cout << "after distance_filter" << endl;
+        /*cout << "after distance_filter" << endl;
         for(int i = 0;i<distances.size();i++)
         {
             cout << "distances{" << i << "}:" << distances[i] << endl;
-        }
+        }*/
         double mean_distance;
         double sum = 0;
         //根据不同的策略获取深度
