@@ -368,7 +368,15 @@ public:
 
   void serialCommunication();
 
+  void receiveCommunication();
+
   bool sendPointsData();
+
+  void receiveAllData_two(volatile uint8_t *databuffer,uint8_t length);
+
+  void receiveAllData_three();
+
+  void receiveAllData_four(uint8_t *buff);
 
   bool our_color; // 0,red 1,blue
   
@@ -386,6 +394,9 @@ public:
   dart_remaining_time_msg dartRemainingTimeMsg;
   game_status_msgs gameStatusMsgs;
 
+  game_status_data gameStatusData;
+  frame_header frameHeader;
+
   my_msgss::msg::Gamestate gameStateRosMsg;
   my_msgss::msg::Supplyaction supplyProjectileActionRosMsg;
   my_msgss::msg::Refereewarning refereeWarningRosMsg;
@@ -397,5 +408,6 @@ public:
 
   rclcpp::Publisher<my_msgss::msg::Gamestate>::SharedPtr gameStatePub;
 
-  rclcpp::TimerBase::SharedPtr timer;
+  rclcpp::TimerBase::SharedPtr send_timer;
+  rclcpp::TimerBase::SharedPtr receive_timer;
 };

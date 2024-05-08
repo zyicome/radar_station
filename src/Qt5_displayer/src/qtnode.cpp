@@ -3,6 +3,11 @@
 qtNode::qtNode()
 {
     this->start();
+
+    far_start_time = std::chrono::high_resolution_clock::now();
+    far_end_time = std::chrono::high_resolution_clock::now();
+    close_start_time = std::chrono::high_resolution_clock::now();
+    close_end_time = std::chrono::high_resolution_clock::now();
 }
 
 qtNode::~qtNode()
@@ -10,8 +15,14 @@ qtNode::~qtNode()
     
 }
 
-void qtNode::farImageCallback(const sensor_msgs::msg::CompressedImage msg)
+void qtNode::farImageCallback(const sensor_msgs::msg::Image msg)
 {
+    /*far_end_time = std::chrono::high_resolution_clock::now();
+    if(std::chrono::duration_cast<std::chrono::milliseconds>(far_end_time - far_start_time).count() < 5000)
+    {
+        return;
+    }
+    far_start_time = std::chrono::high_resolution_clock::now();*/
     cv_bridge::CvImagePtr far_cv_ptr;
     try
     {
@@ -31,8 +42,41 @@ void qtNode::farImageCallback(const sensor_msgs::msg::CompressedImage msg)
     }
 }
 
-void qtNode::closeImageCallback(const sensor_msgs::msg::CompressedImage msg)
+/*void qtNode::closeImageCallback(const sensor_msgs::msg::CompressedImage msg)
 {
+    close_end_time = std::chrono::high_resolution_clock::now();
+    if(std::chrono::duration_cast<std::chrono::milliseconds>(close_end_time - close_start_time).count() < 5000)
+    {
+        return;
+    }
+    close_start_time = std::chrono::high_resolution_clock::now();
+    cv_bridge::CvImagePtr close_cv_ptr;
+    try
+    {
+        close_cv_ptr = cv_bridge::toCvCopy(msg,sensor_msgs::image_encodings::BGR8);
+        if(!close_cv_ptr->image.empty())
+        {
+            Mat close_image = close_cv_ptr->image;
+            cv::resize(close_image,close_image,cv::Size(FAR_IMAGE_WIDTH,FAR_IMAGE_HEIGHT));
+            close_qimage = QImage((const unsigned char*)(close_image.data),close_image.cols,close_image.rows,QImage::Format_BGR888);
+        }
+        Q_EMIT updateCloseImage();
+    }
+    catch(cv_bridge::Exception &e)
+    {
+        RCLCPP_ERROR(qnode->get_logger(),"cv_bridge exception: %s",e.what());
+        return;
+    }
+}*/
+
+void qtNode::closeImageCallback(const sensor_msgs::msg::Image msg)
+{
+    /*close_end_time = std::chrono::high_resolution_clock::now();
+    if(std::chrono::duration_cast<std::chrono::milliseconds>(close_end_time - close_start_time).count() < 5000)
+    {
+        return;
+    }
+    close_start_time = std::chrono::high_resolution_clock::now();*/
     cv_bridge::CvImagePtr close_cv_ptr;
     try
     {
@@ -141,11 +185,11 @@ void qtNode::run()
     points_pub_ = qnode->create_publisher<my_msgss::msg::Points>("/serial/world_points", 10);
     color_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/our_color", 10);
 
-    far_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/far_qimage", 1, std::bind(&qtNode::farImageCallback, this, std::placeholders::_1));
+    far_sub_ = qnode->create_subscription<sensor_msgs::msg::Image>("/qt/far_qimage", 1, std::bind(&qtNode::farImageCallback, this, std::placeholders::_1));
     fardepth_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/fardepth_qimage", 1, std::bind(&qtNode::farDepthImageCallback, this, std::placeholders::_1));
     farpoints_sub_ = qnode->create_subscription<my_msgss::msg::Points>("/qt/farpoints", 10, std::bind(&qtNode::farPointsCallback, this, std::placeholders::_1));
 
-    close_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/close_qimage", 1, std::bind(&qtNode::closeImageCallback, this, std::placeholders::_1));
+    close_sub_ = qnode->create_subscription<sensor_msgs::msg::Image>("/qt/close_qimage", 1, std::bind(&qtNode::closeImageCallback, this, std::placeholders::_1));
     closedepth_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/closedepth_qimage", 1, std::bind(&qtNode::closeDepthImageCallback, this, std::placeholders::_1));
     closepoints_sub_ = qnode->create_subscription<my_msgss::msg::Points>("/qt/closepoints", 10, std::bind(&qtNode::closePointsCallback, this, std::placeholders::_1));
 

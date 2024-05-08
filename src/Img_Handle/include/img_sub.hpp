@@ -118,12 +118,12 @@ public:
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr img_far_sub_;
     rclcpp::Publisher<my_msgss::msg::Yolopoint>::SharedPtr far_yolopoint_pub_;
     rclcpp::Publisher<my_msgss::msg::Yolopoints>::SharedPtr far_yolopoints_pub_;
-    rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr far_qimage_pub_;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr far_qimage_pub_;
 
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr img_close_sub_;
     rclcpp::Publisher<my_msgss::msg::Yolopoint>::SharedPtr close_yolopoint_pub_;
     rclcpp::Publisher<my_msgss::msg::Yolopoints>::SharedPtr close_yolopoints_pub_;
-    rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr close_qimage_pub_;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr close_qimage_pub_;
 
     NumberClassifier numberclassifier;
 

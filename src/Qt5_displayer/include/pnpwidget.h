@@ -40,6 +40,10 @@ public Q_SLOTS:
     void restartPoint();
 
     void beginPnp();
+
+    void calibrationClose();
+
+    void calibrationFar();
 public:
     Ui::pnpWidget *ui;
     QVector<QPointF> points;

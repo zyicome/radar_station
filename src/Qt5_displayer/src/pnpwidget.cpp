@@ -12,6 +12,8 @@
 
 #include <ament_index_cpp/get_package_share_directory.hpp>
 
+#include <cstdlib>
+
 // #include "opencv2/opencv.hpp"
 // #include <iostream>
 // #include <vector>
@@ -38,6 +40,8 @@ pnpWidget::pnpWidget() :
     connect(ui->beginPoint,SIGNAL(clicked()),this,SLOT(beginPoint()));
     connect(ui->restartPoint,SIGNAL(clicked()),this,SLOT(restartPoint()));
     connect(ui->beginPnp,SIGNAL(clicked()),this,SLOT(beginPnp()));
+    connect(ui->calibrationClose,SIGNAL(clicked()),this,SLOT(calibrationClose()));
+    connect(ui->calibrationFar,SIGNAL(clicked()),this,SLOT(calibrationFar()));
 }
 
 pnpWidget::~pnpWidget()
@@ -409,4 +413,30 @@ void pnpWidget::mapMessageDisplay(QString text)
      {
          scrollbar->setSliderPosition(scrollbar->maximum());
      }
+}
+
+void pnpWidget::calibrationClose()
+{
+    int result = system("bash /home/mechax/zyb/livox_camera_calibration/game_close_save.sh");
+    if(result)
+    {
+        mapMessageDisplay("广角相机标定成功");
+    }
+    else
+    {
+        mapMessageDisplay("广角相机标定失败");
+    }
+}
+
+void pnpWidget::calibrationFar()
+{
+    int result = system("bash /home/mechax/zyb/livox_camera_calibration/game_far_save.sh");
+    if(result)
+    {
+        mapMessageDisplay("长焦相机标定成功");
+    }
+    else
+    {
+        mapMessageDisplay("长焦相机标定失败");
+    }
 }

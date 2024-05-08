@@ -8,12 +8,12 @@ Img_Sub::Img_Sub() : Node("img_sub")
    img_far_sub_ = this->create_subscription<sensor_msgs::msg::CompressedImage>("/image_far/compressed",1,std::bind(&Img_Sub::img_far_callback,this,std::placeholders::_1));
    this->far_yolopoint_pub_ = this->create_publisher<my_msgss::msg::Yolopoint>("/img/far/yolopoint",1);
    this->far_yolopoints_pub_ = this->create_publisher<my_msgss::msg::Yolopoints>("/far_rectangles",1);
-   this->far_qimage_pub_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/qt/far_qimage",1);
+   this->far_qimage_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/qt/far_qimage",1);
 
    img_close_sub_ = this->create_subscription<sensor_msgs::msg::CompressedImage>("/image_close/compressed",1,std::bind(&Img_Sub::img_close_callback,this,std::placeholders::_1));
    this->close_yolopoint_pub_ = this->create_publisher<my_msgss::msg::Yolopoint>("/img/close/yolopoint",1);
    this->close_yolopoints_pub_ = this->create_publisher<my_msgss::msg::Yolopoints>("/close_rectangles",1);
-   this->close_qimage_pub_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/qt/close_qimage",1);
+   this->close_qimage_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/qt/close_qimage",1);
    RCLCPP_INFO(this->get_logger(), "yolo begin to init");
 
 }
@@ -151,7 +151,7 @@ void Img_Sub::img_far_callback(sensor_msgs::msg::CompressedImage msg)
         }
         this->draw_img(sub_img_far,far_robot_boxes);
 
-        far_qimage_pub_->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", this->sub_img_far).toCompressedImageMsg()));
+        far_qimage_pub_->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", this->sub_img_far).toImageMsg()));
 }
 
 void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
@@ -179,7 +179,7 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
             close_yolopoints_pub_->publish(close_robot_boxes);
         }
         this->draw_img(sub_img_close,close_robot_boxes);
-        close_qimage_pub_->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", this->sub_img_close).toCompressedImageMsg()));
+        close_qimage_pub_->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", this->sub_img_close).toImageMsg()));
 }
 
 void Img_Sub::yolo_init()

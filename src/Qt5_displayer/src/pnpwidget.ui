@@ -144,6 +144,32 @@
     <string>近距离相机</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="calibrationFar">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>50</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>启动雷达与远相机标定</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="calibrationClose">
+   <property name="geometry">
+    <rect>
+     <x>1270</x>
+     <y>50</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>启动雷达与近相机标定</string>
+   </property>
+  </widget>
   <zorder>beginPoint</zorder>
   <zorder>restartPoint</zorder>
   <zorder>beginPnp</zorder>
@@ -152,6 +178,8 @@
   <zorder>closeImg</zorder>
   <zorder>far_label</zorder>
   <zorder>closeLabel</zorder>
+  <zorder>calibrationFar</zorder>
+  <zorder>calibrationClose</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -5,6 +5,8 @@ echo "Colcon build finished"
 sourcelib="export LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}""
 $sourcelib
 
+echo "mechax2024" | sudo -S sudo chmod +777 /dev/ttyUSB0
+
 cmds=(  "ros2 launch mindvision_camera mv_camera.py"
          #"ros2 launch hik_camera hik_camera.launch.py"
         "ros2 launch Img_Handle img_handle_launch.py"

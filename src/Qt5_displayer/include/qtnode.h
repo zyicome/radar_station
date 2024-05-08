@@ -16,6 +16,8 @@
 #include "opencv2/opencv.hpp"
 #include "cv_bridge/cv_bridge.h"
 
+#include <chrono>
+
 using namespace std;
 using namespace cv;
 
@@ -26,11 +28,12 @@ public:
     qtNode();
     ~qtNode();
 
-    void farImageCallback(const sensor_msgs::msg::CompressedImage msg);
+    void farImageCallback(const sensor_msgs::msg::Image msg);
     void farDepthImageCallback(const sensor_msgs::msg::CompressedImage msg);
     void farPointsCallback(const my_msgss::msg::Points msg);
 
-    void closeImageCallback(const sensor_msgs::msg::CompressedImage msg);
+
+    void closeImageCallback(const sensor_msgs::msg::Image msg);
     void closeDepthImageCallback(const sensor_msgs::msg::CompressedImage msg);
     void closePointsCallback(const my_msgss::msg::Points msg);
 
@@ -63,8 +66,8 @@ public:
     rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr points_pub_;
     rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr color_pub_;
 
-    rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr far_sub_;
-    rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr close_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr far_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr close_sub_;
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr fardepth_sub_;
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr closedepth_sub_;
     rclcpp::Subscription<my_msgss::msg::Points>::SharedPtr farpoints_sub_;
@@ -79,6 +82,11 @@ public:
     float FAR_IMAGE_HEIGHT = 480;
     float DEPTH_IMAGE_WIDTH = 640;
     float DEPTH_IMAGE_HEIGHT = 480;
+
+    std::chrono::high_resolution_clock::time_point far_start_time;
+    std::chrono::high_resolution_clock::time_point far_end_time;
+    std::chrono::high_resolution_clock::time_point close_start_time;
+    std::chrono::high_resolution_clock::time_point close_end_time;
 };
 
 #endif // QTNODE_H
