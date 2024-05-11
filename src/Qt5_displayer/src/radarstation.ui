@@ -160,7 +160,7 @@
        <string>标记进度:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="hp_5">
+     <widget class="QLabel" name="location_5">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -170,7 +170,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>血量</string>
+       <string>位置</string>
       </property>
      </widget>
      <widget class="QLabel" name="robot_2">
@@ -212,7 +212,7 @@
        <string>状态:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="hp_2">
+     <widget class="QLabel" name="location_2">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -222,7 +222,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>血量</string>
+       <string>位置</string>
       </property>
      </widget>
      <widget class="QLabel" name="robot_3">
@@ -251,20 +251,20 @@
        <string>哨兵</string>
       </property>
      </widget>
-     <widget class="QLabel" name="hp_7">
+     <widget class="QLabel" name="location_6">
       <property name="geometry">
        <rect>
         <x>180</x>
         <y>960</y>
-        <width>67</width>
+        <width>101</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>血量</string>
+       <string>位置</string>
       </property>
      </widget>
-     <widget class="QLabel" name="hp_3">
+     <widget class="QLabel" name="location_3">
       <property name="geometry">
        <rect>
         <x>340</x>
@@ -274,7 +274,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>血量</string>
+       <string>位置</string>
       </property>
      </widget>
      <widget class="QLabel" name="robot_4">
@@ -303,7 +303,7 @@
        <string>飞镖</string>
       </property>
      </widget>
-     <widget class="QLabel" name="hp_4">
+     <widget class="QLabel" name="location_4">
       <property name="geometry">
        <rect>
         <x>500</x>
@@ -313,7 +313,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>血量</string>
+       <string>位置</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="mapMode">
@@ -404,7 +404,7 @@
        <string>比赛状态:暂无</string>
       </property>
      </widget>
-     <widget class="QLabel" name="hp_1">
+     <widget class="QLabel" name="location_1">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -414,7 +414,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>血量</string>
+       <string>位置</string>
       </property>
      </widget>
      <widget class="QLabel" name="baseMessage_1">
@@ -435,7 +435,7 @@
        <rect>
         <x>110</x>
         <y>870</y>
-        <width>41</width>
+        <width>51</width>
         <height>21</height>
        </rect>
       </property>
@@ -461,7 +461,7 @@
        <rect>
         <x>250</x>
         <y>870</y>
-        <width>41</width>
+        <width>51</width>
         <height>21</height>
        </rect>
       </property>
@@ -513,7 +513,7 @@
        <rect>
         <x>410</x>
         <y>870</y>
-        <width>41</width>
+        <width>51</width>
         <height>21</height>
        </rect>
       </property>
@@ -552,7 +552,7 @@
        <rect>
         <x>570</x>
         <y>870</y>
-        <width>41</width>
+        <width>51</width>
         <height>21</height>
        </rect>
       </property>
@@ -591,7 +591,7 @@
        <rect>
         <x>110</x>
         <y>940</y>
-        <width>41</width>
+        <width>51</width>
         <height>21</height>
        </rect>
       </property>
@@ -617,7 +617,7 @@
        <rect>
         <x>250</x>
         <y>940</y>
-        <width>41</width>
+        <width>51</width>
         <height>21</height>
        </rect>
       </property>
@@ -767,6 +767,45 @@
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QPushButton" name="isSaveVideo">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>670</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>录制视频</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveVideoExplain">
+      <property name="geometry">
+       <rect>
+        <x>1200</x>
+        <y>670</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveVideoStatus">
+      <property name="geometry">
+       <rect>
+        <x>1240</x>
+        <y>670</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>未录制</string>
+      </property>
+     </widget>
      <zorder>mapMessage</zorder>
      <zorder>map</zorder>
      <zorder>closeImg</zorder>
@@ -774,18 +813,18 @@
      <zorder>robot_1</zorder>
      <zorder>robot_5</zorder>
      <zorder>progressExplain_1</zorder>
-     <zorder>hp_5</zorder>
+     <zorder>location_5</zorder>
      <zorder>robot_2</zorder>
      <zorder>robot_6</zorder>
      <zorder>airStatusExplain</zorder>
-     <zorder>hp_2</zorder>
+     <zorder>location_2</zorder>
      <zorder>robot_3</zorder>
      <zorder>robot_7</zorder>
-     <zorder>hp_7</zorder>
-     <zorder>hp_3</zorder>
+     <zorder>location_6</zorder>
+     <zorder>location_3</zorder>
      <zorder>robot_4</zorder>
      <zorder>robot_9</zorder>
-     <zorder>hp_4</zorder>
+     <zorder>location_4</zorder>
      <zorder>mapMode</zorder>
      <zorder>pnpMode</zorder>
      <zorder>decisionMessage</zorder>
@@ -793,7 +832,7 @@
      <zorder>blueMode</zorder>
      <zorder>colorExplain</zorder>
      <zorder>gameProgress</zorder>
-     <zorder>hp_1</zorder>
+     <zorder>location_1</zorder>
      <zorder>baseMessage_1</zorder>
      <zorder>markProgress_1</zorder>
      <zorder>progressExplain_2</zorder>
@@ -820,6 +859,9 @@
      <zorder>dartRemainTime</zorder>
      <zorder>leftScroll</zorder>
      <zorder>rightScroll</zorder>
+     <zorder>isSaveVideo</zorder>
+     <zorder>saveVideoExplain</zorder>
+     <zorder>saveVideoStatus</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">

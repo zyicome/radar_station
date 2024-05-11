@@ -366,13 +366,13 @@ void Img_Sub::draw_img(Mat & sub_img,my_msgss::msg::Yolopoints &robot_boxes)
         box.width = robot_boxes.data[i].width;
         box.height = robot_boxes.data[i].height;
         cv::rectangle(sub_img, box, Scalar(255,0,0), 2);
-        if(robot_boxes.data[i].id <= 9)
+        if(robot_boxes.data[i].id <= 6)
         {
-            classString = robot_boxes.data[i].id + " blue";
+            classString = std::to_string(robot_boxes.data[i].id) + " blue";
         }
-        else if(robot_boxes.data[i].id > 9)
+        else if(robot_boxes.data[i].id > 6)
         {
-            classString = robot_boxes.data[i].id + " red";
+            classString = std::to_string(robot_boxes.data[i].id) + " red";
         }
         else
         {

@@ -22,10 +22,11 @@ struct DecisionRobot
     bool is_continue;
     bool is_far_continue;
     bool is_close_continue;
+    bool is_120;
     float confidence;
     float x;
     float y;
-    int radar_mark_progress;
+    float radar_mark_progress;
 };
 
 class radarStation : public QMainWindow
@@ -85,6 +86,8 @@ public Q_SLOTS:
     void blueMode();
 
     void redMode();
+
+    void saveVideo();
 private:
     Ui::radarStation *ui;
     qtNode qtnode;

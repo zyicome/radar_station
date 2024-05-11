@@ -15,3 +15,4 @@ imgRows;
 imgCols;
 length_of_cloud_queue;//default length is 5
 post_pub_flag;
+pkg_path

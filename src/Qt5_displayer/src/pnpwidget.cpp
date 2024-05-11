@@ -82,24 +82,24 @@ void pnpWidget::parameter_init()
     close_distortion_coefficient.at<double>(4,0) = 0.000000;
 
     Point3d objectpoint_one;
-    objectpoint_one.x = 2350.0 / 1000;
-    objectpoint_one.y = 7000.0 / 1000;
-    objectpoint_one.z = 0.0 / 1000;
+    objectpoint_one.x = 2520.0;
+    objectpoint_one.y = 5930.0;
+    objectpoint_one.z = 503.0;
     objectPoints.push_back(objectpoint_one);
     Point3d objectpoint_two;
-    objectpoint_two.x = 2350.0 / 1000;
-    objectpoint_two.y = 7000.0 / 1000;
-    objectpoint_two.z = 500.0 / 1000;
+    objectpoint_two.x = 2520.0;
+    objectpoint_two.y = 5930.0;
+    objectpoint_two.z = 1528.0;
     objectPoints.push_back(objectpoint_two);
     Point3d objectpoint_three;
-    objectpoint_three.x = 4750.0 / 1000;
-    objectpoint_three.y = 6800.0 / 1000;
-    objectpoint_three.z = 500.0 / 1000;
+    objectpoint_three.x = 3775.0;
+    objectpoint_three.y = 5930.0;
+    objectpoint_three.z = 1528.0 ;
     objectPoints.push_back(objectpoint_three);
     Point3d objectpoint_four;
-    objectpoint_four.x = 4750.0 / 1000;
-    objectpoint_four.y = 6800.0 / 1000;
-    objectpoint_four.z = 0.0 / 1000;
+    objectpoint_four.x = 3775.0;
+    objectpoint_four.y = 5930.0;
+    objectpoint_four.z = 503.0 ;
     objectPoints.push_back(objectpoint_four);
 }
 
@@ -337,10 +337,10 @@ void pnpWidget::beginPnp()
     {
         mapMessageDisplay("开始解算");
         std::vector<Point2d> image_points;
-        Point2d p1(points[0].x(),points[0].y());
-        Point2d p2(points[1].x(),points[1].y());
-        Point2d p3(points[2].x(),points[2].y());
-        Point2d p4(points[3].x(),points[3].y());
+        Point2d p1(points[0].x() / ui->closeImg->width() * 1280,points[0].y()/ ui->closeImg->height() * 1024) ;
+        Point2d p2(points[1].x() / ui->closeImg->width() * 1280,points[1].y()/ ui->closeImg->height() * 1024);
+        Point2d p3(points[2].x() / ui->closeImg->width() * 1280,points[2].y()/ ui->closeImg->height() * 1024);
+        Point2d p4(points[3].x() / ui->closeImg->width() * 1280,points[3].y()/ ui->closeImg->height() * 1024);
         image_points.push_back(p1);
         image_points.push_back(p2);
         image_points.push_back(p3);

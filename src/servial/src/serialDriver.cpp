@@ -14,9 +14,11 @@ SerialDriver::SerialDriver() : Node("serial")
 
     gameStatePub = this->create_publisher<my_msgss::msg::Gamestate>("/game_state", 10);
 
+    worldPointsPub = this->create_publisher<my_msgss::msg::Points>("/test_world_points", 10);
+
     send_timer = this->create_wall_timer(std::chrono::milliseconds(100), std::bind(&SerialDriver::serialCommunication, this));
 
-    receive_timer = this->create_wall_timer(std::chrono::milliseconds(100), std::bind(&SerialDriver::receiveCommunication, this));
+    receive_timer = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&SerialDriver::receiveCommunication, this));
 }
 
 void SerialDriver::serial_init()
@@ -45,6 +47,12 @@ bool SerialDriver::receiveAllData()
 
             uint8_t crc8_check = get_CRC8_check_sum((uint8_t *) &gameStatusMsgs,(sizeof(gameStatusMsgs.head) -sizeof(gameStatusMsgs.head.crc)), 0xff);
             uint16_t crc16_check = get_CRC16_check_sum((uint8_t *) &gameStatusMsgs,(sizeof(gameStatusMsgs) - sizeof(gameStatusMsgs.crc)), 0xffff);
+            uint8_t hpcrc8_check = get_CRC8_check_sum((uint8_t *) &robotHealthMsgs,
+                                                                (sizeof(robotHealthMsgs.head) -
+                                                                 sizeof(robotHealthMsgs.head.crc)), 0xff);
+               uint16_t hpcrc16_check = get_CRC16_check_sum((uint8_t *) &robotHealthMsgs,
+                                                            (sizeof(robotHealthMsgs) - sizeof(robotHealthMsgs.crc)),
+                                                            0xffff);
 
             std::cout << "sizeof(gameStatusMsgs.crc)" << sizeof(gameStatusMsgs.crc) <<std::endl;
             
@@ -52,6 +60,10 @@ bool SerialDriver::receiveAllData()
             std::cout << "gameStatusMsgs.crc = " << gameStatusMsgs.crc << std::endl;
             std::cout << "crc8_check = " << (int)crc8_check << std::endl;
             std::cout << "crc16_check = " << crc16_check << std::endl;
+            std::cout << "robotshp head crc = " << (int)robotHealthMsgs.head.crc << std::endl;
+            std::cout << "robotshp crc = " << robotHealthMsgs.crc << std::endl;
+            std::cout << "hpcrc8_check = " << (int)hpcrc8_check << std::endl;
+            std::cout << "hpcrc16_check = " << hpcrc16_check << std::endl;
             std::cout << "gameStatusMsgs.data.game_progress = " << gameStatusMsgs.data.game_progress << std::endl;
             std::cout << "gameStatusMsgs.data.game_type = " << gameStatusMsgs.data.game_type << std::endl;
             std::cout << "gameStatusMsgs.data.stage_remain_time = " << gameStatusMsgs.data.stage_remain_time << std::endl;
@@ -59,6 +71,7 @@ bool SerialDriver::receiveAllData()
 
             gameStateRosMsg.dart_remaining_time = 16;
             gameStateRosMsg.winner = 3;
+            gameStateRosMsg.is_receive_game_message = false;
 
             if ((gameStatusMsgs.head.crc == get_CRC8_check_sum((uint8_t *) &gameStatusMsgs,
                                                                (sizeof(gameStatusMsgs.head) -
@@ -71,6 +84,7 @@ bool SerialDriver::receiveAllData()
                 std::cout << "receive gameStatusMsgs" << std::endl;
                 std::cout << "receive gameStatusMsgs" << std::endl;
                 std::cout << "receive gameStatusMsgs++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+                gameStateRosMsg.is_receive_game_message = true;
                 gameStateRosMsg.game_progress = gameStatusMsgs.data.game_progress;
                 gameStateRosMsg.game_type = gameStatusMsgs.data.game_type;
                 gameStateRosMsg.stage_remain_time = gameStatusMsgs.data.stage_remain_time;
@@ -456,21 +470,37 @@ void SerialDriver::allrobots_adjust()
 
 void SerialDriver::serialCommunication()
 {
-    //sendPointsData();
+    sendPointsData();
 
     //receiveAllData();
 }
 
 void SerialDriver::receiveCommunication()
 {
-    //receiveAllData_three();
-    //receiveAllData();
-    if(serial_port.available())
+    /*bool is_first =true;
+    if(is_first == true)
+    {
+    receiveAllData_three();
+    is_first = false;
+    }*/
+    receiveAllData();
+    /*uin8_t first[1024];
+    uin8_t second[1024];
+    int a = 0;
+    bool is_first = false;
+    while(serial_port.available())
     {
         uint8_t receiveData[1024];
-        serial_port.read(receiveData, serial_port.available());
+        serial_port.read(receiveData, 1);
+        fisrt[a] = receiveData[0];
+        if(first[a] == 0xA5 && is_first == 0)
+        {
+
+        }
+        a++;
         receiveAllData_four(receiveData);
     }
+    std::cout << "stop to receive" << std::endl;*/
 }
 
 //发送信息的函数
@@ -532,6 +562,13 @@ bool SerialDriver::sendPointsData()
         serial_port.write((uint8_t *) &pointMsg, sizeof(point_msg));
         std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
              << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;
+        my_msgss::msg::Points test_robots;
+        my_msgss::msg::Point test_robot;
+        test_robot.id = best_robot.id;
+        test_robot.x = best_robot.x;
+        test_robot.y = best_robot.y;
+        test_robots.data.push_back(test_robot);
+        worldPointsPub->publish(test_robots);
         return true;
     }
 }

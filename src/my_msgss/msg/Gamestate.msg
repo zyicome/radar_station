@@ -14,6 +14,7 @@ uint16 blue_5_hp
 uint16 blue_7_hp
 uint16 blue_outpose_hp
 uint16 blue_base_hp
+bool is_receive_game_message
 uint8 game_type
 uint8 game_progress
 uint16 stage_remain_time

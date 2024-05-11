@@ -407,6 +407,7 @@ public:
   rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr color_sub;
 
   rclcpp::Publisher<my_msgss::msg::Gamestate>::SharedPtr gameStatePub;
+  rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr worldPointsPub;
 
   rclcpp::TimerBase::SharedPtr send_timer;
   rclcpp::TimerBase::SharedPtr receive_timer;

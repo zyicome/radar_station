@@ -53,6 +53,7 @@ install(TARGETS
 
 install(DIRECTORY
         launch
+        result
         DESTINATION share/${PROJECT_NAME}/
 )
 

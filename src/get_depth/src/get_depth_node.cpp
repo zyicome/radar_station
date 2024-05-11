@@ -259,7 +259,7 @@ void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
                     Scalar(255, 255, 255), 1, 8, 0);
         }
     }
-    far_distancePointPub->publish(close_distance_it);
+    far_distancePointPub->publish(far_distance_it);
     resize(far_depth_show, far_depth_show, Size(640, 480));
     far_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "mono8", far_depth_show).toCompressedImageMsg()));
     imshow("far_depth_show", far_depth_show);
@@ -348,6 +348,11 @@ void GetDepth::outpost_Callback(const my_msgss::msg::Points &outpost) {
 };
 
 void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArray &calibration_result) {
+    //std::string pkg_path = ament_index_cpp::get_package_share_directory("get_depth");
+    std::string pkg_path = "/home/mechax/radar_station/src/get_depth";
+    std::string farfilename = pkg_path + "/result/far_uni_matrix.txt";
+    std::string closefilename = pkg_path + "/result/close_uni_matrix.txt";
+
     if(calibration_result.data[12] == 0)
     {
         close_uni_matrix.at<double>(0, 0) = calibration_result.data[0];
@@ -362,6 +367,14 @@ void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArra
         close_uni_matrix.at<double>(2, 1) = calibration_result.data[9];
         close_uni_matrix.at<double>(2, 2) = calibration_result.data[10];
         close_uni_matrix.at<double>(2, 3) = calibration_result.data[11];
+        std::ofstream outfile(closefilename);
+        for (int i = 0; i < 3; i++) {
+            for(int j =0;j<4;j++)
+            {
+        outfile << close_uni_matrix.at<double>(i, j) << "," << close_uni_matrix.at<double>(i, j) << "," << close_uni_matrix.at<double>(i, j) << "," << close_uni_matrix.at<double>(i, j)
+            << std::endl;
+            }
+  }
     }
     else
     {
@@ -377,6 +390,14 @@ void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArra
         far_uni_matrix.at<double>(2, 1) = calibration_result.data[9];
         far_uni_matrix.at<double>(2, 2) = calibration_result.data[10];
         far_uni_matrix.at<double>(2, 3) = calibration_result.data[11];
+        std::ofstream outfile(farfilename);
+        for (int i = 0; i < 3; i++) {
+            for(int j =0;j<4;j++)
+            {
+        outfile << far_uni_matrix.at<double>(i, j) << "," << far_uni_matrix.at<double>(i, j) << "," << far_uni_matrix.at<double>(i, j) << "," << far_uni_matrix.at<double>(i, j)
+            << std::endl;
+            }
+  }
     }
 
     std::cout << "get_calibration_result" << std::endl;

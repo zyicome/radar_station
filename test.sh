@@ -16,6 +16,8 @@ cmds=(  "ros2 launch mindvision_camera mv_camera.py"
         #"ros2 launch my_msgss radar_station_launch.py"
   	"ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765"
   	"ros2 launch serial_driver serial_launch.py"
+  	"ros2 launch judge_test judge_launch.py"
+  	"ros2 launch Video_save video_save_launch.py"
         )
 
 cmd=("ros2 launch livox_ros2_driver livox_lidar_launch.py")

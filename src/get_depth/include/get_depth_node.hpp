@@ -2,6 +2,7 @@
 #include <opencv2/core/core.hpp>
 #include "cv_bridge/cv_bridge.h"
 #include <iostream>
+#include <fstream>
 #include <rclcpp/rclcpp.hpp>
 #include <pcl/point_cloud.h>
 #include <sensor_msgs/msg/detail/image__struct.hpp>
@@ -22,6 +23,8 @@
 #include "my_msgss/msg/points.hpp"
 
 #include <std_msgs/msg/float64_multi_array.hpp>
+
+#include <ament_index_cpp/get_package_share_directory.hpp>
 
 
 #include <fstream>

@@ -78,24 +78,24 @@ void MapTest::calibration()
     vector<cv::Point2d> imagePoints;
 
     Point3d objectpoint_one;
-    objectpoint_one.x = 2350.0;
-    objectpoint_one.y = 7000.0;
-    objectpoint_one.z = 0.0;
+    objectpoint_one.x = 2520.0;
+    objectpoint_one.y = 5930.0;
+    objectpoint_one.z = 503.0;
     objectPoints.push_back(objectpoint_one);
     Point3d objectpoint_two;
-    objectpoint_two.x = 2350.0;
-    objectpoint_two.y = 7000.0;
-    objectpoint_two.z = 500.0;
+    objectpoint_two.x = 2520.0;
+    objectpoint_two.y = 5930.0;
+    objectpoint_two.z = 1528.0;
     objectPoints.push_back(objectpoint_two);
     Point3d objectpoint_three;
-    objectpoint_three.x = 4750.0;
-    objectpoint_three.y = 6800.0;
-    objectpoint_three.z = 500.0;
+    objectpoint_three.x = 3775.0;
+    objectpoint_three.y = 5930.0;
+    objectpoint_three.z = 1528.0;
     objectPoints.push_back(objectpoint_three);
     Point3d objectpoint_four;
-    objectpoint_four.x = 4750.0;
-    objectpoint_four.y = 6800.0;
-    objectpoint_four.z = 0.0;
+    objectpoint_four.x = 3775.0;
+    objectpoint_four.y = 5930.0;
+    objectpoint_four.z = 503.0;
     objectPoints.push_back(objectpoint_four);
     Point2d imagepoint_one;
     imagepoint_one.x = 67.0;
@@ -130,6 +130,25 @@ void MapTest::calibration()
 
 void MapTest::pnp_callback(const std_msgs::msg::Float32MultiArray msg)
 {
+    if(msg.data[12] == 1)
+    {
+        this->close_R.at<double>(0, 0) = msg.data[0];
+    this->close_R.at<double>(0, 1) = msg.data[1];
+    this->close_R.at<double>(0, 2) = msg.data[2];
+    this->close_R.at<double>(1, 0) = msg.data[3];
+    this->close_R.at<double>(1, 1) = msg.data[4];
+    this->close_R.at<double>(1, 2) = msg.data[5];
+    this->close_R.at<double>(2, 0) = msg.data[6];
+    this->close_R.at<double>(2, 1) = msg.data[7];
+    this->close_R.at<double>(2, 2) = msg.data[8];
+    this->close_T.at<double>(0, 0) = msg.data[9];
+    this->close_T.at<double>(1, 0) = msg.data[10];
+    this->close_T.at<double>(2, 0) = msg.data[11];
+    cout << "接受完毕" << endl;
+    cout << "旋转矩阵:" << close_R << endl;
+    cout << "平移矩阵" << close_T << endl;
+    }
+    else{
     this->far_R.at<double>(0, 0) = msg.data[0];
     this->far_R.at<double>(0, 1) = msg.data[1];
     this->far_R.at<double>(0, 2) = msg.data[2];
@@ -145,6 +164,7 @@ void MapTest::pnp_callback(const std_msgs::msg::Float32MultiArray msg)
     cout << "接受完毕" << endl;
     cout << "旋转矩阵:" << far_R << endl;
     cout << "平移矩阵" << far_T << endl;
+    }
 }
 
 Point2f MapTest::calculate_pixel_codi(const map_point &point) {

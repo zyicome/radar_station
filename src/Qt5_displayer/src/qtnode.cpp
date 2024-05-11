@@ -184,6 +184,7 @@ void qtNode::run()
     pnp_pub_ = qnode->create_publisher<std_msgs::msg::Float32MultiArray>("/qt/pnp", 10);
     points_pub_ = qnode->create_publisher<my_msgss::msg::Points>("/serial/world_points", 10);
     color_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/our_color", 10);
+    is_save_video_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/is_begin_to_save", 10);
 
     far_sub_ = qnode->create_subscription<sensor_msgs::msg::Image>("/qt/far_qimage", 1, std::bind(&qtNode::farImageCallback, this, std::placeholders::_1));
     fardepth_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/fardepth_qimage", 1, std::bind(&qtNode::farDepthImageCallback, this, std::placeholders::_1));

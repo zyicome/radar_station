@@ -4,6 +4,7 @@
 VideoSave::VideoSave() : Node("video_save")
 {
     RCLCPP_INFO(get_logger(), "Start video_save node sucessfully!");
+    is_begin_to_save = false;
     last_time1 = this->now();
     last_time2 = this->now();
     count1 = 0;
@@ -11,6 +12,11 @@ VideoSave::VideoSave() : Node("video_save")
     img_far_sub_ = this->create_subscription<sensor_msgs::msg::CompressedImage>("/image_far/compressed",1,std::bind(&VideoSave::video_far_callback,this,std::placeholders::_1));
     img_close_sub_ = this->create_subscription<sensor_msgs::msg::CompressedImage>("/image_close/compressed",1,std::bind(&VideoSave::video_close_callback,this,std::placeholders::_1));
 
+    is_begin_to_save_sub_ = this->create_subscription<std_msgs::msg::Int8>("/is_begin_to_save",1,std::bind(&VideoSave::is_begin_to_save_callback,this,std::placeholders::_1)); 
+
+    std::string pkg_path = "/home/mechax/radar_station/src/Video_save";
+    video_far_path = pkg_path + "/video_far_/";
+    video_close_path = pkg_path + "/video_close_/";
 }
 VideoSave::~VideoSave()
 {
@@ -18,8 +24,17 @@ VideoSave::~VideoSave()
     out2_.release();
 }
 
+void VideoSave::is_begin_to_save_callback(std_msgs::msg::Int8::SharedPtr msg)
+{
+    is_begin_to_save = msg->data;
+}
+
 void VideoSave::video_far_callback(sensor_msgs::msg::CompressedImage msg)
 {
+    if(!is_begin_to_save)
+    {
+        return;
+    }
     cv_bridge::CvImagePtr cv_ptr;
     try
     {
@@ -47,7 +62,7 @@ void VideoSave::video_far_callback(sensor_msgs::msg::CompressedImage msg)
         char buffer[100];
         std::strftime(buffer, 100, "%Y-%m-%d-%H-%M-%S", std::localtime(&now));
         std::string buffer_str(buffer); // 将字符数组转换为字符串
-        out1_.open("/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Video_save/video_far_/"+buffer_str+".avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 24, this->sub_video_far_frame.size());
+        out1_.open(video_far_path+buffer_str+".avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 24, this->sub_video_far_frame.size());
         out1_is_opened = true;
     }
     out1_.set(cv::CAP_PROP_FPS, fps);
@@ -56,6 +71,10 @@ void VideoSave::video_far_callback(sensor_msgs::msg::CompressedImage msg)
 
 void VideoSave::video_close_callback(sensor_msgs::msg::CompressedImage msg)
 {
+    if(!is_begin_to_save)
+    {
+        return;
+    }
     cv_bridge::CvImagePtr cv_ptr;
     try
     {
@@ -83,7 +102,7 @@ void VideoSave::video_close_callback(sensor_msgs::msg::CompressedImage msg)
         char buffer[100];
         std::strftime(buffer, 100, "%Y-%m-%d-%H-%M-%S", std::localtime(&now));
         std::string buffer_str(buffer); // 将字符数组转换为字符串
-        out2_.open("/home/mechax/zyb/radar_station_all/radar_station_fixed_class/src/Video_save/video_close_/"+buffer_str+".avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 24, this->sub_video_close_frame.size());
+        out2_.open(video_close_path+buffer_str+".avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 24, this->sub_video_close_frame.size());
         out2_is_opened = true;
     }
     out2_.set(cv::CAP_PROP_FPS, fps);

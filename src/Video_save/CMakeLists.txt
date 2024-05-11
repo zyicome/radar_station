@@ -13,6 +13,7 @@ find_package(sensor_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
+find_package(std_msgs REQUIRED)
 # find_package(my_msgss REQUIRED)
 find_package(Eigen3 REQUIRED)
 # include_directories(include ${my_msgss_INCLUDE_DIRS})
@@ -23,7 +24,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories("/usr/include/eigen3")
 
 add_executable(video_save src/video_save.cpp)
-ament_target_dependencies(video_save rclcpp sensor_msgs OpenCV cv_bridge image_transport Eigen3)
+ament_target_dependencies(video_save rclcpp sensor_msgs OpenCV cv_bridge image_transport Eigen3 std_msgs)
 target_link_directories(video_save PUBLIC
       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
       $<INSTALL_INTERFACE:include>)
@@ -36,6 +37,8 @@ install(TARGETS
 
 install(DIRECTORY
   launch
+  video_far_
+  video_close_
   DESTINATION share/${PROJECT_NAME}
 )
 

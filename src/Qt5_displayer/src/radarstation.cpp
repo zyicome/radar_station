@@ -65,6 +65,8 @@ void radarStation::init()
     connect(ui->blueMode,SIGNAL(clicked()),this,SLOT(blueMode()));
     connect(ui->redMode,SIGNAL(clicked()),this,SLOT(redMode()));
 
+    connect(ui->isSaveVideo,SIGNAL(clicked()),this,SLOT(saveVideo()));
+
     connect(&this->qtnode,SIGNAL(updateFarImage()),this,SLOT(farImageUpdate()));
     //connect(&this->qtnode,SIGNAL(updateDepthImage()),this,SLOT(farDepthImageUpdate()));
     connect(&this->qtnode,SIGNAL(updateFarPoints()),this,SLOT(farPointsUpdate()));
@@ -230,7 +232,23 @@ void radarStation::closeImageUpdate()
 void radarStation::publishPnpResult()
 {
     std_msgs::msg::Float32MultiArray pnp_result;
-    pnp_result.data.push_back(ui->solvePnpWidget->far_R.at<double>(0,0));
+    if(ui->solvePnpWidget->pnp_img_id == 1)
+    {
+        pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(0,0));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(0,1));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(0,2));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(1,0));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(1,1));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(1,2));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(2,0));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(2,1));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_R.at<double>(2,2));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_T.at<double>(0,0));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_T.at<double>(1,0));
+    pnp_result.data.push_back(ui->solvePnpWidget->close_T.at<double>(2,0));
+    }
+    else{
+        pnp_result.data.push_back(ui->solvePnpWidget->far_R.at<double>(0,0));
     pnp_result.data.push_back(ui->solvePnpWidget->far_R.at<double>(0,1));
     pnp_result.data.push_back(ui->solvePnpWidget->far_R.at<double>(0,2));
     pnp_result.data.push_back(ui->solvePnpWidget->far_R.at<double>(1,0));
@@ -242,14 +260,15 @@ void radarStation::publishPnpResult()
     pnp_result.data.push_back(ui->solvePnpWidget->far_T.at<double>(0,0));
     pnp_result.data.push_back(ui->solvePnpWidget->far_T.at<double>(1,0));
     pnp_result.data.push_back(ui->solvePnpWidget->far_T.at<double>(2,0));
+    }
     pnp_result.data.push_back(ui->solvePnpWidget->pnp_img_id);
     qtnode.pnp_pub_->publish(pnp_result);
 }
 
 void radarStation::farPointsUpdate()
 {
-    float object_width = 28;
-    float object_height = 15;
+    float object_width = 11.5;
+    float object_height = 8;
 
     my_msgss::msg::Points far_qpoints = qtnode.far_world_qpoints;
     ui->map->get_robots(ui->map->far_robots,far_qpoints);
@@ -268,8 +287,9 @@ void radarStation::farPointsUpdate()
         if(ui->map->far_robots[i].confidence > 0.0)
         {
             farpos.id = ui->map->far_robots[i].id;
-            farpos.x = ui->map->far_robots[i].x / object_width * width;
-            farpos.y = height - (ui->map->far_robots[i].y / object_height * height);
+            farpos.x = ui->map->far_robots[i].y / object_width * width;
+            //farpos.y = height - (ui->map->far_robots[i].y / object_height * height);
+            farpos.y = (ui->map->far_robots[i].x / object_height * height);
             farpos.x = farpos.x + ui->map->drawPos.x();
             farpos.y = farpos.y + ui->map->drawPos.y();
             ui->map->farMapPoints.push_back(farpos);
@@ -284,8 +304,8 @@ void radarStation::farPointsUpdate()
 
 void radarStation::closePointsUpdate()
 {
-    float object_width = 28;
-    float object_height = 15;
+    float object_width = 11.5;
+    float object_height = 8;
 
     my_msgss::msg::Points close_qpoints = qtnode.close_world_qpoints;
     ui->map->get_robots(ui->map->close_robots,close_qpoints);
@@ -304,8 +324,9 @@ void radarStation::closePointsUpdate()
         if(ui->map->close_robots[i].confidence > 0.0)
         {
             closepos.id = ui->map->close_robots[i].id;
-            closepos.x = ui->map->close_robots[i].x / object_width * width;
-            closepos.y = height - (ui->map->close_robots[i].y / object_height * height);
+            closepos.x = ui->map->close_robots[i].y / object_width * width;
+            //closepos.y = height - (ui->map->close_robots[i].y / object_height * height);
+            closepos.y = (ui->map->close_robots[i].x / object_height * height);
             closepos.x = closepos.x + ui->map->drawPos.x();
             closepos.y = closepos.y + ui->map->drawPos.y();
             ui->map->close_robots[i].x = closepos.x;
@@ -322,6 +343,8 @@ void radarStation::closePointsUpdate()
 void radarStation::gameStateUpdate()
 {
     my_msgss::msg::Gamestate game_state = qtnode.game_state_msg;
+    if(game_state.is_receive_game_message == true)
+    {
     if(game_state.game_progress == 0)
     {
         ui->gameProgress->setText("比赛状态：比赛未开始");
@@ -345,6 +368,7 @@ void radarStation::gameStateUpdate()
     else if(game_state.game_progress == 5)
     {
         ui->gameProgress->setText("比赛状态：比赛结束");
+    }
     }
 }
 
@@ -395,19 +419,19 @@ void radarStation::radarMarkUpdate()
             {
                 case 7:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_hero_progress;
-                    ui->markProgress_1->setText(QString::number(robots[armor_number].radar_mark_progress));
+                    ui->markProgress_1->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
                     break;
                 case 8:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_engineer_progress;
-                    ui->markProgress_2->setText(QString::number(robots[armor_number].radar_mark_progress));
+                    ui->markProgress_2->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
                     break;
                 case 9:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_standard_3_progress;
-                    ui->markProgress_3->setText(QString::number(robots[armor_number].radar_mark_progress));
+                    ui->markProgress_3->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
                     break;
                 case 10:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_standard_4_progress;
-                    ui->markProgress_4->setText(QString::number(robots[armor_number].radar_mark_progress));
+                    ui->markProgress_4->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
                     break;
                 case 11:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_standard_5_progress;
@@ -442,6 +466,13 @@ void radarStation::redMode()
     ui->map->update();
 }
 
+void radarStation::saveVideo()
+{
+    std_msgs::msg::Int8 is_save;
+    is_save.data = 1;
+    qtnode.is_save_video_pub_->publish(is_save);
+}
+
 void radarStation::robots_init()
 {
     DecisionRobot robot;
@@ -450,6 +481,7 @@ void radarStation::robots_init()
     robot.is_continue = false;
     robot.is_far_continue = false;
     robot.is_close_continue = false;
+    robot.is_120 =false;
     robot.x = 0.0;
     robot.y = 0.0;
     robot.radar_mark_progress = 0;
@@ -462,8 +494,8 @@ void radarStation::robots_init()
 
 void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
 {
-    float object_width = 28;
-    float object_height = 15;
+    float object_width = 11.5;
+    float object_height = 8;
     float width = ui->map->width();
     float height = ui->map->height();
     int armor_number = 0;
@@ -478,8 +510,10 @@ void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
             armor_number = get_robots[i].id;
             confidence = get_robots[i].confidence;
             //cout << "get_robots_armor_number:" << armor_number << " confidence:" << confidence << endl;
-            x = get_robots[i].x / object_width * width;
-            y = height - (get_robots[i].y / object_height * height);
+            x = get_robots[i].x;
+            //cout << "width:" << width << " height:" << height << endl;
+            //cout << "get_robots_x:" << get_robots[i].x << " get_robots_y:" << get_robots[i].y << endl;
+            y =  get_robots[i].y;
             if(is_far)
             {
                 if(robots[armor_number].confidence == 0.0)
@@ -595,22 +629,28 @@ void radarStation::status_adjust(std::vector<DecisionRobot> &robots)
             switch(armor_number)
             {
                 case 1:
-                    ui->baseMessage_1->setText(QString::number(confidence) + "  x:" + QString::number(robots[i].x) + "m  y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_1->setText(QString::number(confidence));
+                    ui->location_1->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 2: 
-                    ui->baseMessage_2->setText(QString::number(confidence) + "  x:" + QString::number(robots[i].x) + "m  y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_2->setText(QString::number(confidence));
+                    ui->location_2->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 3:
-                    ui->baseMessage_3->setText(QString::number(confidence) + "  x:" + QString::number(robots[i].x) + "m  y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_3->setText(QString::number(confidence));
+                    ui->location_3->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 4:
-                    ui->baseMessage_4->setText(QString::number(confidence) + "  x:" + QString::number(robots[i].x) + "m  y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_4->setText(QString::number(confidence));
+                    ui->location_4->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 5:
-                    ui->baseMessage_5->setText(QString::number(confidence) + "  x:" + QString::number(robots[i].x) + "m  y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_5->setText(QString::number(confidence));
+                    ui->location_5->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 6:
-                    ui->baseMessage_6->setText(QString::number(confidence) + "  x:" + QString::number(robots[i].x) + "m  y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_6->setText(QString::number(confidence));
+                    ui->location_6->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
             }
             }
@@ -627,22 +667,28 @@ void radarStation::status_adjust(std::vector<DecisionRobot> &robots)
             switch(armor_number)
             {
                 case 1:
-                    ui->baseMessage_1->setText(QString::number(confidence) + " x:" + QString::number(robots[i].x) + "m y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_1->setText(QString::number(confidence));
+                    ui->location_1->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 2: 
-                    ui->baseMessage_2->setText(QString::number(confidence) + " x:" + QString::number(robots[i].x) + "m y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_2->setText(QString::number(confidence));
+                    ui->location_2->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 3:
-                    ui->baseMessage_3->setText(QString::number(confidence) + " x:" + QString::number(robots[i].x) + "m y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_3->setText(QString::number(confidence));
+                    ui->location_3->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 4:
-                    ui->baseMessage_4->setText(QString::number(confidence) + " x:" + QString::number(robots[i].x) + "m y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_4->setText(QString::number(confidence));
+                    ui->location_4->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 5:
-                    ui->baseMessage_5->setText(QString::number(confidence) + " x:" + QString::number(robots[i].x) + "m y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_5->setText(QString::number(confidence));
+                    ui->location_5->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
                 case 6:
-                    ui->baseMessage_6->setText(QString::number(confidence) + " x:" + QString::number(robots[i].x) + "m y:" + QString::number(robots[i].y) + "m");
+                    ui->baseMessage_6->setText(QString::number(confidence));
+                    ui->location_6->setText("x:" + QString::number(robots[i].x,'f',2) + "m y:" + QString::number(robots[i].y,'f',2) + "m");
                     break;
             }
             }
@@ -653,10 +699,127 @@ void radarStation::status_adjust(std::vector<DecisionRobot> &robots)
 void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
 {
     my_msgss::msg::Points send_robots;
-    for(int i = 0;i<robots.size();i++)
+    bool if_send =false;
+    DecisionRobot best_robot;
+    best_robot.confidence = 0.0;
+    if(ui->map->our_color == 0) // 我们是红方
     {
-        //std::cout << "robots_id:" << robots[i].id << " robots_confidence:" << robots[i].confidence << std::endl;
-        //std::cout << "robots_x:" << robots[i].x << " robots_y:" << robots[i].y << std::endl;
+        for(int i =1;i<7;i++)
+        {
+            if(robots[i].x !=0.0 && robots[i].y != 0.0)
+            {
+                if(robots[i].radar_mark_progress >= 120)
+                {
+                    robots[i].is_120 = true;
+                }
+                else if(robots[i].radar_mark_progress <= 60)
+                {
+                    robots[i].is_120 =false;
+                }
+                if(robots[i].confidence < 0.3)
+                {
+                    continue;
+                }
+                if(robots[i].radar_mark_progress >110 && robots[i].is_120 == true)
+                {
+                    continue;
+                }
+                if(robots[i].radar_mark_progress <= 110 && robots[i].radar_mark_progress >= 90 && robots[i].is_120 ==true)
+                {
+                    best_robot = robots[i];
+                    if_send = true;
+                    continue;
+                }
+                if(robots[i].id == 1)
+                {
+                    best_robot = robots[i];
+                    best_robot.confidence = 1.0;
+                    if_send = true;
+                    continue;
+                }
+                else if(robots[i].id == 6)
+                {
+                    best_robot = robots[i];
+                    best_robot.confidence = 0.95;
+                    if_send = true;
+                    continue;
+                }
+                if(robots[i].confidence > best_robot.confidence)
+                {
+                    best_robot = robots[i];
+                    if_send = true;
+                    continue;
+                }
+            }
+        }
+    }
+    else if(ui->map->our_color == 1) // 我们是蓝方
+    {
+        for(int i =7;i<robots.size();i++)
+        {
+            if(robots[i].x !=0.0 && robots[i].y != 0.0)
+            {
+                if(robots[i].radar_mark_progress >= 120)
+                {
+                    robots[i].is_120 = true;
+                }
+                else if(robots[i].radar_mark_progress <= 60)
+                {
+                    robots[i].is_120 =false;
+                }
+                if(robots[i].confidence < 0.3)
+                {
+                    continue;
+                }
+                if(robots[i].radar_mark_progress >110 && robots[i].is_120 == true)
+                {
+                    continue;
+                }
+                if(robots[i].radar_mark_progress <= 110 && robots[i].radar_mark_progress >= 90 && robots[i].is_120 ==true)
+                {
+                    best_robot = robots[i];
+                    best_robot.id -=6;
+                    if_send = true;
+                    continue;
+                }
+                if(robots[i].id == 1)
+                {
+                    best_robot = robots[i];
+                    best_robot.id -=6;
+                    best_robot.confidence = 1.0;
+                    if_send = true;
+                    continue;
+                }
+                else if(robots[i].id == 6)
+                {
+                    best_robot = robots[i];
+                    best_robot.id -=6;
+                    best_robot.confidence = 0.95;
+                    if_send = true;
+                    continue;
+                }
+                if(robots[i].confidence > best_robot.confidence)
+                {
+                    best_robot = robots[i];
+                    best_robot.id -=6; 
+                    if_send = true;
+                    continue;
+                }
+            }
+        }
+    }
+    if(if_send)
+    {
+        my_msgss::msg::Point send_robot;
+        send_robot.id = best_robot.id;
+        send_robot.x = best_robot.x;
+        send_robot.y = best_robot.y;
+        send_robot.confidence = best_robot.confidence;
+        send_robots.data.push_back(send_robot);
+        qtnode.points_pub_->publish(send_robots);
+    }
+    /*for(int i = 0;i<robots.size();i++)
+    {
         if(robots[i].confidence != 0.0)
         {
             my_msgss::msg::Point robot;
@@ -666,8 +829,7 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
             robot.y = robots[i].y;
             send_robots.data.push_back(robot);
         }
-    }
-    qtnode.points_pub_->publish(send_robots);
+    }*/
 }
 
 void radarStation::decision(std::vector<DecisionRobot> &robots)
