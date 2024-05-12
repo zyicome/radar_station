@@ -94,31 +94,31 @@ GetDepth::GetDepth() : Node("GetDepth_node")
 }
 void GetDepth::init_camera_matrix()
 {
-    far_camera_matrix.at<double>(0, 0) = 3135.31292;
+    far_camera_matrix.at<double>(0, 0) = 3066.03905;
     far_camera_matrix.at<double>(0, 1) = 0;
-    far_camera_matrix.at<double>(0, 2) = 526.87116;
+    far_camera_matrix.at<double>(0, 2) = 667.26311;
     far_camera_matrix.at<double>(1, 0) = 0;
-    far_camera_matrix.at<double>(1, 1) = 3151.06425;
-    far_camera_matrix.at<double>(1, 2) = 695.83061;
+    far_camera_matrix.at<double>(1, 1) = 3080.97863;
+    far_camera_matrix.at<double>(1, 2) = 549.63631;
     far_camera_matrix.at<double>(2, 0) = 0;
     far_camera_matrix.at<double>(2, 1) = 0;
     far_camera_matrix.at<double>(2, 2) = 1;
-    far_uni_matrix.at<double>(0, 0) = 0.0700096;
-    far_uni_matrix.at<double>(0, 1) = -0.99307;
-    far_uni_matrix.at<double>(0, 2) = -0.0943929;
-    far_uni_matrix.at<double>(0, 3) = -0.225929;
-    far_uni_matrix.at<double>(1, 0) = -0.0587029;
-    far_uni_matrix.at<double>(1, 1) = 0.0903597;
-    far_uni_matrix.at<double>(1, 2) = -0.994178;
-    far_uni_matrix.at<double>(1, 3) = 0.240583;
-    far_uni_matrix.at<double>(2, 0) = 0.995818;
-    far_uni_matrix.at<double>(2, 1) = 0.0751431;
-    far_uni_matrix.at<double>(2, 2) = -0.0519701;
-    far_uni_matrix.at<double>(2, 3) = -0.667486;
-    far_distortion_coefficient.at<double>(0,0) = -0.019203;
-    far_distortion_coefficient.at<double>(1,0) = 0.252109;
-    far_distortion_coefficient.at<double>(2,0) = 0.016576;
-    far_distortion_coefficient.at<double>(3,0) = -0.012270;
+    far_uni_matrix.at<double>(0, 0) = -0.0106862;
+    far_uni_matrix.at<double>(0, 1) = -0.996096;
+    far_uni_matrix.at<double>(0, 2) = 0.0876298;
+    far_uni_matrix.at<double>(0, 3) = 0.392122;
+    far_uni_matrix.at<double>(1, 0) = 0.00765436;
+    far_uni_matrix.at<double>(1, 1) = -0.0877137;
+    far_uni_matrix.at<double>(1, 2) = -0.996116;
+    far_uni_matrix.at<double>(1, 3) = -0.406364;
+    far_uni_matrix.at<double>(2, 0) = 0.999914;
+    far_uni_matrix.at<double>(2, 1) = -0.00997398;
+    far_uni_matrix.at<double>(2, 2) = 0.0085618;
+    far_uni_matrix.at<double>(2, 3) = 0.368082;
+    far_distortion_coefficient.at<double>(0,0) = -0.069436;
+    far_distortion_coefficient.at<double>(1,0) = 1.005937;
+    far_distortion_coefficient.at<double>(2,0) = -0.002552;
+    far_distortion_coefficient.at<double>(3,0) = 0.003604;
     far_distortion_coefficient.at<double>(4,0) = 0.000000;
 
     close_camera_matrix.at<double>(0, 0) = 1563.52174;
@@ -130,18 +130,18 @@ void GetDepth::init_camera_matrix()
     close_camera_matrix.at<double>(2, 0) = 0;
     close_camera_matrix.at<double>(2, 1) = 0;
     close_camera_matrix.at<double>(2, 2) = 1;
-    close_uni_matrix.at<double>(0, 0) = 0.0363514;
-    close_uni_matrix.at<double>(0, 1) = -0.999079;
-    close_uni_matrix.at<double>(0, 2) = 0.0227922;
-    close_uni_matrix.at<double>(0, 3) = -0.147925;
-    close_uni_matrix.at<double>(1, 0) = 0.0685296;
-    close_uni_matrix.at<double>(1, 1) = -0.0202615;
-    close_uni_matrix.at<double>(1, 2) = -0.997443;
-    close_uni_matrix.at<double>(1, 3) = -0.0908943;
-    close_uni_matrix.at<double>(2, 0) = 0.996987;
-    close_uni_matrix.at<double>(2, 1) = 0.0378204;
-    close_uni_matrix.at<double>(2, 2) = 0.06773;
-    close_uni_matrix.at<double>(2, 3) = 0.238152;
+    close_uni_matrix.at<double>(0, 0) = -0.0553176;
+    close_uni_matrix.at<double>(0, 1) = -0.998438;
+    close_uni_matrix.at<double>(0, 2) = -0.00781227;
+    close_uni_matrix.at<double>(0, 3) = 0.233392;
+    close_uni_matrix.at<double>(1, 0) = -0.0258691;
+    close_uni_matrix.at<double>(1, 1) = 0.00925479;
+    close_uni_matrix.at<double>(1, 2) = -0.999622;
+    close_uni_matrix.at<double>(1, 3) = 0.404814;
+    close_uni_matrix.at<double>(2, 0) = 0.998134;
+    close_uni_matrix.at<double>(2, 1) = -0.0550946;
+    close_uni_matrix.at<double>(2, 2) = -0.0263406;
+    close_uni_matrix.at<double>(2, 3) = 0.717135;
     close_distortion_coefficient.at<double>(0,0) = -0.063200;
     close_distortion_coefficient.at<double>(1,0) = -0.005061;
     close_distortion_coefficient.at<double>(2,0) = -0.001755;
@@ -369,12 +369,17 @@ void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArra
         close_uni_matrix.at<double>(2, 3) = calibration_result.data[11];
         std::ofstream outfile(closefilename);
         for (int i = 0; i < 3; i++) {
-            for(int j =0;j<4;j++)
-            {
-        outfile << close_uni_matrix.at<double>(i, j) << "," << close_uni_matrix.at<double>(i, j) << "," << close_uni_matrix.at<double>(i, j) << "," << close_uni_matrix.at<double>(i, j)
+        outfile << close_uni_matrix.at<double>(i, 0) << "," << close_uni_matrix.at<double>(i, 1) << "," << close_uni_matrix.at<double>(i, 2) << "," << close_uni_matrix.at<double>(i, 3)
             << std::endl;
             }
-  }
+  std::cout << "get_close_uni_matrix_calibration_result" << std::endl;
+    for(int i =0;i<3;i++)
+    {
+        for(int j = 0;j<4;j++)
+        {
+            std::cout << "close_uni_matrix[" << i << "][" << j << "]:" << close_uni_matrix.at<double>(i, j) << std::endl;
+        }
+    }
     }
     else
     {
@@ -392,21 +397,17 @@ void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArra
         far_uni_matrix.at<double>(2, 3) = calibration_result.data[11];
         std::ofstream outfile(farfilename);
         for (int i = 0; i < 3; i++) {
-            for(int j =0;j<4;j++)
-            {
-        outfile << far_uni_matrix.at<double>(i, j) << "," << far_uni_matrix.at<double>(i, j) << "," << far_uni_matrix.at<double>(i, j) << "," << far_uni_matrix.at<double>(i, j)
+        outfile << far_uni_matrix.at<double>(i, 0) << "," << far_uni_matrix.at<double>(i, 1) << "," << far_uni_matrix.at<double>(i, 2) << "," << far_uni_matrix.at<double>(i, 3)
             << std::endl;
-            }
-  }
-    }
-
-    std::cout << "get_calibration_result" << std::endl;
+        }
+  std::cout << "get_far_uni_matrix_calibration_result" << std::endl;
     for(int i =0;i<3;i++)
     {
         for(int j = 0;j<4;j++)
         {
-            std::cout << "calibration_result[" << i << "][" << j << "]:" << calibration_result.data[i*4+j] << std::endl;
+            std::cout << "far_uni_matrix[" << i << "][" << j << "]:" << far_uni_matrix.at<double>(i, j) << std::endl;
         }
+    }
     }
 };
 

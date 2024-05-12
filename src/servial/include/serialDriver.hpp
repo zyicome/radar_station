@@ -395,6 +395,7 @@ public:
   game_status_msgs gameStatusMsgs;
 
   game_status_data gameStatusData;
+  robot_health_data robotHealthData;
   frame_header frameHeader;
 
   my_msgss::msg::Gamestate gameStateRosMsg;

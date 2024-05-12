@@ -252,52 +252,75 @@ void SerialDriver::receiveAllData_three()
 {
     bool is_head = false;
     uint8_t pos[1];
-    uint8_t frame_head[6];
+    uint8_t frame_head[7];
     uint16_t CMD_ID = 0;
     uint16_t data_length = 0;
-    uint8_t data[128];
+    uint8_t data[1024];
+    uint8_t receive_data[1024];
+    int pos1 = 0;
+    bool if_pub = false;
 
     if(serial_port.available())
     {
         while(1)
         {
-        serial_port.read(pos, 1);
-        if(pos[0] == 0xA5)
+        serial_port.read(receive_data, 1024);
+        pos1 = 0;
+        while(pos1<1024)
         {
-            std::cout << "receive 0xA5" << std::endl;
-            is_head = true;
-        }
-        else if(is_head == true)
+        if(receive_data[pos1] == 0xA5)
         {
-            serial_port.read(frame_head, 6);
-            if(frame_head[3] == get_CRC8_check_sum((uint8_t *) &gameStatusMsgs,
+            for(int i = 0;i<7;i++)
+            {
+                frame_head[i] = receive_data[pos1+i];
+            }
+            if(frame_head[4] == get_CRC8_check_sum((uint8_t *) &gameStatusMsgs,
                                                                (sizeof(gameStatusMsgs.head) -
                                                                 sizeof(gameStatusMsgs.head.crc)), 0xff))
                                                                 {
                                                                     std::cout << "CRC8 check success" << std::endl;
                                                                 }
-            std::cout << "frame_head[3] = " << frame_head[3] << std::endl;
-            std::cout << "get_CRC8_check_sum = " << get_CRC8_check_sum((uint8_t *) &gameStatusMsgs,
+            
+            /*std::cout << "get_CRC8_check_sum = " << (int)get_CRC8_check_sum((uint8_t *) &gameStatusMsgs,
                                                                (sizeof(gameStatusMsgs.head) -
-                                                                sizeof(gameStatusMsgs.head.crc)), 0xff) << std::endl;
-            data_length = (frame_head[0]&0xff)|((frame_head[1]<<8)&0xff00);
-            CMD_ID = (frame_head[4]&0xff)|((frame_head[5]<<8)&0xff00);
-            std::cout << "data_length = " << data_length << std::endl;
-            std::cout << "CMD_ID = " << CMD_ID << std::endl;
+                                                                sizeof(gameStatusMsgs.head.crc)), 0xff) << std::endl;*/
+            data_length = (int)frame_head[1] + (int)frame_head[2]*256;
+            CMD_ID = (frame_head[5]&0xff)|((frame_head[6]<<8)&0xff00);
             switch (CMD_ID)
             {
             case 0x0001:
-                serial_port.read(data, data_length);
-                memcpy((void*)(&gameStatusData), (const void*)(&data), data_length);
-                std::cout << "gameStatusData.game_progress = " << gameStatusData.game_progress << std::endl;
-                std::cout << "gameStatusData.game_type = " << gameStatusData.game_type << std::endl;
-                std::cout << "gameStatusData.stage_remain_time = " << gameStatusData.stage_remain_time << std::endl;
-                std::cout << "receive game_status_msg" << std::endl;
+                memcpy(&gameStatusMsgs, receive_data + pos1, data_length + 9);
+                if(gameStatusMsgs.head.crc == get_CRC8_check_sum((uint8_t *) &gameStatusMsgs,(sizeof(gameStatusMsgs.head) -sizeof(gameStatusMsgs.head.crc)), 0xff))
+               {
+                 std::cout << "CRC8 check success" << std::endl;
+               }
+               if(gameStatusMsgs.crc == get_CRC16_check_sum((uint8_t *) &gameStatusMsgs,(sizeof(gameStatusMsgs) - sizeof(gameStatusMsgs.crc)), 0xffff))
+               {
+                    std::cout << "CRC16 check success" << std::endl;
+               }
+                //memcpy(&gameStatusData, receive_data + 7 + pos1, data_length);
+                gameStateRosMsg.is_receive_game_message = true;
+                gameStateRosMsg.game_progress = gameStatusMsgs.data.game_progress;
+                gameStateRosMsg.game_type = gameStatusMsgs.data.game_type;
+                gameStateRosMsg.stage_remain_time = gameStatusMsgs.data.stage_remain_time;
+                if_pub = true;
                 break;
+            case 0x0002:
+                break;
+            case 0x0003:
+                memcpy(&robotHealthData, receive_data + 7 + pos1, data_length);
+                break;
+
             default:
                 break;
             }
-            is_head =false;
+        }
+        pos1++;
+        }
+        if(if_pub)
+        {
+            gameStatePub->publish(gameStateRosMsg);
+            if_pub = false;
         }
         }
     }
@@ -470,20 +493,20 @@ void SerialDriver::allrobots_adjust()
 
 void SerialDriver::serialCommunication()
 {
-    sendPointsData();
+    //sendPointsData();
 
     //receiveAllData();
 }
 
 void SerialDriver::receiveCommunication()
 {
-    /*bool is_first =true;
+    bool is_first =true;
     if(is_first == true)
     {
     receiveAllData_three();
     is_first = false;
-    }*/
-    receiveAllData();
+    }
+    //receiveAllData();
     /*uin8_t first[1024];
     uin8_t second[1024];
     int a = 0;

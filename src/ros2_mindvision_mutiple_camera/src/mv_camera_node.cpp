@@ -243,7 +243,7 @@ private:
       t_leftcapability_.sExposeDesc.uiExposeTimeMin * leftexposure_line_time;
     leftparam_desc.integer_range[0].to_value =
       t_leftcapability_.sExposeDesc.uiExposeTimeMax * leftexposure_line_time;
-    double leftexposure_time = this->declare_parameter("leftexposure_time", 4000, leftparam_desc);
+    double leftexposure_time = this->declare_parameter("leftexposure_time", 20000, leftparam_desc);
     CameraSetExposureTime(h_leftcamera_, leftexposure_time);
     RCLCPP_INFO(this->get_logger(), "leftExposure time = %f", leftexposure_time);
 
@@ -253,7 +253,7 @@ private:
     leftparam_desc.integer_range[0].to_value = t_leftcapability_.sExposeDesc.uiAnalogGainMax;
     int leftanalog_gain;
     CameraGetAnalogGain(h_leftcamera_, &leftanalog_gain);
-    leftanalog_gain = this->declare_parameter("leftanalog_gain", 16.0, leftparam_desc);
+    leftanalog_gain = this->declare_parameter("leftanalog_gain", 64.0, leftparam_desc);
     CameraSetAnalogGain(h_leftcamera_, leftanalog_gain);
     RCLCPP_INFO(this->get_logger(), "leftAnalog gain = %d", leftanalog_gain);
 
@@ -316,7 +316,7 @@ private:
         t_rightcapability_.sExposeDesc.uiExposeTimeMin * rightexposure_line_time;
         rightparam_desc.integer_range[0].to_value =
         t_rightcapability_.sExposeDesc.uiExposeTimeMax * rightexposure_line_time;
-        double rightexposure_time = this->declare_parameter("rightexposure_time", 4000, rightparam_desc);
+        double rightexposure_time = this->declare_parameter("rightexposure_time", 20000, rightparam_desc);
         CameraSetExposureTime(h_rightcamera_, rightexposure_time);
         RCLCPP_INFO(this->get_logger(), "rightExposure time = %f", rightexposure_time);
     
@@ -326,7 +326,7 @@ private:
         rightparam_desc.integer_range[0].to_value = t_rightcapability_.sExposeDesc.uiAnalogGainMax;
         int rightanalog_gain;
         CameraGetAnalogGain(h_rightcamera_, &rightanalog_gain);
-        rightanalog_gain = this->declare_parameter("rightanalog_gain", 16.0, rightparam_desc);
+        rightanalog_gain = this->declare_parameter("rightanalog_gain", 64.0, rightparam_desc);
         CameraSetAnalogGain(h_rightcamera_, rightanalog_gain);
         RCLCPP_INFO(this->get_logger(), "rightAnalog gain = %d", rightanalog_gain);
     
