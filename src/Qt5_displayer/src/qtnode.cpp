@@ -175,6 +175,20 @@ void qtNode::radarMarkCallback(const my_msgss::msg::Radarmark msg)
     Q_EMIT updateRadarMark();
 }
 
+void qtNode::radarInfoCallback(const my_msgss::msg::Radarinfo msg)
+{
+    radar_info_msg = msg;
+    
+    Q_EMIT updateRadarInfo();
+}
+
+void qtNode::hpCallback(const my_msgss::msg::Hp msg)
+{
+    hp_msg = msg;
+
+    Q_EMIT updateHp();
+}
+
 void qtNode::run()
 {   
     cout << "node开始运行" << endl;
@@ -186,6 +200,8 @@ void qtNode::run()
     color_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/our_color", 10);
     is_save_video_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/is_begin_to_save", 10);
 
+    radar_info_pub_ = qnode->create_publisher<my_msgss::msg::Radarinfo>("/serial/radar_info", 10);
+
     far_sub_ = qnode->create_subscription<sensor_msgs::msg::Image>("/qt/far_qimage", 1, std::bind(&qtNode::farImageCallback, this, std::placeholders::_1));
     fardepth_sub_ = qnode->create_subscription<sensor_msgs::msg::CompressedImage>("/qt/fardepth_qimage", 1, std::bind(&qtNode::farDepthImageCallback, this, std::placeholders::_1));
     farpoints_sub_ = qnode->create_subscription<my_msgss::msg::Points>("/qt/farpoints", 10, std::bind(&qtNode::farPointsCallback, this, std::placeholders::_1));
@@ -196,6 +212,8 @@ void qtNode::run()
 
     game_state_sub_ = qnode->create_subscription<my_msgss::msg::Gamestate>("/game_state", 10, std::bind(&qtNode::gameStateCallback, this, std::placeholders::_1));
     radar_mark_sub_ = qnode->create_subscription<my_msgss::msg::Radarmark>("/radar_mark", 10, std::bind(&qtNode::radarMarkCallback, this, std::placeholders::_1));
+    radar_info_sub_ = qnode->create_subscription<my_msgss::msg::Radarinfo>("/radar_info", 10, std::bind(&qtNode::radarInfoCallback, this, std::placeholders::_1));
+    hp_sub_ = qnode->create_subscription<my_msgss::msg::Hp>("/hp", 10, std::bind(&qtNode::hpCallback, this, std::placeholders::_1));
 
     rclcpp::spin(qnode);
     cout << "node异常关闭" << endl;

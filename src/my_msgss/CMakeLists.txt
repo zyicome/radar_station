@@ -23,6 +23,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Supplyaction.msg"
   "msg/Refereewarning.msg"
   "msg/Radarmark.msg"
+  "msg/Radarinfo.msg"
+  "msg/Hp.msg"
 )
 
 install(DIRECTORY

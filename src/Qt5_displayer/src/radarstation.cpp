@@ -343,8 +343,6 @@ void radarStation::closePointsUpdate()
 void radarStation::gameStateUpdate()
 {
     my_msgss::msg::Gamestate game_state = qtnode.game_state_msg;
-    if(game_state.is_receive_game_message == true)
-    {
     if(game_state.game_progress == 0)
     {
         ui->gameProgress->setText("比赛状态：比赛未开始");
@@ -369,7 +367,7 @@ void radarStation::gameStateUpdate()
     {
         ui->gameProgress->setText("比赛状态：比赛结束");
     }
-    }
+    ui->gameRemainTime->setText(QString::number(game_state.stage_remain_time) + "s");
 }
 
 void radarStation::radarMarkUpdate()
@@ -446,6 +444,17 @@ void radarStation::radarMarkUpdate()
     }
 }
 
+void radarStation::radarInfoUpdate()
+{
+    my_msgss::msg::Radarinfo radar_info_msg = qtnode.radar_info_msg;
+    ui->radarInfo->setText(QString::number(radar_info_msg.radar_info) + "次");
+}
+
+void radarStation::hpUpdate()
+{
+    
+}
+
 void radarStation::blueMode()
 {
     ui->map->our_color = 1;
@@ -485,6 +494,7 @@ void radarStation::robots_init()
     robot.x = 0.0;
     robot.y = 0.0;
     robot.radar_mark_progress = 0;
+    robot.hp = 0;
     for(int i =0;i<13;i++)
     {
         robot.id++;

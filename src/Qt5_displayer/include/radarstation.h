@@ -27,6 +27,7 @@ struct DecisionRobot
     float x;
     float y;
     float radar_mark_progress;
+    float hp;
 };
 
 class radarStation : public QMainWindow
@@ -82,6 +83,10 @@ public Q_SLOTS:
     void gameStateUpdate();
 
     void radarMarkUpdate();
+
+    void radarInfoUpdate();
+
+    void hpUpdate();
 
     void blueMode();
 

@@ -13,6 +13,8 @@
 #include "my_msgss/msg/points.hpp"
 #include "my_msgss/msg/gamestate.hpp"
 #include "my_msgss/msg/radarmark.hpp"
+#include "my_msgss/msg/radarinfo.hpp"
+#include "my_msgss/msg/hp.hpp"
 #include "opencv2/opencv.hpp"
 #include "cv_bridge/cv_bridge.h"
 
@@ -39,6 +41,8 @@ public:
 
     void gameStateCallback(const my_msgss::msg::Gamestate msg);
     void radarMarkCallback(const my_msgss::msg::Radarmark msg);
+    void radarInfoCallback(const my_msgss::msg::Radarinfo msg);
+    void hpCallback(const my_msgss::msg::Hp msg);
 
     void run() override;
 
@@ -51,6 +55,8 @@ Q_SIGNALS:
     void updateClosePoints();
     void updateGameState();
     void updateRadarMark();
+    void updateRadarInfo();
+    void updateHp();
 
 public:
     QImage far_qimage;
@@ -61,11 +67,15 @@ public:
     my_msgss::msg::Points close_world_qpoints;
     my_msgss::msg::Gamestate game_state_msg;
     my_msgss::msg::Radarmark radar_mark_msg;
+    my_msgss::msg::Radarinfo radar_info_msg;
+    my_msgss::msg::Hp hp_msg;
 
     rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr pnp_pub_;
     rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr points_pub_;
     rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr color_pub_;
     rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr is_save_video_pub_;
+
+    rclcpp::Publisher<my_msgss::msg::Radarinfo>::SharedPtr radar_info_pub_;
 
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr far_sub_;
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr close_sub_;
@@ -76,6 +86,8 @@ public:
 
     rclcpp::Subscription<my_msgss::msg::Gamestate>::SharedPtr game_state_sub_;
     rclcpp::Subscription<my_msgss::msg::Radarmark>::SharedPtr radar_mark_sub_;
+    rclcpp::Subscription<my_msgss::msg::Radarinfo>::SharedPtr radar_info_sub_;
+    rclcpp::Subscription<my_msgss::msg::Hp>::SharedPtr hp_sub_;
 
     rclcpp::Node::SharedPtr qnode;
 

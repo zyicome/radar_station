@@ -1,0 +1,2 @@
+uint8 radar_info
+uint8 radar_cmd

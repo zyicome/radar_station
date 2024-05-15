@@ -1,0 +1,16 @@
+uint16 red_1_hp
+uint16 red_2_hp
+uint16 red_3_hp
+uint16 red_4_hp
+uint16 red_5_hp
+uint16 red_7_hp
+uint16 red_outpose_hp
+uint16 red_base_hp
+uint16 blue_1_hp
+uint16 blue_2_hp
+uint16 blue_3_hp
+uint16 blue_4_hp
+uint16 blue_5_hp
+uint16 blue_7_hp
+uint16 blue_outpose_hp
+uint16 blue_base_hp

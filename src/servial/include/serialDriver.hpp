@@ -16,6 +16,10 @@
 #include "my_msgss/msg/supplyaction.hpp"
 #include "my_msgss/msg/refereewarning.hpp"
 #include "my_msgss/msg/points.hpp"
+#include "my_msgss/msg/radarmark.hpp"
+#include "my_msgss/msg/hp.hpp"
+#include "my_msgss/msg/radarinfo.hpp"
+
 
 #include "std_msgs/msg/int8.hpp"
 
@@ -366,6 +370,8 @@ public:
 
   void colorCallback(const std_msgs::msg::Int8::SharedPtr msg);
 
+  void radarInfoCallback(const my_msgss::msg::Radarinfo msg);
+
   void serialCommunication();
 
   void receiveCommunication();
@@ -393,22 +399,32 @@ public:
   referee_warning_msg refereeWarningMsg;
   dart_remaining_time_msg dartRemainingTimeMsg;
   game_status_msgs gameStatusMsgs;
+  radar_mark_msg radarMarkMsg;
+  radar_info_msg radarInfoMsg;
 
-  game_status_data gameStatusData;
-  robot_health_data robotHealthData;
+  radar_cmd_msgs radarCmdMsg;
+
+
   frame_header frameHeader;
 
   my_msgss::msg::Gamestate gameStateRosMsg;
   my_msgss::msg::Supplyaction supplyProjectileActionRosMsg;
   my_msgss::msg::Refereewarning refereeWarningRosMsg;
+  my_msgss::msg::Radarmark radarMarkRosMsg;
+  my_msgss::msg::Hp hpRosMsg;
+  my_msgss::msg::Radarinfo radarInfoRosMsg;
 
   std::vector<serialRobot> serialRobots;
 
   rclcpp::Subscription<my_msgss::msg::Points>::SharedPtr worldPointsSub;
   rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr color_sub;
+  rclcpp::Subscription<my_msgss::msg::Radarinfo>::SharedPtr radarInfoSub;
 
   rclcpp::Publisher<my_msgss::msg::Gamestate>::SharedPtr gameStatePub;
   rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr worldPointsPub;
+  rclcpp::Publisher<my_msgss::msg::Hp>::SharedPtr hpPub;
+  rclcpp::Publisher<my_msgss::msg::Radarmark>::SharedPtr radarMarkPub;
+  rclcpp::Publisher<my_msgss::msg::Radarinfo>::SharedPtr radarInfoPub;
 
   rclcpp::TimerBase::SharedPtr send_timer;
   rclcpp::TimerBase::SharedPtr receive_timer;

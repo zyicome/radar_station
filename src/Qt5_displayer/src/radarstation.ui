@@ -806,6 +806,58 @@
        <string>未录制</string>
       </property>
      </widget>
+     <widget class="QLabel" name="gameRemainTimeExplain">
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>700</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>比赛剩余时间:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="gameRemainTime">
+      <property name="geometry">
+       <rect>
+        <x>1150</x>
+        <y>700</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="radarInfoExplain">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>670</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>雷达可用次数：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="radarInfo">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>670</y>
+        <width>67</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
      <zorder>mapMessage</zorder>
      <zorder>map</zorder>
      <zorder>closeImg</zorder>
@@ -862,6 +914,10 @@
      <zorder>isSaveVideo</zorder>
      <zorder>saveVideoExplain</zorder>
      <zorder>saveVideoStatus</zorder>
+     <zorder>gameRemainTimeExplain</zorder>
+     <zorder>gameRemainTime</zorder>
+     <zorder>radarInfoExplain</zorder>
+     <zorder>radarInfo</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">
