@@ -94,31 +94,31 @@ GetDepth::GetDepth() : Node("GetDepth_node")
 }
 void GetDepth::init_camera_matrix()
 {
-    far_camera_matrix.at<double>(0, 0) = 3066.03905;
+    far_camera_matrix.at<double>(0, 0) = 3085.70228;
     far_camera_matrix.at<double>(0, 1) = 0;
-    far_camera_matrix.at<double>(0, 2) = 667.26311;
+    far_camera_matrix.at<double>(0, 2) = 628.43853;
     far_camera_matrix.at<double>(1, 0) = 0;
-    far_camera_matrix.at<double>(1, 1) = 3080.97863;
-    far_camera_matrix.at<double>(1, 2) = 549.63631;
+    far_camera_matrix.at<double>(1, 1) = 3121.25945;
+    far_camera_matrix.at<double>(1, 2) = 936.7318;
     far_camera_matrix.at<double>(2, 0) = 0;
     far_camera_matrix.at<double>(2, 1) = 0;
     far_camera_matrix.at<double>(2, 2) = 1;
-    far_uni_matrix.at<double>(0, 0) = 0.00420289;
-    far_uni_matrix.at<double>(0, 1) = -0.971524; 
-    far_uni_matrix.at<double>(0, 2) = -0.127454;
-    far_uni_matrix.at<double>(0, 3) = 1.01202;
-    far_uni_matrix.at<double>(1, 0) = 0.157446;
-    far_uni_matrix.at<double>(1, 1) = 0.0965616;
-    far_uni_matrix.at<double>(1, 2) = -0.982795;
-    far_uni_matrix.at<double>(1, 3) = -0.70548;
-    far_uni_matrix.at<double>(2, 0) = 0.967116 ;
-    far_uni_matrix.at<double>(2, 1) = -0.216375;
-    far_uni_matrix.at<double>(2, 2) = 0.133675;
-    far_uni_matrix.at<double>(2, 3) = -0.984745;
-    far_distortion_coefficient.at<double>(0,0) = -0.069436;
-    far_distortion_coefficient.at<double>(1,0) = 1.005937;
-    far_distortion_coefficient.at<double>(2,0) = -0.002552;
-    far_distortion_coefficient.at<double>(3,0) = 0.003604;
+    far_uni_matrix.at<double>(0, 0) = 0.0157863;
+    far_uni_matrix.at<double>(0, 1) = -0.998361; 
+    far_uni_matrix.at<double>(0, 2) = 0.0550026;
+    far_uni_matrix.at<double>(0, 3) = 0.207938;
+    far_uni_matrix.at<double>(1, 0) = -0.0290474;
+    far_uni_matrix.at<double>(1, 1) = -0.0554442;
+    far_uni_matrix.at<double>(1, 2) = -0.998039;
+    far_uni_matrix.at<double>(1, 3) = 0.443253;
+    far_uni_matrix.at<double>(2, 0) = 0.999453;
+    far_uni_matrix.at<double>(2, 1) = 0.0141577;
+    far_uni_matrix.at<double>(2, 2) = -0.0298751;
+    far_uni_matrix.at<double>(2, 3) = -0.274921;
+    far_distortion_coefficient.at<double>(0,0) = 0.019831;
+    far_distortion_coefficient.at<double>(1,0) = -0.098189;
+    far_distortion_coefficient.at<double>(2,0) = 0.035928;
+    far_distortion_coefficient.at<double>(3,0) = -0.007875;
     far_distortion_coefficient.at<double>(4,0) = 0.000000;
 
     close_camera_matrix.at<double>(0, 0) = 1563.52174;
@@ -130,23 +130,37 @@ void GetDepth::init_camera_matrix()
     close_camera_matrix.at<double>(2, 0) = 0;
     close_camera_matrix.at<double>(2, 1) = 0;
     close_camera_matrix.at<double>(2, 2) = 1;
-    close_uni_matrix.at<double>(0, 0) = -0.0135196;
-    close_uni_matrix.at<double>(0, 1) = -0.996468;
-    close_uni_matrix.at<double>(0, 2) = -0.0828767;
-    close_uni_matrix.at<double>(0, 3) = -0.0173616;
-    close_uni_matrix.at<double>(1, 0) = -0.0277229;
-    close_uni_matrix.at<double>(1, 1) = 0.0832259;
-    close_uni_matrix.at<double>(1, 2) = -0.996145;
-    close_uni_matrix.at<double>(1, 3) = 0.0689345;
-    close_uni_matrix.at<double>(2, 0) = 0.999524;
-    close_uni_matrix.at<double>(2, 1) = -0.0111699;
-    close_uni_matrix.at<double>(2, 2) = -0.0287501;
-    close_uni_matrix.at<double>(2, 3) = -0.0757348;
+    close_uni_matrix.at<double>(0, 0) = 0.10588;
+    close_uni_matrix.at<double>(0, 1) = -0.984871;
+    close_uni_matrix.at<double>(0, 2) = -0.137183;
+    close_uni_matrix.at<double>(0, 3) = -0.579528;
+    close_uni_matrix.at<double>(1, 0) = 0.0152779;
+    close_uni_matrix.at<double>(1, 1) = 0.139554;
+    close_uni_matrix.at<double>(1, 2) =-0.990097;
+    close_uni_matrix.at<double>(1, 3) = -0.674476;
+    close_uni_matrix.at<double>(2, 0) = 0.994262;
+    close_uni_matrix.at<double>(2, 1) = 0.102736;
+    close_uni_matrix.at<double>(2, 2) = 0.0298227;
+    close_uni_matrix.at<double>(2, 3) = 1.06679;
     close_distortion_coefficient.at<double>(0,0) = -0.063200;
     close_distortion_coefficient.at<double>(1,0) = -0.005061;
     close_distortion_coefficient.at<double>(2,0) = -0.001755;
     close_distortion_coefficient.at<double>(3,0) = 0.003472;
     close_distortion_coefficient.at<double>(4,0) = 0.000000;
+
+    Mat far_R = Mat::zeros(3, 3, CV_64FC1);
+    Mat far_Rjacob = Mat::zeros(3, 1, CV_64FC1);
+    far_Rjacob.at<double>(0, 0) = 0.02;
+    far_Rjacob.at<double>(1, 0) = -0.09;
+    far_Rjacob.at<double>(2, 0) = 0.06;
+    Rodrigues(far_Rjacob, far_R);
+    for(int i = 0;i<3;i++)
+    {
+        for(int j = 0;j<3;j++)
+        {
+            std::cout << "far_R[" << i << "][" << j << "]:" << far_R.at<double>(i, j) << std::endl;
+        }
+    }
 }
 
 void GetDepth::write_csv(std::string filename, std::vector<double> vals) {
@@ -244,7 +258,11 @@ void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
             point_it.x = far_robots[i].box.x + far_robots[i].box.width / 2;
             point_it.y = far_robots[i].box.y + far_robots[i].box.height / 2;
             point_it.dist = getDepthInRect(far_robots[i].box, far_depth_queue, far_robots[i].id);
-            if(far_robots[i].id <= 9)
+            if(point_it.dist > 10000 || point_it.dist < 0 )
+            {
+                continue;
+            }
+            if(far_robots[i].id <= 6)
             {
                 point_it.color = "blue";
             }
@@ -298,7 +316,11 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
             point_it.x = close_robots[i].box.x + close_robots[i].box.width / 2;
             point_it.y = close_robots[i].box.y + close_robots[i].box.height / 2;
             point_it.dist = getDepthInRect(close_robots[i].box, close_depth_queue, close_robots[i].id);
-            if(close_robots[i].id <= 9)
+            if(point_it.dist > 10000 || point_it.dist < 0)
+            {
+                continue;
+            }
+            if(close_robots[i].id <= 6)
             {
                 point_it.color = "blue";
             }
@@ -444,13 +466,13 @@ double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my
         return 0;
     } else {
         sort(distances.begin(), distances.end());
-        /*for(int i = 0;i<distances.size();i++)
+        for(int i = 0;i<distances.size();i++)
         {
             cout << "distances[" << i << "]:" << distances[i] << endl;
-        }*/
+        }
         distance_filter(distances);
-        /*cout << "after distance_filter" << endl;
-        for(int i = 0;i<distances.size();i++)
+        //cout << "after distance_filter" << endl;
+        /*for(int i = 0;i<distances.size();i++)
         {
             cout << "distances{" << i << "}:" << distances[i] << endl;
         }*/
@@ -458,7 +480,15 @@ double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my
         double sum = 0;
         //根据不同的策略获取深度
         for (double distance: distances) {
+            if(distance > 1000 || distance < 0)
+            {
+                continue;
+            }
             sum += distance;
+        }
+        if(distances.size() == 0)
+        {
+            return 0;
         }
         mean_distance = sum / distances.size();
         return mean_distance;
@@ -714,6 +744,7 @@ void GetDepth::distance_filter(std::vector<double> & distances)
 {
     double sum = 0.0;
     double mean_distance = 0.0;
+    std::vector<double> save_distances = distances;
     for(int i = 0;i < distances.size();i++)
     {
         sum += distances[i];
@@ -725,6 +756,14 @@ void GetDepth::distance_filter(std::vector<double> & distances)
         {
             distances.erase(distances.begin() + i);
             i--;
+        }
+    }
+    if(distances.size() ==0)
+    {
+        sort(save_distances.begin(), save_distances.end());
+        for(int i = save_distances.size() / 2 - 5;i < save_distances.size() / 2 + 5;i++)
+        {
+            distances.push_back(save_distances[i]);
         }
     }
 }

@@ -101,6 +101,10 @@ private:
 
     std::vector<DecisionRobot> robots;
 
+    int radar_info;
+    bool was_first;
+    bool was_second;
+    
     QPoint pos;
 
 };

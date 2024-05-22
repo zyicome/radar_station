@@ -164,32 +164,14 @@ void smallMap::paintEvent(QPaintEvent *event)
     QPixmap scalePixmap = image.scaled(width,height,Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
     rectPixmap = QRect(drawPos.x(),drawPos.y(),width,height);
     painter.drawPixmap(rectPixmap,scalePixmap);
-    for(int i = 1;i<far_robots.size();i++)
+
+    far_close_robots_adjust(far_robots,close_robots,robots);
+
+    for(int i = 1;i<robots.size();i++)
     {
+        std::cout << "id:" << i << " x:" << far_robots[i].x << " y:" << far_robots[i].y << " confidence:" << far_robots[i].confidence << std::endl;
         int id;
-        if(far_robots[i].confidence != 0.0)
-        {
-            if(i<=9)
-            {
-                id = i;
-                painter.setPen(QPen(Qt::blue,5));
-                painter.setBrush(Qt::blue);
-            }
-            else if(i > 9)
-            {
-                id = i - 9;
-                painter.setPen(QPen(Qt::red,5));
-                painter.setBrush(Qt::red);
-            }
-            painter.drawEllipse(far_robots[i].x,far_robots[i].y,20 * this->scaleValue,20 * this->scaleValue);
-            painter.setPen(QPen(Qt::black,5));
-            painter.drawText(far_robots[i].x + (20 * this->scaleValue) / 2,far_robots[i].y + (20 * this->scaleValue) / 2,QString::number(id));
-        }
-    }
-    for(int i = 1;i<close_robots.size();i++)
-    {
-        int id;
-        if(close_robots[i].confidence != 0.0)
+        if(robots[i].confidence != 0.0)
         {
             if(i<=6)
             {
@@ -203,10 +185,16 @@ void smallMap::paintEvent(QPaintEvent *event)
                 painter.setPen(QPen(Qt::red,5));
                 painter.setBrush(Qt::red);
             }
-            painter.drawEllipse(close_robots[i].x,close_robots[i].y,20 * this->scaleValue,20 * this->scaleValue);
+            painter.drawEllipse(robots[i].x,robots[i].y,20 * this->scaleValue,20 * this->scaleValue);
             painter.setPen(QPen(Qt::black,5));
-            painter.drawText(close_robots[i].x + (20 * this->scaleValue) / 2,close_robots[i].y + (20 * this->scaleValue) / 2,QString::number(id));
+            painter.drawText(robots[i].x + (20 * this->scaleValue) / 2,robots[i].y + (20 * this->scaleValue) / 2,QString::number(id));
         }
+    }
+    for(int i = 1;i<robots.size();i++)
+    {
+        robots[i].confidence = 0.0;
+        robots[i].x = 0.0;
+        robots[i].y = 0.0;
     }
     event->accept();
 }
@@ -307,6 +295,7 @@ void smallMap::robots_init()
         robot.id++;
         far_robots.push_back(robot);
         close_robots.push_back(robot);
+        robots.push_back(robot);
     }
 }
 
@@ -339,4 +328,27 @@ void smallMap::allrobots_adjust(std::vector<Robot> &robots)
     }
 }
 
+void smallMap::far_close_robots_adjust(std::vector<Robot> &far_robots,std::vector<Robot> &close_robots,std::vector<Robot> &robots)
+{
+    for(int i = 1;i<far_robots.size();i++)
+    {
+        if(far_robots[i].confidence != 0.0)
+        {
+            robots[i].confidence = far_robots[i].confidence;
+            robots[i].x = far_robots[i].x;
+            robots[i].y = far_robots[i].y;
+        }
+    }
+
+    for(int i = 1;i<close_robots.size();i++)
+    {
+        if(close_robots[i].confidence != 0.0)
+        {
+                robots[i].confidence = close_robots[i].confidence;
+                robots[i].x = close_robots[i].x;
+                robots[i].y = close_robots[i].y;
+            
+        }
+    }
+}
 //------------------------------------------------------------------------------------------------------------

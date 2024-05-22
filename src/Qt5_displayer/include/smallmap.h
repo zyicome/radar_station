@@ -47,6 +47,7 @@ public:
     void wheelEvent(QWheelEvent *event);
 
     void changeScaleValue(QPoint event, int angle);
+    
 
 public:
     QPointF pos;
@@ -74,12 +75,14 @@ public:
     //------------------------------------------
     bool our_color; //0:red 1:blue
 
+    std::vector<Robot> robots;
     std::vector<Robot> far_robots;
     std::vector<Robot> close_robots;
 
     void robots_init();
     void get_robots(std::vector<Robot> &robots, const my_msgss::msg::Points &input);
     void allrobots_adjust(std::vector<Robot> &robots);
+    void far_close_robots_adjust(std::vector<Robot> &far_robots,std::vector<Robot> &close_robots,std::vector<Robot> &robots);
     //------------------------------------------
     //All gain region
     //------------------------------------------

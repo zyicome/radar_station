@@ -151,6 +151,7 @@ void qtNode::closeDepthImageCallback(const sensor_msgs::msg::CompressedImage msg
 void qtNode::farPointsCallback(const my_msgss::msg::Points msg)
 {
     far_world_qpoints = msg;
+    
     Q_EMIT updateFarPoints();
 }
 

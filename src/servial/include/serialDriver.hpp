@@ -146,7 +146,7 @@ struct radar_cmd_data
 } __attribute__((packed));
 struct radar_cmd_msgs {
     frame_header head;
-    uint16_t cmd_id = 0x0301;
+    uint16_t cmd_id = 0x0121;
     radar_cmd_data data;
     uint16_t crc;
 } __attribute__((packed));
@@ -358,9 +358,9 @@ class SerialDriver : public rclcpp::Node
 public:
   SerialDriver();
 
-  void serial_init();
+  ~SerialDriver();
 
-  bool receiveAllData();
+  void serial_init();
 
   void robots_init();
 
@@ -374,15 +374,9 @@ public:
 
   void serialCommunication();
 
-  void receiveCommunication();
-
   bool sendPointsData();
 
-  void receiveAllData_two(volatile uint8_t *databuffer,uint8_t length);
-
   void receiveAllData_three();
-
-  void receiveAllData_four(uint8_t *buff);
 
   bool our_color; // 0,red 1,blue
   
@@ -427,5 +421,6 @@ public:
   rclcpp::Publisher<my_msgss::msg::Radarinfo>::SharedPtr radarInfoPub;
 
   rclcpp::TimerBase::SharedPtr send_timer;
-  rclcpp::TimerBase::SharedPtr receive_timer;
+
+  std::thread receive_thread;
 };

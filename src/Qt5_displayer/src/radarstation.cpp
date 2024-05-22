@@ -47,6 +47,9 @@ radarStation::radarStation(QWidget *parent)
 
     init();
     robots_init();
+
+    was_first = false;
+    was_second = false;
 }
 
 radarStation::~radarStation()
@@ -77,6 +80,8 @@ void radarStation::init()
 
     connect(&this->qtnode,SIGNAL(updateGameState()),this,SLOT(gameStateUpdate()));
     connect(&this->qtnode,SIGNAL(updateRadarMark()),this,SLOT(radarMarkUpdate()));
+    connect(&this->qtnode,SIGNAL(updateRadarInfo()),this,SLOT(radarInfoUpdate()));
+    connect(&this->qtnode,SIGNAL(updateHp()),this,SLOT(hpUpdate()));
 
     connect(ui->solvePnpWidget,SIGNAL(pnpFinished()),this,SLOT(publishPnpResult()));
 }
@@ -292,7 +297,8 @@ void radarStation::farPointsUpdate()
             farpos.y = (ui->map->far_robots[i].x / object_height * height);
             farpos.x = farpos.x + ui->map->drawPos.x();
             farpos.y = farpos.y + ui->map->drawPos.y();
-            ui->map->farMapPoints.push_back(farpos);
+            ui->map->far_robots[i].x = farpos.x;
+            ui->map->far_robots[i].y = farpos.y;
             QString far_pointText = QString::number(farpos.id) + "号机器人相对于初始小地图的坐标为 x:" 
                                 + QString::number((farpos.x - ui->map->drawPos.x()) / ui->map->scaleValue) +" y:"
                                 + QString::number((farpos.y - ui->map->drawPos.y()) / ui->map->scaleValue);
@@ -368,6 +374,22 @@ void radarStation::gameStateUpdate()
         ui->gameProgress->setText("比赛状态：比赛结束");
     }
     ui->gameRemainTime->setText(QString::number(game_state.stage_remain_time) + "s");
+    if(game_state.stage_remain_time < 360 && radar_info <= 2 && was_first == false)
+    {
+        my_msgss::msg::Radarinfo radar_info_msg;
+        radar_info_msg.radar_cmd = 1;
+        qtnode.radar_info_pub_->publish(radar_info_msg);
+        was_first = true;
+        std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
+    }
+    if(game_state.stage_remain_time < 300 && radar_info == 2 && was_second == false)
+    {
+        my_msgss::msg::Radarinfo radar_info_msg;
+        radar_info_msg.radar_cmd = 2;
+        qtnode.radar_info_pub_->publish(radar_info_msg);
+        was_second = true;
+        std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
+    }
 }
 
 void radarStation::radarMarkUpdate()
@@ -447,12 +469,35 @@ void radarStation::radarMarkUpdate()
 void radarStation::radarInfoUpdate()
 {
     my_msgss::msg::Radarinfo radar_info_msg = qtnode.radar_info_msg;
+    radar_info = radar_info_msg.radar_info;
     ui->radarInfo->setText(QString::number(radar_info_msg.radar_info) + "次");
 }
 
 void radarStation::hpUpdate()
 {
-    
+    my_msgss::msg::Hp hp_msg = qtnode.hp_msg;
+    robots[1].hp = hp_msg.blue_1_hp;
+    robots[2].hp = hp_msg.blue_2_hp;
+    robots[3].hp = hp_msg.blue_3_hp;
+    robots[4].hp = hp_msg.blue_4_hp;
+    robots[5].hp = hp_msg.blue_5_hp;
+    robots[6].hp = hp_msg.blue_7_hp;
+    robots[7].hp = hp_msg.red_1_hp;
+    robots[8].hp = hp_msg.red_2_hp;
+    robots[9].hp = hp_msg.red_3_hp;
+    robots[10].hp = hp_msg.red_4_hp;
+    robots[11].hp = hp_msg.red_5_hp;
+    robots[12].hp = hp_msg.red_7_hp;
+    if(ui->map->our_color == 0) //red
+    {
+        ui->ourOutPostHp->setText(QString::number(hp_msg.red_outpose_hp));
+        ui->enemyOutPostHp->setText(QString::number(hp_msg.blue_outpose_hp));
+    }
+    else
+    {
+        ui->ourOutPostHp->setText(QString::number(hp_msg.blue_outpose_hp));
+        ui->enemyOutPostHp->setText(QString::number(hp_msg.red_outpose_hp));
+    }
 }
 
 void radarStation::blueMode()
@@ -480,6 +525,7 @@ void radarStation::saveVideo()
     std_msgs::msg::Int8 is_save;
     is_save.data = 1;
     qtnode.is_save_video_pub_->publish(is_save);
+    ui->saveVideoStatus->setText("正在录制");
 }
 
 void radarStation::robots_init()

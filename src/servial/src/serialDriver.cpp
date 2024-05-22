@@ -26,7 +26,17 @@ SerialDriver::SerialDriver() : Node("serial")
 
     send_timer = this->create_wall_timer(std::chrono::milliseconds(100), std::bind(&SerialDriver::serialCommunication, this));
 
-    receive_timer = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&SerialDriver::receiveCommunication, this));
+    receive_thread = std::thread(&SerialDriver::receiveAllData_three, this);
+}
+
+SerialDriver::~SerialDriver()
+{
+    serial_port.close();
+
+    if(receive_thread.joinable())
+    {
+        receive_thread.join();
+    }
 }
 
 void SerialDriver::serial_init()
@@ -103,6 +113,7 @@ void SerialDriver::receiveAllData_three()
                                 hpRosMsg.blue_base_hp = robotHealthMsgs.data.blue_outpose_HP;
                                 hpRosMsg.red_base_hp = robotHealthMsgs.data.blue_base_HP;
                                 hpPub->publish(hpRosMsg);
+                                //std::cout << "Send one hp msg" << std::endl;
                             }
                             break;
                         case 0x020C:
@@ -116,6 +127,7 @@ void SerialDriver::receiveAllData_three()
                                 radarMarkRosMsg.mark_standard_5_progress = radarMarkMsg.data.mark_standard_5_progress;
                                 radarMarkRosMsg.mark_sentry_progress = radarMarkMsg.data.mark_sentry_progress;
                                 radarMarkPub->publish(radarMarkRosMsg);
+                                //std::cout << "Send one radar mark msg" << std::endl;
                             }
                             break;
                         case 0x020E:
@@ -124,6 +136,7 @@ void SerialDriver::receiveAllData_three()
                             {
                                 radarInfoRosMsg.radar_info = radarInfoMsg.data.radar_info;
                                 radarInfoPub->publish(radarInfoRosMsg);
+                                //std::cout << "Send one radar info msg" << std::endl;
                             }
                             break;
                         default:
@@ -169,7 +182,7 @@ void SerialDriver::radarInfoCallback(const my_msgss::msg::Radarinfo msg)
     radarCmdMsg.head.seq = 1;
     radarCmdMsg.head.crc = get_CRC8_check_sum((uint8_t *) &radarCmdMsg, (sizeof(radarCmdMsg.head) - sizeof(radarCmdMsg.head.crc)),
                                              0xff);
-    radarCmdMsg.cmd_id = 0x020E;
+    radarCmdMsg.cmd_id = 0x0121;
     radarCmdMsg.data.radar_cmd = msg.radar_cmd;
     radarCmdMsg.crc = get_CRC16_check_sum((uint8_t *) &radarCmdMsg, (sizeof(radarCmdMsg) - sizeof(radarCmdMsg.crc)), 0xffff);
     serial_port.write((uint8_t *) &radarCmdMsg, sizeof(radarCmdMsg));
@@ -208,16 +221,6 @@ void SerialDriver::allrobots_adjust()
 void SerialDriver::serialCommunication()
 {
     sendPointsData();
-}
-
-void SerialDriver::receiveCommunication()
-{
-    bool is_first =true;
-    if(is_first == true)
-    {
-    receiveAllData_three();
-    is_first = false;
-    }
 }
 
 //发送信息的函数
@@ -260,6 +263,20 @@ bool SerialDriver::sendPointsData()
             }
         }
     }
+    pointMsg.head.SOF = 0xA5;
+    pointMsg.head.data_length = 10;
+        pointMsg.head.seq = 1;
+        pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
+                                             0xff);
+        pointMsg.cmd_id = 0x0305;
+        pointMsg.data.target_position_x = 0.0;
+        pointMsg.data.target_position_y = 0.0;
+        pointMsg.data.target_robot_id = 1;
+        pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
+        serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
+        /*std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
+             << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;*/
+             return false;
     if(if_send == false)
     {
         return false;
@@ -276,16 +293,16 @@ bool SerialDriver::sendPointsData()
         pointMsg.data.target_position_y = best_robot.y;
         pointMsg.data.target_robot_id = best_robot.id;
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
-        serial_port.write((uint8_t *) &pointMsg, sizeof(point_msg));
+        serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
         std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
              << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;
-        my_msgss::msg::Points test_robots;
+        /*my_msgss::msg::Points test_robots;
         my_msgss::msg::Point test_robot;
         test_robot.id = best_robot.id;
         test_robot.x = best_robot.x;
         test_robot.y = best_robot.y;
         test_robots.data.push_back(test_robot);
-        worldPointsPub->publish(test_robots);
+        worldPointsPub->publish(test_robots);*/
         return true;
     }
 }
