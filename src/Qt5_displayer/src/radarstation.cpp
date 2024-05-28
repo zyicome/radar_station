@@ -272,8 +272,8 @@ void radarStation::publishPnpResult()
 
 void radarStation::farPointsUpdate()
 {
-    float object_width = 11.5;
-    float object_height = 8;
+    float object_width = 28;
+    float object_height = 15;
 
     my_msgss::msg::Points far_qpoints = qtnode.far_world_qpoints;
     ui->map->get_robots(ui->map->far_robots,far_qpoints);
@@ -310,8 +310,8 @@ void radarStation::farPointsUpdate()
 
 void radarStation::closePointsUpdate()
 {
-    float object_width = 11.5;
-    float object_height = 8;
+    float object_width = 28;
+    float object_height = 15;
 
     my_msgss::msg::Points close_qpoints = qtnode.close_world_qpoints;
     ui->map->get_robots(ui->map->close_robots,close_qpoints);
@@ -374,7 +374,7 @@ void radarStation::gameStateUpdate()
         ui->gameProgress->setText("比赛状态：比赛结束");
     }
     ui->gameRemainTime->setText(QString::number(game_state.stage_remain_time) + "s");
-    if(game_state.stage_remain_time < 360 && radar_info <= 2 && was_first == false)
+    if(game_state.stage_remain_time < 120 && radar_info <= 2 && was_first == false)
     {
         my_msgss::msg::Radarinfo radar_info_msg;
         radar_info_msg.radar_cmd = 1;
@@ -382,7 +382,7 @@ void radarStation::gameStateUpdate()
         was_first = true;
         std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
     }
-    if(game_state.stage_remain_time < 300 && radar_info == 2 && was_second == false)
+    if(game_state.stage_remain_time < 60 && radar_info == 2 && was_second == false)
     {
         my_msgss::msg::Radarinfo radar_info_msg;
         radar_info_msg.radar_cmd = 2;
@@ -550,8 +550,8 @@ void radarStation::robots_init()
 
 void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
 {
-    float object_width = 11.5;
-    float object_height = 8;
+    float object_width = 28;
+    float object_height = 14;
     float width = ui->map->width();
     float height = ui->map->height();
     int armor_number = 0;
@@ -776,11 +776,11 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
                 {
                     continue;
                 }
-                if(robots[i].radar_mark_progress >110 && robots[i].is_120 == true)
+                if(robots[i].radar_mark_progress >115 && robots[i].is_120 == true)
                 {
                     continue;
                 }
-                if(robots[i].radar_mark_progress <= 110 && robots[i].radar_mark_progress >= 90 && robots[i].is_120 ==true)
+                if(robots[i].radar_mark_progress <= 115 && robots[i].radar_mark_progress >= 100 && robots[i].is_120 ==true)
                 {
                     best_robot = robots[i];
                     if_send = true;
@@ -827,11 +827,11 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
                 {
                     continue;
                 }
-                if(robots[i].radar_mark_progress >110 && robots[i].is_120 == true)
+                if(robots[i].radar_mark_progress >115 && robots[i].is_120 == true)
                 {
                     continue;
                 }
-                if(robots[i].radar_mark_progress <= 110 && robots[i].radar_mark_progress >= 90 && robots[i].is_120 ==true)
+                if(robots[i].radar_mark_progress <= 115 && robots[i].radar_mark_progress >= 100 && robots[i].is_120 ==true)
                 {
                     best_robot = robots[i];
                     best_robot.id -=6;

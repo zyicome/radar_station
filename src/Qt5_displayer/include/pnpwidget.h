@@ -47,7 +47,8 @@ public Q_SLOTS:
 public:
     Ui::pnpWidget *ui;
     QVector<QPointF> points;
-    std::vector<Point3d> objectPoints;
+    std::vector<Point3d> close_objectpoints;
+    std::vector<Point3d> far_objectpoints;
     cv::Mat far_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
     cv::Mat far_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
     cv::Mat far_Rjacob = cv::Mat::zeros(3, 1, CV_64FC1);

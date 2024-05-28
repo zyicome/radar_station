@@ -5,5 +5,5 @@ Camera/
 .cache/
 .git/
 .vscode/
-.src/Video_save/video_close_/
-.src/Video_save/video_far_/
+src/Video_save/video_close_/
+src/Video_save/video_far_/

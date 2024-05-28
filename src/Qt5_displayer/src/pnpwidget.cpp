@@ -81,26 +81,47 @@ void pnpWidget::parameter_init()
     close_distortion_coefficient.at<double>(3,0) = 0.003472;
     close_distortion_coefficient.at<double>(4,0) = 0.000000;
 
-    Point3d objectpoint_one;
-    objectpoint_one.x = 2520.0;
-    objectpoint_one.y = 5930.0;
-    objectpoint_one.z = 503.0;
-    objectPoints.push_back(objectpoint_one);
-    Point3d objectpoint_two;
-    objectpoint_two.x = 2520.0;
-    objectpoint_two.y = 5930.0;
-    objectpoint_two.z = 1528.0;
-    objectPoints.push_back(objectpoint_two);
-    Point3d objectpoint_three;
-    objectpoint_three.x = 3775.0;
-    objectpoint_three.y = 5930.0;
-    objectpoint_three.z = 1528.0 ;
-    objectPoints.push_back(objectpoint_three);
-    Point3d objectpoint_four;
-    objectpoint_four.x = 3775.0;
-    objectpoint_four.y = 5930.0;
-    objectpoint_four.z = 503.0 ;
-    objectPoints.push_back(objectpoint_four);
+    Point3d close_objectpoint_one;
+    close_objectpoint_one.x = 5538.0;
+    close_objectpoint_one.y = 12038.0;
+    close_objectpoint_one.z = 503.0;
+    close_objectpoints.push_back(close_objectpoint_one);
+    Point3d close_objectpoint_two;
+    close_objectpoint_two.x = 5538.0;
+    close_objectpoint_two.y = 12038.0;
+    close_objectpoint_two.z = 2304.0;
+    close_objectpoints.push_back(close_objectpoint_two);
+    Point3d close_objectpoint_three;
+    close_objectpoint_three.x = 9462.0;
+    close_objectpoint_three.y = 15962.0;
+    close_objectpoint_three.z = 2304.0 ;
+    close_objectpoints.push_back(close_objectpoint_three);
+    Point3d close_objectpoint_four;
+    close_objectpoint_four.x = 9462.0;
+    close_objectpoint_four.y = 15962.0;
+    close_objectpoint_four.z = 0.0 ;
+    close_objectpoints.push_back(close_objectpoint_four);
+
+    Point3d far_objectpoint_one;
+    far_objectpoint_one.x = 2144.5;
+    far_objectpoint_one.y = 16816.0;
+    far_objectpoint_one.z = 1284.0;
+    far_objectpoints.push_back(far_objectpoint_one);
+    Point3d far_objectpoint_two;
+    far_objectpoint_two.x = 2144.5;
+    far_objectpoint_two.y = 16816.0;
+    far_objectpoint_two.z = 1586.0;
+    far_objectpoints.push_back(far_objectpoint_two);
+    Point3d far_objectpoint_three;
+    far_objectpoint_three.x = 2697.5;
+    far_objectpoint_three.y = 16816.0;
+    far_objectpoint_three.z = 1586.0 ;
+    far_objectpoints.push_back(far_objectpoint_three);
+    Point3d far_objectpoint_four;
+    far_objectpoint_four.x = 2697.5;
+    far_objectpoint_four.y = 16816.0;
+    far_objectpoint_four.z = 1284.0 ;
+    far_objectpoints.push_back(far_objectpoint_four);
 }
 
 bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
@@ -348,7 +369,7 @@ void pnpWidget::beginPnp()
 
         if(pnp_img_id == 1)
         {
-            solvePnP(objectPoints,image_points,close_camera_matrix,close_distortion_coefficient,close_Rjacob,close_T);
+            solvePnP(close_objectpoints,image_points,close_camera_matrix,close_distortion_coefficient,close_Rjacob,close_T);
             /*cout << "cosed_Rjacob:" << close_Rjacob << endl;
             cout << "close_T:" << close_T << endl;*/
             cout << "solvePnP" << endl;
@@ -367,7 +388,7 @@ void pnpWidget::beginPnp()
         }
         else if(pnp_img_id == 2)
         {
-            solvePnP(objectPoints,image_points,far_camera_matrix,far_distortion_coefficient,far_Rjacob,far_T);
+            solvePnP(far_objectpoints,image_points,far_camera_matrix,far_distortion_coefficient,far_Rjacob,far_T);
             cout << "solvePnP" << endl;
             Rodrigues(far_Rjacob, far_R);
             cout << "Rodrigues" << endl;

@@ -263,6 +263,9 @@ bool SerialDriver::sendPointsData()
             }
         }
     }
+    bool test = false;
+    if(test)
+    {
     pointMsg.head.SOF = 0xA5;
     pointMsg.head.data_length = 10;
         pointMsg.head.seq = 1;
@@ -271,18 +274,21 @@ bool SerialDriver::sendPointsData()
         pointMsg.cmd_id = 0x0305;
         pointMsg.data.target_position_x = 0.0;
         pointMsg.data.target_position_y = 0.0;
-        pointMsg.data.target_robot_id = 1;
+        pointMsg.data.target_robot_id = 103;
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
         /*std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
              << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;*/
              return false;
+    }
     if(if_send == false)
     {
         return false;
     }
     else
     {
+        if(our_color == 0) //我们是红方
+        {
         pointMsg.head.SOF = 0xA5;
         pointMsg.head.data_length = 10;
         pointMsg.head.seq = 1;
@@ -291,7 +297,52 @@ bool SerialDriver::sendPointsData()
         pointMsg.cmd_id = 0x0305;
         pointMsg.data.target_position_x = best_robot.x;
         pointMsg.data.target_position_y = best_robot.y;
-        pointMsg.data.target_robot_id = best_robot.id;
+        switch(best_robot.id)
+        {
+            case 1:
+                pointMsg.data.target_robot_id = 101;
+                break;
+            case 2:
+                pointMsg.data.target_robot_id = 102;
+                break;
+            case 3:
+                pointMsg.data.target_robot_id = 103;
+                break;
+            case 4:
+                pointMsg.data.target_robot_id = 104;
+                break;
+            case 5:
+                pointMsg.data.target_robot_id = 105;
+                break;
+            case 6:
+                pointMsg.data.target_robot_id = 107;
+                break;
+            default:
+                break;
+        }
+        pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
+        serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
+        std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
+             << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;
+        }
+        else if(our_color == 1) //我们是蓝方
+        {
+        pointMsg.head.SOF = 0xA5;
+        pointMsg.head.data_length = 10;
+        pointMsg.head.seq = 1;
+        pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
+                                             0xff);
+        pointMsg.cmd_id = 0x0305;
+        pointMsg.data.target_position_x = best_robot.x;
+        pointMsg.data.target_position_y = best_robot.y;
+        if(best_robot.id != 6)
+        {
+            pointMsg.data.target_robot_id = best_robot.id;
+        }
+        else if(best_robot.id == 6)
+        {
+            pointMsg.data.target_robot_id = 7;
+        }
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
         std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
@@ -303,6 +354,7 @@ bool SerialDriver::sendPointsData()
         test_robot.y = best_robot.y;
         test_robots.data.push_back(test_robot);
         worldPointsPub->publish(test_robots);*/
+        }
         return true;
     }
 }
