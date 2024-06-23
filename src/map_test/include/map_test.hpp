@@ -55,6 +55,8 @@ public:
     void draw_point_on_map(Mat &map,vector<map_point> &map_points);
 
     Point2f calculate_pixel_codi(const map_point &point);
+
+    bool is_connect_to_server();
 private:
     float object_width;
     float object_height;
@@ -96,4 +98,6 @@ private:
     void get_robots(std::vector<Robot> &robots, const my_msgss::msg::Distpoints &input);
     void allrobots_adjust(std::vector<Robot> &robots);
     //-----------------------------------------------
+    rclcpp::SyncParametersClient::SharedPtr paramClient;
+    //
 };

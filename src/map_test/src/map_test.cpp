@@ -1,14 +1,14 @@
 #include "map_test.hpp"
 #include "CameraDefine.h"
-MapTest::MapTest() : Node("map_test")
+MapTest::MapTest() : Node("map_test",rclcpp::NodeOptions().allow_undeclared_parameters(true))
 {
     robots_init();
 
-    parameter_init();
+    //parameter_init();
 
     get_map();
     
-    calibration();
+    //calibration();
 
     far_distpoints_sub_ = this->create_subscription<my_msgss::msg::Distpoints>("/sensor_far/distance_point",10,
                      std::bind(&MapTest::far_callback,this,std::placeholders::_1));
@@ -21,6 +21,21 @@ MapTest::MapTest() : Node("map_test")
 
     far_points_pub_ = this->create_publisher<my_msgss::msg::Points>("/qt/farpoints", 10);
     close_points_pub_ = this->create_publisher<my_msgss::msg::Points>("/qt/closepoints", 10);
+
+    paramClient = std::make_shared<rclcpp::SyncParametersClient>(this,"parameter_server");
+}
+
+bool MapTest::is_connect_to_server()
+{
+    while(!paramClient->wait_for_service(1s))
+    {
+        if(!rclcpp::ok())
+        {
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(),"服务未连接");
+    }
+    return true;
 }
 
 void MapTest::parameter_init()
@@ -29,7 +44,7 @@ void MapTest::parameter_init()
     object_height = 28;
     object_width = 15;
     //--------------------------------------
-    far_camera_matrix.at<double>(0, 0) = 3066.03905;
+    /*far_camera_matrix.at<double>(0, 0) = 3066.03905;
     far_camera_matrix.at<double>(0, 1) = 0;
     far_camera_matrix.at<double>(0, 2) = 667.26311;
     far_camera_matrix.at<double>(1, 0) = 0;
@@ -56,7 +71,39 @@ void MapTest::parameter_init()
     close_distortion_coefficient.at<double>(1,0) = -0.005061;
     close_distortion_coefficient.at<double>(2,0) = -0.001755;
     close_distortion_coefficient.at<double>(3,0) = 0.003472;
-    close_distortion_coefficient.at<double>(4,0) = 0.000000;
+    close_distortion_coefficient.at<double>(4,0) = 0.000000;*/
+
+    far_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_camera_matrix_one");
+    far_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_camera_matrix_two");
+    far_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("far_camera_matrix_three");
+    far_camera_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("far_camera_matrix_four");
+    far_camera_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("far_camera_matrix_five");
+    far_camera_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("far_camera_matrix_six");
+    far_camera_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("far_camera_matrix_seven");
+    far_camera_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("far_camera_matrix_eight");
+    far_camera_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("far_camera_matrix_nine");
+
+    far_distortion_coefficient.at<double>(0,0) = paramClient->get_parameter<double>("far_distortion_coefficient_one");
+    far_distortion_coefficient.at<double>(1,0) = paramClient->get_parameter<double>("far_distortion_coefficient_two");
+    far_distortion_coefficient.at<double>(2,0) = paramClient->get_parameter<double>("far_distortion_coefficient_three");
+    far_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("far_distortion_coefficient_four");
+    far_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("far_distortion_coefficient_five");
+
+    close_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("close_camera_matrix_one");
+    close_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("close_camera_matrix_two");
+    close_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("close_camera_matrix_three");
+    close_camera_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("close_camera_matrix_four");
+    close_camera_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("close_camera_matrix_five");
+    close_camera_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("close_camera_matrix_six");
+    close_camera_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("close_camera_matrix_seven");
+    close_camera_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("close_camera_matrix_eight");
+    close_camera_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("close_camera_matrix_nine");
+
+    close_distortion_coefficient.at<double>(0,0) = paramClient->get_parameter<double>("close_distortion_coefficient_one");
+    close_distortion_coefficient.at<double>(1,0) = paramClient->get_parameter<double>("close_distortion_coefficient_two");
+    close_distortion_coefficient.at<double>(2,0) = paramClient->get_parameter<double>("close_distortion_coefficient_three");
+    close_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("close_distortion_coefficient_four");
+    close_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("close_distortion_coefficient_five");
 }
 
 void MapTest::get_map()
@@ -291,7 +338,14 @@ void MapTest::close_callback(const my_msgss::msg::Distpoints msg)
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<MapTest>());
+    auto paramClient = std::make_shared<MapTest>();
+    bool flag = paramClient->is_connect_to_server();
+    if(!flag){
+        return 0;
+    } 
+    paramClient->parameter_init();
+    paramClient->calibration();
+    rclcpp::spin(paramClient);
     rclcpp::shutdown();
     return 0;
 }
