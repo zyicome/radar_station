@@ -770,7 +770,7 @@
      <widget class="QPushButton" name="isSaveVideo">
       <property name="geometry">
        <rect>
-        <x>1100</x>
+        <x>890</x>
         <y>670</y>
         <width>89</width>
         <height>25</height>
@@ -783,7 +783,7 @@
      <widget class="QLabel" name="saveVideoExplain">
       <property name="geometry">
        <rect>
-        <x>1200</x>
+        <x>980</x>
         <y>670</y>
         <width>41</width>
         <height>21</height>
@@ -796,7 +796,7 @@
      <widget class="QLabel" name="saveVideoStatus">
       <property name="geometry">
        <rect>
-        <x>1240</x>
+        <x>1020</x>
         <y>670</y>
         <width>141</width>
         <height>21</height>
@@ -923,6 +923,97 @@
        <string>暂无</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="isSaveScreen">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>670</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>录制屏幕</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveScreenExplain">
+      <property name="geometry">
+       <rect>
+        <x>1180</x>
+        <y>670</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveScreenStatus">
+      <property name="geometry">
+       <rect>
+        <x>1220</x>
+        <y>670</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>未录制</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="testMode">
+      <property name="geometry">
+       <rect>
+        <x>1290</x>
+        <y>670</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>调试</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="gameMode">
+      <property name="geometry">
+       <rect>
+        <x>1350</x>
+        <y>670</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>比赛</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="modeStatusExplain">
+      <property name="geometry">
+       <rect>
+        <x>1400</x>
+        <y>670</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="modeStatus">
+      <property name="geometry">
+       <rect>
+        <x>1440</x>
+        <y>670</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
      <zorder>mapMessage</zorder>
      <zorder>map</zorder>
      <zorder>closeImg</zorder>
@@ -988,6 +1079,13 @@
      <zorder>enemyOutPostExplain</zorder>
      <zorder>ourOutPostHp</zorder>
      <zorder>enemyOutPostHp</zorder>
+     <zorder>isSaveScreen</zorder>
+     <zorder>saveScreenExplain</zorder>
+     <zorder>saveScreenStatus</zorder>
+     <zorder>testMode</zorder>
+     <zorder>gameMode</zorder>
+     <zorder>modeStatusExplain</zorder>
+     <zorder>modeStatus</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">

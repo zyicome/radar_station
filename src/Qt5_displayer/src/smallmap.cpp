@@ -169,7 +169,7 @@ void smallMap::paintEvent(QPaintEvent *event)
 
     for(int i = 1;i<robots.size();i++)
     {
-        std::cout << "id:" << i << " x:" << far_robots[i].x << " y:" << far_robots[i].y << " confidence:" << far_robots[i].confidence << std::endl;
+        //std::cout << "id:" << i << " x:" << far_robots[i].x << " y:" << far_robots[i].y << " confidence:" << far_robots[i].confidence << std::endl;
         int id;
         if(robots[i].confidence != 0.0)
         {

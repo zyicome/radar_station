@@ -79,6 +79,9 @@ GetDepth::GetDepth() : Node("GetDepth_node")
 
     cloud_sub = this->create_subscription<sensor_msgs::msg::PointCloud2>("/livox/lidar", 10, std::bind(&GetDepth::pointCloudCallback, this, std::placeholders::_1));
 
+    far_image_sub = this->create_subscription<sensor_msgs::msg::Image>("/qt/far_qimage", 10, std::bind(&GetDepth::farImageCallback, this, std::placeholders::_1));
+    close_image_sub = this->create_subscription<sensor_msgs::msg::Image>("/qt/close_qimage", 10, std::bind(&GetDepth::closeImageCallback, this, std::placeholders::_1));
+
     far_yolo_sub = this->create_subscription<my_msgss::msg::Yolopoints>("/far_rectangles", 1, std::bind(&GetDepth::far_yoloCallback, this, std::placeholders::_1));
     far_distancePointPub = this->create_publisher<my_msgss::msg::Distpoints>("/sensor_far/distance_point", 10);
     far_depth_qimage_pub = this->create_publisher<sensor_msgs::msg::CompressedImage>("/qt/fardepth_qimage", 1);
@@ -280,6 +283,8 @@ void GetDepth::far_yoloCallback(const my_msgss::msg::Yolopoints &input) {
     far_distancePointPub->publish(far_distance_it);
     resize(far_depth_show, far_depth_show, Size(640, 480));
     far_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "mono8", far_depth_show).toCompressedImageMsg()));
+    //cv::Mat far_mixMap = distance_to_image(far_depth_show, far_image);
+    //imshow("far_mixMap",far_mixMap);
     imshow("far_depth_show", far_depth_show);
     waitKey(1);
 };
@@ -305,7 +310,7 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
 
     get_robots(close_robots, input);
     allrobots_adjust(close_robots);
-    //RCLCPP_INFO(get_logger(), "close_yoloCallback");
+    //RCLCPP_INFO(get_logger(), "close_y;++)
     for(int i = 0;i<close_robots.size();i++)
     {
         if(close_robots[i].tracking == "tracking" || close_robots[i].tracking == "locking" || close_robots[i].tracking == "tracking_locking")
@@ -339,6 +344,8 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
     close_distancePointPub->publish(close_distance_it);
     resize(close_depth_show, close_depth_show, Size(640, 480));
     close_depth_qimage_pub->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "mono8", close_depth_show).toCompressedImageMsg()));
+    //cv::Mat close_mixMap = distance_to_image(close_depth_show, close_image);
+    //imshow("close_mixMap",close_mixMap);
     imshow("close_depth_show", close_depth_show);
     waitKey(1);
 };
@@ -433,6 +440,46 @@ void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArra
     }
 };
 
+void GetDepth::farImageCallback(const sensor_msgs::msg::Image msg)
+{
+    std::cout << "farImageCallback begin" << std::endl;
+    cv_bridge::CvImagePtr far_cv_ptr;
+    try
+    {
+        far_cv_ptr = cv_bridge::toCvCopy(msg,sensor_msgs::image_encodings::BGR8);
+        if(!far_cv_ptr->image.empty())
+        {
+            far_image = far_cv_ptr->image;
+            cv::resize(far_image,far_image,cv::Size(640,480));
+        }
+    }
+    catch(cv_bridge::Exception &e)
+    {
+        std::cout << "farImageCallback error" << std::endl;
+        return;
+    }
+}
+
+void GetDepth::closeImageCallback(const sensor_msgs::msg::Image msg)
+{
+    std::cout << "closeImageCallback begin" << std::endl;
+    cv_bridge::CvImagePtr close_cv_ptr;
+    try
+    {
+        close_cv_ptr = cv_bridge::toCvCopy(msg,sensor_msgs::image_encodings::BGR8);
+        if(!close_cv_ptr->image.empty())
+        {
+            close_image = close_cv_ptr->image;
+            cv::resize(close_image,close_image,cv::Size(640,480));
+        }
+    }
+    catch(cv_bridge::Exception &e)
+    {
+        std::cout << "farImageCallback error" << std::endl;
+        return;
+    }
+}
+
 /**far_rectangles
  * 从深度图中获取ROI的深度
  * @param rect ROI
@@ -466,10 +513,10 @@ double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my
         return 0;
     } else {
         sort(distances.begin(), distances.end());
-        for(int i = 0;i<distances.size();i++)
+        /*for(int i = 0;i<distances.size();i++)
         {
             cout << "distances[" << i << "]:" << distances[i] << endl;
-        }
+        }*/
         distance_filter(distances);
         //cout << "after distance_filter" << endl;
         /*for(int i = 0;i<distances.size();i++)
@@ -766,4 +813,41 @@ void GetDepth::distance_filter(std::vector<double> & distances)
             distances.push_back(save_distances[i]);
         }
     }
+}
+
+cv::Mat GetDepth::distance_to_image(cv::Mat depth, cv::Mat image)
+{
+    // double min = 0.0;
+    // double max = 0.0;
+    // cv::minMaxIdx(depth, &min, &max);
+    // cv::Mat adjMap;
+    // cv::convertScaleAbs(depth, adjMap, 255 / max);
+    // cv::applyColorMap(adjMap, image, cv::COLORMAP_JET);
+    // return adjMap;
+
+    std::cout << "depth.rows:" << depth.rows << std::endl;
+    std::cout << "depth.cols:" << depth.cols << std::endl;
+    std::cout << "image.rows:" << image.rows << std::endl;
+    std::cout << "image.cols:" << image.cols << std::endl;
+    cv::Mat adjMap = cv::Mat::zeros(depth.rows, depth.cols, CV_8UC3);
+    adjMap = image.clone();
+    for(int i = 0;i<depth.rows;i++)
+    {
+        for(int j = 0;j<depth.cols;j++)
+        {
+            /*if(depth.at<double>(i, j) == 0)
+            {
+                adjMap.at<cv::Vec3b>(i, j)[0] = 255;
+                adjMap.at<cv::Vec3b>(i, j)[1] = 0;
+                adjMap.at<cv::Vec3b>(i, j)[2] = 0;
+            }*/
+            if(depth.at<double>(i, j) > 0)
+            {
+                adjMap.at<cv::Vec3b>(i, j)[0] = 255;
+                adjMap.at<cv::Vec3b>(i, j)[1] = 0;
+                adjMap.at<cv::Vec3b>(i, j)[2] = 0;
+            }
+        }
+    }
+    return adjMap;
 }

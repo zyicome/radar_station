@@ -8,11 +8,15 @@ SerialDriver::SerialDriver() : Node("serial")
 
     our_color = 0;
 
+    test = false;
+
     worldPointsSub = this->create_subscription<my_msgss::msg::Points>("/serial/world_points", 10, std::bind(&SerialDriver::worldPointsCallback, this, std::placeholders::_1));
 
     color_sub = this->create_subscription<std_msgs::msg::Int8>("/our_color", 10, std::bind(&SerialDriver::colorCallback, this, std::placeholders::_1));
 
     radarInfoSub = this->create_subscription<my_msgss::msg::Radarinfo>("/serial/radar_info", 10, std::bind(&SerialDriver::radarInfoCallback, this, std::placeholders::_1));
+
+    mode_sub = this->create_subscription<std_msgs::msg::Int8>("/mode", 10, std::bind(&SerialDriver::modeCallback, this, std::placeholders::_1));
 
     gameStatePub = this->create_publisher<my_msgss::msg::Gamestate>("/game_state", 10);
 
@@ -34,7 +38,7 @@ SerialDriver::~SerialDriver()
     serial_port.close();
 
     if(receive_thread.joinable())
-    {
+    { 
         receive_thread.join();
     }
 }
@@ -189,6 +193,18 @@ void SerialDriver::radarInfoCallback(const my_msgss::msg::Radarinfo msg)
     std::cout << "Send one radar cmd msg radar_cmd = " << radarCmdMsg.data.radar_cmd << std::endl;
 }
 
+void SerialDriver::modeCallback(const std_msgs::msg::Int8 msg)
+{
+    if(msg.data == 0)
+    {
+        test = false;
+    }
+    else if(msg.data == 1)
+    {
+        test = true;
+    }
+}
+
 void SerialDriver::robots_init()
 {
     serialRobot robot;
@@ -263,7 +279,6 @@ bool SerialDriver::sendPointsData()
             }
         }
     }
-    bool test = false;
     if(test)
     {
     pointMsg.head.SOF = 0xA5;
@@ -274,7 +289,7 @@ bool SerialDriver::sendPointsData()
         pointMsg.cmd_id = 0x0305;
         pointMsg.data.target_position_x = 0.0;
         pointMsg.data.target_position_y = 0.0;
-        pointMsg.data.target_robot_id = 103;
+        pointMsg.data.target_robot_id = 101;
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
         /*std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "

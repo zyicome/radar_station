@@ -10,6 +10,7 @@
 #include "my_msgss/msg/yolopoints.hpp"
 #include <vector>
 #include "number_classifier.hpp"
+#include "std_msgs/msg/int8.hpp"
 
 #include <ament_index_cpp/get_package_share_directory.hpp>
 
@@ -53,6 +54,8 @@ public:
 
     void img_close_callback(const sensor_msgs::msg::CompressedImage msg);
 
+    void mode_callback(const std_msgs::msg::Int8 msg);
+
     void yolo_init();
 
     void yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robot_boxes,vector<Robot> &robots,Inference_cuda &inf_robot,Inference_cuda &inf_armor);
@@ -60,8 +63,6 @@ public:
     void yolo_armor_identify(Mat & sub_img,vector<Robot> &robots, cv::Rect &box,Inference_cuda &inf_armor,Detection_output &robot_output);
 
     void draw_img(Mat & sub_img,my_msgss::msg::Yolopoints &robot_boxes);
-
-    void test();
 
     //--------------------------------
     //new function
@@ -82,6 +83,7 @@ public:
     vector<Robot> far_robots;
     vector<Robot> close_robots;
 
+    bool test;
     int min_detection_times;
     int max_lost_times;
     int max_tracking_lost_times;
@@ -126,6 +128,8 @@ public:
     rclcpp::Publisher<my_msgss::msg::Yolopoints>::SharedPtr close_yolopoints_pub_;
     rclcpp::Publisher<my_msgss::msg::Yolopoints>::SharedPtr test_close_yolopoints_pub_;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr close_qimage_pub_;
+
+    rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr mode_sub_;
 
     NumberClassifier numberclassifier;
 

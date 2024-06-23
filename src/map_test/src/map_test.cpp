@@ -26,8 +26,8 @@ MapTest::MapTest() : Node("map_test")
 void MapTest::parameter_init()
 {
     //-------------------------------------
-    object_height = 11.5;
-    object_width = 8;
+    object_height = 28;
+    object_width = 15;
     //--------------------------------------
     far_camera_matrix.at<double>(0, 0) = 3066.03905;
     far_camera_matrix.at<double>(0, 1) = 0;

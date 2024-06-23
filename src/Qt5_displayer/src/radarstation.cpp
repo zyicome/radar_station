@@ -69,6 +69,7 @@ void radarStation::init()
     connect(ui->redMode,SIGNAL(clicked()),this,SLOT(redMode()));
 
     connect(ui->isSaveVideo,SIGNAL(clicked()),this,SLOT(saveVideo()));
+    connect(ui->isSaveScreen,SIGNAL(clicked()),this,SLOT(saveScreen()));
 
     connect(&this->qtnode,SIGNAL(updateFarImage()),this,SLOT(farImageUpdate()));
     //connect(&this->qtnode,SIGNAL(updateDepthImage()),this,SLOT(farDepthImageUpdate()));
@@ -84,6 +85,11 @@ void radarStation::init()
     connect(&this->qtnode,SIGNAL(updateHp()),this,SLOT(hpUpdate()));
 
     connect(ui->solvePnpWidget,SIGNAL(pnpFinished()),this,SLOT(publishPnpResult()));
+    connect(ui->blueMode,SIGNAL(clicked()),ui->solvePnpWidget,SLOT(blueMode()));
+    connect(ui->redMode,SIGNAL(clicked()),ui->solvePnpWidget,SLOT(redMode()));
+
+    connect(ui->testMode,SIGNAL(clicked()),this,SLOT(testMode()));
+    connect(ui->gameMode,SIGNAL(clicked()),this,SLOT(gameMode()));
 }
 
 void radarStation::mousePressEvent(QMouseEvent *event)
@@ -292,9 +298,9 @@ void radarStation::farPointsUpdate()
         if(ui->map->far_robots[i].confidence > 0.0)
         {
             farpos.id = ui->map->far_robots[i].id;
-            farpos.x = ui->map->far_robots[i].y / object_width * width;
-            //farpos.y = height - (ui->map->far_robots[i].y / object_height * height);
-            farpos.y = (ui->map->far_robots[i].x / object_height * height);
+            farpos.x = ui->map->far_robots[i].x / object_width * width;
+            farpos.y = height - (ui->map->far_robots[i].y / object_height * height);
+            //farpos.y = (ui->map->far_robots[i].y / object_height * height);
             farpos.x = farpos.x + ui->map->drawPos.x();
             farpos.y = farpos.y + ui->map->drawPos.y();
             ui->map->far_robots[i].x = farpos.x;
@@ -330,9 +336,9 @@ void radarStation::closePointsUpdate()
         if(ui->map->close_robots[i].confidence > 0.0)
         {
             closepos.id = ui->map->close_robots[i].id;
-            closepos.x = ui->map->close_robots[i].y / object_width * width;
-            //closepos.y = height - (ui->map->close_robots[i].y / object_height * height);
-            closepos.y = (ui->map->close_robots[i].x / object_height * height);
+            closepos.x = ui->map->close_robots[i].x / object_width * width;
+            closepos.y = height - (ui->map->close_robots[i].y / object_height * height);
+            //closepos.y = (ui->map->close_robots[i].x / object_height * height);
             closepos.x = closepos.x + ui->map->drawPos.x();
             closepos.y = closepos.y + ui->map->drawPos.y();
             ui->map->close_robots[i].x = closepos.x;
@@ -374,10 +380,10 @@ void radarStation::gameStateUpdate()
         ui->gameProgress->setText("比赛状态：比赛结束");
     }
     ui->gameRemainTime->setText(QString::number(game_state.stage_remain_time) + "s");
-    if(game_state.stage_remain_time < 120 && radar_info <= 2 && was_first == false)
+    if(game_state.stage_remain_time < 120 && radar_info <= 2 && radar_info > 0 && was_first == false)
     {
         my_msgss::msg::Radarinfo radar_info_msg;
-        radar_info_msg.radar_cmd = 1;
+        radar_info_msg.radar_cmd = 0x01;
         qtnode.radar_info_pub_->publish(radar_info_msg);
         was_first = true;
         std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
@@ -385,7 +391,7 @@ void radarStation::gameStateUpdate()
     if(game_state.stage_remain_time < 60 && radar_info == 2 && was_second == false)
     {
         my_msgss::msg::Radarinfo radar_info_msg;
-        radar_info_msg.radar_cmd = 2;
+        radar_info_msg.radar_cmd = 0x02;
         qtnode.radar_info_pub_->publish(radar_info_msg);
         was_second = true;
         std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
@@ -520,12 +526,33 @@ void radarStation::redMode()
     ui->map->update();
 }
 
+void radarStation::testMode()
+{
+    std_msgs::msg::Int8 mode;
+    mode.data = 1;
+    qtnode.mode_pub_->publish(mode);
+    ui->modeStatus->setText("调试模式");
+}
+
+void radarStation::gameMode()
+{
+    std_msgs::msg::Int8 mode;
+    mode.data = 0;
+    qtnode.mode_pub_->publish(mode);
+    ui->modeStatus->setText("比赛模式");
+}
+
 void radarStation::saveVideo()
 {
     std_msgs::msg::Int8 is_save;
     is_save.data = 1;
     qtnode.is_save_video_pub_->publish(is_save);
     ui->saveVideoStatus->setText("正在录制");
+}
+
+void radarStation::saveScreen()
+{
+    ui->saveScreenStatus->setText("暂无此录制功能");
 }
 
 void radarStation::robots_init()
@@ -551,7 +578,7 @@ void radarStation::robots_init()
 void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
 {
     float object_width = 28;
-    float object_height = 14;
+    float object_height = 15;
     float width = ui->map->width();
     float height = ui->map->height();
     int armor_number = 0;
@@ -793,13 +820,6 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
                     if_send = true;
                     continue;
                 }
-                else if(robots[i].id == 6)
-                {
-                    best_robot = robots[i];
-                    best_robot.confidence = 0.95;
-                    if_send = true;
-                    continue;
-                }
                 if(robots[i].confidence > best_robot.confidence)
                 {
                     best_robot = robots[i];
@@ -843,14 +863,6 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
                     best_robot = robots[i];
                     best_robot.id -=6;
                     best_robot.confidence = 1.0;
-                    if_send = true;
-                    continue;
-                }
-                else if(robots[i].id == 6)
-                {
-                    best_robot = robots[i];
-                    best_robot.id -=6;
-                    best_robot.confidence = 0.95;
                     if_send = true;
                     continue;
                 }

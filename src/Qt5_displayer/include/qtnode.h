@@ -73,6 +73,7 @@ public:
     rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr pnp_pub_;
     rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr points_pub_;
     rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr color_pub_;
+    rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr mode_pub_;
     rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr is_save_video_pub_;
 
     rclcpp::Publisher<my_msgss::msg::Radarinfo>::SharedPtr radar_info_pub_;

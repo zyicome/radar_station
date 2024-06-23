@@ -6,6 +6,7 @@ def generate_launch_description():
         package='serial_driver',
         executable='serial_driver',
         name='serial_driver',
-        output='screen'
+        output='screen',
+        respawn=True
     )
     return LaunchDescription([serial])

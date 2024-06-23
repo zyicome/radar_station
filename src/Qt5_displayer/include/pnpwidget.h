@@ -44,6 +44,10 @@ public Q_SLOTS:
     void calibrationClose();
 
     void calibrationFar();
+
+    void blueMode();
+
+    void redMode();
 public:
     Ui::pnpWidget *ui;
     QVector<QPointF> points;
@@ -67,6 +71,7 @@ public:
     QPixmap closeimage;
     bool isBeginPoint;
     float pnp_img_id;
+    bool our_color;
 };
 
 #endif // PNPWIDGET_H

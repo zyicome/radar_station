@@ -199,6 +199,7 @@ void qtNode::run()
     pnp_pub_ = qnode->create_publisher<std_msgs::msg::Float32MultiArray>("/qt/pnp", 10);
     points_pub_ = qnode->create_publisher<my_msgss::msg::Points>("/serial/world_points", 10);
     color_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/our_color", 10);
+    mode_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/mode", 10);
     is_save_video_pub_ = qnode->create_publisher<std_msgs::msg::Int8>("/is_begin_to_save", 10);
 
     radar_info_pub_ = qnode->create_publisher<my_msgss::msg::Radarinfo>("/serial/radar_info", 10);

@@ -93,6 +93,12 @@ public Q_SLOTS:
     void redMode();
 
     void saveVideo();
+
+    void saveScreen();
+
+    void testMode();
+
+    void gameMode();
 private:
     Ui::radarStation *ui;
     qtNode qtnode;

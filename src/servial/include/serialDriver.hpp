@@ -372,6 +372,8 @@ public:
 
   void radarInfoCallback(const my_msgss::msg::Radarinfo msg);
 
+  void modeCallback(const std_msgs::msg::Int8 msg);
+
   void serialCommunication();
 
   bool sendPointsData();
@@ -379,6 +381,7 @@ public:
   void receiveAllData_three();
 
   bool our_color; // 0,red 1,blue
+  bool test;
   
   serial::Serial serial_port;
   uint8_t receiveData[1024];
@@ -412,6 +415,7 @@ public:
 
   rclcpp::Subscription<my_msgss::msg::Points>::SharedPtr worldPointsSub;
   rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr color_sub;
+  rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr mode_sub;
   rclcpp::Subscription<my_msgss::msg::Radarinfo>::SharedPtr radarInfoSub;
 
   rclcpp::Publisher<my_msgss::msg::Gamestate>::SharedPtr gameStatePub;

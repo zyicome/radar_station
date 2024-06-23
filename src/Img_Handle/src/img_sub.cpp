@@ -18,6 +18,9 @@ Img_Sub::Img_Sub() : Node("img_sub")
    this->close_qimage_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/qt/close_qimage",1);
    RCLCPP_INFO(this->get_logger(), "yolo begin to init");
 
+   mode_sub_ = this->create_subscription<std_msgs::msg::Int8>("/mode",10,std::bind(&Img_Sub::mode_callback,this,std::placeholders::_1));
+
+    test = false;
 }
 
 Img_Sub::~Img_Sub()
@@ -151,7 +154,6 @@ void Img_Sub::img_far_callback(sensor_msgs::msg::CompressedImage msg)
             RCLCPP_INFO(get_logger(), "began to send farrobot_boxes");
             far_yolopoints_pub_->publish(far_robot_boxes);
         }
-        bool test = false;
         if(test)
         {
             my_msgss::msg::Yolopoint test_far_robot_box;
@@ -195,7 +197,6 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
             RCLCPP_INFO(get_logger(), "began to send farrobot_boxes");
             close_yolopoints_pub_->publish(close_robot_boxes);
         }
-        bool test = false;
         if(test)
         {
             my_msgss::msg::Yolopoint test_close_robot_box;
@@ -212,6 +213,18 @@ void Img_Sub::img_close_callback(sensor_msgs::msg::CompressedImage msg)
         }
         this->draw_img(sub_img_close,close_robot_boxes);
         close_qimage_pub_->publish(*(cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", this->sub_img_close).toImageMsg()));
+}
+
+void Img_Sub::mode_callback(const std_msgs::msg::Int8 msg)
+{
+    if(msg.data == 1)
+    {
+        test = true;
+    }
+    else if(msg.data == 0)
+    {
+        test = false;
+    }
 }
 
 void Img_Sub::yolo_init()
@@ -418,11 +431,6 @@ void Img_Sub::draw_img(Mat & sub_img,my_msgss::msg::Yolopoints &robot_boxes)
     //std::cout << "发送qimage图片" << std::endl;
     /*imshow("Img_Sub::draw_img", this->sub_img);
     waitKey(1);*/
-}
-
-void Img_Sub::test()
-{
-    
 }
 
 void Img_Sub::save_img()

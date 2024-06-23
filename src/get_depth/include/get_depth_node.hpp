@@ -61,7 +61,10 @@ private:
   void outpost_Callback(const my_msgss::msg::Points &outpost);
   void calibration_result_Callback(const std_msgs::msg::Float64MultiArray &calibration_result);
   double getDepthInRect(cv::Rect rect, std::vector<cv::Mat>& depth_queue, my_msgss::msg::Yolopoint::_id_type id);//得到ROI中点的深度
+  void closeImageCallback(const sensor_msgs::msg::Image msg);
+  void farImageCallback(const sensor_msgs::msg::Image msg);
   void distance_filter(std::vector<double> & distances);
+  cv::Mat distance_to_image(cv::Mat depth, cv::Mat image);
   //声明publisher
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr far_distancePointPub;
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr close_distancePointPub;
@@ -82,6 +85,8 @@ private:
   rclcpp::Subscription<my_msgss::msg::Yolopoints>::SharedPtr far_yolo_sub;
   rclcpp::Subscription<my_msgss::msg::Yolopoints>::SharedPtr close_yolo_sub;
   rclcpp::Subscription<my_msgss::msg::Points>::SharedPtr outpost_Sub;
+  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr far_image_sub;
+  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr close_image_sub;
 
   rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr calibration_result_sub;
   
@@ -102,6 +107,9 @@ private:
   cv::Mat close_camera_matrix;//相机内参矩阵
   cv::Mat close_uni_matrix;//相机和雷达的变换矩阵
   cv::Mat close_distortion_coefficient;
+
+  cv::Mat far_image;
+  cv::Mat close_image;
 
   //---------------------------------------------------
   std::vector<Robot> robots;
