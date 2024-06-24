@@ -13,8 +13,11 @@
 
 #include <ament_index_cpp/get_package_share_directory.hpp>
 
+#include "tinyxml2.h"
+
 using namespace std;
 using namespace cv;
+using namespace tinyxml2;
 
 class Server : public::rclcpp::Node
 {
@@ -26,5 +29,15 @@ public:
     void set_map_parameter();
 
     void test();
+
+    bool read_xml();
+
+    std::vector<double> far_camera_matrix;
+    std::vector<double> far_distortion_coefficient;
+    std::vector<double> far_uni_matrix;
+
+    std::vector<double> close_camera_matrix;
+    std::vector<double> close_distortion_coefficient;
+    std::vector<double> close_uni_matrix;
 };
 

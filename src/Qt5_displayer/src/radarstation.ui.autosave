@@ -1,0 +1,1137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>radarStation</class>
+ <widget class="QMainWindow" name="radarStation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>1400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>radarStation</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <widget class="QStackedWidget" name="allWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1600</width>
+      <height>1400</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="mapWidget">
+     <widget class="QLabel" name="closeImg">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>10</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="smallMap" name="map">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>40</y>
+        <width>1041</width>
+        <height>611</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="mapMessage">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>660</y>
+        <width>661</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="lineWrapMode">
+       <enum>QPlainTextEdit::WidgetWidth</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="overwriteMode">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="farImg">
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>340</y>
+        <width>391</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../map/map.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_1">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>870</y>
+        <width>31</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>940</y>
+        <width>31</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>5号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="progressExplain_1">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>870</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>标记进度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="location_5">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>960</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>位置</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_2">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>870</y>
+        <width>31</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>2号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_6">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>940</y>
+        <width>51</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>无人机</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="airStatusExplain">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>940</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="location_2">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>890</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>位置</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_3">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>870</y>
+        <width>31</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>3号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_7">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>940</y>
+        <width>31</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>哨兵</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="location_6">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>960</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>位置</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="location_3">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>890</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>位置</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_4">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>870</y>
+        <width>31</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>4号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="robot_9">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>940</y>
+        <width>31</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>飞镖</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="location_4">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>890</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>位置</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="mapMode">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>0</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>小地图模式</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="pnpMode">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>0</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>pnp模式</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="decisionMessage">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>730</y>
+        <width>781</width>
+        <height>261</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="redMode">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>10</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>红方模式</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="blueMode">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>10</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>蓝方模式</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="colorExplain">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>10</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>按照我方颜色确定：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="gameProgress">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>700</y>
+        <width>281</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>比赛状态:暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="location_1">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>890</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>位置</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="baseMessage_1">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>910</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>识别信息</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="markProgress_1">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>870</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="progressExplain_2">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>870</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>标记进度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="markProgress_2">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>870</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="baseMessage_2">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>910</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>识别信息</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="progressExplain_3">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>870</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>标记进度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="baseMessage_3">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>910</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>识别信息</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="markProgress_3">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>870</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="baseMessage_4">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>910</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>识别信息</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="progressExplain_4">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>870</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>标记进度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="markProgress_4">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>870</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="baseMessage_5">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>980</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>识别信息</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="progressExplain_5">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>940</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>标记进度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="markProgress_5">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>940</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="progressExplain_6">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>940</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>标记进度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="markProgress_6">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>940</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="baseMessage_6">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>980</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>识别信息</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="airStatus">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>940</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>冷却中</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="airRemainTimeExplain">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>960</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>剩余时间:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="airRemainTime">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>980</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dartStatusExplain">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>940</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dartStatus">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>940</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>关闭</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dartRemainTime_2">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>960</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>剩余时间:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dartRemainTime">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>980</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="leftScroll">
+      <property name="geometry">
+       <rect>
+        <x>1460</x>
+        <y>10</y>
+        <width>51</width>
+        <height>481</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="rightScroll">
+      <property name="geometry">
+       <rect>
+        <x>1530</x>
+        <y>250</y>
+        <width>51</width>
+        <height>481</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="isSaveVideo">
+      <property name="geometry">
+       <rect>
+        <x>890</x>
+        <y>670</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>录制视频</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveVideoExplain">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>670</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveVideoStatus">
+      <property name="geometry">
+       <rect>
+        <x>1020</x>
+        <y>670</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>未录制</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="gameRemainTimeExplain">
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>700</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>比赛剩余时间:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="gameRemainTime">
+      <property name="geometry">
+       <rect>
+        <x>1150</x>
+        <y>700</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="radarInfoExplain">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>670</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>雷达可用次数：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="radarInfo">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>670</y>
+        <width>67</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="outpost">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>940</y>
+        <width>51</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>前哨站</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ourOutPostExplain">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>940</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>我方:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="enemyOutPostExplain">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>980</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>敌方:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ourOutPostHp">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>940</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="enemyOutPostHp">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>980</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="isSaveScreen">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>670</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>录制屏幕</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveScreenExplain">
+      <property name="geometry">
+       <rect>
+        <x>1180</x>
+        <y>670</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveScreenStatus">
+      <property name="geometry">
+       <rect>
+        <x>1220</x>
+        <y>670</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>未录制</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="testMode">
+      <property name="geometry">
+       <rect>
+        <x>1290</x>
+        <y>670</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>调试</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="gameMode">
+      <property name="geometry">
+       <rect>
+        <x>1350</x>
+        <y>670</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>比赛</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="modeStatusExplain">
+      <property name="geometry">
+       <rect>
+        <x>1400</x>
+        <y>670</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="modeStatus">
+      <property name="geometry">
+       <rect>
+        <x>1440</x>
+        <y>670</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <zorder>mapMessage</zorder>
+     <zorder>map</zorder>
+     <zorder>closeImg</zorder>
+     <zorder>farImg</zorder>
+     <zorder>robot_1</zorder>
+     <zorder>robot_5</zorder>
+     <zorder>progressExplain_1</zorder>
+     <zorder>location_5</zorder>
+     <zorder>robot_2</zorder>
+     <zorder>robot_6</zorder>
+     <zorder>airStatusExplain</zorder>
+     <zorder>location_2</zorder>
+     <zorder>robot_3</zorder>
+     <zorder>robot_7</zorder>
+     <zorder>location_6</zorder>
+     <zorder>location_3</zorder>
+     <zorder>robot_4</zorder>
+     <zorder>robot_9</zorder>
+     <zorder>location_4</zorder>
+     <zorder>mapMode</zorder>
+     <zorder>pnpMode</zorder>
+     <zorder>decisionMessage</zorder>
+     <zorder>redMode</zorder>
+     <zorder>blueMode</zorder>
+     <zorder>colorExplain</zorder>
+     <zorder>gameProgress</zorder>
+     <zorder>location_1</zorder>
+     <zorder>baseMessage_1</zorder>
+     <zorder>markProgress_1</zorder>
+     <zorder>progressExplain_2</zorder>
+     <zorder>markProgress_2</zorder>
+     <zorder>baseMessage_2</zorder>
+     <zorder>progressExplain_3</zorder>
+     <zorder>baseMessage_3</zorder>
+     <zorder>markProgress_3</zorder>
+     <zorder>baseMessage_4</zorder>
+     <zorder>progressExplain_4</zorder>
+     <zorder>markProgress_4</zorder>
+     <zorder>baseMessage_5</zorder>
+     <zorder>progressExplain_5</zorder>
+     <zorder>markProgress_5</zorder>
+     <zorder>progressExplain_6</zorder>
+     <zorder>markProgress_6</zorder>
+     <zorder>baseMessage_6</zorder>
+     <zorder>airStatus</zorder>
+     <zorder>airRemainTimeExplain</zorder>
+     <zorder>airRemainTime</zorder>
+     <zorder>dartStatusExplain</zorder>
+     <zorder>dartStatus</zorder>
+     <zorder>dartRemainTime_2</zorder>
+     <zorder>dartRemainTime</zorder>
+     <zorder>leftScroll</zorder>
+     <zorder>rightScroll</zorder>
+     <zorder>isSaveVideo</zorder>
+     <zorder>saveVideoExplain</zorder>
+     <zorder>saveVideoStatus</zorder>
+     <zorder>gameRemainTimeExplain</zorder>
+     <zorder>gameRemainTime</zorder>
+     <zorder>radarInfoExplain</zorder>
+     <zorder>radarInfo</zorder>
+     <zorder>outpost</zorder>
+     <zorder>ourOutPostExplain</zorder>
+     <zorder>enemyOutPostExplain</zorder>
+     <zorder>ourOutPostHp</zorder>
+     <zorder>enemyOutPostHp</zorder>
+     <zorder>isSaveScreen</zorder>
+     <zorder>saveScreenExplain</zorder>
+     <zorder>saveScreenStatus</zorder>
+     <zorder>testMode</zorder>
+     <zorder>gameMode</zorder>
+     <zorder>modeStatusExplain</zorder>
+     <zorder>modeStatus</zorder>
+    </widget>
+    <widget class="pnpWidget" name="solvePnpWidget">
+     <widget class="QRadioButton" name="mapMode_2">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>10</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>小地图模式</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="pnpMode_2">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>10</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>pnp模式</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="parameterWidget"/>
+   </widget>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>smallMap</class>
+   <extends>QLabel</extends>
+   <header location="global">smallmap.h</header>
+  </customwidget>
+  <customwidget>
+   <class>pnpWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">pnpwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

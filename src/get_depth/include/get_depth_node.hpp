@@ -46,7 +46,6 @@ class GetDepth : public::rclcpp::Node
 public:
   GetDepth();
 
-private:
   //声明所有的函数
   // void Kalman_Init();
   // double my_KalmanFilter(Kalman *kfp, double input);
@@ -122,6 +121,10 @@ private:
   bool box_match(const cv::Rect &box, const cv::Rect &new_box,const double & min_iou);
   void get_robots(std::vector<Robot> &robots, const my_msgss::msg::Yolopoints &input);
   void allrobots_adjust(std::vector<Robot> &robots);
+  //---------------------------------------------------
+  rclcpp::SyncParametersClient::SharedPtr paramClient;
+
+  bool is_connect_to_server();
   //---------------------------------------------------
 } ;
 

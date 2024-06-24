@@ -60,7 +60,7 @@ using namespace cv;
 //     return kfp->out;
 // }
 
-GetDepth::GetDepth() : Node("GetDepth_node")
+GetDepth::GetDepth() : Node("GetDepth_node",rclcpp::NodeOptions().allow_undeclared_parameters(true))
 {
     robots_init();
 
@@ -75,7 +75,7 @@ GetDepth::GetDepth() : Node("GetDepth_node")
     close_camera_matrix = cv::Mat::zeros(3, 3, CV_64FC1);//相机内参矩阵
     close_uni_matrix = cv::Mat::zeros(3, 4, CV_64FC1);//相机和雷达的变换矩阵
     close_distortion_coefficient = cv::Mat::zeros(5, 1, CV_64FC1);   
-    this->init_camera_matrix();
+    //this->init_camera_matrix();
 
     cloud_sub = this->create_subscription<sensor_msgs::msg::PointCloud2>("/livox/lidar", 10, std::bind(&GetDepth::pointCloudCallback, this, std::placeholders::_1));
 
@@ -94,62 +94,82 @@ GetDepth::GetDepth() : Node("GetDepth_node")
     outpost_Sub = this->create_subscription<my_msgss::msg::Points>("/sensor_far/calibration", 1, std::bind(&GetDepth::outpost_Callback, this, std::placeholders::_1));
 
     calibration_result_sub = this->create_subscription<std_msgs::msg::Float64MultiArray>("/calibration_result", 10, std::bind(&GetDepth::calibration_result_Callback, this, std::placeholders::_1));
+
+    paramClient = std::make_shared<rclcpp::SyncParametersClient>(this,"parameter_server");
 }
+
+bool GetDepth::is_connect_to_server()
+{
+    while(!paramClient->wait_for_service(1s))
+    {
+        if(!rclcpp::ok())
+        {
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(),"服务未连接");
+    }
+    return true;
+}
+
 void GetDepth::init_camera_matrix()
 {
-    far_camera_matrix.at<double>(0, 0) = 3085.70228;
-    far_camera_matrix.at<double>(0, 1) = 0;
-    far_camera_matrix.at<double>(0, 2) = 628.43853;
-    far_camera_matrix.at<double>(1, 0) = 0;
-    far_camera_matrix.at<double>(1, 1) = 3121.25945;
-    far_camera_matrix.at<double>(1, 2) = 936.7318;
-    far_camera_matrix.at<double>(2, 0) = 0;
-    far_camera_matrix.at<double>(2, 1) = 0;
-    far_camera_matrix.at<double>(2, 2) = 1;
-    far_uni_matrix.at<double>(0, 0) = 0.250572;
-    far_uni_matrix.at<double>(0, 1) = -0.965757; 
-    far_uni_matrix.at<double>(0, 2) = 0.0672872;
-    far_uni_matrix.at<double>(0, 3) = -1.06878;
-    far_uni_matrix.at<double>(1, 0) = -0.064873;
-    far_uni_matrix.at<double>(1, 1) = -0.086098;
-    far_uni_matrix.at<double>(1, 2) = -0.994172;
-    far_uni_matrix.at<double>(1, 3) = 1.08281;
-    far_uni_matrix.at<double>(2, 0) = 0.965922;
-    far_uni_matrix.at<double>(2, 1) = 0.244747;
-    far_uni_matrix.at<double>(2, 2) = -0.0842255;
-    far_uni_matrix.at<double>(2, 3) = -0.54173;
-    far_distortion_coefficient.at<double>(0,0) = 0.019831;
-    far_distortion_coefficient.at<double>(1,0) = -0.098189;
-    far_distortion_coefficient.at<double>(2,0) = 0.035928;
-    far_distortion_coefficient.at<double>(3,0) = -0.007875;
-    far_distortion_coefficient.at<double>(4,0) = 0.000000;
+    far_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_camera_matrix_one");
+    far_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_camera_matrix_two");
+    far_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("far_camera_matrix_three");
+    far_camera_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("far_camera_matrix_four");
+    far_camera_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("far_camera_matrix_five");
+    far_camera_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("far_camera_matrix_six");
+    far_camera_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("far_camera_matrix_seven");
+    far_camera_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("far_camera_matrix_eight");
+    far_camera_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("far_camera_matrix_nine");
 
-    close_camera_matrix.at<double>(0, 0) = 1563.52174;
-    close_camera_matrix.at<double>(0, 1) = 0;
-    close_camera_matrix.at<double>(0, 2) = 626.90356;
-    close_camera_matrix.at<double>(1, 0) = 0;
-    close_camera_matrix.at<double>(1, 1) = 1568.90028;
-    close_camera_matrix.at<double>(1, 2) = 488.93524;
-    close_camera_matrix.at<double>(2, 0) = 0;
-    close_camera_matrix.at<double>(2, 1) = 0;
-    close_camera_matrix.at<double>(2, 2) = 1;
-    close_uni_matrix.at<double>(0, 0) = -0.00872172;
-    close_uni_matrix.at<double>(0, 1) = -0.9994;
-    close_uni_matrix.at<double>(0, 2) = 0.0335313;
-    close_uni_matrix.at<double>(0, 3) = 0.314484;
-    close_uni_matrix.at<double>(1, 0) = 0.0346761;
-    close_uni_matrix.at<double>(1, 1) = -0.0338147;
-    close_uni_matrix.at<double>(1, 2) =-0.998826;
-    close_uni_matrix.at<double>(1, 3) = 0.637911;
-    close_uni_matrix.at<double>(2, 0) = 0.999361;
-    close_uni_matrix.at<double>(2, 1) = -0.00754875;
-    close_uni_matrix.at<double>(2, 2) = 0.0349502;
-    close_uni_matrix.at<double>(2, 3) = -1.57492;
-    close_distortion_coefficient.at<double>(0,0) = -0.063200;
-    close_distortion_coefficient.at<double>(1,0) = -0.005061;
-    close_distortion_coefficient.at<double>(2,0) = -0.001755;
-    close_distortion_coefficient.at<double>(3,0) = 0.003472;
-    close_distortion_coefficient.at<double>(4,0) = 0.000000;
+    far_distortion_coefficient.at<double>(0,0) = paramClient->get_parameter<double>("far_distortion_coefficient_one");
+    far_distortion_coefficient.at<double>(1,0) = paramClient->get_parameter<double>("far_distortion_coefficient_two");
+    far_distortion_coefficient.at<double>(2,0) = paramClient->get_parameter<double>("far_distortion_coefficient_three");
+    far_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("far_distortion_coefficient_four");
+    far_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("far_distortion_coefficient_five");
+
+    far_uni_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_uni_matrix_one");
+    far_uni_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_uni_matrix_two");
+    far_uni_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("far_uni_matrix_three");
+    far_uni_matrix.at<double>(0, 3) = paramClient->get_parameter<double>("far_uni_matrix_four");
+    far_uni_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("far_uni_matrix_five");
+    far_uni_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("far_uni_matrix_six");
+    far_uni_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("far_uni_matrix_seven");
+    far_uni_matrix.at<double>(1, 3) = paramClient->get_parameter<double>("far_uni_matrix_eight");
+    far_uni_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("far_uni_matrix_nine");
+    far_uni_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("far_uni_matrix_ten");
+    far_uni_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("far_uni_matrix_eleven");
+    far_uni_matrix.at<double>(2, 3) = paramClient->get_parameter<double>("far_uni_matrix_twelve");
+
+    close_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("close_camera_matrix_one");
+    close_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("close_camera_matrix_two");
+    close_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("close_camera_matrix_three");
+    close_camera_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("close_camera_matrix_four");
+    close_camera_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("close_camera_matrix_five");
+    close_camera_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("close_camera_matrix_six");
+    close_camera_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("close_camera_matrix_seven");
+    close_camera_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("close_camera_matrix_eight");
+    close_camera_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("close_camera_matrix_nine");
+
+    close_distortion_coefficient.at<double>(0,0) = paramClient->get_parameter<double>("close_distortion_coefficient_one");
+    close_distortion_coefficient.at<double>(1,0) = paramClient->get_parameter<double>("close_distortion_coefficient_two");
+    close_distortion_coefficient.at<double>(2,0) = paramClient->get_parameter<double>("close_distortion_coefficient_three");
+    close_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("close_distortion_coefficient_four");
+    close_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("close_distortion_coefficient_five");
+
+    close_uni_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("close_uni_matrix_one");
+    close_uni_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("close_uni_matrix_two");
+    close_uni_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("close_uni_matrix_three");
+    close_uni_matrix.at<double>(0, 3) = paramClient->get_parameter<double>("close_uni_matrix_four");
+    close_uni_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("close_uni_matrix_five");
+    close_uni_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("close_uni_matrix_six");
+    close_uni_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("close_uni_matrix_seven");
+    close_uni_matrix.at<double>(1, 3) = paramClient->get_parameter<double>("close_uni_matrix_eight");
+    close_uni_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("close_uni_matrix_nine");
+    close_uni_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("close_uni_matrix_ten");
+    close_uni_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("close_uni_matrix_eleven");
+    close_uni_matrix.at<double>(2, 3) = paramClient->get_parameter<double>("close_uni_matrix_twelve");
 
     Mat far_R = Mat::zeros(3, 3, CV_64FC1);
     Mat far_Rjacob = Mat::zeros(3, 1, CV_64FC1);
@@ -545,9 +565,13 @@ double GetDepth::getDepthInRect(Rect rect, std::vector<cv::Mat> &depth_queue, my
 int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);
     // Kalman_Init();
-    auto node = std::make_shared<GetDepth>();
-    
-    rclcpp::spin(node);
+    auto paramClient = std::make_shared<GetDepth>();
+    bool flag = paramClient->is_connect_to_server();
+    if(!flag){
+        return 0;
+    } 
+    paramClient->init_camera_matrix();
+    rclcpp::spin(paramClient);
     rclcpp::shutdown();
     return 0;
 }

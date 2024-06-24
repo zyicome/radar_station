@@ -85,111 +85,29 @@ void pnpWidget::parameter_init()
 
     if(our_color == 0) //我们是红色
     {
-    Point3d close_objectpoint_one;
-    close_objectpoint_one.x = 17331.5;
-    close_objectpoint_one.y = 13471.5;
-    close_objectpoint_one.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_one);
-    Point3d close_objectpoint_two;
-    close_objectpoint_two.x = 16300.5;
-    close_objectpoint_two.y = 13471.5;
-    close_objectpoint_two.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_two);
-    Point3d close_objectpoint_three;
-    close_objectpoint_three.x = 15785.0;
-    close_objectpoint_three.y = 12579.0;
-    close_objectpoint_three.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_three);
-    Point3d close_objectpoint_four;
-    close_objectpoint_four.x = 16300.5;
-    close_objectpoint_four.y = 11686.5;
-    close_objectpoint_four.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_four);
-    Point3d close_objectpoint_five;
-    close_objectpoint_five.x = 17331.5;
-    close_objectpoint_five.y = 11686.5;
-    close_objectpoint_five.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_five);
-
-    Point3d far_objectpoint_one;
-    far_objectpoint_one.x = 17331.5;
-    far_objectpoint_one.y = 13471.5;
-    far_objectpoint_one.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_one);
-    Point3d far_objectpoint_two;
-    far_objectpoint_two.x = 16300.5;
-    far_objectpoint_two.y = 13471.5;
-    far_objectpoint_two.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_two);
-    Point3d far_objectpoint_three;
-    far_objectpoint_three.x = 15785.0;
-    far_objectpoint_three.y = 12579.0;
-    far_objectpoint_three.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_three);
-    Point3d far_objectpoint_four;
-    far_objectpoint_four.x = 16300.5;
-    far_objectpoint_four.y = 11686.5;
-    far_objectpoint_four.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_four);
-    Point3d far_objectpoint_five;
-    far_objectpoint_five.x = 17331.5;
-    far_objectpoint_five.y = 11686.5;
-    far_objectpoint_five.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_five);
+        close_objectpoints = {Point3d(17331.5, 13471.5, 0.0),
+                              Point3d(16300.5, 13471.5, 0.0),
+                              Point3d(15785.0, 12579.0, 0.0),
+                              Point3d(16300.5, 11686.5, 0.0),
+                              Point3d(17331.5, 11686.5, 0.0)};
+        far_objectpoints = {Point3d(17331.5, 13471.5, 0.0),
+                            Point3d(16300.5, 13471.5, 0.0),
+                            Point3d(15785.0, 12579.0, 0.0),
+                            Point3d(16300.5, 11686.5, 0.0),
+                            Point3d(17331.5, 11686.5, 0.0)};
     }
     else if(our_color == 1) //我们是蓝色
     {
-    Point3d close_objectpoint_one;
-    close_objectpoint_one.x = 10668.5;
-    close_objectpoint_one.y = 1528.5;
-    close_objectpoint_one.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_one);
-    Point3d close_objectpoint_two;
-    close_objectpoint_two.x = 11699.5;
-    close_objectpoint_two.y = 1528.5;
-    close_objectpoint_two.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_two);
-    Point3d close_objectpoint_three;
-    close_objectpoint_three.x = 12215.0;
-    close_objectpoint_three.y = 2421.0;
-    close_objectpoint_three.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_three);
-    Point3d close_objectpoint_four;
-    close_objectpoint_four.x = 11699.5;
-    close_objectpoint_four.y = 3313.5;
-    close_objectpoint_four.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_four);
-    Point3d close_objectpoint_five;
-    close_objectpoint_five.x = 10668.5;
-    close_objectpoint_five.y = 3313.5;
-    close_objectpoint_five.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_five);
-
-    Point3d far_objectpoint_one;
-    far_objectpoint_one.x = 10688.5;
-    far_objectpoint_one.y = 1528.5;
-    far_objectpoint_one.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_one);
-    Point3d far_objectpoint_two;
-    far_objectpoint_two.x = 11699.5;
-    far_objectpoint_two.y = 1528.5;
-    far_objectpoint_two.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_two);
-    Point3d far_objectpoint_three;
-    far_objectpoint_three.x = 12215;
-    far_objectpoint_three.y = 2421.0;
-    far_objectpoint_three.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_three);
-    Point3d far_objectpoint_four;
-    far_objectpoint_four.x = 11699.5;
-    far_objectpoint_four.y = 3313.5;
-    far_objectpoint_four.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_four);
-    Point3d far_objectpoint_five;
-    far_objectpoint_five.x = 10668.5;
-    far_objectpoint_five.y = 3313.5;
-    far_objectpoint_five.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_five);
+        close_objectpoints = {Point3d(10668.5, 1528.5, 0.0),
+                              Point3d(11699.5, 1528.5, 0.0),
+                              Point3d(12215.0, 2421.0, 0.0),
+                              Point3d(11699.5, 3313.5, 0.0),
+                              Point3d(10668.5, 3313.5, 0.0)};
+        far_objectpoints = {Point3d(10688.5, 1528.5, 0.0),
+                            Point3d(11699.5, 1528.5, 0.0),
+                            Point3d(12215, 2421.0, 0.0),
+                            Point3d(11699.5, 3313.5, 0.0),
+                            Point3d(10668.5, 3313.5, 0.0)};
     }
 }
 
@@ -554,57 +472,17 @@ void pnpWidget::blueMode()
     far_objectpoints.clear();
     if(our_color == 1) //我们是蓝色
     {
-    Point3d close_objectpoint_one;
-    close_objectpoint_one.x = 10668.5;
-    close_objectpoint_one.y = 1528.5;
-    close_objectpoint_one.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_one);
-    Point3d close_objectpoint_two;
-    close_objectpoint_two.x = 11699.5;
-    close_objectpoint_two.y = 1528.5;
-    close_objectpoint_two.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_two);
-    Point3d close_objectpoint_three;
-    close_objectpoint_three.x = 12215.0;
-    close_objectpoint_three.y = 2421.0;
-    close_objectpoint_three.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_three);
-    Point3d close_objectpoint_four;
-    close_objectpoint_four.x = 11699.5;
-    close_objectpoint_four.y = 3313.5;
-    close_objectpoint_four.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_four);
-    Point3d close_objectpoint_five;
-    close_objectpoint_five.x = 10668.5;
-    close_objectpoint_five.y = 3313.5;
-    close_objectpoint_five.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_five);
+        close_objectpoints = {  Point3d(10668.5, 1528.5, 0.0),
+                                Point3d(11699.5, 1528.5, 0.0),
+                                Point3d(12215.0, 2421.0, 0.0),
+                                Point3d(11699.5, 3313.5, 0.0),
+                                Point3d(10668.5, 3313.5, 0.0)};
 
-    Point3d far_objectpoint_one;
-    far_objectpoint_one.x = 10688.5;
-    far_objectpoint_one.y = 1528.5;
-    far_objectpoint_one.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_one);
-    Point3d far_objectpoint_two;
-    far_objectpoint_two.x = 11699.5;
-    far_objectpoint_two.y = 1528.5;
-    far_objectpoint_two.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_two);
-    Point3d far_objectpoint_three;
-    far_objectpoint_three.x = 12215;
-    far_objectpoint_three.y = 2421.0;
-    far_objectpoint_three.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_three);
-    Point3d far_objectpoint_four;
-    far_objectpoint_four.x = 11699.5;
-    far_objectpoint_four.y = 3313.5;
-    far_objectpoint_four.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_four);
-    Point3d far_objectpoint_five;
-    far_objectpoint_five.x = 10668.5;
-    far_objectpoint_five.y = 3313.5;
-    far_objectpoint_five.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_five);
+        far_objectpoints = {    Point3d(10688.5, 1528.5, 0.0),
+                                Point3d(11699.5, 1528.5, 0.0),
+                                Point3d(12215.0, 2421.0, 0.0),
+                                Point3d(11699.5, 3313.5, 0.0),
+                                Point3d(10668.5, 3313.5, 0.0)};
     }
     mapMessageDisplay("我们是蓝方");
     std::cout << "我们是蓝方" <<std::endl;
@@ -617,57 +495,16 @@ void pnpWidget::redMode()
     far_objectpoints.clear();
     if(our_color == 0) //我们是红色
     {
-    Point3d close_objectpoint_one;
-    close_objectpoint_one.x = 17331.5;
-    close_objectpoint_one.y = 13471.5;
-    close_objectpoint_one.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_one);
-    Point3d close_objectpoint_two;
-    close_objectpoint_two.x = 16300.5;
-    close_objectpoint_two.y = 13471.5;
-    close_objectpoint_two.z = 0.0;
-    close_objectpoints.push_back(close_objectpoint_two);
-    Point3d close_objectpoint_three;
-    close_objectpoint_three.x = 15785.0;
-    close_objectpoint_three.y = 12579.0;
-    close_objectpoint_three.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_three);
-    Point3d close_objectpoint_four;
-    close_objectpoint_four.x = 16300.5;
-    close_objectpoint_four.y = 11686.5;
-    close_objectpoint_four.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_four);
-    Point3d close_objectpoint_five;
-    close_objectpoint_five.x = 17331.5;
-    close_objectpoint_five.y = 11686.5;
-    close_objectpoint_five.z = 0.0 ;
-    close_objectpoints.push_back(close_objectpoint_five);
-
-    Point3d far_objectpoint_one;
-    far_objectpoint_one.x = 17331.5;
-    far_objectpoint_one.y = 13471.5;
-    far_objectpoint_one.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_one);
-    Point3d far_objectpoint_two;
-    far_objectpoint_two.x = 16300.5;
-    far_objectpoint_two.y = 13471.5;
-    far_objectpoint_two.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_two);
-    Point3d far_objectpoint_three;
-    far_objectpoint_three.x = 15785.0;
-    far_objectpoint_three.y = 12579.0;
-    far_objectpoint_three.z = 0.0;
-    far_objectpoints.push_back(far_objectpoint_three);
-    Point3d far_objectpoint_four;
-    far_objectpoint_four.x = 16300.5;
-    far_objectpoint_four.y = 11686.5;
-    far_objectpoint_four.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_four);
-    Point3d far_objectpoint_five;
-    far_objectpoint_five.x = 17331.5;
-    far_objectpoint_five.y = 11686.5;
-    far_objectpoint_five.z = 0.0 ;
-    far_objectpoints.push_back(far_objectpoint_five);
+        close_objectpoints = {  Point3d(17331.5, 13471.5, 0.0),
+                                Point3d(16300.5, 13471.5, 0.0),
+                                Point3d(15785.0, 12579.0, 0.0),
+                                Point3d(16300.5, 11686.5, 0.0),
+                                Point3d(17331.5, 11686.5, 0.0)};
+        far_objectpoints = {    Point3d(17331.5, 13471.5, 0.0),
+                                Point3d(16300.5, 13471.5, 0.0),
+                                Point3d(15785.0, 12579.0, 0.0),
+                                Point3d(16300.5, 11686.5, 0.0),
+                                Point3d(17331.5, 11686.5, 0.0)};
     }
     mapMessageDisplay("我们是红方");
     std::cout << "我们是红方" <<std::endl;

@@ -99,5 +99,5 @@ private:
     void allrobots_adjust(std::vector<Robot> &robots);
     //-----------------------------------------------
     rclcpp::SyncParametersClient::SharedPtr paramClient;
-    //
+    //-----------------------------------------------
 };
