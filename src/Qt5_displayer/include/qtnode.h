@@ -70,6 +70,11 @@ public:
     my_msgss::msg::Radarinfo radar_info_msg;
     my_msgss::msg::Hp hp_msg;
 
+    cv::Mat far_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
+    cv::Mat far_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
+    cv::Mat close_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
+    cv::Mat close_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
+
     rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr pnp_pub_;
     rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr points_pub_;
     rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr color_pub_;
@@ -101,6 +106,14 @@ public:
     std::chrono::high_resolution_clock::time_point far_end_time;
     std::chrono::high_resolution_clock::time_point close_start_time;
     std::chrono::high_resolution_clock::time_point close_end_time;
+
+    //---------------------------------------------------
+    rclcpp::SyncParametersClient::SharedPtr paramClient;
+
+    bool is_connect_to_server();
+
+    void client_parameter_init();
+    //---------------------------------------------------
 };
 
 #endif // QTNODE_H

@@ -8,7 +8,7 @@ Server::Server() : Node("parameter_server",rclcpp::NodeOptions().allow_undeclare
 
         set_map_parameter();
 
-        test();
+        //test();
     }
 }
 
@@ -82,12 +82,12 @@ void Server::set_camera_matrix_parameter()
 void Server::set_map_parameter()
 {
     //地图实际大小
-    this->declare_parameter("object_height",28);
-    this->declare_parameter("object_width",15);
+    this->declare_parameter("object_height",object_height);
+    this->declare_parameter("object_width",object_width);
 
     //传输过程中的图片大小
-    this->declare_parameter("image_row",28);
-    this->declare_parameter("image_col",15);
+    this->declare_parameter("image_cols",img_cols);
+    this->declare_parameter("image_rows",img_rows);
 }
 
 void Server::test()
@@ -114,16 +114,20 @@ bool Server::read_xml()
     }
 
     //获取根元素    
-    XMLElement *root = doc->RootElement();
+    XMLElement *camera_matrix_root = doc->RootElement();
+    XMLElement *size_root = camera_matrix_root->NextSiblingElement();
 
     //获取子元素
-    XMLElement *far_camera_matrix_element = root->FirstChildElement("far_camera_matrix");
-    XMLElement *far_distortion_coefficient_element = root->FirstChildElement("far_distortion_coefficient");
-    XMLElement *far_uni_matrix_element = root->FirstChildElement("far_uni_matrix");
+    XMLElement *far_camera_matrix_element = camera_matrix_root->FirstChildElement("far_camera_matrix");
+    XMLElement *far_distortion_coefficient_element = camera_matrix_root->FirstChildElement("far_distortion_coefficient");
+    XMLElement *far_uni_matrix_element = camera_matrix_root->FirstChildElement("far_uni_matrix");
 
-    XMLElement *close_camera_matrix_element = root->FirstChildElement("close_camera_matrix");
-    XMLElement *close_distortion_coefficient_element = root->FirstChildElement("close_distortion_coefficient");
-    XMLElement *close_uni_matrix_element = root->FirstChildElement("close_uni_matrix");
+    XMLElement *close_camera_matrix_element = camera_matrix_root->FirstChildElement("close_camera_matrix");
+    XMLElement *close_distortion_coefficient_element = camera_matrix_root->FirstChildElement("close_distortion_coefficient");
+    XMLElement *close_uni_matrix_element = camera_matrix_root->FirstChildElement("close_uni_matrix");
+
+    XMLElement *object_size_element = size_root->FirstChildElement("object_size");
+    XMLElement *image_size_element = size_root->FirstChildElement("image_size");
 
     //获取子元素的值
     if (far_camera_matrix_element != nullptr) {
@@ -196,6 +200,44 @@ bool Server::read_xml()
     else
     {
         cout << "close_uni_matrix_element is null" << endl;
+    }
+
+    if (object_size_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = object_size_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            int value = stoi(element->GetText());
+            if(i == 0)
+            {
+                object_height = value;
+                i++;
+                continue;
+            }
+            object_width = value;
+        }
+    }
+    else
+    {
+        cout << "object_size_element is null" << endl;
+    }
+
+    if (image_size_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = image_size_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            int value = stoi(element->GetText());
+            if(i == 0)
+            {
+                img_cols = value;
+                i++;
+                continue;
+            }
+            img_rows = value;
+        }
+    }
+    else
+    {
+        cout << "image_size_element is null" << endl;
     }
 
     delete doc;

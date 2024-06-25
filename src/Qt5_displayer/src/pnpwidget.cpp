@@ -53,7 +53,7 @@ void pnpWidget::parameter_init()
 {
     our_color = 1;//0 是我们是红色，1是我们是蓝色
 
-    far_camera_matrix.at<double>(0, 0) = 3066.03905;
+    /*far_camera_matrix.at<double>(0, 0) = 3066.03905;
     far_camera_matrix.at<double>(0, 1) = 0;
     far_camera_matrix.at<double>(0, 2) = 667.26311;
     far_camera_matrix.at<double>(1, 0) = 0;
@@ -81,7 +81,7 @@ void pnpWidget::parameter_init()
     close_distortion_coefficient.at<double>(1,0) = -0.005061;
     close_distortion_coefficient.at<double>(2,0) = -0.001755;
     close_distortion_coefficient.at<double>(3,0) = 0.003472;
-    close_distortion_coefficient.at<double>(4,0) = 0.000000;
+    close_distortion_coefficient.at<double>(4,0) = 0.000000;*/
 
     if(our_color == 0) //我们是红色
     {

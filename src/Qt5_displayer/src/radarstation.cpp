@@ -47,6 +47,7 @@ radarStation::radarStation(QWidget *parent)
 
     init();
     robots_init();
+    pnpWidget_parameter_init();
 
     was_first = false;
     was_second = false;
@@ -90,6 +91,14 @@ void radarStation::init()
 
     connect(ui->testMode,SIGNAL(clicked()),this,SLOT(testMode()));
     connect(ui->gameMode,SIGNAL(clicked()),this,SLOT(gameMode()));
+}
+
+void radarStation::pnpWidget_parameter_init()
+{
+    ui->solvePnpWidget->far_camera_matrix = qtnode.far_camera_matrix;
+    ui->solvePnpWidget->far_distortion_coefficient = qtnode.far_distortion_coefficient;
+    ui->solvePnpWidget->close_camera_matrix = qtnode.close_camera_matrix;
+    ui->solvePnpWidget->close_distortion_coefficient = qtnode.close_distortion_coefficient;
 }
 
 void radarStation::mousePressEvent(QMouseEvent *event)

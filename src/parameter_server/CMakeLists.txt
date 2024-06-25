@@ -37,6 +37,7 @@ install(TARGETS
 
 install(DIRECTORY
   launch
+  xml
   DESTINATION share/${PROJECT_NAME}
 )
 

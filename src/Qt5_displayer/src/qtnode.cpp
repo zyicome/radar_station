@@ -15,6 +15,54 @@ qtNode::~qtNode()
     
 }
 
+bool qtNode::is_connect_to_server()
+{
+    while(!paramClient->wait_for_service(1s))
+    {
+        if(!rclcpp::ok())
+        {
+            return false;
+        }
+        RCLCPP_INFO(qnode->get_logger(),"服务未连接");
+    }
+    return true;
+}
+
+void qtNode::client_parameter_init()
+{
+    far_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_camera_matrix_one");
+    far_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_camera_matrix_two");
+    far_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("far_camera_matrix_three");
+    far_camera_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("far_camera_matrix_four");
+    far_camera_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("far_camera_matrix_five");
+    far_camera_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("far_camera_matrix_six");
+    far_camera_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("far_camera_matrix_seven");
+    far_camera_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("far_camera_matrix_eight");
+    far_camera_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("far_camera_matrix_nine");
+
+    far_distortion_coefficient.at<double>(0,0) = paramClient->get_parameter<double>("far_distortion_coefficient_one");
+    far_distortion_coefficient.at<double>(1,0) = paramClient->get_parameter<double>("far_distortion_coefficient_two");
+    far_distortion_coefficient.at<double>(2,0) = paramClient->get_parameter<double>("far_distortion_coefficient_three");
+    far_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("far_distortion_coefficient_four");
+    far_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("far_distortion_coefficient_five");
+
+    close_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("close_camera_matrix_one");
+    close_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("close_camera_matrix_two");
+    close_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("close_camera_matrix_three");
+    close_camera_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("close_camera_matrix_four");
+    close_camera_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("close_camera_matrix_five");
+    close_camera_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("close_camera_matrix_six");
+    close_camera_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("close_camera_matrix_seven");
+    close_camera_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("close_camera_matrix_eight");
+    close_camera_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("close_camera_matrix_nine");
+
+    close_distortion_coefficient.at<double>(0,0) = paramClient->get_parameter<double>("close_distortion_coefficient_one");
+    close_distortion_coefficient.at<double>(1,0) = paramClient->get_parameter<double>("close_distortion_coefficient_two");
+    close_distortion_coefficient.at<double>(2,0) = paramClient->get_parameter<double>("close_distortion_coefficient_three");
+    close_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("close_distortion_coefficient_four");
+    close_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("close_distortion_coefficient_five");
+}
+
 void qtNode::farImageCallback(const sensor_msgs::msg::Image msg)
 {
     /*far_end_time = std::chrono::high_resolution_clock::now();
@@ -194,7 +242,17 @@ void qtNode::run()
 {   
     cout << "node开始运行" << endl;
     rclcpp::init(0, nullptr);
-    qnode = std::make_shared<rclcpp::Node>("qt_node");
+    qnode = std::make_shared<rclcpp::Node>("qt_node",rclcpp::NodeOptions().allow_undeclared_parameters(true));
+
+    paramClient = std::make_shared<rclcpp::SyncParametersClient>(qnode,"parameter_server");
+
+    bool flag = is_connect_to_server();
+    if(!flag)
+    {
+        cout << "node未连接服务器而关闭" << endl;
+        return;
+    }
+    client_parameter_init();
 
     pnp_pub_ = qnode->create_publisher<std_msgs::msg::Float32MultiArray>("/qt/pnp", 10);
     points_pub_ = qnode->create_publisher<my_msgss::msg::Points>("/serial/world_points", 10);

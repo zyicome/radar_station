@@ -65,3 +65,13 @@
         <close_uni_matrix_twelve>-1.57492</close_uni_matrix_twelve>
     </close_uni_matrix>
 </camera_matrix>
+<size>
+    <object_size>
+        <object_height>28</object_height>
+        <object_width>15</object_width>
+    </object_size>
+    <image_size>
+        <img_cols>1280</img_cols>
+        <img_rows>1024</img_rows>
+    </image_size>
+</size>

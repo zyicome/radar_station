@@ -32,6 +32,11 @@ public:
 
     bool read_xml();
 
+    int img_cols;
+    int img_rows;
+    double object_height;
+    double object_width;
+
     std::vector<double> far_camera_matrix;
     std::vector<double> far_distortion_coefficient;
     std::vector<double> far_uni_matrix;

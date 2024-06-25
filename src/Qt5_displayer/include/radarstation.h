@@ -57,6 +57,8 @@ public:
     void decision(std::vector<DecisionRobot> &robots);
 
     void init();
+
+    void pnpWidget_parameter_init();
 public Q_SLOTS:
     void changeToMapWidget();
 

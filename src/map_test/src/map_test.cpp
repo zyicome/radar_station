@@ -41,8 +41,8 @@ bool MapTest::is_connect_to_server()
 void MapTest::parameter_init()
 {
     //-------------------------------------
-    object_height = 28;
-    object_width = 15;
+    //object_height = 28;
+    //object_width = 15;
     //--------------------------------------
     /*far_camera_matrix.at<double>(0, 0) = 3066.03905;
     far_camera_matrix.at<double>(0, 1) = 0;
@@ -72,6 +72,9 @@ void MapTest::parameter_init()
     close_distortion_coefficient.at<double>(2,0) = -0.001755;
     close_distortion_coefficient.at<double>(3,0) = 0.003472;
     close_distortion_coefficient.at<double>(4,0) = 0.000000;*/
+
+    object_height = paramClient->get_parameter<double>("object_height");
+    object_width = paramClient->get_parameter<double>("object_width");
 
     far_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_camera_matrix_one");
     far_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_camera_matrix_two");

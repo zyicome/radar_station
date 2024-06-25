@@ -58,8 +58,8 @@ public:
 
     bool is_connect_to_server();
 private:
-    float object_width;
-    float object_height;
+    double object_width;
+    double object_height;
     float image_width;
     float image_height;
 

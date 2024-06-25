@@ -111,8 +111,14 @@ bool GetDepth::is_connect_to_server()
     return true;
 }
 
-void GetDepth::init_camera_matrix()
+void GetDepth::parameter_init()
 {
+    imgCols = paramClient->get_parameter<int>("image_cols");
+    imgRows = paramClient->get_parameter<int>("image_rows");
+
+    std::cout << "imgCols : " << imgCols <<std::endl;
+    std::cout << "imgRows : " << imgRows <<std::endl;
+
     far_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_camera_matrix_one");
     far_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_camera_matrix_two");
     far_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("far_camera_matrix_three");
@@ -570,7 +576,7 @@ int main(int argc, char *argv[]) {
     if(!flag){
         return 0;
     } 
-    paramClient->init_camera_matrix();
+    paramClient->parameter_init();
     rclcpp::spin(paramClient);
     rclcpp::shutdown();
     return 0;
