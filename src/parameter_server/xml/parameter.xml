@@ -51,18 +51,18 @@
         <close_distortion_coefficient_five>0.0</close_distortion_coefficient_five>
     </close_distortion_coefficient>
     <close_uni_matrix>
-        <close_uni_matrix_one>-0.00872172</close_uni_matrix_one>
-        <close_uni_matrix_two>-0.9994</close_uni_matrix_two>
-        <close_uni_matrix_three>0.0335313</close_uni_matrix_three>
-        <close_uni_matrix_four>0.314484</close_uni_matrix_four>
-        <close_uni_matrix_five>0.0346761</close_uni_matrix_five>
-        <close_uni_matrix_six>-0.0338147</close_uni_matrix_six>
-        <close_uni_matrix_seven>-0.998826</close_uni_matrix_seven>
-        <close_uni_matrix_eight>0.637911</close_uni_matrix_eight>
-        <close_uni_matrix_nine>0.999361</close_uni_matrix_nine>
-        <close_uni_matrix_ten>-0.00754875</close_uni_matrix_ten>
-        <close_uni_matrix_eleven>0.0349502</close_uni_matrix_eleven>
-        <close_uni_matrix_twelve>-1.57492</close_uni_matrix_twelve>
+        <close_uni_matrix_one>-0.108622</close_uni_matrix_one>
+        <close_uni_matrix_two>-0.993667</close_uni_matrix_two>
+        <close_uni_matrix_three>-0.0287369</close_uni_matrix_three>
+        <close_uni_matrix_four>0.0313646</close_uni_matrix_four>
+        <close_uni_matrix_five>0.00226796</close_uni_matrix_five>
+        <close_uni_matrix_six>0.0286602</close_uni_matrix_six>
+        <close_uni_matrix_seven>-0.999587</close_uni_matrix_seven>
+        <close_uni_matrix_eight>-0.0667472</close_uni_matrix_eight>
+        <close_uni_matrix_nine>0.99408</close_uni_matrix_nine>
+        <close_uni_matrix_ten>-0.108642</close_uni_matrix_ten>
+        <close_uni_matrix_eleven>-0.000859448</close_uni_matrix_eleven>
+        <close_uni_matrix_twelve>-0.382193</close_uni_matrix_twelve>
     </close_uni_matrix>
 </camera_matrix>
 <size>

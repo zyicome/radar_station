@@ -51,6 +51,7 @@ public Q_SLOTS:
 public:
     Ui::pnpWidget *ui;
     QVector<QPointF> points;
+    QString pointText;
     std::vector<Point3d> close_objectpoints;
     std::vector<Point3d> far_objectpoints;
     cv::Mat far_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);

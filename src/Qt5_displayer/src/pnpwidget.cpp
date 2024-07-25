@@ -254,6 +254,9 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
                         mousePos = mouseEvent->pos();
                         points.push_back(mousePos);
                         ui->farImg->update();
+                        pointText = "第" + QString::number(pointNum + 1) + "个点的坐标为 x:" + QString::number(mouseEvent->x()) + 
+                                            "      y:" + QString::number(mouseEvent->y());
+                        mapMessageDisplay(pointText);
                         mapMessageDisplay("请点击第二个标定点");
                         break;
                     case 1:
@@ -261,6 +264,9 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
                         mousePos = mouseEvent->pos();
                         points.push_back(mousePos);
                         ui->farImg->update();
+                        pointText = "第" + QString::number(pointNum + 1) + "个点的坐标为 x:" + QString::number(mouseEvent->x()) + 
+                                            "      y:" + QString::number(mouseEvent->y());
+                        mapMessageDisplay(pointText);
                         mapMessageDisplay("请点击第三个标定点");
                         break;
                     case 2:
@@ -268,6 +274,9 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
                         mousePos = mouseEvent->pos();
                         points.push_back(mousePos);
                         ui->farImg->update();
+                        pointText = "第" + QString::number(pointNum + 1) + "个点的坐标为 x:" + QString::number(mouseEvent->x()) + 
+                                            "      y:" + QString::number(mouseEvent->y());
+                        mapMessageDisplay(pointText);
                         mapMessageDisplay("请点击第四个标定点");
                         break;
                     case 3:
@@ -275,6 +284,9 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
                         mousePos = mouseEvent->pos();
                         points.push_back(mousePos);
                         ui->farImg->update();
+                        pointText = "第" + QString::number(pointNum + 1) + "个点的坐标为 x:" + QString::number(mouseEvent->x()) + 
+                                            "      y:" + QString::number(mouseEvent->y());
+                        mapMessageDisplay(pointText);
                         mapMessageDisplay("请点击第五个标定点");
                         break;
                     case 4:
@@ -282,6 +294,9 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
                         mousePos = mouseEvent->pos();
                         points.push_back(mousePos);
                         ui->farImg->update();
+                        pointText = "第" + QString::number(pointNum + 1) + "个点的坐标为 x:" + QString::number(mouseEvent->x()) + 
+                                            "      y:" + QString::number(mouseEvent->y());
+                        mapMessageDisplay(pointText);
                         mapMessageDisplay("选点完成，请选择是否开始pnp解算");
                         isBeginPoint = false;
                         break;
