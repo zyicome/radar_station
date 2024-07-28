@@ -791,50 +791,27 @@ void radarStation::status_adjust(std::vector<DecisionRobot> &robots)
 void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
 {
     my_msgss::msg::Points send_robots;
-    bool if_send =false;
-    DecisionRobot best_robot;
-    best_robot.confidence = 0.0;
     if(ui->map->our_color == 0) // 我们是红方
     {
         for(int i =1;i<7;i++)
         {
             if(robots[i].x !=0.0 && robots[i].y != 0.0)
             {
-                if(robots[i].radar_mark_progress >= 120)
+                for(int j = 1;j<7;j++)
                 {
-                    robots[i].is_120 = true;
+                    my_msgss::msg::Point send_robot;
+                    send_robot.id = robots[j].id;
+                    send_robot.x = robots[j].x;
+                    send_robot.y = robots[j].y;
+                    send_robot.confidence = robots[j].confidence;
+                    send_robots.data.push_back(send_robot);
                 }
-                else if(robots[i].radar_mark_progress <= 60)
-                {
-                    robots[i].is_120 =false;
-                }
-                if(robots[i].confidence < 0.3)
-                {
-                    continue;
-                }
-                if(robots[i].radar_mark_progress >115 && robots[i].is_120 == true)
-                {
-                    continue;
-                }
-                if(robots[i].radar_mark_progress <= 115 && robots[i].radar_mark_progress >= 100 && robots[i].is_120 ==true)
-                {
-                    best_robot = robots[i];
-                    if_send = true;
-                    continue;
-                }
-                if(robots[i].id == 1)
-                {
-                    best_robot = robots[i];
-                    best_robot.confidence = 1.0;
-                    if_send = true;
-                    continue;
-                }
-                if(robots[i].confidence > best_robot.confidence)
-                {
-                    best_robot = robots[i];
-                    if_send = true;
-                    continue;
-                }
+                qtnode.points_pub_->publish(send_robots);
+                my_msgss::msg::Radarinfo radar_info_msg;
+                radar_info_msg.radar_cmd = 0x01;
+                qtnode.radar_info_pub_->publish(radar_info_msg);
+                std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
+                break;
             }
         }
     }
@@ -844,69 +821,24 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
         {
             if(robots[i].x !=0.0 && robots[i].y != 0.0)
             {
-                if(robots[i].radar_mark_progress >= 120)
+                for(int j = 7;j<robots.size();j++)
                 {
-                    robots[i].is_120 = true;
+                    my_msgss::msg::Point send_robot;
+                    send_robot.id = robots[j].id;
+                    send_robot.x = robots[j].x;
+                    send_robot.y = robots[j].y;
+                    send_robot.confidence = robots[j].confidence;
+                    send_robots.data.push_back(send_robot);
                 }
-                else if(robots[i].radar_mark_progress <= 60)
-                {
-                    robots[i].is_120 =false;
-                }
-                if(robots[i].confidence < 0.3)
-                {
-                    continue;
-                }
-                if(robots[i].radar_mark_progress >115 && robots[i].is_120 == true)
-                {
-                    continue;
-                }
-                if(robots[i].radar_mark_progress <= 115 && robots[i].radar_mark_progress >= 100 && robots[i].is_120 ==true)
-                {
-                    best_robot = robots[i];
-                    best_robot.id -=6;
-                    if_send = true;
-                    continue;
-                }
-                if(robots[i].id == 1)
-                {
-                    best_robot = robots[i];
-                    best_robot.id -=6;
-                    best_robot.confidence = 1.0;
-                    if_send = true;
-                    continue;
-                }
-                if(robots[i].confidence > best_robot.confidence)
-                {
-                    best_robot = robots[i];
-                    best_robot.id -=6; 
-                    if_send = true;
-                    continue;
-                }
+                qtnode.points_pub_->publish(send_robots);
+                my_msgss::msg::Radarinfo radar_info_msg;
+                radar_info_msg.radar_cmd = 0x01;
+                qtnode.radar_info_pub_->publish(radar_info_msg);
+                std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
+                break;
             }
         }
     }
-    if(if_send)
-    {
-        my_msgss::msg::Point send_robot;
-        send_robot.id = best_robot.id;
-        send_robot.x = best_robot.x;
-        send_robot.y = best_robot.y;
-        send_robot.confidence = best_robot.confidence;
-        send_robots.data.push_back(send_robot);
-        qtnode.points_pub_->publish(send_robots);
-    }
-    /*for(int i = 0;i<robots.size();i++)
-    {
-        if(robots[i].confidence != 0.0)
-        {
-            my_msgss::msg::Point robot;
-            robot.id = robots[i].id;
-            robot.confidence = robots[i].confidence;
-            robot.x = robots[i].x;
-            robot.y = robots[i].y;
-            send_robots.data.push_back(robot);
-        }
-    }*/
 }
 
 void radarStation::decision(std::vector<DecisionRobot> &robots)

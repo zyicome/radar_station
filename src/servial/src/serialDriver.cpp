@@ -248,56 +248,34 @@ bool SerialDriver::sendPointsData()
         std::cout << "serialRobots[" << i << "].x = " << serialRobots[i].x << " serialRobots[" << i << "].y = " << serialRobots[i].y << std::endl;
     }*/
     bool if_send = false;
-    serialRobot best_robot;
-    best_robot.confidence = 0.0;
-    if(our_color == 0) // 我们是红方
-    {
-        for(int i =1;i<7;i++)
-        {
-            if(serialRobots[i].x !=0.0 && serialRobots[i].y != 0.0)
-            {
-                if(serialRobots[i].confidence > best_robot.confidence)
-                {
-                    best_robot = serialRobots[i];
-                    if_send = true;
-                }
-            }
-        }
-    }
-    else if(our_color == 1) // 我们是蓝方
-    {
-        for(int i =7;i<serialRobots.size();i++)
-        {
-            if(serialRobots[i].x !=0.0 && serialRobots[i].y != 0.0)
-            {
-                if(serialRobots[i].confidence > best_robot.confidence)
-                {
-                    best_robot = serialRobots[i];
-                    best_robot.id = i - 6;
-                    if_send = true;
-                }
-            }
-        }
-    }
     if(test)
     {
-    pointMsg.head.SOF = 0xA5;
-    pointMsg.head.data_length = 10;
+        pointMsg.head.SOF = 0xA5;
+        pointMsg.head.data_length = 24;
         pointMsg.head.seq = 1;
         pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
                                              0xff);
         pointMsg.cmd_id = 0x0305;
-        pointMsg.data.target_position_x = 0.0;
-        pointMsg.data.target_position_y = 0.0;
-        pointMsg.data.target_robot_id = 101;
+        pointMsg.data.hero_position_x = (int)(serialRobots[1].x * 100);
+        pointMsg.data.hero_position_y = (int)(serialRobots[1].y * 100);
+        pointMsg.data.engineer_position_x = 150;
+        pointMsg.data.engineer_position_y = 240;
+        pointMsg.data.infantry_3_position_x = 0;
+        pointMsg.data.infantry_3_position_y = 0;
+        pointMsg.data.infantry_4_position_x = (int)(serialRobots[4].x * 100);
+        pointMsg.data.infantry_4_position_y = (int)(serialRobots[4].y * 100);
+        pointMsg.data.infantry_5_position_x = (int)(serialRobots[5].x * 100);
+        pointMsg.data.infantry_5_position_y = (int)(serialRobots[5].y * 100);
+        pointMsg.data.sentry_position_x = (int)(serialRobots[6].x * 100);
+        pointMsg.data.sentry_position_y = (int)(serialRobots[6].y * 100);
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
-        /*std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
-             << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;*/
-             return false;
-    }
-    if(if_send == false)
-    {
+        std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
+        std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
+        std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;
+        std::cout <<  "infantry_4_position x = " << pointMsg.data.infantry_4_position_x << " y = " << pointMsg.data.infantry_4_position_y << std::endl;
+        std::cout <<  "infantry_5_position x = " << pointMsg.data.infantry_5_position_x << " y = " << pointMsg.data.infantry_5_position_y << std::endl;
+        std::cout <<  "sentry_position x = " << pointMsg.data.sentry_position_x << " y = " << pointMsg.data.sentry_position_y << std::endl;
         return false;
     }
     else
@@ -305,70 +283,60 @@ bool SerialDriver::sendPointsData()
         if(our_color == 0) //我们是红方
         {
         pointMsg.head.SOF = 0xA5;
-        pointMsg.head.data_length = 10;
+        pointMsg.head.data_length = 24;
         pointMsg.head.seq = 1;
         pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
                                              0xff);
         pointMsg.cmd_id = 0x0305;
-        pointMsg.data.target_position_x = best_robot.x;
-        pointMsg.data.target_position_y = best_robot.y;
-        switch(best_robot.id)
-        {
-            case 1:
-                pointMsg.data.target_robot_id = 101;
-                break;
-            case 2:
-                pointMsg.data.target_robot_id = 102;
-                break;
-            case 3:
-                pointMsg.data.target_robot_id = 103;
-                break;
-            case 4:
-                pointMsg.data.target_robot_id = 104;
-                break;
-            case 5:
-                pointMsg.data.target_robot_id = 105;
-                break;
-            case 6:
-                pointMsg.data.target_robot_id = 107;
-                break;
-            default:
-                break;
-        }
+        pointMsg.data.hero_position_x = (int)(serialRobots[1].x * 100);
+        pointMsg.data.hero_position_y = (int)(serialRobots[1].y * 100);
+        pointMsg.data.engineer_position_x = (int)(serialRobots[2].x * 100);
+        pointMsg.data.engineer_position_y = (int)(serialRobots[2].y * 100);
+        pointMsg.data.infantry_3_position_x = (int)(serialRobots[3].x * 100);
+        pointMsg.data.infantry_3_position_y = (int)(serialRobots[3].y * 100);
+        pointMsg.data.infantry_4_position_x = (int)(serialRobots[4].x * 100);
+        pointMsg.data.infantry_4_position_y = (int)(serialRobots[4].y * 100);
+        pointMsg.data.infantry_5_position_x = (int)(serialRobots[5].x * 100);
+        pointMsg.data.infantry_5_position_y = (int)(serialRobots[5].y * 100);
+        pointMsg.data.sentry_position_x = (int)(serialRobots[6].x * 100);
+        pointMsg.data.sentry_position_y = (int)(serialRobots[6].y * 100);
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
-        std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
-             << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;
+        std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
+        std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
+        std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;
+        std::cout <<  "infantry_4_position x = " << pointMsg.data.infantry_4_position_x << " y = " << pointMsg.data.infantry_4_position_y << std::endl;
+        std::cout <<  "infantry_5_position x = " << pointMsg.data.infantry_5_position_x << " y = " << pointMsg.data.infantry_5_position_y << std::endl;
+        std::cout <<  "sentry_position x = " << pointMsg.data.sentry_position_x << " y = " << pointMsg.data.sentry_position_y << std::endl;
         }
         else if(our_color == 1) //我们是蓝方
         {
         pointMsg.head.SOF = 0xA5;
-        pointMsg.head.data_length = 10;
+        pointMsg.head.data_length = 24;
         pointMsg.head.seq = 1;
         pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
                                              0xff);
         pointMsg.cmd_id = 0x0305;
-        pointMsg.data.target_position_x = best_robot.x;
-        pointMsg.data.target_position_y = best_robot.y;
-        if(best_robot.id != 6)
-        {
-            pointMsg.data.target_robot_id = best_robot.id;
-        }
-        else if(best_robot.id == 6)
-        {
-            pointMsg.data.target_robot_id = 7;
-        }
+        pointMsg.data.hero_position_x = (int)(serialRobots[7].x * 100);
+        pointMsg.data.hero_position_y = (int)(serialRobots[7].y * 100);
+        pointMsg.data.engineer_position_x = (int)(serialRobots[8].x * 100);
+        pointMsg.data.engineer_position_y = (int)(serialRobots[8].y * 100);
+        pointMsg.data.infantry_3_position_x = (int)(serialRobots[9].x * 100);
+        pointMsg.data.infantry_3_position_y = (int)(serialRobots[9].y * 100);
+        pointMsg.data.infantry_4_position_x = (int)(serialRobots[10].x * 100);
+        pointMsg.data.infantry_4_position_y = (int)(serialRobots[10].y * 100);
+        pointMsg.data.infantry_5_position_x = (int)(serialRobots[11].x * 100);
+        pointMsg.data.infantry_5_position_y = (int)(serialRobots[11].y * 100);
+        pointMsg.data.sentry_position_x = (int)(serialRobots[12].x * 100);
+        pointMsg.data.sentry_position_y = (int)(serialRobots[12].y * 100);
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
-        std::cout << "Send one point msg target_id = " << pointMsg.data.target_robot_id << " x = "
-             << pointMsg.data.target_position_x << " y = " << pointMsg.data.target_position_y << std::endl;
-        /*my_msgss::msg::Points test_robots;
-        my_msgss::msg::Point test_robot;
-        test_robot.id = best_robot.id;
-        test_robot.x = best_robot.x;
-        test_robot.y = best_robot.y;
-        test_robots.data.push_back(test_robot);
-        worldPointsPub->publish(test_robots);*/
+        std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
+        std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
+        std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;
+        std::cout <<  "infantry_4_position x = " << pointMsg.data.infantry_4_position_x << " y = " << pointMsg.data.infantry_4_position_y << std::endl;
+        std::cout <<  "infantry_5_position x = " << pointMsg.data.infantry_5_position_x << " y = " << pointMsg.data.infantry_5_position_y << std::endl;
+        std::cout <<  "sentry_position x = " << pointMsg.data.sentry_position_x << " y = " << pointMsg.data.sentry_position_y << std::endl;
         }
         return true;
     }

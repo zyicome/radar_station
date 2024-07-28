@@ -50,9 +50,18 @@ struct frame_header
 //小地图消息数据 10hz 发送
 struct point_data
 {
-    uint16_t target_robot_id;
-    float target_position_x;
-    float target_position_y;
+    uint16_t hero_position_x;
+    uint16_t hero_position_y;
+    uint16_t engineer_position_x;
+    uint16_t engineer_position_y;
+    uint16_t infantry_3_position_x;
+    uint16_t infantry_3_position_y;
+    uint16_t infantry_4_position_x;
+    uint16_t infantry_4_position_y;
+    uint16_t infantry_5_position_x;
+    uint16_t infantry_5_position_y;
+    uint16_t sentry_position_x;
+    uint16_t sentry_position_y;
 } __attribute__((packed));
 struct point_msg {
     frame_header head;
