@@ -468,7 +468,6 @@ void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArra
 
 void GetDepth::farImageCallback(const sensor_msgs::msg::Image msg)
 {
-    std::cout << "farImageCallback begin" << std::endl;
     cv_bridge::CvImagePtr far_cv_ptr;
     try
     {
@@ -488,7 +487,6 @@ void GetDepth::farImageCallback(const sensor_msgs::msg::Image msg)
 
 void GetDepth::closeImageCallback(const sensor_msgs::msg::Image msg)
 {
-    std::cout << "closeImageCallback begin" << std::endl;
     cv_bridge::CvImagePtr close_cv_ptr;
     try
     {

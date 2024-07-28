@@ -284,13 +284,13 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
         RCLCPP_INFO(this->get_logger(), "Inference starts here...");
         vector<Detection_output> robot_output = inf_robot.runInferenceCuda(sub_img);
         int detections = robot_output.size();
-        std::cout << "Number of detections:" << detections << std::endl;
+        //std::cout << "Number of detections:" << detections << std::endl;
 
         // feiyull
         // 这里需要resize下，否则结果不对
         cv::resize(sub_img, sub_img, cv::Size(sub_img.cols, sub_img.rows));
 
-        cout << "sub_img.cols:" << sub_img.cols << " sub_img.rows:" << sub_img.rows << endl;
+        //cout << "sub_img.cols:" << sub_img.cols << " sub_img.rows:" << sub_img.rows << endl;
 
         for (int i = 0; i < detections; ++i)
         {
@@ -313,7 +313,7 @@ void Img_Sub::yolo_robot_identify(Mat & sub_img, my_msgss::msg::Yolopoints &robo
             {
                 box.height = sub_img.rows - box.y;
             }
-            cout << "box.x:" << box.x << " box.y:" << box.y << " box.width:" << box.width << " box.height:" << box.height << endl;
+            //cout << "box.x:" << box.x << " box.y:" << box.y << " box.width:" << box.width << " box.height:" << box.height << endl;
             cv::rectangle(sub_img, box, Scalar(255,0,0), 2);
             cv::Rect bbox = cv::Rect(box.x + box.width /8, box.y + box.height /2, box.width / 4 * 3, box.height /2);
             cv::rectangle(sub_img, bbox, Scalar(255,0,0), 2);
@@ -368,12 +368,12 @@ void Img_Sub::yolo_armor_identify(Mat & sub_img, vector<Robot> &robots, cv::Rect
         not_tracking_robots_adjust(armor_output[j],robots,robot_output);
     }
 
-    std::cout << "armor_output.size():" << armor_output.size() << std::endl;
-    if(armor_output.size() != 0)
+    //std::cout << "armor_output.size():" << armor_output.size() << std::endl;
+    /*if(armor_output.size() != 0)
     {
         std::cout << "armor_output.confidence:" << armor_output[0].confidence << std::endl;
         std::cout << "armor_output.className:" << std::stoi(armor_output[0].className) << std::endl;
-    }
+    }*/
 
     // 第二种识别方法--类识别，小图像
     /*numberclassifier.classify(armor_img);
@@ -586,7 +586,7 @@ bool Img_Sub::box_match(const cv::Rect &box, const cv::Rect &new_box)
 
     iou = area_intersection / (area_box + area_new_box - area_intersection);
 
-    std::cout << "iou:" << iou << std::endl;
+    //std::cout << "iou:" << iou << std::endl;
     
     if(iou > min_iou)
     {
@@ -623,36 +623,6 @@ void Img_Sub::robots_adjust(const Detection_output &armor_output, vector<Robot> 
     float armor_confidence = 0.0;
     cv::Rect box;
     //神经网络分类详见readme.md
-    /*if(armor_output.class_id <= 8)
-    {
-        if(armor_output.class_id != 0 && armor_output.class_id <7)
-        {
-            armor_number = armor_output.class_id;
-        }
-        else if(armor_output.class_id == 0)  // 哨兵
-        {
-            armor_number = 7;
-        }
-        else
-        {
-            armor_number = armor_output.class_id + 1;
-        }
-    }
-    else if(armor_output.class_id >= 9 && armor_output.class_id<= 17)
-        {
-        if(armor_output.class_id != 9)
-        {
-            armor_number = armor_output.class_id;
-        }
-        else if(armor_output.class_id == 9)
-        {
-            armor_number = 16;
-        }
-        else
-        {
-            armor_number = armor_output.class_id + 1;
-        }
-    }*/
 
     armor_number = std::stoi(armor_output.className);
 
@@ -667,7 +637,7 @@ void Img_Sub::robots_adjust(const Detection_output &armor_output, vector<Robot> 
         return;
     }
 
-    std::cout << "before update x: " << robots[armor_number].box.x << " y: " << robots[armor_number].box.y << " width: " << robots[armor_number].box.width << " height: " << robots[armor_number].box.height << std::endl;
+    //std::cout << "before update x: " << robots[armor_number].box.x << " y: " << robots[armor_number].box.y << " width: " << robots[armor_number].box.width << " height: " << robots[armor_number].box.height << std::endl;
     if(robots[armor_number].tracking == "not")
     {
         //kalman_init(robots[armor_number]);
@@ -681,7 +651,7 @@ void Img_Sub::robots_adjust(const Detection_output &armor_output, vector<Robot> 
         update(robots[armor_number], measurement);
     }
 
-    std::cout << "x: " << robots[armor_number].box.x << " y: " << robots[armor_number].box.y << " width: " << robots[armor_number].box.width << " height: " << robots[armor_number].box.height << std::endl;
+    //std::cout << "x: " << robots[armor_number].box.x << " y: " << robots[armor_number].box.y << " width: " << robots[armor_number].box.width << " height: " << robots[armor_number].box.height << std::endl;
 
     //对应到相应机器人并判断状态
 
@@ -867,36 +837,6 @@ void Img_Sub::not_tracking_robots_adjust(const Detection_output &armor_output, v
     float armor_confidence = 0.0;
     cv::Rect box;
     //神经网络分类详见readme.md
-    /*if(armor_output.class_id <= 8)
-    {
-        if(armor_output.class_id != 0 && armor_output.class_id <7)
-        {
-            armor_number = armor_output.class_id;
-        }
-        else if(armor_output.class_id == 0)  // 哨兵
-        {
-            armor_number = 7;
-        }
-        else
-        {
-            armor_number = armor_output.class_id + 1;
-        }
-    }
-    else if(armor_output.class_id >= 9 && armor_output.class_id<= 17)
-        {
-        if(armor_output.class_id != 9)
-        {
-            armor_number = armor_output.class_id;
-        }
-        else if(armor_output.class_id == 9)
-        {
-            armor_number = 16;
-        }
-        else
-        {
-            armor_number = armor_output.class_id + 1;
-        }
-    }*/
 
     armor_number = std::stoi(armor_output.className);
 
@@ -919,7 +859,7 @@ void Img_Sub::not_tracking_allrobots_adjust(vector<Robot> &robots, my_msgss::msg
         {
             continue;
         }
-        std::cout << "publish robot: " << i << std::endl;
+        //std::cout << "publish robot: " << i << std::endl;
         robot_box.id = robots[i].id;
         robot_box.confidence = robots[i].confidence;
         robot_box.x = robots[i].box.x;
