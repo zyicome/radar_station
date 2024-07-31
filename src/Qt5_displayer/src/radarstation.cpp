@@ -392,7 +392,7 @@ void radarStation::gameStateUpdate()
     if(game_state.stage_remain_time < 120 && radar_info <= 2 && radar_info > 0 && was_first == false)
     {
         my_msgss::msg::Radarinfo radar_info_msg;
-        radar_info_msg.radar_cmd = 0x01;
+        radar_info_msg.radar_cmd = 1;
         qtnode.radar_info_pub_->publish(radar_info_msg);
         was_first = true;
         std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
@@ -400,7 +400,7 @@ void radarStation::gameStateUpdate()
     if(game_state.stage_remain_time < 60 && radar_info == 2 && was_second == false)
     {
         my_msgss::msg::Radarinfo radar_info_msg;
-        radar_info_msg.radar_cmd = 0x02;
+        radar_info_msg.radar_cmd = 2;
         qtnode.radar_info_pub_->publish(radar_info_msg);
         was_second = true;
         std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
@@ -807,10 +807,6 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
                     send_robots.data.push_back(send_robot);
                 }
                 qtnode.points_pub_->publish(send_robots);
-                my_msgss::msg::Radarinfo radar_info_msg;
-                radar_info_msg.radar_cmd = 0x01;
-                qtnode.radar_info_pub_->publish(radar_info_msg);
-                std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
                 break;
             }
         }
@@ -831,10 +827,6 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
                     send_robots.data.push_back(send_robot);
                 }
                 qtnode.points_pub_->publish(send_robots);
-                my_msgss::msg::Radarinfo radar_info_msg;
-                radar_info_msg.radar_cmd = 0x01;
-                qtnode.radar_info_pub_->publish(radar_info_msg);
-                std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
                 break;
             }
         }
