@@ -14,7 +14,9 @@ VideoSave::VideoSave() : Node("video_save")
 
     is_begin_to_save_sub_ = this->create_subscription<std_msgs::msg::Int8>("/is_begin_to_save",1,std::bind(&VideoSave::is_begin_to_save_callback,this,std::placeholders::_1)); 
 
-    std::string pkg_path = "/home/mechax/radar_station/src/Video_save";
+    
+    std::string source_path = (_FILE_);
+    std_string pkg_path = source_path.substr(0, source_path.find("src") - 1);
     video_far_path = pkg_path + "/video_far_/";
     video_close_path = pkg_path + "/video_close_/";
 }
