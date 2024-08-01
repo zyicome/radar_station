@@ -1,0 +1,4 @@
+uint8 dart_remaining_time
+uint8 dart_hit_target_info
+uint8 dart_hit_target_total_info
+uint8 dart_selected_target

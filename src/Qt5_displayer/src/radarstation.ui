@@ -835,7 +835,7 @@
      <widget class="QLabel" name="radarInfoExplain">
       <property name="geometry">
        <rect>
-        <x>730</x>
+        <x>670</x>
         <y>670</y>
         <width>101</width>
         <height>21</height>
@@ -848,9 +848,9 @@
      <widget class="QLabel" name="radarInfo">
       <property name="geometry">
        <rect>
-        <x>830</x>
+        <x>770</x>
         <y>670</y>
-        <width>67</width>
+        <width>51</width>
         <height>21</height>
        </rect>
       </property>
@@ -1014,6 +1014,19 @@
        <string>暂无</string>
       </property>
      </widget>
+     <widget class="QLabel" name="radarIsDoubleDamage">
+      <property name="geometry">
+       <rect>
+        <x>826</x>
+        <y>670</y>
+        <width>61</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
      <zorder>mapMessage</zorder>
      <zorder>map</zorder>
      <zorder>closeImg</zorder>
@@ -1086,6 +1099,7 @@
      <zorder>gameMode</zorder>
      <zorder>modeStatusExplain</zorder>
      <zorder>modeStatus</zorder>
+     <zorder>radarIsDoubleDamage</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">

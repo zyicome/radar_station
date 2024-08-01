@@ -24,6 +24,8 @@ SerialDriver::SerialDriver() : Node("serial")
 
     radarMarkPub = this->create_publisher<my_msgss::msg::Radarmark>("/radar_mark", 10);
 
+    dartPub = this->create_publisher<my_msgss::msg::Dart>("/dart", 10);
+
     hpPub = this->create_publisher<my_msgss::msg::Hp>("/hp", 10);
 
     radarInfoPub = this->create_publisher<my_msgss::msg::Radarinfo>("/radar_info", 10);
@@ -139,10 +141,22 @@ void SerialDriver::receiveAllData_three()
                             if(radarInfoMsg.crc == get_CRC16_check_sum((uint8_t *) &radarInfoMsg,(sizeof(radarInfoMsg) - sizeof(radarInfoMsg.crc)), 0xffff))
                             {
                                 radarInfoRosMsg.radar_info = radarInfoMsg.data.radar_info;
+                                radarInfoRosMsg.is_double_damage = radarInfoMsg.data.is_double_damage;
                                 radarInfoPub->publish(radarInfoRosMsg);
                                 //std::cout << "Send one radar info msg" << std::endl;
                             }
                             break;
+                        case 0x0105:
+                            memcpy(&dartRemainingTimeMsg, receive_data + pos, data_length + 9);
+                            if(dartRemainingTimeMsg.crc == get_CRC16_check_sum((uint8_t *) &dartRemainingTimeMsg,(sizeof(dartRemainingTimeMsg) - sizeof(dartRemainingTimeMsg.crc)), 0xffff))
+                            {
+                                dartRosMsg.dart_remaining_time = dartRemainingTimeMsg.data.dart_remaining_time;
+                                dartRosMsg.dart_hit_target_info = dartRemainingTimeMsg.data.dart_hit_target_info;
+                                dartRosMsg.dart_hit_target_total_info = dartRemainingTimeMsg.data.dart_hit_target_total_info;
+                                dartRosMsg.dart_selected_target = dartRemainingTimeMsg.data.dart_selected_target;
+                                dartPub->publish(dartRosMsg);
+                                //std::cout << "Send one dart remaining time msg" << std::endl;
+                            }
                         default:
                             break;
                         }

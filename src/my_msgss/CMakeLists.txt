@@ -25,6 +25,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Radarmark.msg"
   "msg/Radarinfo.msg"
   "msg/Hp.msg"
+  "msg/Dart.msg"
 )
 
 install(DIRECTORY

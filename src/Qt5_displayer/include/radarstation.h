@@ -90,6 +90,8 @@ public Q_SLOTS:
 
     void hpUpdate();
 
+    void dartUpdate();
+
     void blueMode();
 
     void redMode();
@@ -110,6 +112,7 @@ private:
     std::vector<DecisionRobot> robots;
 
     int radar_info;
+    int last_dart_hit_target_total;
     bool was_first;
     bool was_second;
     

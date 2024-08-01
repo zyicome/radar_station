@@ -51,6 +51,7 @@ radarStation::radarStation(QWidget *parent)
 
     was_first = false;
     was_second = false;
+    last_dart_hit_target_total = 0;
 }
 
 radarStation::~radarStation()
@@ -84,6 +85,7 @@ void radarStation::init()
     connect(&this->qtnode,SIGNAL(updateRadarMark()),this,SLOT(radarMarkUpdate()));
     connect(&this->qtnode,SIGNAL(updateRadarInfo()),this,SLOT(radarInfoUpdate()));
     connect(&this->qtnode,SIGNAL(updateHp()),this,SLOT(hpUpdate()));
+    connect(&this->qtnode,SIGNAL(updateDart()),this,SLOT(dartUpdate()));
 
     connect(ui->solvePnpWidget,SIGNAL(pnpFinished()),this,SLOT(publishPnpResult()));
     connect(ui->blueMode,SIGNAL(clicked()),ui->solvePnpWidget,SLOT(blueMode()));
@@ -391,19 +393,19 @@ void radarStation::gameStateUpdate()
     ui->gameRemainTime->setText(QString::number(game_state.stage_remain_time) + "s");
     if(game_state.stage_remain_time < 120 && radar_info <= 2 && radar_info > 0 && was_first == false)
     {
-        my_msgss::msg::Radarinfo radar_info_msg;
-        radar_info_msg.radar_cmd = 1;
-        qtnode.radar_info_pub_->publish(radar_info_msg);
+        my_msgss::msg::Radarinfo radar_cmd_msg;
+        radar_cmd_msg.radar_cmd = 1;
+        qtnode.radar_info_pub_->publish(radar_cmd_msg);
         was_first = true;
-        std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
+        std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
     }
     if(game_state.stage_remain_time < 60 && radar_info == 2 && was_second == false)
     {
-        my_msgss::msg::Radarinfo radar_info_msg;
-        radar_info_msg.radar_cmd = 2;
-        qtnode.radar_info_pub_->publish(radar_info_msg);
+        my_msgss::msg::Radarinfo radar_cmd_msg;
+        radar_cmd_msg.radar_cmd = 2;
+        qtnode.radar_info_pub_->publish(radar_cmd_msg);
         was_second = true;
-        std::cout << "radar_info_msg:" << radar_info_msg.radar_cmd << std::endl;
+        std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
     }
 }
 
@@ -485,7 +487,16 @@ void radarStation::radarInfoUpdate()
 {
     my_msgss::msg::Radarinfo radar_info_msg = qtnode.radar_info_msg;
     radar_info = radar_info_msg.radar_info;
+    uint8_t is_double_damage = radar_info_msg.is_double_damage;
     ui->radarInfo->setText(QString::number(radar_info_msg.radar_info) + "次");
+    if(is_double_damage == 0)
+    {
+        ui->radarIsDoubleDamage->setText("未触发");
+    }
+    else
+    {
+        ui->radarIsDoubleDamage->setText("触发双倍");
+    }
 }
 
 void radarStation::hpUpdate()
@@ -513,6 +524,31 @@ void radarStation::hpUpdate()
         ui->ourOutPostHp->setText(QString::number(hp_msg.blue_outpose_hp));
         ui->enemyOutPostHp->setText(QString::number(hp_msg.red_outpose_hp));
     }
+}
+
+void radarStation::dartUpdate()
+{
+    my_msgss::msg::Dart dart_msg = qtnode.dart_msg;
+    if(dart_msg.dart_hit_target_total_info > last_dart_hit_target_total)
+    {
+        if(was_first == false && radar_info <= 2 && radar_info > 0)
+        {
+            my_msgss::msg::Radarinfo radar_cmd_msg;
+            radar_cmd_msg.radar_cmd = 1;
+            qtnode.radar_info_pub_->publish(radar_cmd_msg);
+            was_first = true;
+            std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
+        }
+        else if(was_second == false && radar_info == 2)
+        {
+            my_msgss::msg::Radarinfo radar_cmd_msg;
+            radar_cmd_msg.radar_cmd = 2;
+            qtnode.radar_info_pub_->publish(radar_cmd_msg);
+            was_second = true;
+            std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
+        }
+    }
+    last_dart_hit_target_total = dart_msg.dart_hit_target_total_info;
 }
 
 void radarStation::blueMode()

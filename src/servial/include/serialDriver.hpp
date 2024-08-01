@@ -19,6 +19,7 @@
 #include "my_msgss/msg/radarmark.hpp"
 #include "my_msgss/msg/hp.hpp"
 #include "my_msgss/msg/radarinfo.hpp"
+#include "my_msgss/msg/dart.hpp"
 
 
 #include "std_msgs/msg/int8.hpp"
@@ -292,7 +293,9 @@ struct referee_warning_msg {
 struct dart_remaining_time_data //1hz 接收
 {
     uint8_t dart_remaining_time; //己方飞镖发射剩余时间，单位：秒
-    uint16_t dart_info; 
+    uint8_t dart_hit_target_info : 2;
+    uint8_t dart_hit_target_total_info : 3;
+    uint8_t dart_selected_target : 2; 
     //bit 0-1:最近一次己方飞镖击中的目标，开局默认为 0，1 为击中前哨站，2 为击中基地固定目标，3 为击中基地随机目标
     //bit 2-4:对方最近被击中的目标累计被击中计数，开局默认为 0，至多为 4
     //bit 5-6:飞镖此时选定的击打目标，开局默认或未选定/选定前哨站时为 0，选中基地固定目标为 1，选中基地随机目标为 2
@@ -350,7 +353,8 @@ struct radar_mark_msg {
 
 struct radar_info_data
 {
-    uint8_t radar_info;
+    uint8_t radar_info : 2;
+    uint8_t is_double_damage : 1;
     // bit 0-1:雷达是否拥有触发双倍易伤的机会，开局为 0，数值为雷达拥有触发双倍易伤的机会，至多为 2
     // bit 2:对方是否正在被触发双倍易伤 0：对方未被触发双倍易伤 1：对方正在被触发双倍易伤
     // bit 3-7:保留
@@ -419,6 +423,7 @@ public:
   my_msgss::msg::Radarmark radarMarkRosMsg;
   my_msgss::msg::Hp hpRosMsg;
   my_msgss::msg::Radarinfo radarInfoRosMsg;
+  my_msgss::msg::Dart dartRosMsg;
 
   std::vector<serialRobot> serialRobots;
 
@@ -432,6 +437,7 @@ public:
   rclcpp::Publisher<my_msgss::msg::Hp>::SharedPtr hpPub;
   rclcpp::Publisher<my_msgss::msg::Radarmark>::SharedPtr radarMarkPub;
   rclcpp::Publisher<my_msgss::msg::Radarinfo>::SharedPtr radarInfoPub;
+  rclcpp::Publisher<my_msgss::msg::Dart>::SharedPtr dartPub;
 
   rclcpp::TimerBase::SharedPtr send_timer;
 

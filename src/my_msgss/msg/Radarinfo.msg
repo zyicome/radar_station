@@ -1,2 +1,3 @@
 uint8 radar_info
+uint8 is_double_damage
 uint8 radar_cmd
