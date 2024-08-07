@@ -245,6 +245,13 @@ void qtNode::dartCallback(const my_msgss::msg::Dart msg)
     Q_EMIT updateDart();
 }
 
+void qtNode::siteEventCallback(const my_msgss::msg::Siteevent msg)
+{
+    site_event_msg = msg;
+
+    Q_EMIT updateSiteEvent();
+}
+
 void qtNode::run()
 {   
     cout << "node开始运行" << endl;
@@ -282,6 +289,7 @@ void qtNode::run()
     radar_info_sub_ = qnode->create_subscription<my_msgss::msg::Radarinfo>("/radar_info", 10, std::bind(&qtNode::radarInfoCallback, this, std::placeholders::_1));
     hp_sub_ = qnode->create_subscription<my_msgss::msg::Hp>("/hp", 10, std::bind(&qtNode::hpCallback, this, std::placeholders::_1));
     dart_sub_ = qnode->create_subscription<my_msgss::msg::Dart>("/dart", 10, std::bind(&qtNode::dartCallback, this, std::placeholders::_1));
+    site_event_sub_ = qnode->create_subscription<my_msgss::msg::Siteevent>("/site_event", 10, std::bind(&qtNode::siteEventCallback, this, std::placeholders::_1));
 
     rclcpp::spin(qnode);
     cout << "node异常关闭" << endl;

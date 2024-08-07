@@ -92,6 +92,8 @@ public Q_SLOTS:
 
     void dartUpdate();
 
+    void siteEventUpdate();
+
     void blueMode();
 
     void redMode();
@@ -113,6 +115,7 @@ private:
 
     int radar_info;
     int last_dart_hit_target_total;
+    int last_supply_rune_big_status;
     bool was_first;
     bool was_second;
     

@@ -10,6 +10,8 @@ SerialDriver::SerialDriver() : Node("serial")
 
     test = false;
 
+    seq = 0;
+
     worldPointsSub = this->create_subscription<my_msgss::msg::Points>("/serial/world_points", 10, std::bind(&SerialDriver::worldPointsCallback, this, std::placeholders::_1));
 
     color_sub = this->create_subscription<std_msgs::msg::Int8>("/our_color", 10, std::bind(&SerialDriver::colorCallback, this, std::placeholders::_1));
@@ -24,13 +26,15 @@ SerialDriver::SerialDriver() : Node("serial")
 
     radarMarkPub = this->create_publisher<my_msgss::msg::Radarmark>("/radar_mark", 10);
 
-    dartPub = this->create_publisher<my_msgss::msg::Dart>("/dart", 10);
-
     hpPub = this->create_publisher<my_msgss::msg::Hp>("/hp", 10);
 
     radarInfoPub = this->create_publisher<my_msgss::msg::Radarinfo>("/radar_info", 10);
 
-    send_timer = this->create_wall_timer(std::chrono::milliseconds(100), std::bind(&SerialDriver::serialCommunication, this));
+    dartPub = this->create_publisher<my_msgss::msg::Dart>("/dart", 10);
+
+    siteEventPub = this->create_publisher<my_msgss::msg::Siteevent>("/site_event", 10);
+
+    send_timer = this->create_wall_timer(std::chrono::milliseconds(200), std::bind(&SerialDriver::serialCommunication, this));
 
     receive_thread = std::thread(&SerialDriver::receiveAllData_three, this);
 }
@@ -157,6 +161,15 @@ void SerialDriver::receiveAllData_three()
                                 dartPub->publish(dartRosMsg);
                                 //std::cout << "Send one dart remaining time msg" << std::endl;
                             }
+                        case 0x0101:
+                            memcpy(&siteEventMsgs, receive_data + pos, data_length + 9);
+                            if(siteEventMsgs.crc == get_CRC16_check_sum((uint8_t *) &siteEventMsgs,(sizeof(siteEventMsgs) - sizeof(siteEventMsgs.crc)), 0xffff))
+                            {
+                                siteEventRosMsg.supply_rune_small_status = siteEventMsgs.data.supply_rune_small_status;
+                                siteEventRosMsg.supply_rune_big_status = siteEventMsgs.data.supply_rune_big_status;
+                                siteEventPub->publish(siteEventRosMsg);
+                                //std::cout << "Send one site event msg" << std::endl;
+                            }
                         default:
                             break;
                         }
@@ -196,11 +209,22 @@ void SerialDriver::colorCallback(const std_msgs::msg::Int8::SharedPtr msg)
 void SerialDriver::radarInfoCallback(const my_msgss::msg::Radarinfo msg)
 {
     radarCmdMsg.head.SOF = 0xA5;
-    radarCmdMsg.head.data_length = 1;
-    radarCmdMsg.head.seq = 1;
+    radarCmdMsg.head.data_length = 1 + 6;
+    radarCmdMsg.head.seq = seq;
+    seq++;
     radarCmdMsg.head.crc = get_CRC8_check_sum((uint8_t *) &radarCmdMsg, (sizeof(radarCmdMsg.head) - sizeof(radarCmdMsg.head.crc)),
                                              0xff);
+    radarCmdMsg.id = 0x0301;
     radarCmdMsg.cmd_id = 0x0121;
+    if(our_color == 0) //我们是红方
+    {
+        radarCmdMsg.sender_ID = 9;
+    }
+    else if(our_color == 1) //我们是蓝方
+    {
+        radarCmdMsg.sender_ID = 109;
+    }
+    radarCmdMsg.receiver_ID = 0x8080;
     radarCmdMsg.data.radar_cmd = msg.radar_cmd;
     radarCmdMsg.crc = get_CRC16_check_sum((uint8_t *) &radarCmdMsg, (sizeof(radarCmdMsg) - sizeof(radarCmdMsg.crc)), 0xffff);
     serial_port.write((uint8_t *) &radarCmdMsg, sizeof(radarCmdMsg));
@@ -257,16 +281,12 @@ void SerialDriver::serialCommunication()
 //-----------------------------------------------------------------------------------------
 bool SerialDriver::sendPointsData()
 {
-    /*for(int i = 0;i<serialRobots.size();i++)
-    {
-        std::cout << "serialRobots[" << i << "].x = " << serialRobots[i].x << " serialRobots[" << i << "].y = " << serialRobots[i].y << std::endl;
-    }*/
-    bool if_send = false;
     if(test)
     {
         pointMsg.head.SOF = 0xA5;
         pointMsg.head.data_length = 24;
-        pointMsg.head.seq = 1;
+        pointMsg.head.seq = seq;
+        seq++;
         pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
                                              0xff);
         pointMsg.cmd_id = 0x0305;
@@ -284,6 +304,7 @@ bool SerialDriver::sendPointsData()
         pointMsg.data.sentry_position_y = (int)(serialRobots[6].y * 100);
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
+        std::cout << "seq: " << seq << std::endl;
         std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
         std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
         std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;
@@ -298,7 +319,8 @@ bool SerialDriver::sendPointsData()
         {
         pointMsg.head.SOF = 0xA5;
         pointMsg.head.data_length = 24;
-        pointMsg.head.seq = 1;
+        pointMsg.head.seq = seq;
+        seq++;
         pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
                                              0xff);
         pointMsg.cmd_id = 0x0305;
@@ -314,8 +336,21 @@ bool SerialDriver::sendPointsData()
         pointMsg.data.infantry_5_position_y = (int)(serialRobots[5].y * 100);
         pointMsg.data.sentry_position_x = (int)(serialRobots[6].x * 100);
         pointMsg.data.sentry_position_y = (int)(serialRobots[6].y * 100);
+        /*pointMsg.data.hero_position_x = 1;
+        pointMsg.data.hero_position_y = 1;
+        pointMsg.data.engineer_position_x = 1;
+        pointMsg.data.engineer_position_y = 1;
+        pointMsg.data.infantry_3_position_x = 1;
+        pointMsg.data.infantry_3_position_y = 1;
+        pointMsg.data.infantry_4_position_x = 1;
+        pointMsg.data.infantry_4_position_y = 1;
+        pointMsg.data.infantry_5_position_x = 1;
+        pointMsg.data.infantry_5_position_y = 1;
+        pointMsg.data.sentry_position_x = 1;
+        pointMsg.data.sentry_position_y = 1;*/
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
+        std::cout << "seq: " << seq << std::endl;
         std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
         std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
         std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;
@@ -327,24 +362,38 @@ bool SerialDriver::sendPointsData()
         {
         pointMsg.head.SOF = 0xA5;
         pointMsg.head.data_length = 24;
-        pointMsg.head.seq = 1;
+        pointMsg.head.seq = seq;
+        seq++;
         pointMsg.head.crc = get_CRC8_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg.head) - sizeof(pointMsg.head.crc)),
                                              0xff);
         pointMsg.cmd_id = 0x0305;
-        pointMsg.data.hero_position_x = (int)(serialRobots[7].x * 100);
-        pointMsg.data.hero_position_y = (int)(serialRobots[7].y * 100);
+        pointMsg.data.hero_position_x =  (int)(serialRobots[7].x * 100);
+        pointMsg.data.hero_position_y =  (int)(serialRobots[7].y * 100);
         pointMsg.data.engineer_position_x = (int)(serialRobots[8].x * 100);
         pointMsg.data.engineer_position_y = (int)(serialRobots[8].y * 100);
-        pointMsg.data.infantry_3_position_x = (int)(serialRobots[9].x * 100);
-        pointMsg.data.infantry_3_position_y = (int)(serialRobots[9].y * 100);
+        pointMsg.data.infantry_3_position_x =  (int)(serialRobots[9].x * 100);
+        pointMsg.data.infantry_3_position_y =  (int)(serialRobots[9].y * 100);
         pointMsg.data.infantry_4_position_x = (int)(serialRobots[10].x * 100);
-        pointMsg.data.infantry_4_position_y = (int)(serialRobots[10].y * 100);
-        pointMsg.data.infantry_5_position_x = (int)(serialRobots[11].x * 100);
+        pointMsg.data.infantry_4_position_y =(int)(serialRobots[10].y * 100);
+        pointMsg.data.infantry_5_position_x =  (int)(serialRobots[11].x * 100);
         pointMsg.data.infantry_5_position_y = (int)(serialRobots[11].y * 100);
-        pointMsg.data.sentry_position_x = (int)(serialRobots[12].x * 100);
-        pointMsg.data.sentry_position_y = (int)(serialRobots[12].y * 100);
+        pointMsg.data.sentry_position_x =  (int)(serialRobots[12].x * 100);
+        pointMsg.data.sentry_position_y =  (int)(serialRobots[12].y * 100);
+        /*pointMsg.data.hero_position_x = 1;
+        pointMsg.data.hero_position_y = 1;
+        pointMsg.data.engineer_position_x = 1;
+        pointMsg.data.engineer_position_y = 1;
+        pointMsg.data.infantry_3_position_x = 1;
+        pointMsg.data.infantry_3_position_y = 1;
+        pointMsg.data.infantry_4_position_x = 1;
+        pointMsg.data.infantry_4_position_y = 1;
+        pointMsg.data.infantry_5_position_x = 1;
+        pointMsg.data.infantry_5_position_y = 1;
+        pointMsg.data.sentry_position_x = 1;
+        pointMsg.data.sentry_position_y = 1;*/
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
+        std::cout << "seq: " << seq << std::endl;
         std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
         std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
         std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;

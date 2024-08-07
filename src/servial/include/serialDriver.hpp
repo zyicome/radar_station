@@ -20,6 +20,7 @@
 #include "my_msgss/msg/hp.hpp"
 #include "my_msgss/msg/radarinfo.hpp"
 #include "my_msgss/msg/dart.hpp"
+#include "my_msgss/msg/siteevent.hpp"
 
 
 #include "std_msgs/msg/int8.hpp"
@@ -41,7 +42,7 @@ struct serialRobot
 struct frame_header
 {
     uint8_t SOF = 0xA5;//固定值
-    uint16_t data_length = 10;//data的长度
+    uint16_t data_length;//data的长度
     uint8_t seq; //包序号
     uint8_t crc; //帧头crc8
 } __attribute__((packed));
@@ -156,7 +157,10 @@ struct radar_cmd_data
 } __attribute__((packed));
 struct radar_cmd_msgs {
     frame_header head;
+    uint16_t id = 0x0301;
     uint16_t cmd_id = 0x0121;
+    uint16_t sender_ID;
+    uint16_t receiver_ID;
     radar_cmd_data data;
     uint16_t crc;
 } __attribute__((packed));
@@ -236,7 +240,18 @@ struct robot_health_msgs //1HZ
 //场地机关占领消息
 struct site_event_data //1hz 接收
 {
-    uint32_t event_type;
+    uint8_t supply_one_occupied : 1;
+    uint8_t supply_two_occupied : 1;
+    uint8_t supply_three_occupied : 1;
+    uint8_t supply_rune_place_status : 1;
+    uint8_t supply_rune_small_status : 1;
+    uint8_t supply_rune_big_status : 1;
+    uint8_t highland_R2_B2_occupied : 2;
+    uint8_t highland_R3_B3_occupied : 2;
+    uint8_t highland_R4_B4_occupied : 2;
+    uint8_t base_shield_remaining : 7;
+    uint8_t last_dart_hit_time : 9;
+    uint8_t last_dart_hit_target : 2;
     //bit 0:己方补给站 1 号补血点占领状态 1 为已占领;
     //bit 1:己方补给站 2 号补血点占领状态 1 为已占领;
     //bit 2:己方补给站 3 号补血点占领状态 1 为已占领;
@@ -395,6 +410,7 @@ public:
 
   bool our_color; // 0,red 1,blue
   bool test;
+  uint8_t seq;
   
   serial::Serial serial_port;
   uint8_t receiveData[1024];
@@ -404,13 +420,13 @@ public:
   robot_interactive_control_msgs robotInteractiveControlMsgs;
   robot_health_msgs robotHealthMsgs;
   game_result_msg gameResultMsg;
-  site_event_msgs siteEventMsgs;
   supply_projectile_action_msg supplyProjectileActionMsg;
   referee_warning_msg refereeWarningMsg;
   dart_remaining_time_msg dartRemainingTimeMsg;
   game_status_msgs gameStatusMsgs;
   radar_mark_msg radarMarkMsg;
   radar_info_msg radarInfoMsg;
+  site_event_msgs siteEventMsgs;
 
   radar_cmd_msgs radarCmdMsg;
 
@@ -424,6 +440,7 @@ public:
   my_msgss::msg::Hp hpRosMsg;
   my_msgss::msg::Radarinfo radarInfoRosMsg;
   my_msgss::msg::Dart dartRosMsg;
+  my_msgss::msg::Siteevent siteEventRosMsg;
 
   std::vector<serialRobot> serialRobots;
 
@@ -438,6 +455,7 @@ public:
   rclcpp::Publisher<my_msgss::msg::Radarmark>::SharedPtr radarMarkPub;
   rclcpp::Publisher<my_msgss::msg::Radarinfo>::SharedPtr radarInfoPub;
   rclcpp::Publisher<my_msgss::msg::Dart>::SharedPtr dartPub;
+  rclcpp::Publisher<my_msgss::msg::Siteevent>::SharedPtr siteEventPub;
 
   rclcpp::TimerBase::SharedPtr send_timer;
 

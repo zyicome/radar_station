@@ -515,6 +515,7 @@ void pnpWidget::redMode()
                                 Point3d(15785.0, 12579.0, 0.0),
                                 Point3d(16300.5, 11686.5, 0.0),
                                 Point3d(17331.5, 11686.5, 0.0)};
+                                
         far_objectpoints = {    Point3d(17331.5, 13471.5, 0.0),
                                 Point3d(16300.5, 13471.5, 0.0),
                                 Point3d(15785.0, 12579.0, 0.0),

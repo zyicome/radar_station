@@ -52,6 +52,7 @@ radarStation::radarStation(QWidget *parent)
     was_first = false;
     was_second = false;
     last_dart_hit_target_total = 0;
+    last_supply_rune_big_status = 0;
 }
 
 radarStation::~radarStation()
@@ -86,6 +87,7 @@ void radarStation::init()
     connect(&this->qtnode,SIGNAL(updateRadarInfo()),this,SLOT(radarInfoUpdate()));
     connect(&this->qtnode,SIGNAL(updateHp()),this,SLOT(hpUpdate()));
     connect(&this->qtnode,SIGNAL(updateDart()),this,SLOT(dartUpdate()));
+    connect(&this->qtnode,SIGNAL(updateSiteEvent()),this,SLOT(siteEventUpdate()));
 
     connect(ui->solvePnpWidget,SIGNAL(pnpFinished()),this,SLOT(publishPnpResult()));
     connect(ui->blueMode,SIGNAL(clicked()),ui->solvePnpWidget,SLOT(blueMode()));
@@ -309,9 +311,16 @@ void radarStation::farPointsUpdate()
         if(ui->map->far_robots[i].confidence > 0.0)
         {
             farpos.id = ui->map->far_robots[i].id;
-            farpos.x = ui->map->far_robots[i].x / object_width * width;
-            farpos.y = height - (ui->map->far_robots[i].y / object_height * height);
-            //farpos.y = (ui->map->far_robots[i].y / object_height * height);
+            if(ui->map->our_color == 0) //我们是红色
+            {
+                farpos.x = ui->map->far_robots[i].x / object_width * width;
+                farpos.y = height - (ui->map->far_robots[i].y / object_height * height);
+            }
+            else if(ui->map->our_color == 1) //我们是蓝色
+            {
+                farpos.x = width - ui->map->far_robots[i].x / object_width * width;
+                farpos.y = (ui->map->far_robots[i].y / object_height * height);
+            }
             farpos.x = farpos.x + ui->map->drawPos.x();
             farpos.y = farpos.y + ui->map->drawPos.y();
             ui->map->far_robots[i].x = farpos.x;
@@ -347,8 +356,16 @@ void radarStation::closePointsUpdate()
         if(ui->map->close_robots[i].confidence > 0.0)
         {
             closepos.id = ui->map->close_robots[i].id;
-            closepos.x = ui->map->close_robots[i].x / object_width * width;
-            closepos.y = height - (ui->map->close_robots[i].y / object_height * height);
+            if(ui->map->our_color == 0) //我们是红色
+            {
+                closepos.x = ui->map->close_robots[i].x / object_width * width;
+                closepos.y = height - (ui->map->close_robots[i].y / object_height * height);
+            }
+            else if(ui->map->our_color == 1) //我们是蓝色
+            {
+                closepos.x = width - ui->map->close_robots[i].x / object_width * width;
+                closepos.y = (ui->map->close_robots[i].y / object_height * height);
+            }
             //closepos.y = (ui->map->close_robots[i].x / object_height * height);
             closepos.x = closepos.x + ui->map->drawPos.x();
             closepos.y = closepos.y + ui->map->drawPos.y();
@@ -391,20 +408,22 @@ void radarStation::gameStateUpdate()
         ui->gameProgress->setText("比赛状态：比赛结束");
     }
     ui->gameRemainTime->setText(QString::number(game_state.stage_remain_time) + "s");
-    if(game_state.stage_remain_time < 120 && radar_info <= 2 && radar_info > 0 && was_first == false)
+    if(game_state.stage_remain_time < 120 && radar_info > 0 && was_first == false && game_state.game_progress == 4)
     {
         my_msgss::msg::Radarinfo radar_cmd_msg;
         radar_cmd_msg.radar_cmd = 1;
         qtnode.radar_info_pub_->publish(radar_cmd_msg);
         was_first = true;
+        ui->radarCmdStatus->setText("指令：1");
         std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
     }
-    if(game_state.stage_remain_time < 60 && radar_info == 2 && was_second == false)
+    if(game_state.stage_remain_time < 60 && radar_info > 0 && was_second == false && was_first == true && game_state.game_progress == 4)
     {
         my_msgss::msg::Radarinfo radar_cmd_msg;
         radar_cmd_msg.radar_cmd = 2;
         qtnode.radar_info_pub_->publish(radar_cmd_msg);
         was_second = true;
+        ui->radarCmdStatus->setText("指令：2");
         std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
     }
 }
@@ -456,19 +475,19 @@ void radarStation::radarMarkUpdate()
             {
                 case 7:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_hero_progress;
-                    ui->markProgress_1->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
+                    ui->markProgress_1->setText(QString::number(robots[armor_number].radar_mark_progress));
                     break;
                 case 8:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_engineer_progress;
-                    ui->markProgress_2->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
+                    ui->markProgress_2->setText(QString::number(robots[armor_number].radar_mark_progress));
                     break;
                 case 9:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_standard_3_progress;
-                    ui->markProgress_3->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
+                    ui->markProgress_3->setText(QString::number(robots[armor_number].radar_mark_progress));
                     break;
                 case 10:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_standard_4_progress;
-                    ui->markProgress_4->setText(QString::number(robots[armor_number].radar_mark_progress,'f',2));
+                    ui->markProgress_4->setText(QString::number(robots[armor_number].radar_mark_progress));
                     break;
                 case 11:
                     robots[armor_number].radar_mark_progress = radar_mark.mark_standard_5_progress;
@@ -488,8 +507,8 @@ void radarStation::radarInfoUpdate()
     my_msgss::msg::Radarinfo radar_info_msg = qtnode.radar_info_msg;
     radar_info = radar_info_msg.radar_info;
     uint8_t is_double_damage = radar_info_msg.is_double_damage;
-    ui->radarInfo->setText(QString::number(radar_info_msg.radar_info) + "次");
-    if(is_double_damage == 0)
+    ui->radarInfo->setText(QString::number(radar_info) + "次");
+    if(radar_info_msg.is_double_damage == 0)
     {
         ui->radarIsDoubleDamage->setText("未触发");
     }
@@ -531,24 +550,53 @@ void radarStation::dartUpdate()
     my_msgss::msg::Dart dart_msg = qtnode.dart_msg;
     if(dart_msg.dart_hit_target_total_info > last_dart_hit_target_total)
     {
-        if(was_first == false && radar_info <= 2 && radar_info > 0)
+        if(was_first == false && radar_info > 0)
         {
             my_msgss::msg::Radarinfo radar_cmd_msg;
             radar_cmd_msg.radar_cmd = 1;
             qtnode.radar_info_pub_->publish(radar_cmd_msg);
             was_first = true;
+            ui->radarCmdStatus->setText("雷达指令:1");
             std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
         }
-        else if(was_second == false && radar_info == 2)
+        else if(was_second == false && radar_info > 0 && was_first == true)
         {
             my_msgss::msg::Radarinfo radar_cmd_msg;
             radar_cmd_msg.radar_cmd = 2;
             qtnode.radar_info_pub_->publish(radar_cmd_msg);
             was_second = true;
+            ui->radarCmdStatus->setText("雷达指令:2");
             std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
         }
     }
     last_dart_hit_target_total = dart_msg.dart_hit_target_total_info;
+}
+
+void radarStation::siteEventUpdate()
+{
+    my_msgss::msg::Siteevent site_event_msg = qtnode.site_event_msg;
+    if(site_event_msg.supply_rune_big_status > last_supply_rune_big_status)
+    {
+        if(was_first == false && radar_info > 0)
+        {
+            my_msgss::msg::Radarinfo radar_cmd_msg;
+            radar_cmd_msg.radar_cmd = 1;
+            qtnode.radar_info_pub_->publish(radar_cmd_msg);
+            was_first = true;
+            ui->radarCmdStatus->setText("雷达指令:1");
+            std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
+        }
+        else if(was_second == false && radar_info > 0 && was_first == true)
+        {
+            my_msgss::msg::Radarinfo radar_cmd_msg;
+            radar_cmd_msg.radar_cmd = 2;
+            qtnode.radar_info_pub_->publish(radar_cmd_msg);
+            was_second = true;
+            ui->radarCmdStatus->setText("雷达指令:2");
+            std::cout << "radar_cmd_msg:" << radar_cmd_msg.radar_cmd << std::endl;
+        }
+    }
+    last_supply_rune_big_status = site_event_msg.supply_rune_big_status;
 }
 
 void radarStation::blueMode()

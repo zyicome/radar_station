@@ -1,0 +1,2 @@
+uint8 supply_rune_small_status
+uint8 supply_rune_big_status

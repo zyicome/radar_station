@@ -16,6 +16,7 @@
 #include "my_msgss/msg/radarinfo.hpp"
 #include "my_msgss/msg/hp.hpp"
 #include "my_msgss/msg/dart.hpp"
+#include "my_msgss/msg/siteevent.hpp"
 #include "opencv2/opencv.hpp"
 #include "cv_bridge/cv_bridge.h"
 
@@ -45,6 +46,7 @@ public:
     void radarInfoCallback(const my_msgss::msg::Radarinfo msg);
     void hpCallback(const my_msgss::msg::Hp msg);
     void dartCallback(const my_msgss::msg::Dart msg);
+    void siteEventCallback(const my_msgss::msg::Siteevent msg);
 
     void run() override;
 
@@ -60,6 +62,7 @@ Q_SIGNALS:
     void updateRadarInfo();
     void updateHp();
     void updateDart();
+    void updateSiteEvent();
 
 public:
     QImage far_qimage;
@@ -73,6 +76,7 @@ public:
     my_msgss::msg::Radarinfo radar_info_msg;
     my_msgss::msg::Hp hp_msg;
     my_msgss::msg::Dart dart_msg;
+    my_msgss::msg::Siteevent site_event_msg;
 
     cv::Mat far_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
     cv::Mat far_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
@@ -99,6 +103,7 @@ public:
     rclcpp::Subscription<my_msgss::msg::Radarinfo>::SharedPtr radar_info_sub_;
     rclcpp::Subscription<my_msgss::msg::Hp>::SharedPtr hp_sub_;
     rclcpp::Subscription<my_msgss::msg::Dart>::SharedPtr dart_sub_;
+    rclcpp::Subscription<my_msgss::msg::Siteevent>::SharedPtr site_event_sub_;
 
 
     rclcpp::Node::SharedPtr qnode;

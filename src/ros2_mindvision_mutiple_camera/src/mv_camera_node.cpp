@@ -243,7 +243,7 @@ private:
       t_leftcapability_.sExposeDesc.uiExposeTimeMin * leftexposure_line_time;
     leftparam_desc.integer_range[0].to_value =
       t_leftcapability_.sExposeDesc.uiExposeTimeMax * leftexposure_line_time;
-    double leftexposure_time = this->declare_parameter("leftexposure_time", 5000, leftparam_desc);
+    double leftexposure_time = this->declare_parameter("leftexposure_time", 15000, leftparam_desc);
     CameraSetExposureTime(h_leftcamera_, leftexposure_time);
     RCLCPP_INFO(this->get_logger(), "leftExposure time = %f", leftexposure_time);
 
@@ -316,7 +316,7 @@ private:
         t_rightcapability_.sExposeDesc.uiExposeTimeMin * rightexposure_line_time;
         rightparam_desc.integer_range[0].to_value =
         t_rightcapability_.sExposeDesc.uiExposeTimeMax * rightexposure_line_time;
-        double rightexposure_time = this->declare_parameter("rightexposure_time", 5000, rightparam_desc);
+        double rightexposure_time = this->declare_parameter("rightexposure_time", 15000, rightparam_desc);
         CameraSetExposureTime(h_rightcamera_, rightexposure_time);
         RCLCPP_INFO(this->get_logger(), "rightExposure time = %f", rightexposure_time);
     

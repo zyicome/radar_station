@@ -394,7 +394,7 @@
      <widget class="QLabel" name="gameProgress">
       <property name="geometry">
        <rect>
-        <x>730</x>
+        <x>870</x>
         <y>700</y>
         <width>281</width>
         <height>21</height>
@@ -809,7 +809,7 @@
      <widget class="QLabel" name="gameRemainTimeExplain">
       <property name="geometry">
        <rect>
-        <x>1050</x>
+        <x>1170</x>
         <y>700</y>
         <width>101</width>
         <height>21</height>
@@ -822,7 +822,7 @@
      <widget class="QLabel" name="gameRemainTime">
       <property name="geometry">
        <rect>
-        <x>1150</x>
+        <x>1270</x>
         <y>700</y>
         <width>211</width>
         <height>21</height>
@@ -835,7 +835,7 @@
      <widget class="QLabel" name="radarInfoExplain">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>660</x>
         <y>670</y>
         <width>101</width>
         <height>21</height>
@@ -850,7 +850,7 @@
        <rect>
         <x>770</x>
         <y>670</y>
-        <width>51</width>
+        <width>31</width>
         <height>21</height>
        </rect>
       </property>
@@ -1017,9 +1017,22 @@
      <widget class="QLabel" name="radarIsDoubleDamage">
       <property name="geometry">
        <rect>
-        <x>826</x>
+        <x>770</x>
+        <y>700</y>
+        <width>81</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>暂无</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="radarCmdStatus">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
         <y>670</y>
-        <width>61</width>
+        <width>71</width>
         <height>21</height>
        </rect>
       </property>
@@ -1100,6 +1113,7 @@
      <zorder>modeStatusExplain</zorder>
      <zorder>modeStatus</zorder>
      <zorder>radarIsDoubleDamage</zorder>
+     <zorder>radarCmdStatus</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">

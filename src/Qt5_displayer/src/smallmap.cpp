@@ -171,8 +171,10 @@ void smallMap::paintEvent(QPaintEvent *event)
     {
         //std::cout << "id:" << i << " x:" << far_robots[i].x << " y:" << far_robots[i].y << " confidence:" << far_robots[i].confidence << std::endl;
         int id;
-        if(robots[i].confidence != 0.0)
+        if(our_color == 0) //我们是红方
         {
+            if(robots[i].confidence != 0.0)
+            {
             if(i<=6)
             {
                 id = i;
@@ -188,6 +190,28 @@ void smallMap::paintEvent(QPaintEvent *event)
             painter.drawEllipse(robots[i].x,robots[i].y,20 * this->scaleValue,20 * this->scaleValue);
             painter.setPen(QPen(Qt::black,5));
             painter.drawText(robots[i].x + (20 * this->scaleValue) / 2,robots[i].y + (20 * this->scaleValue) / 2,QString::number(id));
+            }
+        }
+        else if(our_color == 1) //我们是蓝方
+        {
+            if(robots[i].confidence != 0.0)
+            {
+            if(i<=6)
+            {
+                id = i;
+                painter.setPen(QPen(Qt::blue,5));
+                painter.setBrush(Qt::blue);
+            }
+            else if(i > 6)
+            {
+                id = i - 6;
+                painter.setPen(QPen(Qt::red,5));
+                painter.setBrush(Qt::red);
+            }
+            painter.drawEllipse(robots[i].x,robots[i].y,20 * this->scaleValue,20 * this->scaleValue);
+            painter.setPen(QPen(Qt::black,5));
+            painter.drawText(robots[i].x + (20 * this->scaleValue) / 2,robots[i].y + (20 * this->scaleValue) / 2,QString::number(id));
+            }
         }
     }
     for(int i = 1;i<robots.size();i++)
