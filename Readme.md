@@ -12,8 +12,6 @@
 	
         	All_Topic // 所有的话题汇总
         	
-        	Game_Map // 比赛地图（暂不用,已舍弃）
-        	
         	get_depth  // 得到深度信息
         	
         	Img_Handle // 处理图像，深度神经识别
