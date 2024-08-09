@@ -27,14 +27,6 @@ struct Robot
     float distance;
 };
 
-struct map_point
-{
-    int id;
-    double x;
-    double y;
-    double z;
-};
-
 class MapTest : public rclcpp::Node
 {
 public:
@@ -51,10 +43,6 @@ public:
     void pnp_callback(const std_msgs::msg::Float32MultiArray msg);
 
     void calibration();
-
-    void draw_point_on_map(Mat &map,vector<map_point> &map_points);
-
-    Point2f calculate_pixel_codi(const map_point &point);
 
     bool is_connect_to_server();
 private:
@@ -80,9 +68,6 @@ private:
     Mat test_map;
     Mat map;
 
-    vector<map_point> far_map_points;
-    vector<map_point> close_map_points;
-    
     rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr far_points_pub_;
     rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr close_points_pub_;
 

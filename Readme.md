@@ -4,11 +4,7 @@
 
 文件介绍
 
-	test.sh // 测试用的脚本,现使用,直接启动便可启动所有需要的程序
-	
-	saveScreen.sh// 录像启动脚本
-	
-	launch.sh // 暂不用
+	run.sh // 现使用脚本,直接启动便可启动所有需要的程序
 	
 	log       // 日志文件
 	
@@ -36,7 +32,7 @@
         	
         	ros2-mindvision-camera  // 启动相机,mindvision相机节点
         	
-        	servial // 串口程序，收发裁判系统
+        	serial // 串口程序，收发裁判系统
         	
         	Video_save // 保存录像，方便后期回顾
         	
@@ -146,13 +142,13 @@ sudo apt-get install libopencv-dev(我暂时只能下到4.5.2的版本)
 	
 	colcon build
 	
-	./test.sh
+	./run.sh
 	
 可能出现的问题：
 
-	1：./test.sh: Permission denied
+	1：./run.sh: Permission denied
 	
    	解决方法：找到test.sh文件，右键打开属性，进入permission，把execute打开即可
    	
-	2: test.sh文件的路径需要修改一下，根据雷达驱动的位置进行修改即可
+	2: run.sh文件的路径需要修改一下，根据雷达驱动的位置进行修改即可
 	

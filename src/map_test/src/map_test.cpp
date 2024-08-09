@@ -4,11 +4,9 @@ MapTest::MapTest() : Node("map_test",rclcpp::NodeOptions().allow_undeclared_para
 {
     robots_init();
 
-    //parameter_init();
-
     get_map();
     
-    //calibration();
+    calibration();
 
     far_distpoints_sub_ = this->create_subscription<my_msgss::msg::Distpoints>("/sensor_far/distance_point",10,
                      std::bind(&MapTest::far_callback,this,std::placeholders::_1));
@@ -40,39 +38,6 @@ bool MapTest::is_connect_to_server()
 
 void MapTest::parameter_init()
 {
-    //-------------------------------------
-    //object_height = 28;
-    //object_width = 15;
-    //--------------------------------------
-    /*far_camera_matrix.at<double>(0, 0) = 3066.03905;
-    far_camera_matrix.at<double>(0, 1) = 0;
-    far_camera_matrix.at<double>(0, 2) = 667.26311;
-    far_camera_matrix.at<double>(1, 0) = 0;
-    far_camera_matrix.at<double>(1, 1) = 3080.97863;
-    far_camera_matrix.at<double>(1, 2) = 549.63631;
-    far_camera_matrix.at<double>(2, 0) = 0;
-    far_camera_matrix.at<double>(2, 1) = 0;
-    far_camera_matrix.at<double>(2, 2) = 1;
-    far_distortion_coefficient.at<double>(0,0) = -0.069436;
-    far_distortion_coefficient.at<double>(1,0) = 1.005937;
-    far_distortion_coefficient.at<double>(2,0) = -0.002552;
-    far_distortion_coefficient.at<double>(3,0) = 0.003604;
-    far_distortion_coefficient.at<double>(4,0) = 0.000000;
-    close_camera_matrix.at<double>(0, 0) = 1563.52174;
-    close_camera_matrix.at<double>(0, 1) = 0;
-    close_camera_matrix.at<double>(0, 2) = 626.90356;
-    close_camera_matrix.at<double>(1, 0) = 0;
-    close_camera_matrix.at<double>(1, 1) = 1568.90028;
-    close_camera_matrix.at<double>(1, 2) = 488.93524;
-    close_camera_matrix.at<double>(2, 0) = 0;
-    close_camera_matrix.at<double>(2, 1) = 0;
-    close_camera_matrix.at<double>(2, 2) = 1;
-    close_distortion_coefficient.at<double>(0,0) = -0.063200;
-    close_distortion_coefficient.at<double>(1,0) = -0.005061;
-    close_distortion_coefficient.at<double>(2,0) = -0.001755;
-    close_distortion_coefficient.at<double>(3,0) = 0.003472;
-    close_distortion_coefficient.at<double>(4,0) = 0.000000;*/
-
     object_height = paramClient->get_parameter<double>("object_height");
     object_width = paramClient->get_parameter<double>("object_width");
 
@@ -121,50 +86,22 @@ void MapTest::get_map()
     cout << "image_width:" << image_width << endl;
 }
 
+//只用于初始化，防止零报错bug，标定结果主要通过pnp_callback接受
 void MapTest::calibration()
 {
+    vector<cv::Point3d> objectPoints = {
+        cv::Point3d(2520.0, 5930.0, 503.0),
+        cv::Point3d(2520.0, 5930.0, 1528.0),
+        cv::Point3d(3775.0, 5930.0, 1528.0),
+        cv::Point3d(3775.0, 5930.0, 503.0)
+    };
+    vector<cv::Point2d> imagePoints = {
+        cv::Point2d(67.0, 176.0),
+        cv::Point2d(67.0, 95.0),
+        cv::Point2d(519.0, 107.0),
+        cv::Point2d(519.0, 189.0)
+    };
 
-    vector<cv::Point3d> objectPoints;
-    vector<cv::Point2d> imagePoints;
-
-    Point3d objectpoint_one;
-    objectpoint_one.x = 2520.0;
-    objectpoint_one.y = 5930.0;
-    objectpoint_one.z = 503.0;
-    objectPoints.push_back(objectpoint_one);
-    Point3d objectpoint_two;
-    objectpoint_two.x = 2520.0;
-    objectpoint_two.y = 5930.0;
-    objectpoint_two.z = 1528.0;
-    objectPoints.push_back(objectpoint_two);
-    Point3d objectpoint_three;
-    objectpoint_three.x = 3775.0;
-    objectpoint_three.y = 5930.0;
-    objectpoint_three.z = 1528.0;
-    objectPoints.push_back(objectpoint_three);
-    Point3d objectpoint_four;
-    objectpoint_four.x = 3775.0;
-    objectpoint_four.y = 5930.0;
-    objectpoint_four.z = 503.0;
-    objectPoints.push_back(objectpoint_four);
-    Point2d imagepoint_one;
-    imagepoint_one.x = 67.0;
-    imagepoint_one.y = 176.0;
-    imagePoints.push_back(imagepoint_one);
-    Point2d imagepoint_two;
-    imagepoint_two.x = 67.0;
-    imagepoint_two.y = 95.0;
-    imagePoints.push_back(imagepoint_two);
-    Point2d imagepoint_three;
-    imagepoint_three.x = 519.0;
-    imagepoint_three.y = 107.0;
-    imagePoints.push_back(imagepoint_three);
-    Point2d imagepoint_four;
-    imagepoint_four.x = 519.0;
-    imagepoint_four.y = 189.0;
-    imagePoints.push_back(imagepoint_four);
-    /*cout << "far_imagePoints.size():" << imagePoints.size() << endl;
-    cout << "far_objectPoints.size():" << objectPoints.size() << endl;*/
     cout << "开始相机标定" << endl;
 
     solvePnP(objectPoints, imagePoints, far_camera_matrix, far_distortion_coefficient, far_Rjacob, far_T);
@@ -176,78 +113,43 @@ void MapTest::calibration()
     cout << "平移矩阵" << far_T << endl;
 }
 
-
-
 void MapTest::pnp_callback(const std_msgs::msg::Float32MultiArray msg)
 {
     if(msg.data[12] == 1)
     {
         this->close_R.at<double>(0, 0) = msg.data[0];
-    this->close_R.at<double>(0, 1) = msg.data[1];
-    this->close_R.at<double>(0, 2) = msg.data[2];
-    this->close_R.at<double>(1, 0) = msg.data[3];
-    this->close_R.at<double>(1, 1) = msg.data[4];
-    this->close_R.at<double>(1, 2) = msg.data[5];
-    this->close_R.at<double>(2, 0) = msg.data[6];
-    this->close_R.at<double>(2, 1) = msg.data[7];
-    this->close_R.at<double>(2, 2) = msg.data[8];
-    this->close_T.at<double>(0, 0) = msg.data[9];
-    this->close_T.at<double>(1, 0) = msg.data[10];
-    this->close_T.at<double>(2, 0) = msg.data[11];
-    cout << "接受完毕" << endl;
-    cout << "旋转矩阵:" << close_R << endl;
-    cout << "平移矩阵" << close_T << endl;
+        this->close_R.at<double>(0, 1) = msg.data[1];
+        this->close_R.at<double>(0, 2) = msg.data[2];
+        this->close_R.at<double>(1, 0) = msg.data[3];
+        this->close_R.at<double>(1, 1) = msg.data[4];
+        this->close_R.at<double>(1, 2) = msg.data[5];
+        this->close_R.at<double>(2, 0) = msg.data[6];
+        this->close_R.at<double>(2, 1) = msg.data[7];
+        this->close_R.at<double>(2, 2) = msg.data[8];
+        this->close_T.at<double>(0, 0) = msg.data[9];
+        this->close_T.at<double>(1, 0) = msg.data[10];
+        this->close_T.at<double>(2, 0) = msg.data[11];
+        cout << "接受完毕" << endl;
+        cout << "旋转矩阵:" << close_R << endl;
+        cout << "平移矩阵" << close_T << endl;
     }
     else{
-    this->far_R.at<double>(0, 0) = msg.data[0];
-    this->far_R.at<double>(0, 1) = msg.data[1];
-    this->far_R.at<double>(0, 2) = msg.data[2];
-    this->far_R.at<double>(1, 0) = msg.data[3];
-    this->far_R.at<double>(1, 1) = msg.data[4];
-    this->far_R.at<double>(1, 2) = msg.data[5];
-    this->far_R.at<double>(2, 0) = msg.data[6];
-    this->far_R.at<double>(2, 1) = msg.data[7];
-    this->far_R.at<double>(2, 2) = msg.data[8];
-    this->far_T.at<double>(0, 0) = msg.data[9];
-    this->far_T.at<double>(1, 0) = msg.data[10];
-    this->far_T.at<double>(2, 0) = msg.data[11];
-    cout << "接受完毕" << endl;
-    cout << "旋转矩阵:" << far_R << endl;
-    cout << "平移矩阵" << far_T << endl;
+        this->far_R.at<double>(0, 0) = msg.data[0];
+        this->far_R.at<double>(0, 1) = msg.data[1];
+        this->far_R.at<double>(0, 2) = msg.data[2];
+        this->far_R.at<double>(1, 0) = msg.data[3];
+        this->far_R.at<double>(1, 1) = msg.data[4];
+        this->far_R.at<double>(1, 2) = msg.data[5];
+        this->far_R.at<double>(2, 0) = msg.data[6];
+        this->far_R.at<double>(2, 1) = msg.data[7];
+        this->far_R.at<double>(2, 2) = msg.data[8];
+        this->far_T.at<double>(0, 0) = msg.data[9];
+        this->far_T.at<double>(1, 0) = msg.data[10];
+        this->far_T.at<double>(2, 0) = msg.data[11];
+        cout << "接受完毕" << endl;
+        cout << "旋转矩阵:" << far_R << endl;
+        cout << "平移矩阵" << far_T << endl;
     }
-}
-
-Point2f MapTest::calculate_pixel_codi(const map_point &point) {
-    Point2f res;
-    res.x = point.x / object_width * image_width;
-    res.y = image_height - (point.y / object_height * image_height);
-    cout << res.x << "        " << res.y << endl;
-    return res;
-}
-
-void MapTest::draw_point_on_map(Mat &map,vector<map_point> &map_points)
-{
-    RCLCPP_INFO(this->get_logger(), "begin to draw_point_on_map");
-    string id;
-    for(int i = 0;i<map_points.size();i++)
-    {
-        if(map_points[i].x > 0 && map_points[i].x < image_width && map_points[i].y > 0 && map_points[i].y < image_height)
-        {
-            id = to_string(map_points[i].id);
-            Point2f p = calculate_pixel_codi(map_points[i]);
-            if(map_points[i].id <= 5)
-            {
-                circle(map, p, 10, Scalar(255,0,0), -1, LINE_8, 0);
-            }
-            else
-            {
-                circle(map, p, 10, Scalar(255,0,0), -1, LINE_8, 0);
-            }
-            putText(map, id, Point(p.x - 7, p.y - 7) , cv::FONT_HERSHEY_SIMPLEX, 0.7,
-                cv::Scalar(0xFF, 0xFF, 0xFF), 2);
-        }
-    }
-    RCLCPP_INFO(this->get_logger(), "draw_point_on_map finished");
 }
 
 void MapTest::far_callback(const my_msgss::msg::Distpoints msg)
@@ -290,8 +192,6 @@ void MapTest::far_callback(const my_msgss::msg::Distpoints msg)
         }
     }
     far_points_pub_->publish(far_world_points);
-    /*imshow("map", map);
-    waitKey(1);*/
 }
 
 void MapTest::close_callback(const my_msgss::msg::Distpoints msg)
@@ -334,8 +234,6 @@ void MapTest::close_callback(const my_msgss::msg::Distpoints msg)
         }
     }
     close_points_pub_->publish(close_world_points);
-    /*imshow("map", map);
-    waitKey(1);*/
 }
 
 int main(int argc, char *argv[])

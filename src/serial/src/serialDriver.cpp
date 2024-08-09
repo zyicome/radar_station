@@ -336,27 +336,15 @@ bool SerialDriver::sendPointsData()
         pointMsg.data.infantry_5_position_y = (int)(serialRobots[5].y * 100);
         pointMsg.data.sentry_position_x = (int)(serialRobots[6].x * 100);
         pointMsg.data.sentry_position_y = (int)(serialRobots[6].y * 100);
-        /*pointMsg.data.hero_position_x = 1;
-        pointMsg.data.hero_position_y = 1;
-        pointMsg.data.engineer_position_x = 1;
-        pointMsg.data.engineer_position_y = 1;
-        pointMsg.data.infantry_3_position_x = 1;
-        pointMsg.data.infantry_3_position_y = 1;
-        pointMsg.data.infantry_4_position_x = 1;
-        pointMsg.data.infantry_4_position_y = 1;
-        pointMsg.data.infantry_5_position_x = 1;
-        pointMsg.data.infantry_5_position_y = 1;
-        pointMsg.data.sentry_position_x = 1;
-        pointMsg.data.sentry_position_y = 1;*/
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
-        std::cout << "seq: " << seq << std::endl;
+        /*std::cout << "seq: " << seq << std::endl;
         std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
         std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
         std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;
         std::cout <<  "infantry_4_position x = " << pointMsg.data.infantry_4_position_x << " y = " << pointMsg.data.infantry_4_position_y << std::endl;
         std::cout <<  "infantry_5_position x = " << pointMsg.data.infantry_5_position_x << " y = " << pointMsg.data.infantry_5_position_y << std::endl;
-        std::cout <<  "sentry_position x = " << pointMsg.data.sentry_position_x << " y = " << pointMsg.data.sentry_position_y << std::endl;
+        std::cout <<  "sentry_position x = " << pointMsg.data.sentry_position_x << " y = " << pointMsg.data.sentry_position_y << std::endl;*/
         }
         else if(our_color == 1) //我们是蓝方
         {
@@ -379,27 +367,15 @@ bool SerialDriver::sendPointsData()
         pointMsg.data.infantry_5_position_y = (int)(serialRobots[11].y * 100);
         pointMsg.data.sentry_position_x =  (int)(serialRobots[12].x * 100);
         pointMsg.data.sentry_position_y =  (int)(serialRobots[12].y * 100);
-        /*pointMsg.data.hero_position_x = 1;
-        pointMsg.data.hero_position_y = 1;
-        pointMsg.data.engineer_position_x = 1;
-        pointMsg.data.engineer_position_y = 1;
-        pointMsg.data.infantry_3_position_x = 1;
-        pointMsg.data.infantry_3_position_y = 1;
-        pointMsg.data.infantry_4_position_x = 1;
-        pointMsg.data.infantry_4_position_y = 1;
-        pointMsg.data.infantry_5_position_x = 1;
-        pointMsg.data.infantry_5_position_y = 1;
-        pointMsg.data.sentry_position_x = 1;
-        pointMsg.data.sentry_position_y = 1;*/
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
-        std::cout << "seq: " << seq << std::endl;
+        /*std::cout << "seq: " << seq << std::endl;
         std::cout <<  "hero_position x = " << pointMsg.data.hero_position_x << " y = " << pointMsg.data.hero_position_x << std::endl;
         std::cout <<  "engineer_position x = " << pointMsg.data.engineer_position_x << " y = " << pointMsg.data.engineer_position_y << std::endl;
         std::cout <<  "infantry_3_position x = " << pointMsg.data.infantry_3_position_x << " y = " << pointMsg.data.infantry_3_position_y << std::endl;
         std::cout <<  "infantry_4_position x = " << pointMsg.data.infantry_4_position_x << " y = " << pointMsg.data.infantry_4_position_y << std::endl;
         std::cout <<  "infantry_5_position x = " << pointMsg.data.infantry_5_position_x << " y = " << pointMsg.data.infantry_5_position_y << std::endl;
-        std::cout <<  "sentry_position x = " << pointMsg.data.sentry_position_x << " y = " << pointMsg.data.sentry_position_y << std::endl;
+        std::cout <<  "sentry_position x = " << pointMsg.data.sentry_position_x << " y = " << pointMsg.data.sentry_position_y << std::endl;*/
         }
         return true;
     }
