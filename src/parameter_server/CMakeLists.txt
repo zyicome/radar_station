@@ -17,7 +17,7 @@ find_package(my_msgss REQUIRED)
 # find_package(<dependency> REQUIRED)
 include_directories(include_directories(${CMAKE_SOURCE_DIR}/include))
 set(INC_DIR /usr/local/include)
-set(LINK_DIR /usr/local/lib/libtinyxml2.so.10.0.0)
+set(LINK_DIR /usr/local/lib/libtinyxml2.so)
 
 add_executable(parameter_server src/parameter_server.cpp)
 ament_target_dependencies(parameter_server rclcpp sensor_msgs OpenCV my_msgss std_msgs)

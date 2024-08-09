@@ -10,6 +10,6 @@ def generate_launch_description():
         package='parameter_server',
         executable='parameter_server',
         name='parameter_server',
-        output='screen'
+        output='both'
     )
     return LaunchDescription([parameter_server_node])

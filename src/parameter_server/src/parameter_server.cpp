@@ -101,7 +101,10 @@ void Server::test()
 
 bool Server::read_xml()
 {
-    string file_path = "/home/mechax/radar_station/src/parameter_server/xml/parameter.xml";
+    //string file_path = "/home/mechax/radar_station/src/parameter_server/xml/parameter.xml";
+    string src_path = (__FILE__);
+    std::cout << "src_path: " << src_path << std::endl;
+    string file_path = src_path.substr(0,src_path.find("src/parameter_server/xml/parameter.xml"));
     //创建xml文件对象
     XMLDocument *doc = new XMLDocument(file_path.c_str());
 
@@ -247,7 +250,7 @@ bool Server::read_xml()
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    auto paramServer= std::make_shared<Server>();
+    auto paramServer = std::make_shared<Server>();
     rclcpp::spin(paramServer);
     rclcpp::shutdown();
     return 0;
