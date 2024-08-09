@@ -25,8 +25,7 @@ target_link_directories(parameter_server PUBLIC
       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
       $<INSTALL_INTERFACE:include>)
 target_link_libraries(parameter_server ${OpenCV_LIBS})
-target_include_directories(parameter_server PUBLIC
-      ${INC_DIR})
+target_include_directories(parameter_server PUBLIC ${INC_DIR})
 target_link_libraries(parameter_server ${LINK_DIR})
 
 

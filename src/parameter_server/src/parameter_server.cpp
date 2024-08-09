@@ -1,6 +1,6 @@
 #include "parameter_server.hpp"
 
-Server::Server() : Node("parameter_server",rclcpp::NodeOptions().allow_undeclared_parameters(true))
+ParameterServer::ParameterServer() : Node("parameter_server",rclcpp::NodeOptions().allow_undeclared_parameters(true))
 {
     if(read_xml() == 1)
     {
@@ -12,7 +12,7 @@ Server::Server() : Node("parameter_server",rclcpp::NodeOptions().allow_undeclare
     }
 }
 
-void Server::set_camera_matrix_parameter()
+void ParameterServer::set_camera_matrix_parameter()
 {
     //far_camera_matrix
     this->declare_parameter("far_camera_matrix_one",far_camera_matrix.at(0));
@@ -79,7 +79,7 @@ void Server::set_camera_matrix_parameter()
     this->declare_parameter("close_uni_matrix_twelve",close_uni_matrix.at(11));
 }
 
-void Server::set_map_parameter()
+void ParameterServer::set_map_parameter()
 {
     //地图实际大小
     this->declare_parameter("object_height",object_height);
@@ -90,7 +90,7 @@ void Server::set_map_parameter()
     this->declare_parameter("image_rows",img_rows);
 }
 
-void Server::test()
+void ParameterServer::test()
 {
     double close_uni_matrix_eight = this->get_parameter("close_uni_matrix_eight").as_double();
     double close_uni_matrix_seven = this->get_parameter("close_uni_matrix_seven").as_double();
@@ -99,7 +99,7 @@ void Server::test()
 
 }
 
-bool Server::read_xml()
+bool ParameterServer::read_xml()
 {
     //string file_path = "/home/mechax/radar_station/src/parameter_server/xml/parameter.xml";
     string src_path = (__FILE__);
@@ -250,7 +250,7 @@ bool Server::read_xml()
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    auto paramServer = std::make_shared<Server>();
+    auto paramServer = std::make_shared<ParameterServer>();
     rclcpp::spin(paramServer);
     rclcpp::shutdown();
     return 0;

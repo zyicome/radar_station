@@ -53,36 +53,6 @@ void pnpWidget::parameter_init()
 {
     our_color = 1;//0 是我们是红色，1是我们是蓝色
 
-    /*far_camera_matrix.at<double>(0, 0) = 3066.03905;
-    far_camera_matrix.at<double>(0, 1) = 0;
-    far_camera_matrix.at<double>(0, 2) = 667.26311;
-    far_camera_matrix.at<double>(1, 0) = 0;
-    far_camera_matrix.at<double>(1, 1) = 3080.97863;
-    far_camera_matrix.at<double>(1, 2) = 549.63631;
-    far_camera_matrix.at<double>(2, 0) = 0;
-    far_camera_matrix.at<double>(2, 1) = 0;
-    far_camera_matrix.at<double>(2, 2) = 1;
-    far_distortion_coefficient.at<double>(0,0) = -0.069436;
-    far_distortion_coefficient.at<double>(1,0) = 1.005937;
-    far_distortion_coefficient.at<double>(2,0) = -0.002552;
-    far_distortion_coefficient.at<double>(3,0) = 0.003604;
-    far_distortion_coefficient.at<double>(4,0) = 0.000000;
-
-    close_camera_matrix.at<double>(0, 0) = 1563.52174;
-    close_camera_matrix.at<double>(0, 1) = 0;
-    close_camera_matrix.at<double>(0, 2) = 626.90356;
-    close_camera_matrix.at<double>(1, 0) = 0;
-    close_camera_matrix.at<double>(1, 1) = 1568.90028;
-    close_camera_matrix.at<double>(1, 2) = 488.93524;
-    close_camera_matrix.at<double>(2, 0) = 0;
-    close_camera_matrix.at<double>(2, 1) = 0;
-    close_camera_matrix.at<double>(2, 2) = 1;
-    close_distortion_coefficient.at<double>(0,0) = -0.063200;
-    close_distortion_coefficient.at<double>(1,0) = -0.005061;
-    close_distortion_coefficient.at<double>(2,0) = -0.001755;
-    close_distortion_coefficient.at<double>(3,0) = 0.003472;
-    close_distortion_coefficient.at<double>(4,0) = 0.000000;*/
-
     if(our_color == 0) //我们是红色
     {
         close_objectpoints = {Point3d(17331.5, 13471.5, 0.0),

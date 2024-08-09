@@ -19,10 +19,10 @@ using namespace std;
 using namespace cv;
 using namespace tinyxml2;
 
-class Server : public::rclcpp::Node
+class ParameterServer : public::rclcpp::Node
 {
 public:
-    Server();
+    ParameterServer();
 
     void set_camera_matrix_parameter();
 
