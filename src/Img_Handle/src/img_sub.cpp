@@ -20,7 +20,7 @@ Img_Sub::Img_Sub() : Node("img_sub")
 
    mode_sub_ = this->create_subscription<std_msgs::msg::Int8>("/mode",10,std::bind(&Img_Sub::mode_callback,this,std::placeholders::_1));
 
-    test = false;
+   test = false;
 }
 
 Img_Sub::~Img_Sub()

@@ -1,64 +1,9 @@
-//
-// Created by dovejh on 2022/3/19.
-//
 #include "get_depth_node.hpp"
 #include <my_msgss/msg/detail/distpoint__struct.hpp>
 #include <my_msgss/msg/detail/distpoints__struct.hpp>
 #include <sensor_msgs/msg/detail/point_cloud2__struct.hpp>
 using namespace std;
 using namespace cv;
-
-// uint16_t times = 0;
-// std::vector<int> cnt;
-// std::vector<double> dists;
-// int imgRows = 1024, imgCols = 1280;
-// int length_of_cloud_queue = 5;//default length is 5
-// int post_pub_flag = 0;
-// Point2f outpost_point;
-// pcl::PointCloud<pcl::PointXYZ>::Ptr cloud;
-// std::vector<cv::Mat> far_depth_queue;
-// cv::Mat far_camera_matrix = cv::Mat_<double>(3, 3);//相机内参矩阵
-// cv::Mat far_uni_matrix = cv::Mat_<double>(3, 4);//相机和雷达的变换矩阵
-// cv::Mat far_distortion_coefficient = cv::Mat_<double>(5, 1);
-// std::vector<cv::Mat> close_depth_queue;
-// cv::Mat close_camera_matrix = cv::Mat_<double>(3, 3);//相机内参矩阵
-// cv::Mat close_uni_matrix = cv::Mat_<double>(3, 4);//相机和雷达的变换矩阵
-// cv::Mat close_distortion_coefficient = cv::Mat_<double>(5, 1);
-
-
-
-// typedef struct {
-//     double Last_P;//上次估算协方差 不可以为0 ! ! ! ! !
-//     double Now_P;//当前估算协方差
-//     double out;//卡尔曼滤波器输出
-//     double Kg;//卡尔曼增益
-//     double Q;//过程噪声协方差
-//     double R;//观测噪声协方差
-// } ;
-
-//  Kalman;
-// Kalman kfp;
-
-// void GetDepth::Kalman_Init() {
-//     kfp.Last_P = 1;
-//     kfp.Now_P = 0;
-//     kfp.out = 0;
-//     kfp.Kg = 0;
-//     kfp.Q = 0;
-//     kfp.R = 0.01;
-// }
-
-// double GetDepth::my_KalmanFilter(Kalman *kfp, double input) {
-//     //预测协方差方程：k时刻系统估算协方差 = k-1时刻的系统协方差 + 过程噪声协方差
-//     kfp->Now_P = kfp->Last_P + kfp->Q;
-//     //卡尔曼增益方程：卡尔曼增益 = k时刻系统估算协方差 / （k时刻系统估算协方差 + 观测噪声协方差）
-//     kfp->Kg = kfp->Now_P / (kfp->Now_P + kfp->R);
-//     //更新最优值方程：k时刻状态变量的最优值 = 状态变量的预测值 + 卡尔曼增益 * （测量值 - 状态变量的预测值）
-//     kfp->out = kfp->out + kfp->Kg * (input - kfp->out);//因为这一次的预测值就是上一次的输出值
-//     //更新协方差方程: 本次的系统协方差付给 kfp->LastP 威下一次运算准备。
-//     kfp->Last_P = (1 - kfp->Kg) * kfp->Now_P;
-//     return kfp->out;
-// }
 
 GetDepth::GetDepth() : Node("GetDepth_node",rclcpp::NodeOptions().allow_undeclared_parameters(true))
 {
@@ -75,7 +20,6 @@ GetDepth::GetDepth() : Node("GetDepth_node",rclcpp::NodeOptions().allow_undeclar
     close_camera_matrix = cv::Mat::zeros(3, 3, CV_64FC1);//相机内参矩阵
     close_uni_matrix = cv::Mat::zeros(3, 4, CV_64FC1);//相机和雷达的变换矩阵
     close_distortion_coefficient = cv::Mat::zeros(5, 1, CV_64FC1);   
-    //this->init_camera_matrix();
 
     cloud_sub = this->create_subscription<sensor_msgs::msg::PointCloud2>("/livox/lidar", 10, std::bind(&GetDepth::pointCloudCallback, this, std::placeholders::_1));
 
@@ -89,9 +33,6 @@ GetDepth::GetDepth() : Node("GetDepth_node",rclcpp::NodeOptions().allow_undeclar
     close_yolo_sub = this->create_subscription<my_msgss::msg::Yolopoints>("/close_rectangles", 1, std::bind(&GetDepth::close_yoloCallback, this, std::placeholders::_1));
     close_distancePointPub = this->create_publisher<my_msgss::msg::Distpoints>("/sensor_close/distance_point", 10);
     close_depth_qimage_pub = this->create_publisher<sensor_msgs::msg::CompressedImage>("/qt/closedepth_qimage", 1);
-
-    outpost_distancePointPub = this->create_publisher<my_msgss::msg::Distpoint>("sensor_far/outpost", 10);
-    outpost_Sub = this->create_subscription<my_msgss::msg::Points>("/sensor_far/calibration", 1, std::bind(&GetDepth::outpost_Callback, this, std::placeholders::_1));
 
     calibration_result_sub = this->create_subscription<std_msgs::msg::Float64MultiArray>("/calibration_result", 10, std::bind(&GetDepth::calibration_result_Callback, this, std::placeholders::_1));
 
@@ -176,32 +117,7 @@ void GetDepth::parameter_init()
     close_uni_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("close_uni_matrix_ten");
     close_uni_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("close_uni_matrix_eleven");
     close_uni_matrix.at<double>(2, 3) = paramClient->get_parameter<double>("close_uni_matrix_twelve");
-
-    Mat far_R = Mat::zeros(3, 3, CV_64FC1);
-    Mat far_Rjacob = Mat::zeros(3, 1, CV_64FC1);
-    far_Rjacob.at<double>(0, 0) = 0.02;
-    far_Rjacob.at<double>(1, 0) = -0.09;
-    far_Rjacob.at<double>(2, 0) = 0.06;
-    Rodrigues(far_Rjacob, far_R);
-    for(int i = 0;i<3;i++)
-    {
-        for(int j = 0;j<3;j++)
-        {
-            std::cout << "far_R[" << i << "][" << j << "]:" << far_R.at<double>(i, j) << std::endl;
-        }
-    }
 }
-
-void GetDepth::write_csv(std::string filename, std::vector<double> vals) {
-    // Create an output filestream object
-    ofstream myFile(filename);
-    // Send data to the stream
-    for (double val: vals) {
-        myFile << val << "\n";
-    }
-    // Close the file
-    myFile.close();
-};
 
 /**
  * 将点云合并成矩阵，方便一同运算
@@ -234,7 +150,6 @@ void GetDepth::MatProject(cv::Mat &input_depth, cv::Mat &input_uv, cv::Mat &Cam_
             input_depth.at<double>(y, x) = res.at<double>(2, i);
         }
     }
-    //RCLCPP_INFO(get_logger(), "MatProject:");
 };
 
 /**
@@ -247,12 +162,16 @@ void GetDepth::frame_point_match(const my_msgss::msg::Distpoints &last_frame, my
     for (int k = 0; k < this_frame.data.size(); k++) {
         for (auto &i: last_frame.data) {
             if ((i.x - this_frame.data[k].x > -50 && i.x - this_frame.data[k].x < 50) &&
-                (i.y - this_frame.data[k].y < 50 && i.y - this_frame.data[k].y > -50)) {
+                (i.y - this_frame.data[k].y < 50 && i.y - this_frame.data[k].y > -50)) 
+            {
                 this_frame.data[k].lastdist = i.dist;
                 match_suc_flag = 1;
             }
         }
-        if (match_suc_flag == 0)this_frame.data[k].lastdist = this_frame.data[k].dist;
+        if (match_suc_flag == 0)
+        {
+            this_frame.data[k].lastdist = this_frame.data[k].dist;
+        }
         match_suc_flag = 0;
     }
 };
@@ -375,11 +294,11 @@ void GetDepth::close_yoloCallback(const my_msgss::msg::Yolopoints &input) {
     imshow("close_depth_show", close_depth_show);
     waitKey(1);
 };
+
 /**
  * 将受到的点云消息转换成点云
  * @param input 收到的消息
  */
-
 void GetDepth::pointCloudCallback(const sensor_msgs::msg::PointCloud2 &input) 
 {
     //RCLCPP_INFO(get_logger(), "begin to get pointcloud");
@@ -389,17 +308,6 @@ void GetDepth::pointCloudCallback(const sensor_msgs::msg::PointCloud2 &input)
     pcl::fromPCLPointCloud2(pcl_pc2, *cloud);   
     this->cloud = cloud;
     //RCLCPP_INFO(get_logger(), "get pointcloud");
-};
-
-
-/**
- * 用于接收前哨站位置消息
- * @param outpost 前哨站位置
- */
-void GetDepth::outpost_Callback(const my_msgss::msg::Points &outpost) {
-    post_pub_flag = 1;
-    outpost_point.x = outpost.data[0].x * 1280;
-    outpost_point.y = outpost.data[0].y * 1024;
 };
 
 void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArray &calibration_result) {
@@ -427,7 +335,7 @@ void GetDepth::calibration_result_Callback(const std_msgs::msg::Float64MultiArra
         outfile << close_uni_matrix.at<double>(i, 0) << "," << close_uni_matrix.at<double>(i, 1) << "," << close_uni_matrix.at<double>(i, 2) << "," << close_uni_matrix.at<double>(i, 3)
             << std::endl;
             }
-  std::cout << "get_close_uni_matrix_calibration_result" << std::endl;
+    std::cout << "get_close_uni_matrix_calibration_result" << std::endl;
     for(int i =0;i<3;i++)
     {
         for(int j = 0;j<4;j++)

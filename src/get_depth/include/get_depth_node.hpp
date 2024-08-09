@@ -57,7 +57,6 @@ public:
   void far_yoloCallback(const my_msgss::msg::Yolopoints &input);
   void close_yoloCallback(const my_msgss::msg::Yolopoints &input);
   void pointCloudCallback(const sensor_msgs::msg::PointCloud2 &input);
-  void outpost_Callback(const my_msgss::msg::Points &outpost);
   void calibration_result_Callback(const std_msgs::msg::Float64MultiArray &calibration_result);
   double getDepthInRect(cv::Rect rect, std::vector<cv::Mat>& depth_queue, my_msgss::msg::Yolopoint::_id_type id);//得到ROI中点的深度
   void closeImageCallback(const sensor_msgs::msg::Image msg);
@@ -67,7 +66,6 @@ public:
   //声明publisher
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr far_distancePointPub;
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr close_distancePointPub;
-  rclcpp::Publisher<my_msgss::msg::Distpoint>::SharedPtr outpost_distancePointPub;
   rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr far_depth_qimage_pub;
   rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr close_depth_qimage_pub;
 
