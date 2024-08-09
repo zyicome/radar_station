@@ -1,0 +1,28 @@
+//ros2_mindvision_mutiple_camera
+
+//Yolov8 Img_Handle
+"/sensor_far/image_raw" //接收远距离相机的图片 
+"/sensor_close/image_raw" //接收近距离相机的图片
+"far_rectangles" //远距离相机检测到的目标 yolo_points
+"close_rectangles" //近距离相机检测到的目标 yolo_points
+"yolo_far" //远距离相机检测到的图片 Image
+"yolo_close" //近距离相机检测到的图片 Image
+
+//get_depth
+
+//map_test
+
+//Qt5_display
+
+//serial
+
+//judge_test
+
+//Video_save
+
+//parameter_server
+
+colcon build --cmake-args -DCMAKE_EXPORT_CONPILE_COMMANDS=ON
+//vscode配置
+settings.json
+"C_Cpp.intelliSenseEngine": "disabled"
