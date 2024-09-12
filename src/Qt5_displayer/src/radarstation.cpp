@@ -310,7 +310,7 @@ void radarStation::farPointsUpdate()
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
     mapPos farpos;
-    for(int i = 1; i < ui->map->far_robots.size();i++)
+    for(size_t i = 1; i < ui->map->far_robots.size();i++)
     {
         if(ui->map->far_robots[i].confidence > 0.0)
         {
@@ -355,7 +355,7 @@ void radarStation::closePointsUpdate()
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
     mapPos closepos;
-    for(int i = 1; i < ui->map->close_robots.size();i++)
+    for(size_t i = 1; i < ui->map->close_robots.size();i++)
     {
         if(ui->map->close_robots[i].confidence > 0.0)
         {
@@ -472,7 +472,7 @@ void radarStation::radarMarkUpdate()
     }
     else
     {
-        for(int i =7;i<robots.size();i++)
+        for(size_t i =7;i<robots.size();i++)
         {
             armor_number = i;
             switch(armor_number)
@@ -510,7 +510,6 @@ void radarStation::radarInfoUpdate()
 {
     my_msgss::msg::Radarinfo radar_info_msg = qtnode.radar_info_msg;
     radar_info = radar_info_msg.radar_info;
-    uint8_t is_double_damage = radar_info_msg.is_double_damage;
     ui->radarInfo->setText(QString::number(radar_info) + "次");
     if(radar_info_msg.is_double_damage == 0)
     {
@@ -674,16 +673,16 @@ void radarStation::robots_init()
 
 void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
 {
-    float object_width = 28;
+    /*float object_width = 28;
     float object_height = 15;
     float width = ui->map->width();
-    float height = ui->map->height();
+    float height = ui->map->height();*/
     int armor_number = 0;
     float confidence = 0.0;
     float x = 0.0;
     float y = 0.0;
 
-    for(int i = 0;i<get_robots.size();i++)
+    for(size_t i = 0;i<get_robots.size();i++)
     {
         if(get_robots[i].confidence != 0.0)
         {
@@ -762,7 +761,7 @@ void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
 
 void radarStation::all_robots_adjust(bool is_far)
 {
-    for(int i = 0;i<robots.size();i++)
+    for(size_t i = 0;i<robots.size();i++)
     {
         /*std::cout << "robots_id:" << robots[i].id << " robots_confidence:" << robots[i].confidence << std::endl;
         std::cout << "robots_x:" << robots[i].x << " robots_y:" << robots[i].y << std::endl;
@@ -901,11 +900,11 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
     }
     else if(ui->map->our_color == 1) // 我们是蓝方
     {
-        for(int i =7;i<robots.size();i++)
+        for(size_t i =7;i<robots.size();i++)
         {
             if(robots[i].x !=0.0 && robots[i].y != 0.0)
             {
-                for(int j = 7;j<robots.size();j++)
+                for(size_t j = 7;j<robots.size();j++)
                 {
                     my_msgss::msg::Point send_robot;
                     send_robot.id = robots[j].id;
