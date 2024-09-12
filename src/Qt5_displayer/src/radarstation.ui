@@ -342,16 +342,6 @@
        <string>pnp模式</string>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="decisionMessage">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>730</y>
-        <width>781</width>
-        <height>261</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="redMode">
       <property name="geometry">
        <rect>
@@ -1040,6 +1030,25 @@
        <string>暂无</string>
       </property>
      </widget>
+     <widget class="QPlainTextEdit" name="decisionMessage">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>730</y>
+        <width>769</width>
+        <height>289</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+     </widget>
      <zorder>mapMessage</zorder>
      <zorder>map</zorder>
      <zorder>closeImg</zorder>
@@ -1061,7 +1070,6 @@
      <zorder>location_4</zorder>
      <zorder>mapMode</zorder>
      <zorder>pnpMode</zorder>
-     <zorder>decisionMessage</zorder>
      <zorder>redMode</zorder>
      <zorder>blueMode</zorder>
      <zorder>colorExplain</zorder>
@@ -1114,6 +1122,7 @@
      <zorder>modeStatus</zorder>
      <zorder>radarIsDoubleDamage</zorder>
      <zorder>radarCmdStatus</zorder>
+     <zorder>decisionMessage</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">

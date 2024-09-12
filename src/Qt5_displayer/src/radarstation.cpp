@@ -10,18 +10,22 @@
 #include <QPlainTextEdit>
 #include <QScrollBar>
 #include <QRadioButton>
+#include <QScreen>
+#include <QVBoxLayout>
 
 radarStation::radarStation(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::radarStation)
 {
     ui->setupUi(this);
-//    this->resize(1600,1400);
-//    ui->centralwidget->resize(1600,1400);
-    //ui->centralwidget->installEventFilter(this);
-    //QString image_path = QFileDialog::getOpenFileName(this, "打开图片", ".", "Images (*.png *.xpm *.jpg)");
-//    QString image_path = "C:/Users/zyb/Desktop/Robotmaster/pitures/map.png";
-//    ui->map->setPixmap(QPixmap(image_path));
+
+    QRect screenRect = QGuiApplication::primaryScreen()->geometry();
+    this->resize(screenRect.width() * 0.75, screenRect.height() * 0.75);
+    ui->centralwidget->resize(screenRect.width() * 0.75, screenRect.height() * 0.75);
+    ui->allWidget->resize(screenRect.width() * 0.75, screenRect.height() * 0.75);
+    ui->mapWidget->resize(screenRect.width() * 0.75, screenRect.height() * 0.75);
+    ui->solvePnpWidget->resize(screenRect.width() * 0.75, screenRect.height() * 0.75);
+
     QString img_path = QString::fromStdString(ament_index_cpp::get_package_share_directory("Qt5_displayer"));
     QString left_scroll_image_path = img_path + "/map/left.png";
     QString right_scroll_image_path = img_path + "/map/right.png";

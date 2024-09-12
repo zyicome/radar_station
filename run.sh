@@ -7,7 +7,7 @@ $sourcelib
 
 echo "mechax2024" | sudo -S sudo chmod +777 /dev/ttyUSB0
 
-cmds=(  "ros2 launch parameter_server parameter_server_launch.py"  
+cmds=(  #"ros2 launch parameter_server parameter_server_launch.py"  
 	      #"ros2 launch mindvision_camera mv_camera.py"
         #"ros2 launch hik_camera hik_camera.launch.py"
         #"ros2 launch Img_Handle img_handle_launch.py"
@@ -24,7 +24,7 @@ cmd=("ros2 launch livox_ros2_driver livox_lidar_launch.py")
 
 for cmd in "${cmd[@]}";
 do
-    gnome-terminal -- bash -c "cd ~/livox_ros2_driver;source install/setup.bash;$cmd;exec bash;"
+    #gnome-terminal -- bash -c "cd ~/livox_ros2_driver;source install/setup.bash;$cmd;exec bash;"
     sleep 0.2
 done
 

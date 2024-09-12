@@ -65,12 +65,6 @@ void qtNode::client_parameter_init()
 
 void qtNode::farImageCallback(const sensor_msgs::msg::Image msg)
 {
-    /*far_end_time = std::chrono::high_resolution_clock::now();
-    if(std::chrono::duration_cast<std::chrono::milliseconds>(far_end_time - far_start_time).count() < 5000)
-    {
-        return;
-    }
-    far_start_time = std::chrono::high_resolution_clock::now();*/
     cv_bridge::CvImagePtr far_cv_ptr;
     try
     {
@@ -90,41 +84,8 @@ void qtNode::farImageCallback(const sensor_msgs::msg::Image msg)
     }
 }
 
-/*void qtNode::closeImageCallback(const sensor_msgs::msg::CompressedImage msg)
-{
-    close_end_time = std::chrono::high_resolution_clock::now();
-    if(std::chrono::duration_cast<std::chrono::milliseconds>(close_end_time - close_start_time).count() < 5000)
-    {
-        return;
-    }
-    close_start_time = std::chrono::high_resolution_clock::now();
-    cv_bridge::CvImagePtr close_cv_ptr;
-    try
-    {
-        close_cv_ptr = cv_bridge::toCvCopy(msg,sensor_msgs::image_encodings::BGR8);
-        if(!close_cv_ptr->image.empty())
-        {
-            Mat close_image = close_cv_ptr->image;
-            cv::resize(close_image,close_image,cv::Size(FAR_IMAGE_WIDTH,FAR_IMAGE_HEIGHT));
-            close_qimage = QImage((const unsigned char*)(close_image.data),close_image.cols,close_image.rows,QImage::Format_BGR888);
-        }
-        Q_EMIT updateCloseImage();
-    }
-    catch(cv_bridge::Exception &e)
-    {
-        RCLCPP_ERROR(qnode->get_logger(),"cv_bridge exception: %s",e.what());
-        return;
-    }
-}*/
-
 void qtNode::closeImageCallback(const sensor_msgs::msg::Image msg)
 {
-    /*close_end_time = std::chrono::high_resolution_clock::now();
-    if(std::chrono::duration_cast<std::chrono::milliseconds>(close_end_time - close_start_time).count() < 5000)
-    {
-        return;
-    }
-    close_start_time = std::chrono::high_resolution_clock::now();*/
     cv_bridge::CvImagePtr close_cv_ptr;
     try
     {
