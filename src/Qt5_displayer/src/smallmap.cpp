@@ -67,29 +67,35 @@ smallMap::~smallMap()
 
 void smallMap::gainRegionInit()
 {
-    our_supply_region = {cv::Point2f(1.6,12.85),cv::Point2f(2.90,12.85),cv::Point2f(2.90,14.65),cv::Point2f(1.60,14.85)};
-    enemy_supply_region = {cv::Point2f(26.40,2.15),cv::Point2f(25.10,2.15),cv::Point2f(25.10,0.35),cv::Point2f(25.10,0.35)};
-    our_exchange_region = {cv::Point2f(1.60,10.80),cv::Point2f(2.90,10.80),cv::Point2f(2.90,12.55),cv::Point2f(1.60,12.55)};
-    enemy_exchange_region = {cv::Point2f(26.40,4.20),cv::Point2f(25.10,4.20),cv::Point2f(25.10,2.45),cv::Point2f(26.40,2.45)};
-    our_base_region = {cv::Point2f(0.45,6.95),cv::Point2f(1.55,5.45),cv::Point2f(3.55,6.60),cv::Point2f(3.55,7.25),cv::Point2f(3.55,7.65),cv::Point2f(3.55,8.25),cv::Point2f(1.55,9.40),cv::Point2f(0.45,8.80)};
-    enemy_base_region = {cv::Point2f(27.55,7.05),cv::Point2f(26.35,6.55),cv::Point2f(26.35,6.55),cv::Point2f(25.45,7.35),cv::Point2f(24.45,7.35),
-                        cv::Point2f(24.45,7.75),cv::Point2f(25.45,7.75),cv::Point2f(26.45,8.65),cv::Point2f(27.05,8.00)};
-    our_R3_region = {cv::Point2f(3.15,3.45),cv::Point2f(3.15,1.05),cv::Point2f(7.10,1.05),cv::Point2f(5.40,3.45)};
-    enemy_R3_region = {cv::Point2f(22.60,11.55),cv::Point2f(20.90,13.95),cv::Point2f(24.85,13.95),cv::Point2f(24.85,11.55)};
-    our_R2_region = {cv::Point2f(10.90,3.10),cv::Point2f(11.80,3.70),cv::Point2f(10.15,6.10),cv::Point2f(9.00,5.70)};
-    enemy_R2_region = {cv::Point2f(17.85,8.90),cv::Point2f(19.00,9.30),cv::Point2f(17.10,11.55),cv::Point2f(16.20,11.30)};
-    our_R4_region = {cv::Point2f(5.00,13.15),cv::Point2f(5.00,10.80),cv::Point2f(7.00,10.80),cv::Point2f(7.90,12.20),cv::Point2f(6.00,12.20),cv::Point2f(6.00,13.15)};
-    enemy_R4_region = {cv::Point2f(22.00,1.85),cv::Point2f(22.00,2.80),cv::Point2f(20.10,2.80),cv::Point2f(21.00,4.20),cv::Point2f(23.00,4.20),cv::Point2f(23.00,1.85)};
-    our_energy_region = {cv::Point2f(9.05,12.50),cv::Point2f(9.05,13.55),cv::Point2f(8.00,13.55),cv::Point2f(8.00,12.50)};
-    enemy_energy_region = {cv::Point2f(20.00,2.50),cv::Point2f(20.00,1.45),cv::Point2f(18.95,1.45),cv::Point2f(18.95,2.50)};
-    our_fly_region = {cv::Point2f(7.00,13.90),cv::Point2f(8.15,13.90),cv::Point2f(8.15,14.75),cv::Point2f(7.00,14.75)};
-    enemy_fly_region = {cv::Point2f(21.00,0.25),cv::Point2f(19.85,0.25),cv::Point2f(19.85,1.10),cv::Point2f(21.00,1.10)};
-    our_fly_down_region = {cv::Point2f(12.15,0.15),cv::Point2f(13.10,0.15),cv::Point2f(13.10,1.00),cv::Point2f(12.15,1.00)};
-    enemy_fly_down_region = {cv::Point2f(15.85,14.00),cv::Point2f(14.90,14.00),cv::Point2f(14.90,14.85),cv::Point2f(15.85,14.85)};
-    our_outpost_region = {cv::Point2f(12.15,12.65),cv::Point2f(11.75,11.70),cv::Point2f(10.65,11.70),cv::Point2f(10.15,12.65),cv::Point2f(10.65,13.55),cv::Point2f(11.75,13.55)};
-    enemy_outpost_region = {cv::Point2f(16.25,1.45),cv::Point2f(17.35,1.45),cv::Point2f(17.85,2.35),cv::Point2f(17.35,3.30),cv::Point2f(16.25,3.30),cv::Point2f(15.75,2.35)};
-    our_central_island_region = {cv::Point2f(12.70,7.30),cv::Point2f(12.70,8.25),cv::Point2f(13.15,8.65),cv::Point2f(14.05,8.65)};
-    enemy_central_island_region = {cv::Point2f(13.95,6.35),cv::Point2f(14.85,6.35),cv::Point2f(15.30,6.75),cv::Point2f(15.30,7.70)};
+    our_supply_region = {cv::Point2f(1.20,2.95),cv::Point2f(3.09,2.95),cv::Point2f(3.27,2.80),cv::Point2f(3.27,1.85),cv::Point2f(1.20,1.85)};
+    enemy_supply_region = {cv::Point2f(24.72,13.20),cv::Point2f(26.84,13.20),cv::Point2f(26.84,12.08),cv::Point2f(24.91,12.08),cv::Point2f(24.75,12.22)};
+    our_exchange_region = {cv::Point2f(1.53,1.82),cv::Point2f(3.40,1.82),cv::Point2f(3.40,0.10),cv::Point2f(1.53,0.10)};
+    enemy_exchange_region = {cv::Point2f(24.70,14.92),cv::Point2f(26.51,14.92),cv::Point2f(26.51,13.21),cv::Point2f(24.70,13.21)};
+    our_base_region = {cv::Point2f(0.83,8.67),cv::Point2f(2.23,9.50),cv::Point2f(4.22,8.34),cv::Point2f(4.22,6.68),cv::Point2f(2.23,5.53),cv::Point2f(0.83,6.33)};
+    enemy_base_region = {cv::Point2f(23.81,8.33),cv::Point2f(25.81,9.50),cv::Point2f(27.20,8.67),cv::Point2f(27.20,6.34),cv::Point2f(25.80,5.53),cv::Point2f(23.81,6.68)};
+    our_energy_region = {cv::Point2f(12.99,8.10),cv::Point2f(13.44,8.54),cv::Point2f(14.34,8.54),cv::Point2f(12.99,7.13)};
+    enemy_energy_region = {cv::Point2f(14.60,6.50),cv::Point2f(15.04,6.93),cv::Point2f(15.04,7.85),cv::Point2f(13.69,6.50)};
+    enemy_fly_region = {cv::Point2f(14.26,14.94),cv::Point2f(18.04,14.94),cv::Point2f(18.04,13.95),cv::Point2f(14.36,13.95)};
+    enemy_fly_down_region = {cv::Point2f(11.13,13.94),cv::Point2f(13.53,13.94),cv::Point2f(13.53,14.92),cv::Point2f(11.13,14.92)};
+    our_fly_region = {cv::Point2f(9.97,1.08),cv::Point2f(13.73,1.08),cv::Point2f(13.73,0.10),cv::Point2f(9.97,0.10)};
+    our_fly_down_region = {cv::Point2f(14.50,1.08),cv::Point2f(16.89,1.08),cv::Point2f(16.89,0.12),cv::Point2f(14.50,0.12)};
+    our_high_region = {cv::Point2f(5.53,12.34),cv::Point2f(9.40,12.34),cv::Point2f(9.77,11.94),cv::Point2f(8.96,11.14),cv::Point2f(5.53,11.14)};
+    enemy_high_region = {cv::Point2f(22.52,2.68),cv::Point2f(18.62,2.68),cv::Point2f(18.24,3.08),cv::Point2f(19.06,3.88),cv::Point2f(22.52,3.88)};
+    our_central_high_region = {cv::Point2f(10.38,6.74),cv::Point2f(10.96,6.74),cv::Point2f(11.20,6.95),cv::Point2f(11.20,9.15),cv::Point2f(12.62,11.18),cv::Point2f(12.62,12.62),cv::Point2f(10.34,9.42)};
+    enemy_central_high_region = {cv::Point2f(17.69,8.30),cv::Point2f(17.05,8.30),cv::Point2f(16.84,8.08),cv::Point2f(16.84,5.89),cv::Point2f(15.40,3.84),cv::Point2f(15.40,2.40),cv::Point2f(17.68,5.62)};
+    our_out_station_region= {cv::Point2f(10.57,4.23),cv::Point2f(11.81,4.77),cv::Point2f(11.81,3.27),cv::Point2f(11.27,2.72),cv::Point2f(10.25,2.73),cv::Point2f(10.61,3.24)};
+    enemy_out_station_region = {cv::Point2f(17.46,10.77),cv::Point2f(16.19,10.23),cv::Point2f(16.19,11.73),cv::Point2f(16.73,12.28),cv::Point2f(17.75,12.27),cv::Point2f(17.39,11.76)};
+
+    our_basition_region = {cv::Point2f(6.10,7.52),cv::Point2f(6.36,7.96),cv::Point2f(6.86,7.96),cv::Point2f(7.12,7.52),cv::Point2f(6.86,7.07),cv::Point2f(6.36,7.07)};
+    enemy_basition_region = {cv::Point2f(20.96,7.51),cv::Point2f(21.17,7.96),cv::Point2f(21.66,7.95),cv::Point2f(21.93,7.51),cv::Point2f(21.67,7.07),cv::Point2f(21.16,7.07)};
+    our_tercentral_down_region= {cv::Point2f(8.84,8.07),cv::Point2f(9.06,8.30),cv::Point2f(9.53,8.30),cv::Point2f(9.53,6.73),cv::Point2f(9.06,6.73),cv::Point2f(8.84,6.96)};
+    enemy_tercentral_down_region = {cv::Point2f(18.48,8.31),cv::Point2f(18.97,8.30),cv::Point2f(19.20,8.07),cv::Point2f(19.20,6.95),cv::Point2f(18.97,6.73),cv::Point2f(18.48,6.73)};
+    our_tercentral_up_region = {cv::Point2f(10.35,8.24),cv::Point2f(10.35,6.70),cv::Point2f(11.00,6.70),cv::Point2f(11.23,6.93),cv::Point2f(11.20,8.24)};
+    enemy_tercentral_up_region = {cv::Point2f(17.70,8.30),cv::Point2f(17.70,6.77),cv::Point2f(16.85,6.77),cv::Point2f(16.85,8.10),cv::Point2f(17.04,8.30)};
+    our_terhigh_down_region = {cv::Point2f(7.82,2.50),cv::Point2f(8.06,2.73),cv::Point2f(9.18,2.73),cv::Point2f(9.43,2.50),cv::Point2f(9.43,2.02),cv::Point2f(7.82,2.02)};
+    enemy_terhigh_down_region = {cv::Point2f(18.59,13.01),cv::Point2f(20.20,13.01),cv::Point2f(20.20,12.53),cv::Point2f(19.97,12.30),cv::Point2f(18.83,12.30),cv::Point2f(18.59,12.53)};
+    our_terhigh_up_region = {cv::Point2f(7.82,1.82),cv::Point2f(9.43,1.82),cv::Point2f(9.43,1.47),cv::Point2f(9.19,1.23),cv::Point2f(8.05,1.23),cv::Point2f(7.82,1.47)};
+    enemy_terhigh_up_region = {cv::Point2f(18.59,13.20),cv::Point2f(18.59,13.56),cv::Point2f(18.83,13.80),cv::Point2f(19.97,13.80),cv::Point2f(20.20,13.56),cv::Point2f(20.20,13.20)};
 
     mapInit(blueMap,our_supply_region);
     mapInit(blueMap,enemy_supply_region);
@@ -97,45 +103,57 @@ void smallMap::gainRegionInit()
     mapInit(blueMap,enemy_exchange_region);
     mapInit(blueMap,our_base_region);
     mapInit(blueMap,enemy_base_region);
-    mapInit(blueMap,our_R3_region);
-    mapInit(blueMap,enemy_R3_region);
-    mapInit(blueMap,our_R2_region);
-    mapInit(blueMap,enemy_R2_region);
-    mapInit(blueMap,our_R4_region);
-    mapInit(blueMap,enemy_R4_region);
     mapInit(blueMap,our_energy_region);
     mapInit(blueMap,enemy_energy_region);
     mapInit(blueMap,our_fly_region);
     mapInit(blueMap,enemy_fly_region);
     mapInit(blueMap,our_fly_down_region);
     mapInit(blueMap,enemy_fly_down_region);
-    mapInit(blueMap,our_outpost_region);
-    mapInit(blueMap,enemy_outpost_region);
-    mapInit(blueMap,our_central_island_region);
-    mapInit(blueMap,enemy_central_island_region);
-
+    mapInit(blueMap,our_high_region);
+    mapInit(blueMap,enemy_high_region);
+    mapInit(blueMap,our_central_high_region);
+    mapInit(blueMap,enemy_central_high_region);
+    mapInit(blueMap,our_out_station_region);
+    mapInit(blueMap,enemy_out_station_region);
+    mapInit(blueMap,our_basition_region);
+    mapInit(blueMap,enemy_basition_region);
+    mapInit(blueMap,our_tercentral_down_region);
+    mapInit(blueMap,enemy_tercentral_down_region);
+    mapInit(blueMap,our_tercentral_up_region);
+    mapInit(blueMap,enemy_tercentral_up_region);
+    mapInit(blueMap,our_terhigh_down_region);
+    mapInit(blueMap,enemy_terhigh_down_region);
+    mapInit(blueMap,our_terhigh_up_region);
+    mapInit(blueMap,enemy_terhigh_up_region);
+    
     mapInit(redMap,our_supply_region);
     mapInit(redMap,enemy_supply_region);
     mapInit(redMap,our_exchange_region);
     mapInit(redMap,enemy_exchange_region);
     mapInit(redMap,our_base_region);
     mapInit(redMap,enemy_base_region);
-    mapInit(redMap,our_R3_region);
-    mapInit(redMap,enemy_R3_region);
-    mapInit(redMap,our_R2_region);
-    mapInit(redMap,enemy_R2_region);
-    mapInit(redMap,our_R4_region);
-    mapInit(redMap,enemy_R4_region);
     mapInit(redMap,our_energy_region);
     mapInit(redMap,enemy_energy_region);
     mapInit(redMap,our_fly_region);
     mapInit(redMap,enemy_fly_region);
     mapInit(redMap,our_fly_down_region);
     mapInit(redMap,enemy_fly_down_region);
-    mapInit(redMap,our_outpost_region);
-    mapInit(redMap,enemy_outpost_region);
-    mapInit(redMap,our_central_island_region);
-    mapInit(redMap,enemy_central_island_region);
+    mapInit(redMap,our_high_region);
+    mapInit(redMap,enemy_high_region);
+    mapInit(redMap,our_central_high_region);
+    mapInit(redMap,enemy_central_high_region);
+    mapInit(redMap,our_out_station_region);
+    mapInit(redMap,enemy_out_station_region);
+    mapInit(redMap,our_basition_region);
+    mapInit(redMap,enemy_basition_region);
+    mapInit(redMap,our_tercentral_down_region);
+    mapInit(redMap,enemy_tercentral_down_region);
+    mapInit(redMap,our_tercentral_up_region);
+    mapInit(redMap,enemy_tercentral_up_region);
+    mapInit(redMap,our_terhigh_down_region);
+    mapInit(redMap,enemy_terhigh_down_region);
+    mapInit(redMap,our_terhigh_up_region);
+    mapInit(redMap,enemy_terhigh_up_region);
 }
 
 void smallMap::mapInit(cv::Mat map,std::vector<cv::Point2f> world_points)
@@ -143,8 +161,8 @@ void smallMap::mapInit(cv::Mat map,std::vector<cv::Point2f> world_points)
     std::vector<cv::Point2i> points;
     for(int i = 0;i<world_points.size();i++)
     {
-        world_points[i].x = int(world_points[i].x / 28 * map.cols);
-        world_points[i].y = int(world_points[i].y / 15 * map.rows);
+        world_points[i].x = int(world_points[i].x / 28.0f * map.cols);
+        world_points[i].y = map.rows - int(world_points[i].y / 15.0f * map.rows);
     }
     for(int i =0;i<world_points.size();i++)
     {
@@ -354,7 +372,7 @@ void smallMap::allrobots_adjust(std::vector<Robot> &robots)
 
 void smallMap::far_close_robots_adjust(std::vector<Robot> &far_robots,std::vector<Robot> &close_robots,std::vector<Robot> &robots)
 {
-    for(int i = 1;i<far_robots.size();i++)
+    for(size_t i = 1;i<far_robots.size();i++)
     {
         if(far_robots[i].confidence != 0.0)
         {
@@ -364,7 +382,7 @@ void smallMap::far_close_robots_adjust(std::vector<Robot> &far_robots,std::vecto
         }
     }
 
-    for(int i = 1;i<close_robots.size();i++)
+    for(size_t i = 1;i<close_robots.size();i++)
     {
         if(close_robots[i].confidence != 0.0)
         {

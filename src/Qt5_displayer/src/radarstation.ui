@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="mapWidget">
      <widget class="QLabel" name="closeImg">
@@ -319,7 +319,7 @@
      <widget class="QRadioButton" name="mapMode">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>250</x>
         <y>0</y>
         <width>112</width>
         <height>41</height>
@@ -332,7 +332,7 @@
      <widget class="QRadioButton" name="pnpMode">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>360</x>
         <y>0</y>
         <width>112</width>
         <height>41</height>
@@ -1040,6 +1040,19 @@
        <string>暂无</string>
       </property>
      </widget>
+     <widget class="QRadioButton" name="parameterMode">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>0</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>修改参数模式</string>
+      </property>
+     </widget>
      <zorder>mapMessage</zorder>
      <zorder>map</zorder>
      <zorder>closeImg</zorder>
@@ -1114,12 +1127,13 @@
      <zorder>modeStatus</zorder>
      <zorder>radarIsDoubleDamage</zorder>
      <zorder>radarCmdStatus</zorder>
+     <zorder>parameterMode</zorder>
     </widget>
     <widget class="pnpWidget" name="solvePnpWidget">
      <widget class="QRadioButton" name="mapMode_2">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>200</x>
         <y>10</y>
         <width>112</width>
         <height>41</height>
@@ -1132,7 +1146,7 @@
      <widget class="QRadioButton" name="pnpMode_2">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>330</x>
         <y>10</y>
         <width>112</width>
         <height>41</height>
@@ -1140,6 +1154,60 @@
       </property>
       <property name="text">
        <string>pnp模式</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="parameterMode_2">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>10</y>
+        <width>112</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>修改参数模式</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="parameterWidget" name="changeParameterWidget">
+     <widget class="QRadioButton" name="mapMode_3">
+      <property name="geometry">
+       <rect>
+        <x>231</x>
+        <y>12</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>地图模式</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="pnpMode_3">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>10</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>pnp模式</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="parameterMode_3">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>10</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>修改参数模式</string>
       </property>
      </widget>
     </widget>
@@ -1156,6 +1224,12 @@
    <class>pnpWidget</class>
    <extends>QWidget</extends>
    <header location="global">pnpwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>parameterWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">parameterwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

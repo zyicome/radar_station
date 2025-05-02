@@ -53,61 +53,31 @@ void pnpWidget::parameter_init()
 {
     our_color = 1;//0 是我们是红色，1是我们是蓝色
 
-    /*far_camera_matrix.at<double>(0, 0) = 3066.03905;
-    far_camera_matrix.at<double>(0, 1) = 0;
-    far_camera_matrix.at<double>(0, 2) = 667.26311;
-    far_camera_matrix.at<double>(1, 0) = 0;
-    far_camera_matrix.at<double>(1, 1) = 3080.97863;
-    far_camera_matrix.at<double>(1, 2) = 549.63631;
-    far_camera_matrix.at<double>(2, 0) = 0;
-    far_camera_matrix.at<double>(2, 1) = 0;
-    far_camera_matrix.at<double>(2, 2) = 1;
-    far_distortion_coefficient.at<double>(0,0) = -0.069436;
-    far_distortion_coefficient.at<double>(1,0) = 1.005937;
-    far_distortion_coefficient.at<double>(2,0) = -0.002552;
-    far_distortion_coefficient.at<double>(3,0) = 0.003604;
-    far_distortion_coefficient.at<double>(4,0) = 0.000000;
-
-    close_camera_matrix.at<double>(0, 0) = 1563.52174;
-    close_camera_matrix.at<double>(0, 1) = 0;
-    close_camera_matrix.at<double>(0, 2) = 626.90356;
-    close_camera_matrix.at<double>(1, 0) = 0;
-    close_camera_matrix.at<double>(1, 1) = 1568.90028;
-    close_camera_matrix.at<double>(1, 2) = 488.93524;
-    close_camera_matrix.at<double>(2, 0) = 0;
-    close_camera_matrix.at<double>(2, 1) = 0;
-    close_camera_matrix.at<double>(2, 2) = 1;
-    close_distortion_coefficient.at<double>(0,0) = -0.063200;
-    close_distortion_coefficient.at<double>(1,0) = -0.005061;
-    close_distortion_coefficient.at<double>(2,0) = -0.001755;
-    close_distortion_coefficient.at<double>(3,0) = 0.003472;
-    close_distortion_coefficient.at<double>(4,0) = 0.000000;*/
-
     if(our_color == 0) //我们是红色
     {
-        close_objectpoints = {Point3d(17331.5, 13471.5, 0.0),
-                              Point3d(16300.5, 13471.5, 0.0),
-                              Point3d(15785.0, 12579.0, 0.0),
-                              Point3d(16300.5, 11686.5, 0.0),
-                              Point3d(17331.5, 11686.5, 0.0)};
-        far_objectpoints = {Point3d(17331.5, 13471.5, 0.0),
-                            Point3d(16300.5, 13471.5, 0.0),
-                            Point3d(15785.0, 12579.0, 0.0),
-                            Point3d(16300.5, 11686.5, 0.0),
-                            Point3d(17331.5, 11686.5, 0.0)};
+        close_objectpoints = {Point3d(6200.0, 8097.5, 150.0),
+                              Point3d(7000.0, 8097.5, 150.0),
+                              Point3d(6600.0, 7500.0, 150.0),
+                              Point3d(6890.0, 6902.5, 150.0),
+                              Point3d(6310.0, 6902.5, 150.0)};
+        far_objectpoints = {Point3d(18800.0, 6902.5, 150.0),
+                            Point3d(18000.0, 6902.5, 150.0),
+                            Point3d(18400.0, 7500.0, 150.0),
+                            Point3d(18110.0, 8097.5, 150.0),
+                            Point3d(18690.0, 8097.5, 150.0)};
     }
     else if(our_color == 1) //我们是蓝色
     {
-        close_objectpoints = {Point3d(10668.5, 1528.5, 0.0),
-                              Point3d(11699.5, 1528.5, 0.0),
-                              Point3d(12215.0, 2421.0, 0.0),
-                              Point3d(11699.5, 3313.5, 0.0),
-                              Point3d(10668.5, 3313.5, 0.0)};
-        far_objectpoints = {Point3d(10688.5, 1528.5, 0.0),
-                            Point3d(11699.5, 1528.5, 0.0),
-                            Point3d(12215, 2421.0, 0.0),
-                            Point3d(11699.5, 3313.5, 0.0),
-                            Point3d(10668.5, 3313.5, 0.0)};
+        close_objectpoints = {Point3d(18800.0, 6902.5, 150.0),
+                            Point3d(18000.0, 6902.5, 150.0),
+                            Point3d(18400.0, 7500.0, 150.0),
+                            Point3d(18110.0, 8097.5, 150.0),
+                            Point3d(18690.0, 8097.5, 150.0)};
+        far_objectpoints = {Point3d(6200.0, 8097.5, 150.0),
+                            Point3d(7000.0, 8097.5, 150.0),
+                            Point3d(6600.0, 7500.0, 150.0),
+                            Point3d(6890.0, 6902.5, 150.0),
+                            Point3d(6310.0, 6902.5, 150.0)};
     }
 }
 
@@ -128,17 +98,6 @@ bool pnpWidget::eventFilter(QObject *obj, QEvent *event)
                     pointText = pointText + QString::number(mouseEvent->x());
                     pointText = pointText + "      y:" + QString::number(mouseEvent->y());
                     mapMessageDisplay(pointText);
-                    /*if(pointNum < 5)
-                    {
-                        lastPos = mousePos;
-                        mousePos = mouseEvent->pos();
-                        points.push_back(mousePos);
-                        ui->closeImg->update();
-                    }
-                    else
-                    {
-                        mapMessageDisplay("Too many points");
-                    }*/
                     switch (pointNum)
                     {
                     case 0:

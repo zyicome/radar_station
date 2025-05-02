@@ -10,7 +10,15 @@ SerialDriver::SerialDriver() : Node("serial")
 
     test = false;
 
+    is_first_create_ui = true;
+
     seq = 0;
+
+    game_progress = 0;
+
+    remaining_game_time = 0;
+
+    energy_start_time = {360, 270, 180, 105, 30};
 
     worldPointsSub = this->create_subscription<my_msgss::msg::Points>("/serial/world_points", 10, std::bind(&SerialDriver::worldPointsCallback, this, std::placeholders::_1));
 
@@ -93,6 +101,8 @@ void SerialDriver::receiveAllData_three()
                                 gameStateRosMsg.game_type = gameStatusMsgs.data.game_type;
                                 gameStateRosMsg.stage_remain_time = gameStatusMsgs.data.stage_remain_time;
                                 gameStatePub->publish(gameStateRosMsg);
+                                game_progress = gameStatusMsgs.data.game_progress;
+                                remaining_game_time = gameStatusMsgs.data.stage_remain_time;
                             }
                             break;
                         case 0x0002:
@@ -275,6 +285,9 @@ void SerialDriver::allrobots_adjust()
 void SerialDriver::serialCommunication()
 {
     sendPointsData();
+    //sendHeroData();
+    sendRobotThreeData();
+    sendUIData();
 }
 
 //发送信息的函数
@@ -336,18 +349,6 @@ bool SerialDriver::sendPointsData()
         pointMsg.data.infantry_5_position_y = (int)(serialRobots[5].y * 100);
         pointMsg.data.sentry_position_x = (int)(serialRobots[6].x * 100);
         pointMsg.data.sentry_position_y = (int)(serialRobots[6].y * 100);
-        /*pointMsg.data.hero_position_x = 1;
-        pointMsg.data.hero_position_y = 1;
-        pointMsg.data.engineer_position_x = 1;
-        pointMsg.data.engineer_position_y = 1;
-        pointMsg.data.infantry_3_position_x = 1;
-        pointMsg.data.infantry_3_position_y = 1;
-        pointMsg.data.infantry_4_position_x = 1;
-        pointMsg.data.infantry_4_position_y = 1;
-        pointMsg.data.infantry_5_position_x = 1;
-        pointMsg.data.infantry_5_position_y = 1;
-        pointMsg.data.sentry_position_x = 1;
-        pointMsg.data.sentry_position_y = 1;*/
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
         std::cout << "seq: " << seq << std::endl;
@@ -379,18 +380,6 @@ bool SerialDriver::sendPointsData()
         pointMsg.data.infantry_5_position_y = (int)(serialRobots[11].y * 100);
         pointMsg.data.sentry_position_x =  (int)(serialRobots[12].x * 100);
         pointMsg.data.sentry_position_y =  (int)(serialRobots[12].y * 100);
-        /*pointMsg.data.hero_position_x = 1;
-        pointMsg.data.hero_position_y = 1;
-        pointMsg.data.engineer_position_x = 1;
-        pointMsg.data.engineer_position_y = 1;
-        pointMsg.data.infantry_3_position_x = 1;
-        pointMsg.data.infantry_3_position_y = 1;
-        pointMsg.data.infantry_4_position_x = 1;
-        pointMsg.data.infantry_4_position_y = 1;
-        pointMsg.data.infantry_5_position_x = 1;
-        pointMsg.data.infantry_5_position_y = 1;
-        pointMsg.data.sentry_position_x = 1;
-        pointMsg.data.sentry_position_y = 1;*/
         pointMsg.crc = get_CRC16_check_sum((uint8_t *) &pointMsg, (sizeof(pointMsg) - sizeof(pointMsg.crc)), 0xffff);
         serial_port.write((uint8_t *) &pointMsg, sizeof(pointMsg));
         std::cout << "seq: " << seq << std::endl;
@@ -403,6 +392,331 @@ bool SerialDriver::sendPointsData()
         }
         return true;
     }
+}
+
+bool SerialDriver::sendHeroData()
+{
+    uint16_t sender_id;
+    uint16_t receiver_id;
+    // 将坐标保留两位小数，再乘于1000变为整数，再转化为uint8_t为高8位和低8位
+    float our_hero_x = 0.0;
+    float our_hero_y = 0.0;
+    uint16_t our_hero_x_int = 0;
+    uint16_t our_hero_y_int = 0;
+    uint8_t user_data[112] = {0};
+    if(our_color == 0) //我们是红方
+    {
+        sender_id = 9;
+        receiver_id = 1;
+        our_hero_x = serialRobots[7].x; // m
+        our_hero_y = serialRobots[7].y;
+    }
+    else if(our_color == 1) //我们是蓝方
+    {
+        sender_id = 109;
+        receiver_id = 101;
+        our_hero_x = serialRobots[1].x;
+        our_hero_y = serialRobots[1].y;
+    }
+    our_hero_x_int = (uint16_t)(our_hero_x * 1000); // mm
+    our_hero_y_int = (uint16_t)(our_hero_y * 1000);
+
+    if(test)
+    {
+        sender_id = 9;
+        receiver_id = 1;
+        our_hero_x_int = 800;
+        our_hero_y_int = 700;
+        user_data[0] = (our_hero_x_int >> 8) & 0xff;
+        user_data[1] = our_hero_x_int & 0xff;
+        user_data[2] = (our_hero_y_int >> 8) & 0xff;
+        user_data[3] = our_hero_y_int & 0xff;
+        sendRobotData(toHeroMsgs, sender_id, receiver_id, user_data, 112);
+        return false;
+    }
+    else
+    {
+        user_data[0] = (our_hero_x_int >> 8) & 0xff;
+        user_data[1] = our_hero_x_int & 0xff;
+        user_data[2] = (our_hero_y_int >> 8) & 0xff;
+        user_data[3] = our_hero_y_int & 0xff;
+        sendRobotData(toHeroMsgs, sender_id, receiver_id, user_data, 112);
+        return true;
+    }
+}
+
+bool SerialDriver::sendRobotThreeData()
+{
+    uint16_t sender_id;
+    uint16_t receiver_id;
+    // 将坐标保留两位小数，再乘于1000变为整数，再转化为uint8_t为高8位和低8位
+    float our_three_x = 0.0;
+    float our_three_y = 0.0;
+    uint16_t our_three_x_int = 0;
+    uint16_t our_three_y_int = 0;
+    uint8_t data_size = 4;
+    uint8_t user_data[data_size] = {0};
+    if(our_color == 0) //我们是红方
+    {
+        sender_id = 9;
+        receiver_id = 3;
+        our_three_x = serialRobots[9].x; // m
+        our_three_y = serialRobots[9].y;
+    }
+    else if(our_color == 1) //我们是蓝方
+    {
+        sender_id = 109;
+        receiver_id = 103;
+        our_three_x = serialRobots[3].x;
+        our_three_y = serialRobots[3].y;
+    }
+    our_three_x_int = (uint16_t)(our_three_x * 1000); // mm
+    our_three_y_int = (uint16_t)(our_three_y * 1000);
+
+    if(test)
+    {
+        sender_id = 9;
+        receiver_id = 3;
+        our_three_x_int = 800;
+        our_three_y_int = 700;
+        user_data[0] = (our_three_x_int >> 8) & 0xff;
+        user_data[1] = our_three_x_int & 0xff;
+        user_data[2] = (our_three_y_int >> 8) & 0xff;
+        user_data[3] = our_three_y_int & 0xff;
+        toThreeMsgs.head.SOF = 0xA5;
+        toThreeMsgs.head.data_length = data_size + 6;
+        toThreeMsgs.head.seq = seq;
+        seq++;
+        toThreeMsgs.head.crc = get_CRC8_check_sum((uint8_t *) &toThreeMsgs, (sizeof(toThreeMsgs.head) - sizeof(toThreeMsgs.head.crc)),
+                                                0xff);
+        toThreeMsgs.cmd_id = 0x0301;
+        toThreeMsgs.data.data_cmd_id = 0x0201;
+        toThreeMsgs.data.sender_id = sender_id;
+        toThreeMsgs.data.receiver_id = receiver_id;
+        std::copy(user_data, user_data + data_size, toThreeMsgs.data.user_data);
+        toThreeMsgs.crc = get_CRC16_check_sum((uint8_t *) &toThreeMsgs, (sizeof(toThreeMsgs) - sizeof(toThreeMsgs.crc)), 0xffff);
+        serial_port.write((uint8_t *) &toThreeMsgs, sizeof(toThreeMsgs));
+        std::cout << "user_data[0]" << (int)toThreeMsgs.data.user_data[0] << std::endl;
+        std::cout << "user_data[1]" << (int)toThreeMsgs.data.user_data[1] << std::endl;
+        std::cout << "user_data[2]" << (int)toThreeMsgs.data.user_data[2] << std::endl;
+        std::cout << "user_data[3]" << (int)toThreeMsgs.data.user_data[3] << std::endl;
+        return false;
+    }
+    else
+    {
+        user_data[0] = (our_three_x_int >> 8) & 0xff;
+        user_data[1] = our_three_x_int & 0xff;
+        user_data[2] = (our_three_y_int >> 8) & 0xff;
+        user_data[3] = our_three_y_int & 0xff;
+        toThreeMsgs.head.SOF = 0xA5;
+        toThreeMsgs.head.data_length = data_size + 6;
+        toThreeMsgs.head.seq = seq;
+        seq++;
+        toThreeMsgs.head.crc = get_CRC8_check_sum((uint8_t *) &toThreeMsgs, (sizeof(toThreeMsgs.head) - sizeof(toThreeMsgs.head.crc)),
+                                                0xff);
+        toThreeMsgs.cmd_id = 0x0301;
+        toThreeMsgs.data.data_cmd_id = 0x0201;
+        toThreeMsgs.data.sender_id = sender_id;
+        toThreeMsgs.data.receiver_id = receiver_id;
+        std::copy(user_data, user_data + data_size, toThreeMsgs.data.user_data);
+        toThreeMsgs.crc = get_CRC16_check_sum((uint8_t *) &toThreeMsgs, (sizeof(toThreeMsgs) - sizeof(toThreeMsgs.crc)), 0xffff);
+        serial_port.write((uint8_t *) &toThreeMsgs, sizeof(toThreeMsgs));
+        std::cout << "user_data[0]" << (int)toThreeMsgs.data.user_data[0] << std::endl;
+        std::cout << "user_data[1]" << (int)toThreeMsgs.data.user_data[1] << std::endl;
+        std::cout << "user_data[2]" << (int)toThreeMsgs.data.user_data[2] << std::endl;
+        std::cout << "user_data[3]" << (int)toThreeMsgs.data.user_data[3] << std::endl;
+        return true;
+    }
+}
+
+bool SerialDriver::sendRobotData(robot_interaction_msgs &robot_interaction_msg, uint16_t sender_id, uint16_t receiver_id, const uint8_t *user_data, size_t data_size)
+{
+    robot_interaction_msg.head.SOF = 0xA5;
+    robot_interaction_msg.head.data_length = data_size + 15;
+    robot_interaction_msg.head.seq = seq;
+    seq++;
+    robot_interaction_msg.head.crc = get_CRC8_check_sum((uint8_t *) &robot_interaction_msg, (sizeof(robot_interaction_msg.head) - sizeof(robot_interaction_msg.head.crc)),
+                                             0xff);
+    robot_interaction_msg.cmd_id = 0x0301;
+    robot_interaction_msg.data.data_cmd_id = 0x0200;
+    robot_interaction_msg.data.sender_id = sender_id;
+    robot_interaction_msg.data.receiver_id = receiver_id;
+    std::copy(user_data, user_data + data_size, robot_interaction_msg.data.user_data);
+    robot_interaction_msg.crc = get_CRC16_check_sum((uint8_t *) &robot_interaction_msg, (sizeof(robot_interaction_msg) - sizeof(robot_interaction_msg.crc)), 0xffff);
+    serial_port.write((uint8_t *) &robot_interaction_msg, sizeof(robot_interaction_msg));
+    std::cout << "user_data[0]" << (int)robot_interaction_msg.data.user_data[0] << std::endl;
+    std::cout << "user_data[1]" << (int)robot_interaction_msg.data.user_data[1] << std::endl;
+    std::cout << "user_data[2]" << (int)robot_interaction_msg.data.user_data[2] << std::endl;
+    std::cout << "user_data[3]" << (int)robot_interaction_msg.data.user_data[3] << std::endl;
+    return true;
+}
+
+void SerialDriver::sendUIData()
+{
+    if(is_first_create_ui)
+    {
+        createUI();
+        is_first_create_ui = false;
+        std::cout << "createUI -----------------------" << std::endl;
+    }
+    else
+    {
+        createUI();
+        std::cout << "updateUI -----------------------" << std::endl;
+    }
+}
+
+void SerialDriver::createUI()
+{
+    client_ui_msgs client_ui_msg;
+    client_ui_msg.head.SOF = 0xA5;
+    client_ui_msg.head.data_length = 60;
+    client_ui_msg.head.seq = seq;
+    seq++;
+    client_ui_msg.head.crc = get_CRC8_check_sum((uint8_t *) &client_ui_msg, (sizeof(client_ui_msg.head) - sizeof(client_ui_msg.head.crc)),
+                                             0xff);
+    client_ui_msg.cmd_id = 0x0301;
+    client_ui_msg.data.cmd_id = 0x0110;
+    if(our_color == 0) //我们是红方
+    {
+        client_ui_msg.data.sender_id = 9;
+        client_ui_msg.data.receiver_id = 0x0106;
+    }
+    else if(our_color == 1) //我们是蓝方
+    {
+        client_ui_msg.data.sender_id = 109;
+        client_ui_msg.data.receiver_id = 0x016A;
+    }
+
+    // 创建一个字符，然后将字符转化为uint8_t类型的data[30]数据
+
+    // 拼接字符串并拷贝到字符数组
+    char energy_remaining_time[30];
+    std::string energy_remaining_time_str = "能量机关剩余时间: 0";
+
+    // 使用 strncpy 拷贝字符串，确保不超过数组大小
+    std::strncpy(energy_remaining_time, energy_remaining_time_str.c_str(), sizeof(energy_remaining_time) - 1);
+
+    // 确保字符数组以 '\0' 结尾
+    energy_remaining_time[sizeof(energy_remaining_time) - 1] = '\0';
+
+    // 获取实际字符串长度
+    int size = std::strlen(energy_remaining_time);
+
+    // 拷贝到 client_ui_msg.data.char_data
+    std::memcpy(client_ui_msg.data.char_data, energy_remaining_time, size);
+
+    // 如果需要，手动设置 client_ui_msg.data.char_data 的末尾为 '\0'
+    client_ui_msg.data.char_data[size] = '\0';
+
+    // 创建能力机关剩余时间UI
+    client_ui_msg.data.graphic_data.graphic_name[0] = 1;
+    client_ui_msg.data.graphic_data.graphic_name[1] = 1;
+    client_ui_msg.data.graphic_data.graphic_name[2] = 1;
+    client_ui_msg.data.graphic_data.operate_tpye = 1;
+    client_ui_msg.data.graphic_data.graphic_tpye = 7;
+    client_ui_msg.data.graphic_data.layer = 0;
+    client_ui_msg.data.graphic_data.color = 1;
+    client_ui_msg.data.graphic_data.details_a = 200;
+    // 字符长度
+    client_ui_msg.data.graphic_data.details_b = size;
+    client_ui_msg.data.graphic_data.width = 20;
+    client_ui_msg.data.graphic_data.start_x = 500;
+    client_ui_msg.data.graphic_data.start_y = 500;
+    client_ui_msg.data.graphic_data.details_c = 0;
+    client_ui_msg.data.graphic_data.details_d = 0;
+    client_ui_msg.data.graphic_data.details_e = 0;
+
+    client_ui_msg.crc = get_CRC16_check_sum((uint8_t *) &client_ui_msg, (sizeof(client_ui_msg) - sizeof(client_ui_msg.crc)), 0xffff);
+    serial_port.write((uint8_t *) &client_ui_msg, sizeof(client_ui_msg));
+}
+
+void SerialDriver::updateUI()
+{
+    client_ui_msgs client_ui_msg;
+    client_ui_msg.head.SOF = 0xA5;
+    client_ui_msg.head.data_length = 60;
+    client_ui_msg.head.seq = seq;
+    seq++;
+    client_ui_msg.head.crc = get_CRC8_check_sum((uint8_t *) &client_ui_msg, (sizeof(client_ui_msg.head) - sizeof(client_ui_msg.head.crc)),
+                                             0xff);
+    client_ui_msg.cmd_id = 0x0301;
+    client_ui_msg.data.cmd_id = 0x0110;
+    if(our_color == 0) //我们是红方
+    {
+        client_ui_msg.data.sender_id = 9;
+        client_ui_msg.data.receiver_id = 0x0106;
+    }
+    else if(our_color == 1) //我们是蓝方
+    {
+        client_ui_msg.data.sender_id = 109;
+        client_ui_msg.data.receiver_id = 0x016A;
+    }
+
+    uint16_t bias_time = 0;
+    uint16_t min_bias_time = 420;
+    uint16_t remaining_time = 0;
+
+    if(game_progress == 4 && remaining_game_time > 20)
+    {
+        for(size_t i = 0; i< energy_start_time.size(); i++)
+        {
+            bias_time = remaining_game_time - energy_start_time[i];
+            if(bias_time >= 0 && bias_time < min_bias_time)
+            {
+                min_bias_time = bias_time;
+                remaining_time = bias_time;
+            }
+        }
+    }
+    else
+    {
+        remaining_time = 0;
+    }
+
+    // 创建一个字符，然后将字符转化为uint8_t类型的data[30]数据
+
+    // 拼接字符串并拷贝到字符数组
+    char energy_remaining_time[30];
+    std::string energy_remaining_time_str = "能量机关剩余时间: " + std::to_string(remaining_time);
+
+    // 使用 strncpy 拷贝字符串，确保不超过数组大小
+    std::strncpy(energy_remaining_time, energy_remaining_time_str.c_str(), sizeof(energy_remaining_time) - 1);
+
+    // 确保字符数组以 '\0' 结尾
+    energy_remaining_time[sizeof(energy_remaining_time) - 1] = '\0';
+
+    // 获取实际字符串长度
+    int size = std::strlen(energy_remaining_time);
+
+    // 拷贝到 client_ui_msg.data.char_data
+    std::memcpy(client_ui_msg.data.char_data, energy_remaining_time, size);
+
+    // 如果需要，手动设置 client_ui_msg.data.char_data 的末尾为 '\0'
+    client_ui_msg.data.char_data[size] = '\0';
+
+    // 确保字符数组以 '\0' 结尾
+    energy_remaining_time[energy_remaining_time_str.length()] = '\0';
+
+    client_ui_msg.data.graphic_data.graphic_name[0] = 1;
+    client_ui_msg.data.graphic_data.graphic_name[1] = 1;
+    client_ui_msg.data.graphic_data.graphic_name[2] = 1;
+    client_ui_msg.data.graphic_data.operate_tpye = 2;
+    client_ui_msg.data.graphic_data.graphic_tpye = 7;
+    client_ui_msg.data.graphic_data.layer = 0;
+    client_ui_msg.data.graphic_data.color = 1;
+    client_ui_msg.data.graphic_data.details_a = 200;
+    client_ui_msg.data.graphic_data.details_b = size;
+    client_ui_msg.data.graphic_data.width = 20;
+    client_ui_msg.data.graphic_data.start_x = 500;
+    client_ui_msg.data.graphic_data.start_y = 500;
+    
+    client_ui_msg.data.graphic_data.details_c = 0;
+    client_ui_msg.data.graphic_data.details_d = 0;
+    client_ui_msg.data.graphic_data.details_e = 0;
+
+    client_ui_msg.crc = get_CRC16_check_sum((uint8_t *) &client_ui_msg, (sizeof(client_ui_msg) - sizeof(client_ui_msg.crc)), 0xffff);
+    serial_port.write((uint8_t *) &client_ui_msg, sizeof(client_ui_msg));
 }
 
 //-----------------------------------------------------------------------------------------

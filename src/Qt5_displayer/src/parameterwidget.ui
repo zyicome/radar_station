@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>parameterWidget</class>
+ <widget class="QWidget" name="parameterWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>1400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="pagaExplain">
+   <property name="geometry">
+    <rect>
+     <x>810</x>
+     <y>80</y>
+     <width>321</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>参数修改大全</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>660</y>
+     <width>334</width>
+     <height>93</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="imageSize">
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="imageLength"/>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="imageSizeSave">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="widthExplain_2">
+      <property name="text">
+       <string>宽</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="imageWidth"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="lengthExplain_2">
+      <property name="text">
+       <string>高</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="imageSizeExplain">
+      <property name="text">
+       <string>相机图像尺寸（像素）</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>160</y>
+     <width>440</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="farCameraMatrix">
+    <item row="4" column="0">
+     <widget class="QLineEdit" name="eight_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLineEdit" name="six_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="one_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLineEdit" name="three_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="seven_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="two_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLineEdit" name="five_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLineEdit" name="nine_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="four_f">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="farCameraMatrixExplain">
+      <property name="text">
+       <string>远距离相机内参</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="save_f">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>310</y>
+     <width>731</width>
+     <height>64</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="farDistortionCoefficient">
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="one_f2"/>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLineEdit" name="three_f2"/>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="farCameraDistorsionExplain">
+      <property name="text">
+       <string>远距离相机畸变矩阵</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QLineEdit" name="five_f2"/>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLineEdit" name="four_f2"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="two_f2"/>
+    </item>
+    <item row="1" column="4">
+     <widget class="QPushButton" name="save_f2">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>400</y>
+     <width>588</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="farUniMatrix">
+    <item row="0" column="1">
+     <widget class="QLabel" name="farUniMatrixExplain">
+      <property name="text">
+       <string>远距离相机与雷达融合参数</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="one_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="two_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLineEdit" name="three_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="four_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="five_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="six_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLineEdit" name="seven_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLineEdit" name="eight_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLineEdit" name="nine_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="ten_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLineEdit" name="eleven_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLineEdit" name="twelve_f3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="save_f3">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>160</y>
+     <width>440</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="closeCameraMatrix">
+    <item row="4" column="0">
+     <widget class="QLineEdit" name="eight_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLineEdit" name="six_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="one_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLineEdit" name="three_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="seven_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="two_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLineEdit" name="five_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLineEdit" name="nine_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="four_c">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="closeCameraMatrixExplain">
+      <property name="text">
+       <string>近距离相机内参</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="save_c">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>310</y>
+     <width>731</width>
+     <height>64</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="closeDistortionCoefficient">
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="one_c2"/>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLineEdit" name="three_c2"/>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="closeCameraDistorsionExplain">
+      <property name="text">
+       <string>近距离相机畸变矩阵</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QLineEdit" name="five_c2"/>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLineEdit" name="four_c2"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="two_c2"/>
+    </item>
+    <item row="1" column="4">
+     <widget class="QPushButton" name="save_c2">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>400</y>
+     <width>588</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="closeUniMatrix">
+    <item row="0" column="1">
+     <widget class="QLabel" name="closeUniMatrixExplain">
+      <property name="text">
+       <string>近距离相机与雷达融合参数</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="one_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="two_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLineEdit" name="three_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="four_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="five_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="six_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLineEdit" name="seven_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLineEdit" name="eight_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLineEdit" name="nine_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="ten_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLineEdit" name="eleven_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLineEdit" name="twelve_c3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="save_c3">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>550</y>
+     <width>334</width>
+     <height>93</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="map">
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="mapHeight"/>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="mapSave">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="widthExplain">
+      <property name="text">
+       <string>宽</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="mapWidth"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="lengthExplain">
+      <property name="text">
+       <string>高</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="mapExplain">
+      <property name="text">
+       <string>地图实际尺寸（m）</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

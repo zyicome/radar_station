@@ -23,6 +23,9 @@ MapTest::MapTest() : Node("map_test",rclcpp::NodeOptions().allow_undeclared_para
     close_points_pub_ = this->create_publisher<my_msgss::msg::Points>("/qt/closepoints", 10);
 
     paramClient = std::make_shared<rclcpp::SyncParametersClient>(this,"parameter_server");
+
+    parameter_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
+        "/parameter_events", 10, std::bind(&MapTest::parameter_event_callback, this, std::placeholders::_1));
 }
 
 bool MapTest::is_connect_to_server()
@@ -40,39 +43,6 @@ bool MapTest::is_connect_to_server()
 
 void MapTest::parameter_init()
 {
-    //-------------------------------------
-    //object_height = 28;
-    //object_width = 15;
-    //--------------------------------------
-    /*far_camera_matrix.at<double>(0, 0) = 3066.03905;
-    far_camera_matrix.at<double>(0, 1) = 0;
-    far_camera_matrix.at<double>(0, 2) = 667.26311;
-    far_camera_matrix.at<double>(1, 0) = 0;
-    far_camera_matrix.at<double>(1, 1) = 3080.97863;
-    far_camera_matrix.at<double>(1, 2) = 549.63631;
-    far_camera_matrix.at<double>(2, 0) = 0;
-    far_camera_matrix.at<double>(2, 1) = 0;
-    far_camera_matrix.at<double>(2, 2) = 1;
-    far_distortion_coefficient.at<double>(0,0) = -0.069436;
-    far_distortion_coefficient.at<double>(1,0) = 1.005937;
-    far_distortion_coefficient.at<double>(2,0) = -0.002552;
-    far_distortion_coefficient.at<double>(3,0) = 0.003604;
-    far_distortion_coefficient.at<double>(4,0) = 0.000000;
-    close_camera_matrix.at<double>(0, 0) = 1563.52174;
-    close_camera_matrix.at<double>(0, 1) = 0;
-    close_camera_matrix.at<double>(0, 2) = 626.90356;
-    close_camera_matrix.at<double>(1, 0) = 0;
-    close_camera_matrix.at<double>(1, 1) = 1568.90028;
-    close_camera_matrix.at<double>(1, 2) = 488.93524;
-    close_camera_matrix.at<double>(2, 0) = 0;
-    close_camera_matrix.at<double>(2, 1) = 0;
-    close_camera_matrix.at<double>(2, 2) = 1;
-    close_distortion_coefficient.at<double>(0,0) = -0.063200;
-    close_distortion_coefficient.at<double>(1,0) = -0.005061;
-    close_distortion_coefficient.at<double>(2,0) = -0.001755;
-    close_distortion_coefficient.at<double>(3,0) = 0.003472;
-    close_distortion_coefficient.at<double>(4,0) = 0.000000;*/
-
     object_height = paramClient->get_parameter<double>("object_height");
     object_width = paramClient->get_parameter<double>("object_width");
 
@@ -214,6 +184,73 @@ void MapTest::pnp_callback(const std_msgs::msg::Float32MultiArray msg)
     cout << "接受完毕" << endl;
     cout << "旋转矩阵:" << far_R << endl;
     cout << "平移矩阵" << far_T << endl;
+    }
+}
+
+void MapTest::parameter_event_callback(const rcl_interfaces::msg::ParameterEvent::SharedPtr event)
+{
+    for (const auto &changed_parameter: event->changed_parameters) {
+        if (changed_parameter.name == "object_height") {
+            object_height = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "object_width") {
+            object_width = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_one") {
+            close_camera_matrix.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_two") {
+            close_camera_matrix.at<double>(0, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_three") {
+            close_camera_matrix.at<double>(0, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_four") {
+            close_camera_matrix.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_five") {
+            close_camera_matrix.at<double>(1, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_six") {
+            close_camera_matrix.at<double>(1, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_seven") {
+            close_camera_matrix.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_eight") {
+            close_camera_matrix.at<double>(2, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_nine") {
+            close_camera_matrix.at<double>(2, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_one") {
+            close_distortion_coefficient.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_two") {
+            close_distortion_coefficient.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_three") {
+            close_distortion_coefficient.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_four") {
+            close_distortion_coefficient.at<double>(3, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_five") {
+            close_distortion_coefficient.at<double>(4, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_one") {
+            far_camera_matrix.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_two") {
+            far_camera_matrix.at<double>(0, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_three") {
+            far_camera_matrix.at<double>(0, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_four") {
+            far_camera_matrix.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_five") {
+            far_camera_matrix.at<double>(1, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_six") {
+            far_camera_matrix.at<double>(1, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_seven") {
+            far_camera_matrix.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_eight") {
+            far_camera_matrix.at<double>(2, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_nine") {
+            far_camera_matrix.at<double>(2, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_one") {
+            far_distortion_coefficient.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_two") {
+            far_distortion_coefficient.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_three") {
+            far_distortion_coefficient.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_four") {
+            far_distortion_coefficient.at<double>(3, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_five") {
+            far_distortion_coefficient.at<double>(4, 0) = changed_parameter.value.double_value;
+        }
     }
 }
 

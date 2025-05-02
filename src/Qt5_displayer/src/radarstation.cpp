@@ -47,7 +47,14 @@ radarStation::radarStation(QWidget *parent)
 
     init();
     robots_init();
+    while(!qtnode.is_init)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::cout << "wait for qtnode init" << std::endl;
+    }
+    std::cout << "qtnode init success!" << std::endl;
     pnpWidget_parameter_init();
+    parameterWidget_parameter_init();
 
     was_first = false;
     was_second = false;
@@ -64,9 +71,15 @@ void radarStation::init()
 {
     connect(ui->pnpMode,SIGNAL(clicked()),this,SLOT(changeToPnpWidget()));
     connect(ui->mapMode,SIGNAL(clicked()),this,SLOT(changeToMapWidget()));
+    connect(ui->parameterMode,SIGNAL(clicked()),this,SLOT(changeToParameterWidget()));
 
     connect(ui->pnpMode_2,SIGNAL(clicked()),this,SLOT(changeToPnpWidget_2()));
     connect(ui->mapMode_2,SIGNAL(clicked()),this,SLOT(changeToMapWidget_2()));
+    connect(ui->parameterMode_2,SIGNAL(clicked()),this,SLOT(changeToParameterWidget_2()));
+
+    connect(ui->pnpMode_3,SIGNAL(clicked()),this,SLOT(changeToPnpWidget_3()));
+    connect(ui->mapMode_3,SIGNAL(clicked()),this,SLOT(changeToMapWidget_3()));
+    connect(ui->parameterMode_3,SIGNAL(clicked()),this,SLOT(changeToParameterWidget_3()));
 
     connect(ui->blueMode,SIGNAL(clicked()),this,SLOT(blueMode()));
     connect(ui->redMode,SIGNAL(clicked()),this,SLOT(redMode()));
@@ -95,6 +108,15 @@ void radarStation::init()
 
     connect(ui->testMode,SIGNAL(clicked()),this,SLOT(testMode()));
     connect(ui->gameMode,SIGNAL(clicked()),this,SLOT(gameMode()));
+
+    connect(ui->changeParameterWidget,SIGNAL(toSaveCloseCameraMatrixParameter(cv::Mat)),&this->qtnode,SLOT(saveCloseCameraMatrixParameter(cv::Mat)));
+    connect(ui->changeParameterWidget,SIGNAL(toSaveCloseDistortionCoefficientParameter(cv::Mat)),&this->qtnode,SLOT(saveCloseDistortionCoefficientParameter(cv::Mat)));
+    connect(ui->changeParameterWidget,SIGNAL(toSaveCloseUniMatrixParameter(cv::Mat)),&this->qtnode,SLOT(saveCloseUniMatrixParameter(cv::Mat)));
+    connect(ui->changeParameterWidget,SIGNAL(toSaveFarCameraMatrixParameter(cv::Mat)),&this->qtnode,SLOT(saveFarCameraMatrixParameter(cv::Mat)));
+    connect(ui->changeParameterWidget,SIGNAL(toSaveFarDistortionCoefficientParameter(cv::Mat)),&this->qtnode,SLOT(saveFarDistortionCoefficientParameter(cv::Mat)));
+    connect(ui->changeParameterWidget,SIGNAL(toSaveFarUniMatrixParameter(cv::Mat)),&this->qtnode,SLOT(saveFarUniMatrixParameter(cv::Mat)));
+    connect(ui->changeParameterWidget,SIGNAL(toSaveMapParameter(float, float)),&this->qtnode,SLOT(saveMapParameter(float, float)));
+    connect(ui->changeParameterWidget,SIGNAL(toSaveImageSizeParameter(int, int)),&this->qtnode,SLOT(saveImageSizeParameter(int, int)));
 }
 
 void radarStation::pnpWidget_parameter_init()
@@ -103,6 +125,22 @@ void radarStation::pnpWidget_parameter_init()
     ui->solvePnpWidget->far_distortion_coefficient = qtnode.far_distortion_coefficient;
     ui->solvePnpWidget->close_camera_matrix = qtnode.close_camera_matrix;
     ui->solvePnpWidget->close_distortion_coefficient = qtnode.close_distortion_coefficient;
+}
+
+void radarStation::parameterWidget_parameter_init()
+{
+    ui->changeParameterWidget->far_camera_matrix = qtnode.far_camera_matrix;
+    std::cout << "far_camera_matrix : " << qtnode.far_camera_matrix << std::endl;
+    ui->changeParameterWidget->far_distortion_coefficient = qtnode.far_distortion_coefficient;
+    ui->changeParameterWidget->far_uni_matrix = qtnode.far_uni_matrix;
+    ui->changeParameterWidget->close_camera_matrix = qtnode.close_camera_matrix;
+    ui->changeParameterWidget->close_distortion_coefficient = qtnode.close_distortion_coefficient;
+    ui->changeParameterWidget->close_uni_matrix = qtnode.close_uni_matrix;
+    ui->changeParameterWidget->image_cols = qtnode.image_cols;
+    ui->changeParameterWidget->image_rows = qtnode.image_rows;
+    ui->changeParameterWidget->object_height = qtnode.object_height;
+    ui->changeParameterWidget->object_width = qtnode.object_width;
+    ui->changeParameterWidget->uiParameterUpdate();
 }
 
 void radarStation::mousePressEvent(QMouseEvent *event)
@@ -160,8 +198,13 @@ void radarStation::changeToMapWidget()
     //qDebug() << "map";
     ui->pnpMode->setChecked(false);
     ui->mapMode->setChecked(true);
+    ui->parameterMode->setChecked(false);
     ui->pnpMode_2->setChecked(false);
     ui->mapMode_2->setChecked(true);
+    ui->parameterMode_2->setChecked(false);
+    ui->pnpMode_3->setChecked(false);
+    ui->mapMode_3->setChecked(true);
+    ui->parameterMode_3->setChecked(false);
     ui->allWidget->setCurrentWidget(ui->mapWidget);
 }
 
@@ -170,9 +213,29 @@ void radarStation::changeToPnpWidget()
     //qDebug() << "pnp";
     ui->pnpMode->setChecked(true);
     ui->mapMode->setChecked(false);
+    ui->parameterMode->setChecked(false);
     ui->pnpMode_2->setChecked(true);
     ui->mapMode_2->setChecked(false);
+    ui->parameterMode_2->setChecked(false);
+    ui->pnpMode_3->setChecked(true);
+    ui->mapMode_3->setChecked(false);
+    ui->parameterMode_3->setChecked(false);
     ui->allWidget->setCurrentWidget(ui->solvePnpWidget);
+}
+
+void radarStation::changeToParameterWidget()
+{
+    //qDebug() << "pnp";
+    ui->pnpMode->setChecked(false);
+    ui->mapMode->setChecked(false);
+    ui->parameterMode->setChecked(true);
+    ui->pnpMode_2->setChecked(false);
+    ui->mapMode_2->setChecked(false);
+    ui->parameterMode_2->setChecked(true);
+    ui->pnpMode_3->setChecked(false);
+    ui->mapMode_3->setChecked(false);
+    ui->parameterMode_3->setChecked(true);
+    ui->allWidget->setCurrentWidget(ui->changeParameterWidget);
 }
 
 void radarStation::changeToMapWidget_2()
@@ -180,8 +243,13 @@ void radarStation::changeToMapWidget_2()
     //qDebug() << "map";
     ui->pnpMode->setChecked(false);
     ui->mapMode->setChecked(true);
+    ui->parameterMode->setChecked(false);
     ui->pnpMode_2->setChecked(false);
     ui->mapMode_2->setChecked(true);
+    ui->parameterMode_2->setChecked(false);
+    ui->pnpMode_3->setChecked(false);
+    ui->mapMode_3->setChecked(true);
+    ui->parameterMode_3->setChecked(false);
     ui->allWidget->setCurrentWidget(ui->mapWidget);
 }
 
@@ -190,9 +258,74 @@ void radarStation::changeToPnpWidget_2()
     //qDebug() << "pnp";
     ui->pnpMode->setChecked(true);
     ui->mapMode->setChecked(false);
+    ui->parameterMode->setChecked(false);
     ui->pnpMode_2->setChecked(true);
     ui->mapMode_2->setChecked(false);
+    ui->parameterMode_2->setChecked(false);
+    ui->pnpMode_3->setChecked(true);
+    ui->mapMode_3->setChecked(false);
+    ui->parameterMode_3->setChecked(false);
     ui->allWidget->setCurrentWidget(ui->solvePnpWidget);
+}
+
+void radarStation::changeToParameterWidget_2()
+{
+    //qDebug() << "pnp";
+    ui->pnpMode->setChecked(false);
+    ui->mapMode->setChecked(false);
+    ui->parameterMode->setChecked(true);
+    ui->pnpMode_2->setChecked(false);
+    ui->mapMode_2->setChecked(false);
+    ui->parameterMode_2->setChecked(true);
+    ui->pnpMode_3->setChecked(false);
+    ui->mapMode_3->setChecked(false);
+    ui->parameterMode_3->setChecked(true);
+    ui->allWidget->setCurrentWidget(ui->changeParameterWidget);
+}
+
+void radarStation::changeToMapWidget_3()
+{
+    //qDebug() << "map";
+    ui->pnpMode->setChecked(false);
+    ui->mapMode->setChecked(true);
+    ui->parameterMode->setChecked(false);
+    ui->pnpMode_2->setChecked(false);
+    ui->mapMode_2->setChecked(true);
+    ui->parameterMode_2->setChecked(false);
+    ui->pnpMode_3->setChecked(false);
+    ui->mapMode_3->setChecked(true);
+    ui->parameterMode_3->setChecked(false);
+    ui->allWidget->setCurrentWidget(ui->mapWidget);
+}
+
+void radarStation::changeToPnpWidget_3()
+{
+    //qDebug() << "pnp";
+    ui->pnpMode->setChecked(true);
+    ui->mapMode->setChecked(false);
+    ui->parameterMode->setChecked(false);
+    ui->pnpMode_2->setChecked(true);
+    ui->mapMode_2->setChecked(false);
+    ui->parameterMode_2->setChecked(false);
+    ui->pnpMode_3->setChecked(true);
+    ui->mapMode_3->setChecked(false);
+    ui->parameterMode_3->setChecked(false);
+    ui->allWidget->setCurrentWidget(ui->solvePnpWidget);
+}
+
+void radarStation::changeToParameterWidget_3()
+{
+    //qDebug() << "pnp";
+    ui->pnpMode->setChecked(false);
+    ui->mapMode->setChecked(false);
+    ui->parameterMode->setChecked(true);
+    ui->pnpMode_2->setChecked(false);
+    ui->mapMode_2->setChecked(false);
+    ui->parameterMode_2->setChecked(true);
+    ui->pnpMode_3->setChecked(false);
+    ui->mapMode_3->setChecked(false);
+    ui->parameterMode_3->setChecked(true);
+    ui->allWidget->setCurrentWidget(ui->changeParameterWidget);
 }
 
 void radarStation::farImageUpdate()
@@ -306,7 +439,7 @@ void radarStation::farPointsUpdate()
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
     mapPos farpos;
-    for(int i = 1; i < ui->map->far_robots.size();i++)
+    for(size_t i = 1; i < ui->map->far_robots.size();i++)
     {
         if(ui->map->far_robots[i].confidence > 0.0)
         {
@@ -351,7 +484,7 @@ void radarStation::closePointsUpdate()
     float width = ui->map->width() * ui->map->scaleValue;
     float height = ui->map->height() * ui->map->scaleValue;
     mapPos closepos;
-    for(int i = 1; i < ui->map->close_robots.size();i++)
+    for(size_t i = 1; i < ui->map->close_robots.size();i++)
     {
         if(ui->map->close_robots[i].confidence > 0.0)
         {
@@ -468,7 +601,7 @@ void radarStation::radarMarkUpdate()
     }
     else
     {
-        for(int i =7;i<robots.size();i++)
+        for(size_t i =7;i<robots.size();i++)
         {
             armor_number = i;
             switch(armor_number)
@@ -508,7 +641,7 @@ void radarStation::radarInfoUpdate()
     radar_info = radar_info_msg.radar_info;
     uint8_t is_double_damage = radar_info_msg.is_double_damage;
     ui->radarInfo->setText(QString::number(radar_info) + "次");
-    if(radar_info_msg.is_double_damage == 0)
+    if(is_double_damage == 0)
     {
         ui->radarIsDoubleDamage->setText("未触发");
     }
@@ -670,25 +803,18 @@ void radarStation::robots_init()
 
 void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
 {
-    float object_width = 28;
-    float object_height = 15;
-    float width = ui->map->width();
-    float height = ui->map->height();
     int armor_number = 0;
     float confidence = 0.0;
     float x = 0.0;
     float y = 0.0;
 
-    for(int i = 0;i<get_robots.size();i++)
+    for(size_t i = 0;i<get_robots.size();i++)
     {
         if(get_robots[i].confidence != 0.0)
         {
             armor_number = get_robots[i].id;
             confidence = get_robots[i].confidence;
-            //cout << "get_robots_armor_number:" << armor_number << " confidence:" << confidence << endl;
             x = get_robots[i].x;
-            //cout << "width:" << width << " height:" << height << endl;
-            //cout << "get_robots_x:" << get_robots[i].x << " get_robots_y:" << get_robots[i].y << endl;
             y =  get_robots[i].y;
             if(is_far)
             {
@@ -758,7 +884,7 @@ void radarStation::robots_adjust(std::vector<Robot> &get_robots, bool is_far)
 
 void radarStation::all_robots_adjust(bool is_far)
 {
-    for(int i = 0;i<robots.size();i++)
+    for(size_t i = 0;i<robots.size();i++)
     {
         /*std::cout << "robots_id:" << robots[i].id << " robots_confidence:" << robots[i].confidence << std::endl;
         std::cout << "robots_x:" << robots[i].x << " robots_y:" << robots[i].y << std::endl;
@@ -897,11 +1023,11 @@ void radarStation::sendRobots(std::vector<DecisionRobot> &robots)
     }
     else if(ui->map->our_color == 1) // 我们是蓝方
     {
-        for(int i =7;i<robots.size();i++)
+        for(size_t i =7;i<robots.size();i++)
         {
             if(robots[i].x !=0.0 && robots[i].y != 0.0)
             {
-                for(int j = 7;j<robots.size();j++)
+                for(size_t j = 7;j<robots.size();j++)
                 {
                     my_msgss::msg::Point send_robot;
                     send_robot.id = robots[j].id;
@@ -941,23 +1067,7 @@ void radarStation::decision(std::vector<DecisionRobot> &robots)
         if(robots[armor_number].confidence != 0.0)
         {
             cv::Point2f robot_point = cv::Point(robots[armor_number].x,robots[armor_number].y);
-            if(pointPolygonTest(ui->map->our_R3_region,robot_point,false) == 1)
-            {
-                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方R3区域内";
-            }
-            else if(pointPolygonTest(ui->map->our_R2_region,robot_point,false) == 1)
-            {
-                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方R2区域内";
-            }
-            else if(pointPolygonTest(ui->map->our_R4_region,robot_point,false) == 1)
-            {
-                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方R4区域内";
-            }
-            else if(pointPolygonTest(ui->map->our_energy_region,robot_point,false) == 1)
-            {
-                decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人在我方能量机关区域内";
-            }
-            else if(pointPolygonTest(ui->map->enemy_fly_down_region,robot_point,false) == 1)
+            if(pointPolygonTest(ui->map->enemy_fly_down_region,robot_point,false) == 1)
             {
                 decisionText = "注意注意！！!  " + QString::number(armor_number) + "号机器人飞坡!!!!!!";
             }

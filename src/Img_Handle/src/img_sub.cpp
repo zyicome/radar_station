@@ -252,7 +252,6 @@ void Img_Sub::yolo_init()
     this->far_inf_robot = inf_robots;
     this->close_inf_armor = inf_armors;
     this->close_inf_robot = inf_robots;*/
-    bool runOnGPU = false;
 
     std::string pkg_path = ament_index_cpp::get_package_share_directory("Img_Handle");
     // 1. 设置你的wts模型

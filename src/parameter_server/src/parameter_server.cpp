@@ -10,6 +10,9 @@ Server::Server() : Node("parameter_server",rclcpp::NodeOptions().allow_undeclare
 
         //test();
     }
+
+    parameter_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
+        "/parameter_events", 10, std::bind(&Server::parameter_event_callback, this, std::placeholders::_1));
 }
 
 void Server::set_camera_matrix_parameter()
@@ -88,6 +91,238 @@ void Server::set_map_parameter()
     //传输过程中的图片大小
     this->declare_parameter("image_cols",img_cols);
     this->declare_parameter("image_rows",img_rows);
+}
+
+void Server::parameter_event_callback(const rcl_interfaces::msg::ParameterEvent::SharedPtr event)
+{
+    for(const auto &changed_parameter : event->changed_parameters)
+    {
+        if(changed_parameter.name == "close_camera_matrix_one")
+        {
+            close_camera_matrix.at(0) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_two")
+        {
+            close_camera_matrix.at(1) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_three")
+        {
+            close_camera_matrix.at(2) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_four")
+        {
+            close_camera_matrix.at(3) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_five")
+        {
+            close_camera_matrix.at(4) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_six")
+        {
+            close_camera_matrix.at(5) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_eight")
+        {
+            close_camera_matrix.at(7) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_seven")
+        {
+            close_camera_matrix.at(6) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_camera_matrix_nine")
+        {
+            close_camera_matrix.at(8) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_distortion_coefficient_one")
+        {
+            close_distortion_coefficient.at(0) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_distortion_coefficient_two")
+        {
+            close_distortion_coefficient.at(1) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_distortion_coefficient_three")
+        {
+            close_distortion_coefficient.at(2) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_distortion_coefficient_four")
+        {
+            close_distortion_coefficient.at(3) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_distortion_coefficient_five")
+        {
+            close_distortion_coefficient.at(4) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_one")
+        {
+            close_uni_matrix.at(0) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_two")
+        {
+            close_uni_matrix.at(1) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_three")
+        {
+            close_uni_matrix.at(2) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_four")
+        {
+            close_uni_matrix.at(3) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_five")
+        {
+            close_uni_matrix.at(4) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_six")
+        {
+            close_uni_matrix.at(5) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_seven")
+        {
+            close_uni_matrix.at(6) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_eight")
+        {
+            close_uni_matrix.at(7) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_nine")
+        {
+            close_uni_matrix.at(8) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_ten")
+        {
+            close_uni_matrix.at(9) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_eleven")
+        {
+            close_uni_matrix.at(10) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "close_uni_matrix_twelve")
+        {
+            close_uni_matrix.at(11) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_one")
+        {
+            far_camera_matrix.at(0) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_two")
+        {
+            far_camera_matrix.at(1) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_three")
+        {
+            far_camera_matrix.at(2) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_four")
+        {
+            far_camera_matrix.at(3) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_five")
+        {
+            far_camera_matrix.at(4) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_six")
+        {
+            far_camera_matrix.at(5) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_seven")
+        {
+            far_camera_matrix.at(6) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_eight")
+        {
+            far_camera_matrix.at(7) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_camera_matrix_nine")
+        {
+            far_camera_matrix.at(8) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_distortion_coefficient_one")
+        {
+            far_distortion_coefficient.at(0) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_distortion_coefficient_two")
+        {
+            far_distortion_coefficient.at(1) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_distortion_coefficient_three")
+        {
+            far_distortion_coefficient.at(2) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_distortion_coefficient_four")
+        {
+            far_distortion_coefficient.at(3) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_distortion_coefficient_five")
+        {
+            far_distortion_coefficient.at(4) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_one")
+        {
+            far_uni_matrix.at(0) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_two")
+        {
+            far_uni_matrix.at(1) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_three")
+        {
+            far_uni_matrix.at(2) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_four")
+        {
+            far_uni_matrix.at(3) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_five")
+        {
+            far_uni_matrix.at(4) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_six")
+        {
+            far_uni_matrix.at(5) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_seven")
+        {
+            far_uni_matrix.at(6) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_eight")
+        {
+            far_uni_matrix.at(7) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_nine")
+        {
+            far_uni_matrix.at(8) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_ten")
+        {
+            far_uni_matrix.at(9) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_eleven")
+        {
+            far_uni_matrix.at(10) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "far_uni_matrix_twelve")
+        {
+            far_uni_matrix.at(11) = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "object_height")
+        {
+            object_height = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "object_width")
+        {
+            object_width = changed_parameter.value.double_value;
+        }
+        else if(changed_parameter.name == "image_cols")
+        {
+            img_cols = changed_parameter.value.integer_value;
+        }
+        else if(changed_parameter.name == "image_rows")
+        {
+            img_rows = changed_parameter.value.integer_value;
+        }
+    }
+    write_parameter_to_xml();
 }
 
 void Server::test()
@@ -242,6 +477,148 @@ bool Server::read_xml()
 
     delete doc;
     return 1;
+}
+
+void Server::write_parameter_to_xml()
+{
+    string file_path = "/home/mechax/radar_station/src/parameter_server/xml/parameter.xml";
+    //创建xml文件对象
+    XMLDocument *doc = new XMLDocument(file_path.c_str());
+
+    //判断文件是否正确
+    if(doc->LoadFile(file_path.c_str()) != tinyxml2::XMLError::XML_SUCCESS)
+    {
+        cout << "文件错误！！！" << endl;
+        delete doc;
+        return;
+    }
+
+    //获取根元素    
+    XMLElement *camera_matrix_root = doc->RootElement();
+    XMLElement *size_root = camera_matrix_root->NextSiblingElement();
+
+    //获取子元素
+    XMLElement *far_camera_matrix_element = camera_matrix_root->FirstChildElement("far_camera_matrix");
+    XMLElement *far_distortion_coefficient_element = camera_matrix_root->FirstChildElement("far_distortion_coefficient");
+    XMLElement *far_uni_matrix_element = camera_matrix_root->FirstChildElement("far_uni_matrix");
+
+    XMLElement *close_camera_matrix_element = camera_matrix_root->FirstChildElement("close_camera_matrix");
+    XMLElement *close_distortion_coefficient_element = camera_matrix_root->FirstChildElement("close_distortion_coefficient");
+    XMLElement *close_uni_matrix_element = camera_matrix_root->FirstChildElement("close_uni_matrix");
+
+    XMLElement *object_size_element = size_root->FirstChildElement("object_size");
+    XMLElement *image_size_element = size_root->FirstChildElement("image_size");
+
+    //将对应的参数写入xml文件
+    if (far_camera_matrix_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = far_camera_matrix_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            element->SetText(far_camera_matrix.at(i));
+            i++;
+        }
+    }
+    else
+    {
+        cout << "far_camera_matrix_element is null" << endl;
+    }
+    if (far_distortion_coefficient_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = far_distortion_coefficient_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            element->SetText(far_distortion_coefficient.at(i));
+            i++;
+        }
+    }
+    else
+    {
+        cout << "far_distortion_coefficient_element is null" << endl;
+    }
+    if (far_uni_matrix_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = far_uni_matrix_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            element->SetText(far_uni_matrix.at(i));
+            i++;
+        }
+    }
+    else
+    {
+        cout << "far_uni_matrix_element is null" << endl;
+    }
+    if (close_camera_matrix_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = close_camera_matrix_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            element->SetText(close_camera_matrix.at(i));
+            i++;
+        }
+    }
+    else
+    {
+        cout << "close_camera_matrix_element is null" << endl;
+    }
+    if (close_distortion_coefficient_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = close_distortion_coefficient_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            element->SetText(close_distortion_coefficient.at(i));
+            i++;
+        }
+    }
+    else
+    {
+        cout << "close_distortion_coefficient_element is null" << endl;
+    }
+    if (close_uni_matrix_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = close_uni_matrix_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            element->SetText(close_uni_matrix.at(i));
+            i++;
+        }
+    }
+    else
+    {
+        cout << "close_uni_matrix_element is null" << endl;
+    }
+    if (object_size_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = object_size_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            if(i == 0)
+            {
+                element->SetText(object_height);
+                i++;
+                continue;
+            }
+            element->SetText(object_width);
+        }
+    }
+    else
+    {
+        cout << "object_size_element is null" << endl;
+    }
+    if (image_size_element != nullptr) {
+        int i = 0;
+        for(XMLElement *element = image_size_element->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+        {
+            if(i == 0)
+            {
+                element->SetText(img_cols);
+                i++;
+                continue;
+            }
+            element->SetText(img_rows);
+        }
+    }
+    else
+    {
+        cout << "image_size_element is null" << endl;
+    }
+    //保存xml文件
+    doc->SaveFile(file_path.c_str());
+    delete doc;
 }
 
 int main(int argc, char *argv[])

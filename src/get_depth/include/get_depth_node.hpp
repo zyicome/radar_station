@@ -64,6 +64,7 @@ public:
   void farImageCallback(const sensor_msgs::msg::Image msg);
   void distance_filter(std::vector<double> & distances);
   cv::Mat distance_to_image(cv::Mat depth, cv::Mat image);
+  void parameter_event_callback(const rcl_interfaces::msg::ParameterEvent::SharedPtr event);
   //声明publisher
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr far_distancePointPub;
   rclcpp::Publisher<my_msgss::msg::Distpoints>::SharedPtr close_distancePointPub;
@@ -123,6 +124,8 @@ public:
   void allrobots_adjust(std::vector<Robot> &robots);
   //---------------------------------------------------
   rclcpp::SyncParametersClient::SharedPtr paramClient;
+
+  rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr parameter_event_sub_;
 
   bool is_connect_to_server();
   //---------------------------------------------------

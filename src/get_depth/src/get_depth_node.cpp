@@ -96,6 +96,9 @@ GetDepth::GetDepth() : Node("GetDepth_node",rclcpp::NodeOptions().allow_undeclar
     calibration_result_sub = this->create_subscription<std_msgs::msg::Float64MultiArray>("/calibration_result", 10, std::bind(&GetDepth::calibration_result_Callback, this, std::placeholders::_1));
 
     paramClient = std::make_shared<rclcpp::SyncParametersClient>(this,"parameter_server");
+
+    parameter_event_sub_ = this->create_subscription<rcl_interfaces::msg::ParameterEvent>(
+        "/parameter_events", 10, std::bind(&GetDepth::parameter_event_callback, this, std::placeholders::_1));
 }
 
 bool GetDepth::is_connect_to_server()
@@ -128,6 +131,8 @@ void GetDepth::parameter_init()
     far_camera_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("far_camera_matrix_seven");
     far_camera_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("far_camera_matrix_eight");
     far_camera_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("far_camera_matrix_nine");
+
+    std::cout << "far_camera_matrix : " << far_camera_matrix <<std::endl;
 
     far_distortion_coefficient.at<double>(0,0) = paramClient->get_parameter<double>("far_distortion_coefficient_one");
     far_distortion_coefficient.at<double>(1,0) = paramClient->get_parameter<double>("far_distortion_coefficient_two");
@@ -501,6 +506,126 @@ void GetDepth::closeImageCallback(const sensor_msgs::msg::Image msg)
     {
         std::cout << "farImageCallback error" << std::endl;
         return;
+    }
+}
+
+void GetDepth::parameter_event_callback(const rcl_interfaces::msg::ParameterEvent::SharedPtr event)
+{
+    for (const auto &changed_parameter: event->changed_parameters) {
+        if (changed_parameter.name == "far_camera_matrix_one") {
+            far_camera_matrix.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_two") {
+            far_camera_matrix.at<double>(0, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_three") {
+            far_camera_matrix.at<double>(0, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_four") {
+            far_camera_matrix.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_five") {
+            far_camera_matrix.at<double>(1, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_six") {
+            far_camera_matrix.at<double>(1, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_seven") {
+            far_camera_matrix.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_eight") {
+            far_camera_matrix.at<double>(2, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_camera_matrix_nine") {
+            far_camera_matrix.at<double>(2, 2) = changed_parameter.value.double_value;
+        }
+        else if (changed_parameter.name == "far_distortion_coefficient_one") {
+            far_distortion_coefficient.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_two") {
+            far_distortion_coefficient.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_three") {
+            far_distortion_coefficient.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_four") {
+            far_distortion_coefficient.at<double>(3, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_distortion_coefficient_five") {
+            far_distortion_coefficient.at<double>(4, 0) = changed_parameter.value.double_value;
+        }
+        else if (changed_parameter.name == "far_uni_matrix_one") {
+            far_uni_matrix.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_two") {
+            far_uni_matrix.at<double>(0, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_three") {
+            far_uni_matrix.at<double>(0, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_four") {
+            far_uni_matrix.at<double>(0, 3) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_five") {
+            far_uni_matrix.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_six") {
+            far_uni_matrix.at<double>(1, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_seven") {
+            far_uni_matrix.at<double>(1, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_eight") {
+            far_uni_matrix.at<double>(1, 3) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_nine") {
+            far_uni_matrix.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_ten") {
+            far_uni_matrix.at<double>(2, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_eleven") {
+            far_uni_matrix.at<double>(2, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "far_uni_matrix_twelve") {
+            far_uni_matrix.at<double>(2, 3) = changed_parameter.value.double_value;
+        }
+        else if (changed_parameter.name == "close_camera_matrix_one") {
+            close_camera_matrix.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_two") {
+            close_camera_matrix.at<double>(0, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_three") {
+            close_camera_matrix.at<double>(0, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_four") {
+            close_camera_matrix.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_five") {
+            close_camera_matrix.at<double>(1, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_six") {
+            close_camera_matrix.at<double>(1, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_seven") {
+            close_camera_matrix.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_eight") {
+            close_camera_matrix.at<double>(2, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_camera_matrix_nine") {
+            close_camera_matrix.at<double>(2, 2) = changed_parameter.value.double_value;
+        }
+        else if (changed_parameter.name == "close_distortion_coefficient_one") {
+            close_distortion_coefficient.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_two") {
+            close_distortion_coefficient.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_three") {
+            close_distortion_coefficient.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_four") {
+            close_distortion_coefficient.at<double>(3, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_distortion_coefficient_five") {
+            close_distortion_coefficient.at<double>(4, 0) = changed_parameter.value.double_value;
+        }
+        else if (changed_parameter.name == "close_uni_matrix_one") {
+            close_uni_matrix.at<double>(0, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_two") {
+            close_uni_matrix.at<double>(0, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_three") {
+            close_uni_matrix.at<double>(0, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_four") {
+            close_uni_matrix.at<double>(0, 3) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_five") {
+            close_uni_matrix.at<double>(1, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_six") {
+            close_uni_matrix.at<double>(1, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_seven") {
+            close_uni_matrix.at<double>(1, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_eight") {
+            close_uni_matrix.at<double>(1, 3) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_nine") {
+            close_uni_matrix.at<double>(2, 0) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_ten") {
+            close_uni_matrix.at<double>(2, 1) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_eleven") {
+            close_uni_matrix.at<double>(2, 2) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "close_uni_matrix_twelve") {
+            close_uni_matrix.at<double>(2, 3) = changed_parameter.value.double_value;
+        } else if (changed_parameter.name == "image_cols") {
+            imgCols = changed_parameter.value.integer_value;
+        } else if (changed_parameter.name == "image_rows") {
+            imgRows = changed_parameter.value.integer_value;
+        }
     }
 }
 

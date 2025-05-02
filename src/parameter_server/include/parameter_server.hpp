@@ -13,6 +13,8 @@
 
 #include <ament_index_cpp/get_package_share_directory.hpp>
 
+#include <rcl_interfaces/msg/parameter_event.hpp>
+
 #include "tinyxml2.h"
 
 using namespace std;
@@ -32,6 +34,10 @@ public:
 
     bool read_xml();
 
+    void write_parameter_to_xml();
+
+    void parameter_event_callback(const rcl_interfaces::msg::ParameterEvent::SharedPtr event);
+
     int img_cols;
     int img_rows;
     double object_height;
@@ -44,5 +50,7 @@ public:
     std::vector<double> close_camera_matrix;
     std::vector<double> close_distortion_coefficient;
     std::vector<double> close_uni_matrix;
+
+    rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr parameter_event_sub_;
 };
 

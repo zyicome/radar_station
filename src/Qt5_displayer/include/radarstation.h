@@ -5,12 +5,15 @@
 #include <QMouseEvent>
 #include <QMutex>
 #include "pnpwidget.h"
+#include "parameterwidget.h"
 #include "qtnode.h"
 #include "std_msgs/msg/float32_multi_array.hpp"
 #include "my_msgss/msg/points.hpp"
 #include "smallmap.h"
 
 #include <QThread>
+
+#include <opencv2/opencv.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class radarStation; }
@@ -59,14 +62,26 @@ public:
     void init();
 
     void pnpWidget_parameter_init();
+
+    void parameterWidget_parameter_init();
 public Q_SLOTS:
     void changeToMapWidget();
 
     void changeToPnpWidget();
 
+    void changeToParameterWidget();
+
     void changeToMapWidget_2();
 
     void changeToPnpWidget_2();
+
+    void changeToParameterWidget_2();
+
+    void changeToMapWidget_3();
+
+    void changeToPnpWidget_3();
+
+    void changeToParameterWidget_3();
 
     void farImageUpdate();
 

@@ -23,13 +23,16 @@ bool qtNode::is_connect_to_server()
         {
             return false;
         }
+        std::cout << "服务连接失败" << std::endl;
         RCLCPP_INFO(qnode->get_logger(),"服务未连接");
     }
+    std::cout << "服务连接成功" << std::endl;
     return true;
 }
 
 void qtNode::client_parameter_init()
 {
+    std::cout << "client_parameter_init" << std::endl;
     far_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_camera_matrix_one");
     far_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_camera_matrix_two");
     far_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("far_camera_matrix_three");
@@ -46,6 +49,19 @@ void qtNode::client_parameter_init()
     far_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("far_distortion_coefficient_four");
     far_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("far_distortion_coefficient_five");
 
+    far_uni_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("far_uni_matrix_one");
+    far_uni_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("far_uni_matrix_two");
+    far_uni_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("far_uni_matrix_three");
+    far_uni_matrix.at<double>(0, 3) = paramClient->get_parameter<double>("far_uni_matrix_four");
+    far_uni_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("far_uni_matrix_five");
+    far_uni_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("far_uni_matrix_six");
+    far_uni_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("far_uni_matrix_seven");
+    far_uni_matrix.at<double>(1, 3) = paramClient->get_parameter<double>("far_uni_matrix_eight");
+    far_uni_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("far_uni_matrix_nine");
+    far_uni_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("far_uni_matrix_ten");
+    far_uni_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("far_uni_matrix_eleven");
+    far_uni_matrix.at<double>(2, 3) = paramClient->get_parameter<double>("far_uni_matrix_twelve");
+
     close_camera_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("close_camera_matrix_one");
     close_camera_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("close_camera_matrix_two");
     close_camera_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("close_camera_matrix_three");
@@ -61,6 +77,188 @@ void qtNode::client_parameter_init()
     close_distortion_coefficient.at<double>(2,0) = paramClient->get_parameter<double>("close_distortion_coefficient_three");
     close_distortion_coefficient.at<double>(3,0) = paramClient->get_parameter<double>("close_distortion_coefficient_four");
     close_distortion_coefficient.at<double>(4,0) = paramClient->get_parameter<double>("close_distortion_coefficient_five");
+
+    close_uni_matrix.at<double>(0, 0) = paramClient->get_parameter<double>("close_uni_matrix_one");
+    close_uni_matrix.at<double>(0, 1) = paramClient->get_parameter<double>("close_uni_matrix_two");
+    close_uni_matrix.at<double>(0, 2) = paramClient->get_parameter<double>("close_uni_matrix_three");
+    close_uni_matrix.at<double>(0, 3) = paramClient->get_parameter<double>("close_uni_matrix_four");
+    close_uni_matrix.at<double>(1, 0) = paramClient->get_parameter<double>("close_uni_matrix_five");
+    close_uni_matrix.at<double>(1, 1) = paramClient->get_parameter<double>("close_uni_matrix_six");
+    close_uni_matrix.at<double>(1, 2) = paramClient->get_parameter<double>("close_uni_matrix_seven");
+    close_uni_matrix.at<double>(1, 3) = paramClient->get_parameter<double>("close_uni_matrix_eight");
+    close_uni_matrix.at<double>(2, 0) = paramClient->get_parameter<double>("close_uni_matrix_nine");
+    close_uni_matrix.at<double>(2, 1) = paramClient->get_parameter<double>("close_uni_matrix_ten");
+    close_uni_matrix.at<double>(2, 2) = paramClient->get_parameter<double>("close_uni_matrix_eleven");
+    close_uni_matrix.at<double>(2, 3) = paramClient->get_parameter<double>("close_uni_matrix_twelve");
+
+    object_height = paramClient->get_parameter<double>("object_height");
+    object_width = paramClient->get_parameter<double>("object_width");
+
+    image_cols = FAR_IMAGE_WIDTH = CLOSE_IMAGE_WIDTH = paramClient->get_parameter<int>("image_cols"); //宽
+    image_rows = FAR_IMAGE_HEIGHT = CLOSE_IMAGE_HEIGHT = paramClient->get_parameter<int>("image_rows"); //高
+
+}
+
+void qtNode::saveCloseCameraMatrixParameter(cv::Mat close_camera_matrix)
+{
+    close_camera_matrix = close_camera_matrix.clone();
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("close_camera_matrix_one", close_camera_matrix.at<double>(0, 0)),
+        rclcpp::Parameter("close_camera_matrix_two", close_camera_matrix.at<double>(0, 1)),
+        rclcpp::Parameter("close_camera_matrix_three", close_camera_matrix.at<double>(0, 2)),
+        rclcpp::Parameter("close_camera_matrix_four", close_camera_matrix.at<double>(1, 0)),
+        rclcpp::Parameter("close_camera_matrix_five", close_camera_matrix.at<double>(1, 1)),
+        rclcpp::Parameter("close_camera_matrix_six", close_camera_matrix.at<double>(1, 2)),
+        rclcpp::Parameter("close_camera_matrix_seven", close_camera_matrix.at<double>(2, 0)),
+        rclcpp::Parameter("close_camera_matrix_eight", close_camera_matrix.at<double>(2, 1)),
+        rclcpp::Parameter("close_camera_matrix_nine", close_camera_matrix.at<double>(2, 2))
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
+}
+
+void qtNode::saveCloseDistortionCoefficientParameter(cv::Mat close_distortion_coefficient)
+{
+    close_distortion_coefficient = close_distortion_coefficient.clone();
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("close_distortion_coefficient_one", close_distortion_coefficient.at<double>(0, 0)),
+        rclcpp::Parameter("close_distortion_coefficient_two", close_distortion_coefficient.at<double>(1, 0)),
+        rclcpp::Parameter("close_distortion_coefficient_three", close_distortion_coefficient.at<double>(2, 0)),
+        rclcpp::Parameter("close_distortion_coefficient_four", close_distortion_coefficient.at<double>(3, 0)),
+        rclcpp::Parameter("close_distortion_coefficient_five", close_distortion_coefficient.at<double>(4, 0))
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
+}
+
+void qtNode::saveCloseUniMatrixParameter(cv::Mat close_uni_matrix)
+{
+    close_uni_matrix = close_uni_matrix.clone();
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("close_uni_matrix_one", close_uni_matrix.at<double>(0, 0)),
+        rclcpp::Parameter("close_uni_matrix_two", close_uni_matrix.at<double>(0, 1)),
+        rclcpp::Parameter("close_uni_matrix_three", close_uni_matrix.at<double>(0, 2)),
+        rclcpp::Parameter("close_uni_matrix_four", close_uni_matrix.at<double>(0, 3)),
+        rclcpp::Parameter("close_uni_matrix_five", close_uni_matrix.at<double>(1, 0)),
+        rclcpp::Parameter("close_uni_matrix_six", close_uni_matrix.at<double>(1, 1)),
+        rclcpp::Parameter("close_uni_matrix_seven", close_uni_matrix.at<double>(1, 2)),
+        rclcpp::Parameter("close_uni_matrix_eight", close_uni_matrix.at<double>(1, 3)),
+        rclcpp::Parameter("close_uni_matrix_nine", close_uni_matrix.at<double>(2, 0)),
+        rclcpp::Parameter("close_uni_matrix_ten", close_uni_matrix.at<double>(2, 1)),
+        rclcpp::Parameter("close_uni_matrix_eleven", close_uni_matrix.at<double>(2, 2)),
+        rclcpp::Parameter("close_uni_matrix_twelve", close_uni_matrix.at<double>(2, 3))
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
+}
+
+void qtNode::saveFarCameraMatrixParameter(cv::Mat far_camera_matrix)
+{
+    far_camera_matrix = far_camera_matrix.clone();
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("far_camera_matrix_one", far_camera_matrix.at<double>(0, 0)),
+        rclcpp::Parameter("far_camera_matrix_two", far_camera_matrix.at<double>(0, 1)),
+        rclcpp::Parameter("far_camera_matrix_three", far_camera_matrix.at<double>(0, 2)),
+        rclcpp::Parameter("far_camera_matrix_four", far_camera_matrix.at<double>(1, 0)),
+        rclcpp::Parameter("far_camera_matrix_five", far_camera_matrix.at<double>(1, 1)),
+        rclcpp::Parameter("far_camera_matrix_six", far_camera_matrix.at<double>(1, 2)),
+        rclcpp::Parameter("far_camera_matrix_seven", far_camera_matrix.at<double>(2, 0)),
+        rclcpp::Parameter("far_camera_matrix_eight", far_camera_matrix.at<double>(2, 1)),
+        rclcpp::Parameter("far_camera_matrix_nine", far_camera_matrix.at<double>(2, 2))
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
+}
+
+void qtNode::saveFarDistortionCoefficientParameter(cv::Mat far_distortion_coefficient)
+{
+    far_distortion_coefficient = far_distortion_coefficient.clone();
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("far_distortion_coefficient_one", far_distortion_coefficient.at<double>(0, 0)),
+        rclcpp::Parameter("far_distortion_coefficient_two", far_distortion_coefficient.at<double>(1, 0)),
+        rclcpp::Parameter("far_distortion_coefficient_three", far_distortion_coefficient.at<double>(2, 0)),
+        rclcpp::Parameter("far_distortion_coefficient_four", far_distortion_coefficient.at<double>(3, 0)),
+        rclcpp::Parameter("far_distortion_coefficient_five", far_distortion_coefficient.at<double>(4, 0))
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
+}
+
+void qtNode::saveFarUniMatrixParameter(cv::Mat far_uni_matrix)
+{
+    far_uni_matrix = far_uni_matrix.clone();
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("far_uni_matrix_one", far_uni_matrix.at<double>(0, 0)),
+        rclcpp::Parameter("far_uni_matrix_two", far_uni_matrix.at<double>(0, 1)),
+        rclcpp::Parameter("far_uni_matrix_three", far_uni_matrix.at<double>(0, 2)),
+        rclcpp::Parameter("far_uni_matrix_four", far_uni_matrix.at<double>(0, 3)),
+        rclcpp::Parameter("far_uni_matrix_five", far_uni_matrix.at<double>(1, 0)),
+        rclcpp::Parameter("far_uni_matrix_six", far_uni_matrix.at<double>(1, 1)),
+        rclcpp::Parameter("far_uni_matrix_seven", far_uni_matrix.at<double>(1, 2)),
+        rclcpp::Parameter("far_uni_matrix_eight", far_uni_matrix.at<double>(1, 3)),
+        rclcpp::Parameter("far_uni_matrix_nine", far_uni_matrix.at<double>(2, 0)),
+        rclcpp::Parameter("far_uni_matrix_ten", far_uni_matrix.at<double>(2, 1)),
+        rclcpp::Parameter("far_uni_matrix_eleven", far_uni_matrix.at<double>(2, 2)),
+        rclcpp::Parameter("far_uni_matrix_twelve", far_uni_matrix.at<double>(2, 3))
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
+}
+
+void qtNode::saveMapParameter(float object_height, float object_width)
+{
+    std::cout << "object_height : " << object_height << std::endl;
+    std::cout << "object_width : " << object_width << std::endl;
+    std::cout << "saveMapParameter" << std::endl;
+    object_height = object_height;
+    object_width = object_width;
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("object_height", object_height),
+        rclcpp::Parameter("object_width", object_width)
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
+
+    
+    std::cout << "object_height : " << object_height << std::endl;
+    std::cout << "object_width : " << object_width << std::endl;
+    std::cout << "saveMapParameter" << std::endl;
+}
+
+void qtNode::saveImageSizeParameter(int image_cols, int image_rows)
+{
+    image_cols = image_cols;
+    image_rows = image_rows;
+
+    // 创建参数列表
+    std::vector<rclcpp::Parameter> parameters = {
+        rclcpp::Parameter("image_cols", image_cols),
+        rclcpp::Parameter("image_rows", image_rows)
+    };
+
+    // 调用 set_parameters 方法
+    paramClient->set_parameters(parameters);
 }
 
 void qtNode::farImageCallback(const sensor_msgs::msg::Image msg)
@@ -132,7 +330,7 @@ void qtNode::closeImageCallback(const sensor_msgs::msg::Image msg)
         if(!close_cv_ptr->image.empty())
         {
             Mat close_image = close_cv_ptr->image;
-            cv::resize(close_image,close_image,cv::Size(FAR_IMAGE_WIDTH,FAR_IMAGE_HEIGHT));
+            cv::resize(close_image,close_image,cv::Size(CLOSE_IMAGE_WIDTH,CLOSE_IMAGE_HEIGHT));
             close_qimage = QImage((const unsigned char*)(close_image.data),close_image.cols,close_image.rows,QImage::Format_BGR888);
         }
         Q_EMIT updateCloseImage();
@@ -257,8 +455,11 @@ void qtNode::run()
     cout << "node开始运行" << endl;
     rclcpp::init(0, nullptr);
     qnode = std::make_shared<rclcpp::Node>("qt_node",rclcpp::NodeOptions().allow_undeclared_parameters(true));
+    qnode_paramClient = std::make_shared<rclcpp::Node>("qt_node",rclcpp::NodeOptions().allow_undeclared_parameters(true));
 
-    paramClient = std::make_shared<rclcpp::SyncParametersClient>(qnode,"parameter_server");
+    paramClient = std::make_shared<rclcpp::SyncParametersClient>(qnode_paramClient,"parameter_server");
+
+    std::cout << "qtNode::run" << std::endl;
 
     bool flag = is_connect_to_server();
     if(!flag)
@@ -291,6 +492,7 @@ void qtNode::run()
     dart_sub_ = qnode->create_subscription<my_msgss::msg::Dart>("/dart", 10, std::bind(&qtNode::dartCallback, this, std::placeholders::_1));
     site_event_sub_ = qnode->create_subscription<my_msgss::msg::Siteevent>("/site_event", 10, std::bind(&qtNode::siteEventCallback, this, std::placeholders::_1));
 
+    is_init = true;
     rclcpp::spin(qnode);
     cout << "node异常关闭" << endl;
     rclcpp::shutdown();

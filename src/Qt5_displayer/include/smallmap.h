@@ -95,22 +95,28 @@ public:
     std::vector<cv::Point2f> enemy_exchange_region;
     std::vector<cv::Point2f> our_base_region;
     std::vector<cv::Point2f> enemy_base_region;
-    std::vector<cv::Point2f> our_R3_region;
-    std::vector<cv::Point2f> enemy_R3_region;
-    std::vector<cv::Point2f> our_R2_region;
-    std::vector<cv::Point2f> enemy_R2_region;
-    std::vector<cv::Point2f> our_R4_region;
-    std::vector<cv::Point2f> enemy_R4_region;
     std::vector<cv::Point2f> our_energy_region;
     std::vector<cv::Point2f> enemy_energy_region;
     std::vector<cv::Point2f> our_fly_region;
     std::vector<cv::Point2f> enemy_fly_region;
     std::vector<cv::Point2f> our_fly_down_region;
     std::vector<cv::Point2f> enemy_fly_down_region;
-    std::vector<cv::Point2f> our_outpost_region;
-    std::vector<cv::Point2f> enemy_outpost_region;
-    std::vector<cv::Point2f> our_central_island_region;
-    std::vector<cv::Point2f> enemy_central_island_region;
+    std::vector<cv::Point2f> our_high_region;
+    std::vector<cv::Point2f> enemy_high_region;
+    std::vector<cv::Point2f> our_central_high_region;
+    std::vector<cv::Point2f> enemy_central_high_region;
+    std::vector<cv::Point2f> our_out_station_region;
+    std::vector<cv::Point2f> enemy_out_station_region;
+    std::vector<cv::Point2f> our_basition_region;
+    std::vector<cv::Point2f> enemy_basition_region;
+    std::vector<cv::Point2f> our_tercentral_down_region;
+    std::vector<cv::Point2f> enemy_tercentral_down_region;
+    std::vector<cv::Point2f> our_tercentral_up_region;
+    std::vector<cv::Point2f> enemy_tercentral_up_region;
+    std::vector<cv::Point2f> our_terhigh_down_region;
+    std::vector<cv::Point2f> enemy_terhigh_down_region;
+    std::vector<cv::Point2f> our_terhigh_up_region;
+    std::vector<cv::Point2f> enemy_terhigh_up_region;
     //------------------------------------------
 };
 

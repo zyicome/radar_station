@@ -64,6 +64,16 @@ Q_SIGNALS:
     void updateDart();
     void updateSiteEvent();
 
+public Q_SLOTS:
+    void saveCloseCameraMatrixParameter(cv::Mat close_camera_matrix);
+    void saveCloseDistortionCoefficientParameter(cv::Mat close_distortion_coefficient);
+    void saveCloseUniMatrixParameter(cv::Mat close_uni_matrix);
+    void saveFarCameraMatrixParameter(cv::Mat far_camera_matrix);
+    void saveFarDistortionCoefficientParameter(cv::Mat far_distortion_coefficient);
+    void saveFarUniMatrixParameter(cv::Mat far_uni_matrix);
+    void saveMapParameter(float object_height, float object_width);
+    void saveImageSizeParameter(int image_cols, int image_rows);
+
 public:
     QImage far_qimage;
     QImage fardepth_qimage;
@@ -78,10 +88,17 @@ public:
     my_msgss::msg::Dart dart_msg;
     my_msgss::msg::Siteevent site_event_msg;
 
+    float object_height = 0.0;
+    float object_width = 0.0;
+    int image_cols = 0;
+    int image_rows = 0;
+
     cv::Mat far_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
     cv::Mat far_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
+    cv::Mat far_uni_matrix = cv::Mat::zeros(3, 4, CV_64FC1);
     cv::Mat close_camera_matrix =cv::Mat::zeros(3, 3, CV_64FC1);
     cv::Mat close_distortion_coefficient =cv::Mat::zeros(5, 1, CV_64FC1);
+    cv::Mat close_uni_matrix = cv::Mat::zeros(3, 4, CV_64FC1);
 
     rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr pnp_pub_;
     rclcpp::Publisher<my_msgss::msg::Points>::SharedPtr points_pub_;
@@ -105,11 +122,16 @@ public:
     rclcpp::Subscription<my_msgss::msg::Dart>::SharedPtr dart_sub_;
     rclcpp::Subscription<my_msgss::msg::Siteevent>::SharedPtr site_event_sub_;
 
-
+    bool is_init = false;
     rclcpp::Node::SharedPtr qnode;
+    rclcpp::Node::SharedPtr qnode_paramClient;
+
+    std::mutex node_mutex;
 
     float FAR_IMAGE_WIDTH = 1280;
     float FAR_IMAGE_HEIGHT = 1024;
+    float CLOSE_IMAGE_WIDTH = 1280;
+    float CLOSE_IMAGE_HEIGHT = 1024;
     float DEPTH_IMAGE_WIDTH = 640;
     float DEPTH_IMAGE_HEIGHT = 480;
 

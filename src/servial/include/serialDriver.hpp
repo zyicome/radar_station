@@ -97,6 +97,31 @@ struct robot_interaction_msgs {
     uint16_t crc;
 } __attribute__((packed));
 
+//车间通讯
+struct robot_three_interaction_data//最大10HZ 发送和接收
+{
+    uint16_t data_cmd_id; //子内容 ID需为开放的子内容 ID 
+                          //0x0200~0x02FF: x≤112 机器人之间通信
+                          //0x0100: 2 选手端删除图层
+                          //0x0101: 15 选手端绘制一个图形
+                          //0x0102: 30 选手端绘制两个图形
+                          //0x0103: 75 选手端绘制五个图形
+                          //0x0104: 105 选手端绘制七个图形
+                          //0x0110: 45 选手端绘制字符图形
+                          //0x0120: 4 哨兵自主决策指令
+                          //0x0121: 1 雷达自主决策指令
+                          //由于存在多个内容 ID，但整个 cmd_id 上行频率最大为 10Hz，请合理安排带宽。
+    uint16_t sender_id; //发送者 ID需与自身 ID 匹配，ID 编号详见附录
+    uint16_t receiver_id; //接收者 ID
+    uint8_t user_data[4]; //内容数据段 x 最大为 112
+} __attribute__((packed));
+struct robot_three_interaction_msgs {
+    frame_header head;
+    uint16_t cmd_id = 0x0301;
+    robot_interaction_data data;
+    uint16_t crc;
+} __attribute__((packed));
+
 // UI消息
 struct graphic_data_struct_t
 {
@@ -105,21 +130,22 @@ struct graphic_data_struct_t
     uint32_t graphic_tpye:3;
     uint32_t layer:4;
     uint32_t color:4;
-    uint32_t start_angle:9;
-    uint32_t end_angle:9;
+    uint32_t details_a:9;
+    uint32_t details_b:9;
     uint32_t width:10;
     uint32_t start_x:11;
     uint32_t start_y:11;
-    uint32_t radius:10;
-    uint32_t end_x:11;
-    uint32_t end_y:11;
+    uint32_t details_c:10;
+    uint32_t details_d:11;
+    uint32_t details_e:11;
 } __attribute__((packed));
 struct client_ui_data//最大10HZ 发送和接收
 {
     uint16_t cmd_id;
     uint16_t sender_id;
     uint16_t receiver_id;
-    graphic_data_struct_t data;
+    graphic_data_struct_t graphic_data;
+    uint8_t char_data[30];
 } __attribute__((packed));
 
 struct client_ui_msgs {
@@ -406,11 +432,27 @@ public:
 
   bool sendPointsData();
 
+  bool sendHeroData();
+
+  bool sendRobotThreeData();
+
+  bool sendRobotData(robot_interaction_msgs &robot_interaction_msg, uint16_t sender_id, uint16_t receiver_id, const uint8_t *user_data, size_t data_size);
+
+  void sendUIData();
+
+  void createUI();
+
+  void updateUI();
+
   void receiveAllData_three();
 
   bool our_color; // 0,red 1,blue
   bool test;
+  bool is_first_create_ui;
   uint8_t seq;
+  uint8_t game_progress;
+  uint16_t remaining_game_time;
+  std::vector<uint16_t> energy_start_time;
   
   serial::Serial serial_port;
   uint8_t receiveData[1024];
@@ -427,6 +469,9 @@ public:
   radar_mark_msg radarMarkMsg;
   radar_info_msg radarInfoMsg;
   site_event_msgs siteEventMsgs;
+  robot_interaction_msgs toHeroMsgs;
+  client_ui_msgs clientUiEnergyMsgs;
+  robot_three_interaction_msgs toThreeMsgs;
 
   radar_cmd_msgs radarCmdMsg;
 

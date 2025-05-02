@@ -57,6 +57,8 @@ public:
     Point2f calculate_pixel_codi(const map_point &point);
 
     bool is_connect_to_server();
+
+    void parameter_event_callback(const rcl_interfaces::msg::ParameterEvent::SharedPtr event);
 private:
     double object_width;
     double object_height;
@@ -99,5 +101,7 @@ private:
     void allrobots_adjust(std::vector<Robot> &robots);
     //-----------------------------------------------
     rclcpp::SyncParametersClient::SharedPtr paramClient;
+
+    rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr parameter_event_sub_;
     //-----------------------------------------------
 };
